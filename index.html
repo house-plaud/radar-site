@@ -1,0 +1,72 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>radar 周报</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F1F4F7; --surface:#FBFCFD; --surface-2:#E9EEF3;
+  --ink:#131B25; --ink-soft:#33414F; --dim:#5C6B7A; --faint:#8695A3;
+  --rule:#D7DEE6; --signal:#0A6273; --heat:#9C4426;
+  --serif:"Newsreader",ui-serif,Georgia,"Songti SC",serif;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"PingFang SC",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+:root:not([data-theme="light"]){@media (prefers-color-scheme:dark){
+  --paper:#111721; --surface:#19212C; --surface-2:#212A36;
+  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#6E7C89;
+  --rule:#2B3542; --signal:#54B4C6; --heat:#D98A6A;
+}}
+:root[data-theme="dark"]{
+  --paper:#111721; --surface:#19212C; --surface-2:#212A36;
+  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#6E7C89;
+  --rule:#2B3542; --signal:#54B4C6; --heat:#D98A6A;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+ font:16px/1.75 var(--sans);-webkit-font-smoothing:antialiased}
+.page{max-width:56rem;margin:0 auto;padding:2.5rem 1.4rem 5rem}
+a{color:var(--signal);text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb,var(--signal) 30%,transparent)}
+a:hover{border-bottom-color:var(--signal)}
+a:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+.mast{display:flex;flex-wrap:wrap;align-items:flex-end;gap:1rem 2rem;
+ padding-bottom:1.1rem;border-bottom:2px solid var(--ink);margin-bottom:2rem}
+.wordmark{font-family:var(--serif);font-weight:600;font-size:2.4rem;
+ line-height:1;letter-spacing:-.02em;margin:0;flex:1 1 16rem}
+.wordmark a{border:0;color:var(--ink)}
+.wordmark em{font-style:italic;font-weight:400;color:var(--signal)}
+.tagline{font-family:var(--mono);font-size:.74rem;color:var(--dim);margin:.5rem 0 0}
+.sweep{font-family:var(--mono);font-size:.74rem;color:var(--dim);
+ font-variant-numeric:tabular-nums;text-align:right}
+h2{font-family:var(--serif);font-size:1.5rem;font-weight:600;
+ margin:2.8rem 0 1.1rem;padding-bottom:.35rem;border-bottom:1px solid var(--rule);
+ text-wrap:balance}
+h3{font-family:var(--serif);font-size:1.18rem;font-weight:500;line-height:1.42;
+ margin:1.8rem 0 .3rem;text-wrap:balance}
+h4{font-family:var(--sans);font-size:.95rem;font-weight:600;margin:1.5rem 0 .35rem}
+p{margin:0 0 .6rem;color:var(--ink-soft);max-width:42rem}
+.tag{font-family:var(--mono);font-size:.72rem;color:var(--dim);
+ margin:0 0 .6rem;font-variant-numeric:tabular-nums}
+blockquote{margin:0 0 1.4rem;padding:.6rem 0 .6rem .9rem;
+ border-left:2px solid var(--rule);color:var(--dim);font-size:.9rem}
+blockquote p{margin:0;color:inherit}
+ul{padding-left:1.1rem;margin:0 0 1rem;max-width:42rem}
+li{margin:.3rem 0;color:var(--ink-soft)}
+.src{font-family:var(--mono);font-size:.8rem;word-break:break-all;margin:0 0 1.6rem}
+.index{list-style:none;padding:0;margin:1.5rem 0 0}
+.index li{display:flex;gap:1rem;align-items:baseline;padding:.7rem 0;
+ border-bottom:1px solid var(--rule)}
+.index .wk{font-family:var(--mono);font-size:.82rem;color:var(--dim);
+ white-space:nowrap;font-variant-numeric:tabular-nums}
+.index .n{font-family:var(--mono);font-size:.74rem;color:var(--faint);
+ margin-left:auto;white-space:nowrap}
+.foot{margin-top:3.5rem;padding-top:1.1rem;border-top:2px solid var(--ink);
+ font-family:var(--mono);font-size:.72rem;color:var(--faint);line-height:1.8}
+@media (max-width:640px){.wordmark{font-size:1.9rem}.sweep{text-align:left}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body><div class="page">
+<header class="mast"><h1 class="wordmark">radar <em>周报</em></h1><p class="tagline">AI 工程 · 系统设计 &nbsp;/&nbsp; 一期一份，过期即归档</p></header>
+<p>每周一期。<b>精选</b>逐条压缩，<b>聚合稿</b>收录主题相关但未进精选的，供有余力时判断是否回头细读。</p>
+<ul class="index"><li><span class="wk">2026-W38</span><a href="2026-W38.html">第 38 周</a><span class="n">440 条</span></li></ul><div class="foot">自动生成 · 不含个人语境</div>
+</div></body></html>

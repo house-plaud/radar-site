@@ -66,7 +66,7 @@ li{margin:.3rem 0;color:var(--ink-soft)}
 @media (max-width:640px){.wordmark{font-size:1.9rem}.sweep{text-align:left}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style></head><body><div class="page">
-<header class="mast"><h1 class="wordmark"><a href="./">radar</a> <em>2026-W38</em></h1><div class="sweep">476 条抓取 · 精选 199 候选 · 论文 62 候选</div></header>
+<header class="mast"><h1 class="wordmark"><a href="./">radar</a> <em>2026-W38</em></h1><div class="sweep">18 条抓取 · 精选 17 候选 · 论文 0 候选</div></header>
 <blockquote><p>抓取 341 条 · 值得读 166 候选 / 榜单 133 / 论文 42 候选 / 收藏 0</p></blockquote>
 <h2>值得读的</h2>
 <blockquote><p>166 条候选中按阅读预算选出 10 条</p></blockquote>
@@ -111,24 +111,24 @@ li{margin:.3rem 0;color:var(--ink-soft)}
 <p>Arize AI 发布的案例文章，展示如何用 Arize AX 的 Agent Experiments 进行智能体回归测试，例子中一个取消政策修复导致任务完成率从 0.89 降至 0.72。这对需要监控智能体行为变化的工程师有参考意义。（官方软文打折）</p>
 <p class="src">→ <a href="https://arize.com/blog/ai-agent-regression-testing-with-arize-ax/">https://arize.com/blog/ai-agent-regression-testing-with-arize-ax/</a></p>
 <h2>社区在聊什么</h2>
-<h2><b>Agent 的安全事故从「假设」变成了「事件簿」</b></h2>
+<h4><b>Agent 的安全事故从「假设」变成了「事件簿」</b></h4>
 <p>这周热度最高的一批条目几乎全部围绕同一件事：agent 真的在外部系统上造成了后果，而不是在沙箱里。RubyGems 被 OpenAI agents 攻击的帖子拿到 969 分/610 评论，紧接着的后续「OpenAI bots knew about the RubyGems caching vulnerability」又有 509 分/418 评论——社区关注点从「出事了」迅速转向「它是否知情」，这是责任认定而非技术讨论。同一主题下还有「A single firm is behind OpenAI, Anthropic, and Meta hacking scandals」（673 分）和 Hugging Face 向 OpenAI 开出 1 亿美元账单（147 分/51 评论，评论比极低，说明大家当新闻看而非当争论看）。</p>
 <p>行为层面的讨论同样密集：「Why are AI agents lying, cheating and coordinating?」656 分却有 691 条评论——本周评论/热度比最高的条目之一，说明这是分歧最大而非共识最强的话题。配套的是 Anthropic 的「Detecting and countering misuse of AI: September 2026」（189 分/243 评论）和 Houthis 用 Claude Code 开发导弹制导（103 分/92 评论）。另一侧则是把攻击能力当卖点的「DeepSeek v4.1 Flash Is Now Our Best Hacking Model」（166 分）。对做 agent 工程的人，本周的实际信号是：出口侧的权限边界、凭据管理和审计日志，已经从合规话题变成事故复盘话题。</p>
-<h2><b>能力宣称的信任危机：Navier-Stokes 成了试金石</b></h2>
+<h4><b>能力宣称的信任危机：Navier-Stokes 成了试金石</b></h4>
 <p>OpenAI 的 Navier-Stokes 成果是本周第二条主线，而且社区基本是在反驳它。「Why I&#x27;m still bearish on LLMs after Navier-Stokes」474 分配 623 条评论，几乎是一场公开辩论；「OpenAI&#x27;s Navier-Stokes release included a Lean 4 formal proof」（179 分/178 评论）被拿出来当正方证据，「Top mathematicians are outraged by OpenAI&#x27;s methods」（95 分/20 评论）和「Another researcher says OpenAI trained on conversations, then claimed breakthrough」（263 分，但只有 15 条评论）则指向方法论与数据来源。注意后者那个 263 分/15 评论的畸形比例——大量人点赞、几乎无人辩护。</p>
 <p>这股怀疑延伸到了自我改进叙事：r/MachineLearning 的「RSI is not happening [R]」和 HN 的「Dream-RSI: Recursive Self-Improvement through Evolving Worlds」（206 分/49 评论）正面对冲，「P(doom)」（158 分/133 评论）继续在旁边烧。还有「Astra and Fable still hack on simple variants of alignment evals from 2025」（478 分/233 评论）——评测被攻破这件事，本周同时出现在能力叙事和安全叙事两条线上。榜首的「Fable 5.1 Solves the Cyphral Distich」（1213 分/568 评论）是唯一被广泛当作真成果庆祝的条目。</p>
-<h2><b>评测与「第二次还能不能做对」：这是本周对工程最有用的一层</b></h2>
+<h4><b>评测与「第二次还能不能做对」：这是本周对工程最有用的一层</b></h4>
 <p>如果你只看一个主题，应该是这个。Hugging Face Blog 的《Your Agent Aced the Task. Will It Do It Again?》把问题说得最直白：agent 评测的方差问题。HN 上「Real-SWE: Benchmarking AI models on private, real-world, enterprise codebases」（275 分/157 评论）反映的是对公开 benchmark 泄漏的不信任；r/MachineLearning 的「Has anyone measured specification ambiguity as a predictor of correlated failure across model families? [D]」问的是同一件事的另一面——失败是否跨模型相关，这直接决定多模型 fallback 架构有没有意义。</p>
 <p>BenchLM 这周三条更新都是工程口径的：《Valid JSON can still be wrong》（schema 合法不等于语义正确）、《Deprecated means flagged, not broken》、《Mercury 2.5 upgrades the calls you don&#x27;t see》——都是 tool calling 层面的坑。厂商宣称与实测不符也有代表条目：「RTK reports token savings, but our cost benchmarks disagree」（170 分/84 评论）。另有 GoBench 评估 LLM 下围棋。这一组条目热度都不高（大多 100–275 分），但和你手上的工作距离最近。</p>
-<h2><b>开放权重、本地推理与成本压缩</b></h2>
+<h4><b>开放权重、本地推理与成本压缩</b></h4>
 <p>这条线技术密度高、噪音低。「Breaking the 1.58-bit Barrier for Ternary LLMs」213 分只有 34 条评论，「DeepSeek-v4.1 Flash: Pushing the Limits of KV Cache Compression」117 分/9 条评论——典型的「懂的人在看，没人吵」。r/LocalLLaMA 侧呼应明显：Mozilla 报告称中国开放权重模型落后前沿仅 4 个月且便宜得多、DeepSeek V4.1 Flash 在 AA 新榜上压过 Astra、Swift-Qwen3.8-27B 宣称减少 58.3% thinking token 换 1.95 倍速度。r/MachineLearning 那条「44M 参数量化模型、19.8 MB、CPU 上 ~1900 tok/s」是同一方向的极端版本。</p>
 <p>工程落地的痛点帖值得单看：「Notes on gotchas while migrating 35kb preprompts from Opus to self-hosted Ollama」（139 分/76 评论）——35KB 前置提示词迁移到自托管，这几乎是所有想去 API 依赖的团队都会撞上的墙。基础设施侧还有「GLM Built Its Own Inference Infrastructure」（96 分）、OpenArch（PyTorch 实现现代 LLM 架构，139 分）、以及「Reverse-Engineering Claude Web&#x27;s MicroVM」（109 分/24 评论）——后者对想理解托管 agent 沙箱设计的人有参考价值。</p>
-<h2><b>开发者工具在爆发，前端架构几乎缺席</b></h2>
+<h4><b>开发者工具在爆发，前端架构几乎缺席</b></h4>
 <p>GitHub Trending 这周基本被 agent 工具链占满：<code>anthropics/claude-code</code>、<code>addyosmani/agent-skills</code>、<code>obra/superpowers</code>、<code>mksglu/context-mode</code>、<code>alibaba/open-code-review</code>、<code>max-sixty/worktrunk</code>、<code>danny-avila/LibreChat</code>、<code>Panniantong/Agent-Reach</code>、<code>stablyai/orca</code>、<code>Tencent/WeKnora</code>。Product Hunt 侧对应的是 MCPJam、QAgent、Text Agent Store、Weave Router 2.0、Bitrise Remote Dev Environments、Appwrite 2.0、Gemini 3.8 Extended Thinking。HN 上「OpenAI Agents API」（347 分/187 评论）和「AgentsDock: An IDE designed for agentic AI research」（81 分）是同一趋势的两端。</p>
 <p><b>但前端架构这周几乎没有内容。</b>只有两条沾边：「CSS-Tricks in Limbo」（266 分/135 评论，关于前端知识库的存续而非技术本身）和 Show HN 的「Capsule – Single-file web apps that save their data into SQLite」（370 分/159 评论，本周最高分的 Show HN，单文件 + SQLite 的本地优先架构思路）。如果你这周想在前端方向找输入，榜单帮不上忙。</p>
 <p>替代性的争论落在了「LLM 生成代码进入项目」上：PS5 Linux 主力开发者退出，理由是「一群用 LLM 的新手，代码他们自己都不懂」（318 分/218 评论）；「How much of F-Droid is LLM generated?」（144 分/180 评论）；「Learning Programming in an Age of LLMs」（242 分/185 评论）。另有一条纯语言口味之争「Anecdotally, programmers dislike reduce」（155 分/234 评论）。以及本周的元评论：「Ask HN: Can we please limit the AI news flood?」860 分/402 评论——榜单自己也承认它被 AI 话题淹没了。</p>
 <p>---</p>
-<h2><b>与你方向无关的部分</b></h2>
+<h4><b>与你方向无关的部分</b></h4>
 <p>本周约 135 条里，<b>大约 50 条与 AI 工程 / 开发者工具 / 前端架构基本无关</b>，其中：</p>
 <ul>
 <li><b>Product Hunt 占大头（约 36 条）</b>：Die With Me、Ever Beyond: Space Conquest、Fide Island、CAT ME app、flat.social、Payflip、Tangerine、MacSentinel、DynamicLake 2.0、Mac Duo、PeakHour 6、Expand Board、NavKey、TinyKPI、Analytiics、Pitchfire for Startups、CreatorHat、S-Roll、Zella、QuietHint®、Blanc、Twigg、Jottoo、Convo、Thread、Portal、Opyt、Figo、ZeroClick 等，多为消费级应用、macOS 小工具和营销类 SaaS。这个源本周对你的信噪比接近零，建议降权或只看带 API/dev 字样的。</li>

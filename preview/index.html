@@ -26,7 +26,7 @@
 body{margin:0;background:var(--paper);color:var(--ink);
  font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
 /* 主栏所有块共用同一宽度；目录独立占宽，不给 p 另设 max-width。 */
-.layout{max-width:70rem;margin:0 auto;padding:2rem 2rem 3rem;
+.layout{max-width:74rem;margin:0 auto;padding:2rem 2rem 3rem;
  display:grid;grid-template-columns:minmax(0,52rem) minmax(0,14rem);
  column-gap:4rem;align-items:start}
 .page{min-width:0}
@@ -319,7 +319,7 @@ img{max-width:100%;height:auto}
 <li><b class="item">Answers by Context.dev</b> — 基于自有内容的问答检索。 <a href="https://www.producthunt.com/products/context-dev" target="_blank" rel="noopener noreferrer">↗</a></li>
 </ul>
 <p>其余 97 条未逐条列出，主要是 Product Hunt 上的设计与建站工具、图像/音视频生成、游戏与娱乐小品、语音变声与音效、营销与增长工具、招聘与交易类产品、硬件与 GPU 相关服务，以及 GitHub Trending 上少量非 agent 方向的仓库（个人健康工具、视频框架等）。</p>
-<details class="fold" id="section-7"><summary>还没细看的（聚合稿）</summary>
+<details class="fold" id="section-5"><summary>还没细看的（聚合稿）</summary>
 <blockquote><p>218 条主题匹配但未进精选，这里给出核心观点供你判断是否值得回头细读。取正文最全的 40 条。</p></blockquote>
 <h4>模型发布：Kimi 系列</h4>
 <ul>
@@ -389,7 +389,7 @@ img{max-width:100%;height:auto}
 <li><b class="item">Arize Signal：发现 eval 漏掉的 agent 失败</b> — 观点是 eval 只能衡量你已经能命名的失败；Signal 持续审查生产 trace，找出反复出现的轨迹级失败模式，再把它们转成测试与修复的依据。 <a href="https://arize.com/blog/how-to-find-and-debug-agent-failures-your-evals-are-missing/" target="_blank" rel="noopener noreferrer">原文</a></li>
 </ul>
 </details>
-<h2 id="section-5">论文</h2>
+<h2 id="section-6">论文</h2>
 <blockquote><p>62 篇候选中选出 3 篇（预算 6 篇）。arXiv 无投票机制，取舍由语义判断，不是按热度。</p></blockquote>
 <h3>An Empirical Study of Harness Design for Coding Agents</h3>
 <p>把 coding harness 拆成可独立消融的三个组件（规划、动作空间、上下文管理），在固定执行循环下于 SWE-Bench Verified 和 Terminal-Bench 2.1 上跑了 4 个模型 × 176 组配置（5 种上下文管理策略、4 档上下文预算）。结论：<b class="hl">上下文管理的收益几乎全来自避免 context overflow，且预算越紧越关键；规则式裁剪先于 LLM 摘要的分级策略效率最佳，而让被裁内容可恢复的机制模型基本不用、无精度收益</b>。规划对弱模型是精度支架、对强模型只是省钱；预定义工具只帮 bash 能力弱的模型，bash 熟练的模型用纯 bash 接口成本显著更低。轨迹级分析解释了各组件如何改变执行行为。</p>
@@ -403,6 +403,6 @@ img{max-width:100%;height:auto}
 <h3>COBRA-Skills: Contextual Bandit-Guided Evolution for Agent Skill Optimization</h3>
 <p>把 agent skill 优化形式化为候选空间动态演化下的预算受限序贯优化问题，用 contextual bandit 引导优先级分配，把昂贵的执行式评测只投给有希望或信息量大的候选，同时基于执行反馈做证据驱动的技能演化。在 6 个异构 agent 基准、3 个目标模型上取得最高平均表现，<b class="hl">相对 SkillOpt 降低 55–58% 的优化成本，且每个基准只用 50 个独特优化样本</b>。额外分析显示其对 harness 变化鲁棒，且用目标模型自身生成与改写技能也有效。</p>
 <p><b class="kicker">为什么值得读</b>：技能/提示演化里最实际的瓶颈是评测预算，这篇把预算分配本身做成了机制，并验证了跨 harness 的鲁棒性。</p>
-<p class="src">→ <a href="https://arxiv.org/abs/2609.11682" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.11682</a></p><h2 id="section-6">往期</h2>
+<p class="src">→ <a href="https://arxiv.org/abs/2609.11682" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.11682</a></p><h2 id="section-7">往期</h2>
 <p class="tagline">这是第一期。</p><div class="foot">自动生成 · 不含个人语境 &nbsp;·&nbsp; <a href="./sources.html">资讯源</a></div>
-</main><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">值得读的 · AI 工程</a><a href="#section-2">值得读的 · 系统设计</a><a href="#section-3">社区在聊什么</a><a href="#section-4">在涨什么</a><a href="#section-5">论文</a><a href="#section-6">往期</a><a href="#section-7">还没细看的（聚合稿）</a><a href="#top">↑ 回到页首</a></nav></aside></div></body></html>
+</main><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">值得读的 · AI 工程</a><a href="#section-2">值得读的 · 系统设计</a><a href="#section-3">社区在聊什么</a><a href="#section-4">在涨什么</a><a href="#section-5">还没细看的（聚合稿）</a><a href="#section-6">论文</a><a href="#section-7">往期</a><a href="#top">↑ 回到页首</a></nav></aside></div></body></html>

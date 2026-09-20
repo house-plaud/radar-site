@@ -1,0 +1,175 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>radar · 资讯源</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F1F4F7; --surface:#FBFCFD; --surface-2:#E9EEF3;
+  --ink:#131B25; --ink-soft:#33414F; --dim:#5C6B7A; --faint:#8695A3;
+  --rule:#D7DEE6; --signal:#0A6273; --heat:#9C4426;
+  --serif:"Newsreader",ui-serif,Georgia,"Songti SC",serif;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"PingFang SC",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+:root:not([data-theme="light"]){@media (prefers-color-scheme:dark){
+  --paper:#111721; --surface:#19212C; --surface-2:#212A36;
+  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#6E7C89;
+  --rule:#2B3542; --signal:#54B4C6; --heat:#D98A6A;
+}}
+:root[data-theme="dark"]{
+  --paper:#111721; --surface:#19212C; --surface-2:#212A36;
+  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#6E7C89;
+  --rule:#2B3542; --signal:#54B4C6; --heat:#D98A6A;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+ font:16px/1.75 var(--sans);-webkit-font-smoothing:antialiased}
+.page{max-width:56rem;margin:0 auto;padding:2.5rem 1.8rem 5rem}
+a{color:var(--signal);text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb,var(--signal) 30%,transparent)}
+a:hover{border-bottom-color:var(--signal)}
+a:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+.mast{display:flex;flex-wrap:wrap;align-items:flex-end;gap:1rem 2rem;
+ padding-bottom:1.1rem;border-bottom:2px solid var(--ink);margin-bottom:2rem}
+.wordmark{font-family:var(--serif);font-weight:600;font-size:2.4rem;
+ line-height:1;letter-spacing:-.02em;margin:0;flex:1 1 16rem}
+.wordmark a{border:0;color:var(--ink)}
+.wordmark em{font-style:italic;font-weight:400;color:var(--signal)}
+.tagline{font-family:var(--mono);font-size:.74rem;color:var(--dim);margin:.5rem 0 0}
+.sweep{font-family:var(--mono);font-size:.74rem;color:var(--dim);
+ font-variant-numeric:tabular-nums;text-align:right}
+h2{font-family:var(--serif);font-size:1.5rem;font-weight:600;
+ margin:2.8rem 0 1.1rem;padding-bottom:.35rem;border-bottom:1px solid var(--rule);
+ text-wrap:balance}
+h3{font-family:var(--serif);font-size:1.18rem;font-weight:500;line-height:1.42;
+ margin:1.8rem 0 .3rem;text-wrap:balance}
+h4{font-family:var(--sans);font-size:.95rem;font-weight:600;margin:1.5rem 0 .35rem}
+p{margin:0 0 .6rem;color:var(--ink-soft)}
+.tag{font-family:var(--mono);font-size:.72rem;color:var(--dim);
+ margin:0 0 .6rem;font-variant-numeric:tabular-nums}
+blockquote{margin:0 0 1.4rem;padding:.6rem 0 .6rem .9rem;
+ border-left:2px solid var(--rule);color:var(--dim);font-size:.9rem}
+blockquote p{margin:0;color:inherit}
+ul{padding-left:1.1rem;margin:0 0 1rem}
+li{margin:.3rem 0;color:var(--ink-soft)}
+.src{font-family:var(--mono);font-size:.8rem;word-break:break-all;margin:0 0 1.6rem}
+.index{list-style:none;padding:0;margin:1.5rem 0 0}
+.index li{display:flex;gap:1rem;align-items:baseline;padding:.7rem 0;
+ border-bottom:1px solid var(--rule)}
+.index .wk{font-family:var(--mono);font-size:.82rem;color:var(--dim);
+ white-space:nowrap;font-variant-numeric:tabular-nums}
+.index .n{font-family:var(--mono);font-size:.74rem;color:var(--faint);
+ margin-left:auto;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--rule);margin:2rem 0}
+.foot{margin-top:3.5rem;padding-top:1.1rem;border-top:2px solid var(--ink);
+ font-family:var(--mono);font-size:.72rem;color:var(--faint);line-height:1.8}
+/* ── 阅读重点 ────────────────────────────────────────────
+   只有**句中**的粗体才算重点：标题里的 `**` 在渲染前就被剥掉了，
+   否则满屏荧光等于没标。.hl 给一条压在基线下的底色，像荧光笔划过。
+   底色用 signal 的低透明度混色，深浅色主题下都不会糊掉文字。 */
+b.item{font-weight:600;color:var(--ink)}
+b.kicker{font-family:var(--mono);font-size:.74rem;font-weight:500;
+ color:var(--dim);letter-spacing:.02em}
+b.hl{font-weight:600;color:var(--ink);
+ background:linear-gradient(to top,
+   color-mix(in srgb,var(--signal) 22%,transparent) 0,
+   color-mix(in srgb,var(--signal) 22%,transparent) .42em,
+   transparent .42em);
+ padding:0 .1em}
+/* ── 站内导航 ────────────────────────────────────────────
+   站点只有三类页面（首页 / 某一期 / 资讯源），全部列出来，
+   当前页用 aria-current 标出而不是去掉链接 —— 少一个入口，
+   就意味着有页面只能靠记地址进。 */
+.preview-flag{background:var(--heat);color:#fff;font-family:var(--mono);
+ font-size:.72rem;padding:.5rem .9rem;margin:0 0 1.5rem;border-radius:3px}
+.preview-flag a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+.nav{display:flex;flex-wrap:wrap;gap:.2rem 1.4rem;margin:0 0 1.8rem;
+ font-family:var(--mono);font-size:.76rem}
+.nav a{padding:.3rem 0}
+.nav [aria-current="page"]{color:var(--ink);border-bottom-color:var(--ink)}
+/* ── 资讯源清单 ──────────────────────────────────────────
+   用卡片不用表格：站点/订阅两列都是长 URL，四列表格在窄屏必然
+   横向滚动，而这页的每一行都要能点。auto-fill 让宽屏自动排成两列，
+   窄屏自然落回单列，不需要为此再写一条媒体查询。 */
+.srcs{list-style:none;padding:0;margin:1rem 0 2.4rem;display:grid;
+ grid-template-columns:repeat(auto-fill,minmax(20rem,1fr));gap:.9rem}
+.srcbox{border:1px solid var(--rule);border-radius:3px;padding:.9rem 1rem;
+ background:var(--surface)}
+.srcbox.is-off{opacity:.62}
+.srchead{display:flex;gap:.5rem;align-items:baseline;flex-wrap:wrap}
+.srcbox h3{font-family:var(--sans);font-size:.98rem;font-weight:600;
+ margin:0;line-height:1.4}
+.chips{display:flex;gap:.3rem;flex-wrap:wrap;margin-left:auto}
+.chip{font-family:var(--mono);font-size:.64rem;white-space:nowrap;
+ padding:.1rem .38rem;border:1px solid var(--rule);border-radius:2px;
+ color:var(--ink-soft);background:var(--paper)}
+.chip.dim{color:var(--faint)}
+.chip.off{color:var(--heat);border-color:var(--heat)}
+.sid{font-family:var(--mono);font-size:.68rem;color:var(--faint);
+ margin:.15rem 0 .5rem}
+.srcbox .row{display:flex;gap:.5rem;align-items:baseline;
+ font-size:.76rem;line-height:1.6;margin-top:.15rem}
+.srcbox .k{font-family:var(--mono);font-size:.66rem;color:var(--faint);
+ flex:0 0 2.2rem;white-space:nowrap}
+.srcbox .row a,.srcbox code{font-family:var(--mono);font-size:.72rem;
+ overflow-wrap:anywhere;min-width:0}
+.srcbox code{color:var(--ink-soft)}
+.srcbox .why{color:var(--dim);font-size:.74rem}
+h2 .n{font-family:var(--mono);font-size:.7rem;color:var(--faint);
+ margin-left:.55rem;font-weight:400}
+/* ── 移动端 ──────────────────────────────────────────────
+   页面主体是长文，所以窄屏的重点不是重排布局，而是三件事：
+   正文别贴边、长 URL 别把页面撑宽、可点区域别太小。 */
+@media (max-width:760px){
+  .page{padding:1.6rem 1.05rem 3.5rem}
+  .wordmark{font-size:1.85rem}
+  .mast{gap:.5rem 1rem;align-items:flex-start;margin-bottom:1.5rem}
+  .sweep{text-align:left}
+  h2{font-size:1.28rem;margin:2.1rem 0 .8rem}
+  h3{font-size:1.08rem;margin:1.4rem 0 .25rem}
+  body{font-size:16px;line-height:1.7}
+  /* 索引在窄屏换行排，否则「条数」会把标题挤没 */
+  .index li{flex-wrap:wrap;gap:.2rem .7rem;padding:.6rem 0}
+  .index .n{margin-left:0}
+  /* 链接区可点范围放大一点，指头比鼠标粗 */
+  .index a{padding:.15rem 0}
+  /* 正文里的来源链接是这页**唯一要点的东西**（聚合稿那部分尤其 ——
+     留着链接就是为了能点进去），但它渲染出来只有 18px 高：
+     iOS 建议 44pt、Material 建议 48dp，18px 在手机上点不准。
+     inline-block 撑到 ~44px，顺带让折行的长 URL 成为一个连续矩形，
+     而不是上下两段各 18px 的碎片（实测 16 条链接里 7 条会折行）。 */
+  .src a{display:inline-block;padding:.8rem 0;max-width:100%;
+         overflow-wrap:anywhere}
+  .src{font-size:.85rem;margin-bottom:.9rem}
+  /* 源清单页同理，而且更要紧：整页 75 个链接，点链接就是这页的全部用途。
+     让链接占满行内剩余宽度并加纵向 padding —— 触摸区变成「整行」，
+     比只把文字撑高好点得多。 */
+  .srcbox .row a{display:block;flex:1;padding:.55rem 0}
+  .srcbox .row{margin-top:0}
+  .srcs{gap:.7rem}
+}
+/* 长 URL / 长英文标题是这个页面最容易撑宽的东西 ——
+   **任何屏宽都不该出现横向滚动**，所以不放在媒体查询里。 */
+h1,h2,h3,h4,p,li,blockquote{overflow-wrap:anywhere;word-break:normal}
+.src{overflow-wrap:anywhere}
+pre,table{max-width:100%;overflow-x:auto;display:block}
+img{max-width:100%;height:auto}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body><div class="page">
+<header class="mast"><h1 class="wordmark"><a href="./">radar</a> <em>资讯源</em></h1><div class="sweep">38 个源，其中 2 个已停用</div></header>
+<p class="tagline">这份清单由 sources.yaml 生成，和抓取用的是同一份配置。</p>
+<nav class="nav"><a href="./">本期 / 往期</a><a href="./sources.html" aria-current="page">资讯源</a></nav>
+<h2>进正文<span class="n">28</span></h2>
+<p class="tagline">逐篇压缩后进「值得读的」</p>
+<ul class="srcs"><li class="srcbox"><div class="srchead"><h3>OpenAI News</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">openai-news</div><div class="row"><span class="k">站点</span><a href="https://openai.com/news">https://openai.com/news</a></div><div class="row"><span class="k">订阅</span><a href="https://openai.com/news/rss.xml">https://openai.com/news/rss.xml</a></div></li><li class="srcbox"><div class="srchead"><h3>Anthropic News</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">anthropic-news</div><div class="row"><span class="k">站点</span><a href="https://www.anthropic.com/news">https://www.anthropic.com/news</a></div><div class="row"><span class="k">抓取</span><code>/anthropic/news</code><span class="chip dim">自建 RSSHub</span></div></li><li class="srcbox"><div class="srchead"><h3>Anthropic Engineering</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">anthropic-engineering</div><div class="row"><span class="k">站点</span><a href="https://www.anthropic.com/engineering">https://www.anthropic.com/engineering</a></div><div class="row"><span class="k">抓取</span><code>/anthropic/engineering</code><span class="chip dim">自建 RSSHub</span></div></li><li class="srcbox"><div class="srchead"><h3>DeepSeek News</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">deepseek-news</div><div class="row"><span class="k">站点</span><a href="https://www.deepseek.com/en/news/">https://www.deepseek.com/en/news/</a></div><div class="row"><span class="k">抓取</span><code>https://www.deepseek.com/en/news</code><span class="chip dim">解析页面 · 无 RSS</span></div></li><li class="srcbox"><div class="srchead"><h3>Cursor Changelog</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">cursor-changelog</div><div class="row"><span class="k">站点</span><a href="https://cursor.com/changelog">https://cursor.com/changelog</a></div><div class="row"><span class="k">订阅</span><a href="https://cursor.com/changelog/rss.xml">https://cursor.com/changelog/rss.xml</a></div></li><li class="srcbox"><div class="srchead"><h3>PI 发布</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">pi-releases</div><div class="row"><span class="k">站点</span><a href="https://github.com/earendil-works/pi/releases">https://github.com/earendil-works/pi/releases</a></div><div class="row"><span class="k">订阅</span><a href="https://github.com/earendil-works/pi/releases.atom">https://github.com/earendil-works/pi/releases.atom</a></div></li><li class="srcbox"><div class="srchead"><h3>Vercel</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">vercel</div><div class="row"><span class="k">站点</span><a href="https://vercel.com/blog">https://vercel.com/blog</a></div><div class="row"><span class="k">订阅</span><a href="https://vercel.com/atom">https://vercel.com/atom</a></div></li><li class="srcbox"><div class="srchead"><h3>Cloudflare Blog</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">cloudflare-blog</div><div class="row"><span class="k">站点</span><a href="https://blog.cloudflare.com">https://blog.cloudflare.com</a></div><div class="row"><span class="k">订阅</span><a href="https://blog.cloudflare.com/rss/">https://blog.cloudflare.com/rss/</a></div></li><li class="srcbox"><div class="srchead"><h3>OpenRouter</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">openrouter</div><div class="row"><span class="k">站点</span><a href="https://openrouter.ai/blog">https://openrouter.ai/blog</a></div><div class="row"><span class="k">订阅</span><a href="https://openrouter.ai/blog/feed.xml">https://openrouter.ai/blog/feed.xml</a></div></li><li class="srcbox"><div class="srchead"><h3>Bun</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">bun</div><div class="row"><span class="k">站点</span><a href="https://bun.sh">https://bun.sh</a></div><div class="row"><span class="k">订阅</span><a href="https://bun.sh/rss.xml">https://bun.sh/rss.xml</a></div></li><li class="srcbox"><div class="srchead"><h3>Moonshot / Kimi</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">moonshot-kimi</div><div class="row"><span class="k">站点</span><a href="https://www.kimi.ai/blog/">https://www.kimi.ai/blog/</a></div><div class="row"><span class="k">抓取</span><code>https://www.kimi.ai/blog/</code><span class="chip dim">解析页面 · 无 RSS</span></div></li><li class="srcbox"><div class="srchead"><h3>ByteDance Seed</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">bytedance-seed</div><div class="row"><span class="k">站点</span><a href="https://seed.bytedance.com/en/blog">https://seed.bytedance.com/en/blog</a></div><div class="row"><span class="k">抓取</span><code>https://seed.bytedance.com/en/blog</code><span class="chip dim">解析页面 · 无 RSS</span></div></li><li class="srcbox is-off"><div class="srchead"><h3>Sourcegraph</h3><div class="chips"><span class="chip">AI 工程</span><span class="chip off">已停用</span></div></div><div class="sid">sourcegraph</div><div class="row"><span class="k">站点</span><a href="https://sourcegraph.com/blog">https://sourcegraph.com/blog</a></div><div class="row"><span class="k">订阅</span><a href="https://sourcegraph.com/blog/rss.xml">https://sourcegraph.com/blog/rss.xml</a></div><div class="row"><span class="k">原因</span><span class="why">开发期反复全量抓取触发了它的 WAF，整站 403，待解封后恢复</span></div></li><li class="srcbox"><div class="srchead"><h3>Engineering at Slack</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">slack-engineering</div><div class="row"><span class="k">站点</span><a href="https://slack.engineering">https://slack.engineering</a></div><div class="row"><span class="k">订阅</span><a href="https://slack.engineering/feed/">https://slack.engineering/feed/</a></div></li><li class="srcbox"><div class="srchead"><h3>Braintrust</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">braintrust</div><div class="row"><span class="k">站点</span><a href="https://www.braintrust.dev/blog">https://www.braintrust.dev/blog</a></div><div class="row"><span class="k">订阅</span><a href="https://www.braintrust.dev/blog/atom">https://www.braintrust.dev/blog/atom</a></div></li><li class="srcbox"><div class="srchead"><h3>Arize AI</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">arize</div><div class="row"><span class="k">站点</span><a href="https://arize.com/blog">https://arize.com/blog</a></div><div class="row"><span class="k">订阅</span><a href="https://arize.com/blog/feed/">https://arize.com/blog/feed/</a></div></li><li class="srcbox"><div class="srchead"><h3>Interconnects</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">interconnects</div><div class="row"><span class="k">站点</span><a href="https://www.interconnects.ai">https://www.interconnects.ai</a></div><div class="row"><span class="k">订阅</span><a href="https://www.interconnects.ai/feed">https://www.interconnects.ai/feed</a></div></li><li class="srcbox"><div class="srchead"><h3>Latent Space</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">latent-space</div><div class="row"><span class="k">站点</span><a href="https://www.latent.space">https://www.latent.space</a></div><div class="row"><span class="k">订阅</span><a href="https://www.latent.space/feed">https://www.latent.space/feed</a></div></li><li class="srcbox"><div class="srchead"><h3>Import AI</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">import-ai</div><div class="row"><span class="k">站点</span><a href="https://importai.substack.com">https://importai.substack.com</a></div><div class="row"><span class="k">订阅</span><a href="https://importai.substack.com/feed">https://importai.substack.com/feed</a></div></li><li class="srcbox"><div class="srchead"><h3>Lil&#x27;Log (Lilian Weng)</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">lilian-weng</div><div class="row"><span class="k">站点</span><a href="https://lilianweng.github.io">https://lilianweng.github.io</a></div><div class="row"><span class="k">订阅</span><a href="https://lilianweng.github.io/index.xml">https://lilianweng.github.io/index.xml</a></div></li><li class="srcbox"><div class="srchead"><h3>Addy Osmani</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">addy-osmani</div><div class="row"><span class="k">站点</span><a href="https://addyosmani.com">https://addyosmani.com</a></div><div class="row"><span class="k">订阅</span><a href="https://addyosmani.com/rss.xml">https://addyosmani.com/rss.xml</a></div></li><li class="srcbox"><div class="srchead"><h3>Simon Willison</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">simon-willison</div><div class="row"><span class="k">站点</span><a href="https://simonwillison.net/">https://simonwillison.net/</a></div><div class="row"><span class="k">订阅</span><a href="https://simonwillison.net/atom/everything/">https://simonwillison.net/atom/everything/</a></div></li><li class="srcbox"><div class="srchead"><h3>ByteByteGo</h3><div class="chips"><span class="chip">系统设计</span></div></div><div class="sid">bytebytego</div><div class="row"><span class="k">站点</span><a href="https://blog.bytebytego.com">https://blog.bytebytego.com</a></div><div class="row"><span class="k">订阅</span><a href="https://blog.bytebytego.com/feed">https://blog.bytebytego.com/feed</a></div></li><li class="srcbox"><div class="srchead"><h3>System Design Newsletter</h3><div class="chips"><span class="chip">系统设计</span></div></div><div class="sid">systemdesign-one</div><div class="row"><span class="k">站点</span><a href="https://newsletter.systemdesign.one">https://newsletter.systemdesign.one</a></div><div class="row"><span class="k">订阅</span><a href="https://newsletter.systemdesign.one/feed">https://newsletter.systemdesign.one/feed</a></div></li><li class="srcbox"><div class="srchead"><h3>All Things Distributed (Werner Vogels)</h3><div class="chips"><span class="chip">系统设计</span></div></div><div class="sid">werner-vogels</div><div class="row"><span class="k">站点</span><a href="https://www.allthingsdistributed.com">https://www.allthingsdistributed.com</a></div><div class="row"><span class="k">订阅</span><a href="https://www.allthingsdistributed.com/atom.xml">https://www.allthingsdistributed.com/atom.xml</a></div></li><li class="srcbox"><div class="srchead"><h3>Engineering at Meta</h3><div class="chips"><span class="chip">系统设计</span><span class="chip dim" title="只收关注方向的条目">按方向过滤</span></div></div><div class="sid">meta-engineering</div><div class="row"><span class="k">站点</span><a href="https://engineering.fb.com">https://engineering.fb.com</a></div><div class="row"><span class="k">订阅</span><a href="https://engineering.fb.com/feed/">https://engineering.fb.com/feed/</a></div></li><li class="srcbox"><div class="srchead"><h3>Netflix TechBlog</h3><div class="chips"><span class="chip">系统设计</span><span class="chip dim" title="只收关注方向的条目">按方向过滤</span></div></div><div class="sid">netflix-tech</div><div class="row"><span class="k">站点</span><a href="https://netflixtechblog.com">https://netflixtechblog.com</a></div><div class="row"><span class="k">订阅</span><a href="https://netflixtechblog.com/feed">https://netflixtechblog.com/feed</a></div></li><li class="srcbox"><div class="srchead"><h3>GitHub Engineering</h3><div class="chips"><span class="chip">系统设计</span><span class="chip dim" title="只收关注方向的条目">按方向过滤</span></div></div><div class="sid">github-engineering</div><div class="row"><span class="k">站点</span><a href="https://github.blog/engineering">https://github.blog/engineering</a></div><div class="row"><span class="k">订阅</span><a href="https://github.blog/engineering/feed/">https://github.blog/engineering/feed/</a></div></li></ul>
+<h2>进综述<span class="n">7</span></h2>
+<p class="tagline">整批压成「社区在聊什么」</p>
+<ul class="srcs"><li class="srcbox"><div class="srchead"><h3>Hacker News</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">hn-ai</div><div class="row"><span class="k">站点</span><a href="https://news.ycombinator.com/">https://news.ycombinator.com/</a></div><div class="row"><span class="k">抓取</span><span class="chip dim">Algolia 检索 API</span></div></li><li class="srcbox"><div class="srchead"><h3>Hugging Face Blog</h3><div class="chips"><span class="chip">AI 工程</span><span class="chip dim" title="只收关注方向的条目">按方向过滤</span></div></div><div class="sid">hf-blog</div><div class="row"><span class="k">站点</span><a href="https://huggingface.co/blog">https://huggingface.co/blog</a></div><div class="row"><span class="k">订阅</span><a href="https://huggingface.co/blog/feed.xml">https://huggingface.co/blog/feed.xml</a></div></li><li class="srcbox"><div class="srchead"><h3>GitHub Trending</h3><div class="chips"><span class="chip">AI 工程</span><span class="chip dim" title="只收关注方向的条目">按方向过滤</span></div></div><div class="sid">github-trending</div><div class="row"><span class="k">站点</span><a href="https://github.com/trending?since=weekly">https://github.com/trending?since=weekly</a></div><div class="row"><span class="k">抓取</span><code>/github/trending/weekly/any</code><span class="chip dim">自建 RSSHub</span></div></li><li class="srcbox"><div class="srchead"><h3>YC Startup Library</h3><div class="chips"><span class="chip">AI 工程</span><span class="chip dim" title="只收关注方向的条目">按方向过滤</span></div></div><div class="sid">yc-library</div><div class="row"><span class="k">站点</span><a href="https://www.ycombinator.com/library">https://www.ycombinator.com/library</a></div><div class="row"><span class="k">抓取</span><code>https://www.ycombinator.com/library</code><span class="chip dim">解析页面数据 · 无 RSS</span></div></li><li class="srcbox"><div class="srchead"><h3>YC 视频 · Paper Club</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">yc-youtube</div><div class="row"><span class="k">站点</span><a href="https://www.youtube.com/@ycombinator">https://www.youtube.com/@ycombinator</a></div><div class="row"><span class="k">订阅</span><a href="https://www.youtube.com/feeds/videos.xml?channel_id=UCcefcZRL2oaA_uBNeo5UOWg">https://www.youtube.com/feeds/videos.xml?channel_id=UCcefcZRL2oaA_uBNeo5UOWg</a></div></li><li class="srcbox"><div class="srchead"><h3>BenchLM · 模型与榜单更新</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">benchlm</div><div class="row"><span class="k">站点</span><a href="https://benchlm.ai">https://benchlm.ai</a></div><div class="row"><span class="k">订阅</span><a href="https://benchlm.ai/rss.xml">https://benchlm.ai/rss.xml</a></div></li><li class="srcbox"><div class="srchead"><h3>Product Hunt</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">product-hunt</div><div class="row"><span class="k">站点</span><a href="https://www.producthunt.com">https://www.producthunt.com</a></div><div class="row"><span class="k">订阅</span><a href="https://www.producthunt.com/feed">https://www.producthunt.com/feed</a></div></li></ul>
+<h2>论文<span class="n">2</span></h2>
+<p class="tagline">按方向过滤后单独成章</p>
+<ul class="srcs"><li class="srcbox"><div class="srchead"><h3>arXiv · 软件工程</h3><div class="chips"><span class="chip">AI 工程</span><span class="chip dim" title="只收关注方向的条目">按方向过滤</span></div></div><div class="sid">arxiv-cs-se</div><div class="row"><span class="k">站点</span><a href="https://arxiv.org/list/cs.SE/recent">https://arxiv.org/list/cs.SE/recent</a></div><div class="row"><span class="k">订阅</span><a href="https://rss.arxiv.org/rss/cs.SE">https://rss.arxiv.org/rss/cs.SE</a></div></li><li class="srcbox"><div class="srchead"><h3>Hugging Face Daily Papers</h3><div class="chips"><span class="chip">AI 工程</span></div></div><div class="sid">hf-daily-papers</div><div class="row"><span class="k">站点</span><a href="https://huggingface.co/papers">https://huggingface.co/papers</a></div><div class="row"><span class="k">抓取</span><code>/huggingface/daily-papers/week/30</code><span class="chip dim">自建 RSSHub</span></div></li></ul>
+<h2>稍后读<span class="n">1</span></h2>
+<p class="tagline">自己收藏的，不参与评选</p>
+<ul class="srcs"><li class="srcbox is-off"><div class="srchead"><h3>B站收藏夹</h3><div class="chips"><span class="chip">AI 工程</span><span class="chip off">已停用</span></div></div><div class="sid">bilibili-fav</div><div class="row"><span class="k">站点</span><a href="https://space.bilibili.com/">https://space.bilibili.com/</a></div><div class="row"><span class="k">抓取</span><code>/bilibili/fav/&lt;uid&gt;/&lt;fid&gt;</code><span class="chip dim">自建 RSSHub</span></div><div class="row"><span class="k">原因</span><span class="why">暂不需要（B 站收藏夹稍后读）</span></div></li></ul><div class="foot"><a href="./">← 回周报</a></div>
+</div></body></html>

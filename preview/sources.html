@@ -69,6 +69,12 @@ hr{border:0;border-top:1px solid var(--rule);margin:2rem 0}
    否则满屏荧光等于没标。.hl 给一条压在基线下的底色，像荧光笔划过。
    底色用 signal 的低透明度混色，深浅色主题下都不会糊掉文字。 */
 b.item{font-weight:600;color:var(--ink)}
+/* 榜单热度角标。它是置信度不是内容 —— 给得见但不抢视线，
+   完整数字在 title 里，悬停（或移动端长按）才出来。 */
+sup.score{font-family:var(--mono);font-size:.6rem;color:var(--faint);
+ vertical-align:super;line-height:0;margin-left:.15em;cursor:help;
+ border-bottom:1px dotted var(--rule);font-variant-numeric:tabular-nums}
+sup.score:hover{color:var(--signal);border-bottom-color:var(--signal)}
 b.kicker{font-family:var(--mono);font-size:.74rem;font-weight:500;
  color:var(--dim);letter-spacing:.02em}
 b.hl{font-weight:600;color:var(--ink);

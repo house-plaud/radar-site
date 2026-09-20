@@ -26,8 +26,8 @@
 body{margin:0;background:var(--paper);color:var(--ink);
  font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
 /* 主栏所有块共用同一宽度；目录独立占宽，不给 p 另设 max-width。 */
-.layout{max-width:72rem;margin:0 auto;padding:2rem 2rem 3rem;
- display:grid;grid-template-columns:minmax(0,50rem) minmax(0,14rem);
+.layout{max-width:70rem;margin:0 auto;padding:2rem 2rem 3rem;
+ display:grid;grid-template-columns:minmax(0,52rem) minmax(0,14rem);
  column-gap:4rem;align-items:start}
 .page{min-width:0}
 .outline{position:sticky;top:2rem;min-width:0;max-height:calc(100dvh - 4rem);
@@ -120,6 +120,27 @@ b.hl{font-weight:600;color:var(--ink);
  font-family:var(--mono);font-size:.76rem}
 .nav a{padding:.3rem 0}
 .nav [aria-current="page"]{color:var(--ink);border-bottom-color:var(--ink)}
+/* 短条目列表在宽屏分两栏。判据是**条目会不会因半宽而翻倍折行**：
+   实测聚合稿每条 143 字符 / 2.6 行，半宽后约 5 行，分栏白费；
+   「在涨什么」每条 43 字符 / 1.0 行，半宽后仍是一行，省掉近一半高度。
+   break-inside 防止一条被拆到两栏。 */
+@media (min-width:1101px){
+  .cols2{column-count:2;column-gap:2.2rem}
+  .cols2>li{break-inside:avoid}
+}
+/* 聚合稿默认折叠。它是**召回机制** —— 过滤和排序会出错，被误判的资讯
+   直接消失的话使用者不知道自己漏了什么，所以要留着；但它同时是
+   「需要时才查」的东西，实测占首页 38% 的高度（3456px / 40 条）。
+   用原生 <details>，不需要 JS，移动端和读屏软件都正常。 */
+details.fold{margin:0 0 1.5rem}
+details.fold>summary{cursor:pointer;list-style:none;padding:.55rem .8rem;
+ border:1px solid var(--rule);border-radius:3px;background:var(--surface);
+ font-family:var(--mono);font-size:.78rem;color:var(--ink-soft)}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::before{content:"▸ ";color:var(--faint)}
+details.fold[open]>summary::before{content:"▾ "}
+details.fold>summary:hover{border-color:var(--signal);color:var(--signal)}
+details.fold[open]>summary{margin-bottom:1rem}
 /* ── 候选清单 ────────────────────────────────────────────
    两百多条，用来扫和找，不是用来读 —— 所以一行一条，
    来源和日期靠右对齐成列，眼睛可以顺着一条竖线往下走。 */

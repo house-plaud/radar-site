@@ -34,9 +34,13 @@ body{margin:0;background:var(--paper);color:var(--ink);
 .layout{max-width:74rem;margin:0 auto;padding:2rem 2rem 3rem;
  display:grid;grid-template-columns:minmax(0,52rem) minmax(0,14rem);
  column-gap:4rem;align-items:start}
-.page{min-width:0;grid-column:1;grid-row:1}
-/* 目录在 DOM 里排在 main 之前（窄屏要它靠上），宽屏用 grid 定位放回右侧 */
-.outline{grid-column:2;grid-row:1}
+/* 四个直接子元素：页眉、导航、目录、正文。
+   DOM 顺序按**窄屏**排（页眉 → 导航 → 目录 → 正文），宽屏靠
+   grid 定位把目录放回右侧、让页眉和导航跨满两列。 */
+.mast{grid-column:1/-1;grid-row:1}
+.nav{grid-column:1/-1;grid-row:2}
+.outline{grid-column:2;grid-row:3}
+.page{min-width:0;grid-column:1;grid-row:3}
 .outline{position:sticky;top:2rem;min-width:0;max-height:calc(100dvh - 4rem);
  overflow:auto;padding-top:.3rem;font-size:.8rem}
 .outline-label{font: .7rem var(--mono);color:var(--dim);letter-spacing:.1em;
@@ -122,7 +126,8 @@ b.hl{font-weight:600;color:var(--ink);
    站点只有三类页面（首页 / 某一期 / 资讯源），全部列出来，
    当前页用 aria-current 标出而不是去掉链接 —— 少一个入口，
    就意味着有页面只能靠记地址进。 */
-.preview-flag{background:var(--heat);color:var(--on-heat);font-family:var(--mono);
+.preview-flag{grid-column:1/-1;
+ background:var(--heat);color:var(--on-heat);font-family:var(--mono);
  font-size:.72rem;padding:.5rem .9rem;margin:0 0 1.5rem;border-radius:3px}
 .preview-flag a{color:var(--on-heat);border-bottom-color:color-mix(in srgb,var(--on-heat) 50%,transparent)}
 .nav{display:flex;flex-wrap:wrap;gap:.2rem 1.4rem;margin:0 0 1rem;
@@ -238,9 +243,9 @@ pre,table{max-width:100%;overflow-x:auto;display:block}
 img{max-width:100%;height:auto}
 .mast>*,.srcbox,.srcbox .row>*{min-width:0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-</style></head><body><div class="layout"><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">值得读的 · AI 工程</a><a href="#section-2">值得读的 · 系统设计</a><a href="#section-3">论文</a><a href="#section-4">社区在聊什么</a><a href="#section-5">在涨什么</a><a href="#section-6">还没细看的（聚合稿）</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
+</style></head><body><div class="layout">
 <header class="mast"><h1 class="wordmark"><a href="./">资讯周报</a> <em>2026-W38</em></h1><div class="sweep">515 条抓取 · 精选 228 候选 · 论文 62 候选</div></header>
-<nav class="nav"><a href="./" aria-current="page">本期 / 往期</a><a href="./2026-W38.candidates.html">本期候选</a><a href="./sources.html">资讯源</a></nav>
+<nav class="nav"><a href="./" aria-current="page">本期 / 往期</a><a href="./2026-W38.candidates.html">本期候选</a><a href="./sources.html">资讯源</a></nav><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">值得读的 · AI 工程</a><a href="#section-2">值得读的 · 系统设计</a><a href="#section-3">论文</a><a href="#section-4">社区在聊什么</a><a href="#section-5">在涨什么</a><a href="#section-6">还没细看的（聚合稿）</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
 <blockquote><p>抓取 515 条 · 值得读 228 候选 / 讨论 109 / 榜单 116 / 论文 62 候选 / 收藏 0</p></blockquote>
 <blockquote><p>228 条候选中按阅读预算选出 10 条</p></blockquote>
 <h2 id="section-1">值得读的 · AI 工程</h2>

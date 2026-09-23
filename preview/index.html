@@ -247,7 +247,7 @@ img{max-width:100%;height:auto}
 <div class="preview-flag">预览版 · 用于确认版式改动，内容可能不是最新一期 · <a href="../">正式版在这里</a></div>
 <header class="mast"><h1 class="wordmark">资讯周报</h1><div class="sweep">2026-W39<br>174 条抓取 · 精选 59 候选 · 论文 37 候选</div></header>
 <p class="tagline">AI 工程 · 系统设计 &nbsp;/&nbsp; 一期一份，过期即归档</p>
-<nav class="nav"><a href="./" aria-current="page">本期 / 往期</a><a href="./2026-W39.candidates.html">本期候选</a><a href="./sources.html">资讯源</a></nav><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">值得读的 · AI 工程</a><a href="#section-2">值得读的 · 系统设计</a><a href="#section-3">论文</a><a href="#section-4">社区在聊什么</a><a href="#section-5">在涨什么</a><a href="#section-6">还没细看的（聚合稿）</a><a href="#section-7">往期</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
+<nav class="nav"><a href="./" aria-current="page">本期 / 往期</a><a href="./2026-W39.candidates.html">本期候选</a><a href="./sources.html">资讯源</a></nav><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">值得读的 · AI 工程</a><a href="#section-2">值得读的 · 系统设计</a><a href="#section-3">社区在聊什么</a><a href="#section-4">在涨什么</a><a href="#section-5">还没细看的（聚合稿）</a><a href="#section-6">论文</a><a href="#section-7">往期</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
 <blockquote><p>抓取 174 条 · 值得读 59 候选 / 讨论 36 / 榜单 42 / 论文 37 候选 / 收藏 0</p></blockquote>
 <h2 id="section-1">值得读的 · AI 工程</h2>
 <h3>Brownfield Agentic Engineering</h3>
@@ -291,36 +291,7 @@ img{max-width:100%;height:auto}
 <p class="tag">ByteByteGo · 2026-09-22 · 周末整块</p>
 <p>ByteByteGo 新闻通讯介绍 OpenAI 的 GPT-Live 技术，核心创新是支持同时收听和说话（而非轮流）的语音 AI。文章主要内容聚焦于语音助手体验改进，后续细节材料不足。对实时语音 agent 交互有潜在价值但当前信息有限。</p>
 <p class="src">→ <a href="https://blog.bytebytego.com/p/how-openai-built-gpt-live" target="_blank" rel="noopener noreferrer">https://blog.bytebytego.com/p/how-openai-built-gpt-live</a></p>
-<h2 id="section-3">论文</h2>
-<blockquote><p>37 篇候选中选出 6 篇（预算 6 篇）。arXiv 无投票机制，取舍由语义判断，不是按热度。</p></blockquote>
-<h3>CliffCompaction: Cost-Efficient Compaction for Long-Horizon Coding Agents</h3>
-<p>CliffCompaction 提出一种长时程编码 agent 的上下文自动压缩方法：只做截断和丢弃、绝不改写或复述原文，且每次压缩只作用于原始内容、不对压缩结果再压缩，从而避免上下文漂移累积。在有界上下文下<b class="hl">成本最多降低 50%，同时在 Terminal-Bench 上性能持平或更好</b>；配合并行 test-time scaling 后，Kimi K2.6 可追平 Opus 4.7 且成本更低。在 KernelBench 上跨百万 token 会话持续学习，200 步达 2.23× CUDA 加速、400 步 3.58×，超过专门的搜索算法与训练过的 agent。作者开源了与 scaffold 无关的 API-proxy 实现，可直接接 Claude Code / Codex。</p>
-<p><b class="kicker">为什么值得读</b>：直击上下文管理与 token 预算：一个可即插即用、且把「压缩保真性」讲清楚的 compaction 机制。</p>
-<p class="src">→ <a href="https://arxiv.org/abs/2609.26779" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.26779</a></p>
-<h3>Grow the Harness, Not the Context: From Strategy-Free Scaffolds to Reusable Specialist Agents</h3>
-<p>Growing Harness 主张把反复出现的控制逻辑从模型上下文中搬到可执行代码里：从一个只暴露模型与工具接口、不含任何任务控制器的「无策略脚手架」出发，用函数级执行 trace 把每次失败定位到有界代码面，优化器批量修复一窗口失败，并用 success-first 的 held-out 门控回滚有害改动，所有改动累积进同一个共享 harness。在 BrowseComp-Plus 与 WebArena-Verified、4B 到 120B 三种部署模型的六个组合中，五个取得最高平均成功率，<b class="hl">相比 Tool-Calling agent 减少 76.0–91.8% 的 LLM 调用、74.4–98.6% 的推理成本</b>；WebArena-Verified 上跨模型规模稳定在 44.7–45.3%，而 Tool-Calling 在 4B 模型上掉到 6.7%。</p>
-<p><b class="kicker">为什么值得读</b>：harness 自身可被训练出来这一路线的干净样本，且把「控制搬出上下文」换算成了明确的调用数与成本收益。</p>
-<p class="src">→ <a href="https://arxiv.org/abs/2609.26760" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.26760</a></p>
-<h3>FIRE: Failure-Informed Runtime Engineering for Reliable Language-Model Agents</h3>
-<p>FIRE 研究的是 harness 层的运行时策略：在曾导致失败的状态上注入定向自然语言指令或直接拒绝某些动作，不改权重也不改用户 prompt。在完整的 87 题 Terminal-Bench 2.1 上每题两次尝试，三个 GPT-5.6 档位的 pass^2 全部提升，<b class="hl">Sol 的 best-of-two 只涨 1.2 个点而重复成功率涨了 9.2 个点</b>，说明策略主要是把「已能做到」转成「稳定交付」；策略加持的 Terra 以约一半成本超过无辅助的 Sol。五臂随机实验中真实策略 61%，无策略 39%、时间匹配的安慰剂 36%、泛化验证/重新考虑提示 39–43%，且 24 次策略尝试中 22 次出现了预期的纠正行为。</p>
-<p><b class="kicker">为什么值得读</b>：把「可靠性」和「能力」分开度量（pass^2 vs best-of-n），并用对照实验证明 harness 层干预的机制有效性——agent 可靠性工程的范本。</p>
-<p><b class="kicker">局限</b>：策略是针对已观测失败状态人工/半自动构造的，跨任务分布的可迁移性未验证。</p>
-<p class="src">→ <a href="https://arxiv.org/abs/2609.26048" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.26048</a></p>
-<h3>RRSI: Regularized Recursive Self-Improvement of Agent Harnesses</h3>
-<p>RRSI 指出 agent harness 的递归自改进容易记忆训练任务、in-distribution 大涨而 OOD 归零，因而给提议与选择两端都加上正则：提议器用随时间退火的编辑预算限制单个候选能捆绑多少改动并鼓励未探索轨迹，选择器配 critic 筛掉 benchmark-specific 提议、配 pruner 删掉过小/过贵/失效的改动。在覆盖编码、agentic workspace 与工程设计的八个 benchmark 上，演化所用的 split 上最多 +14.1 分，<b class="hl">五个 OOD benchmark 上最多只有 +4.7 分</b>，同时产出的 harness 少用 30% policy token。代码已开源。</p>
-<p><b class="kicker">为什么值得读</b>：harness 自动演化这条线最该警惕的过拟合问题，附带可复用的提议/选择正则化设计与 token 开销对比。</p>
-<p class="src">→ <a href="https://arxiv.org/abs/2609.24972" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.24972</a></p>
-<h3>Recursive self-improvement of AI research agents</h3>
-<p>AIDE^2 让一个前沿 AI 研究 agent 改写自己的代码：提议改动、在一组 AI R&amp;D 任务上对改后版本做基准测试、按隐藏评测保留最好的版本，被接受的改写成为下一轮被编辑的 agent。在一次自主运行 8 天的循环中发现了 7 项连续改进，<b class="hl">包括新的搜索策略和压缩/管理不断增长上下文的记忆机制</b>；这些收益迁移到四个 held-out benchmark（含分布外的物理天气预报），最强版本追平或超过一个排名靠前的人工工程化生产级研究 agent。另外在一个独立 held-out 任务族上 reward hacking 率从 55% 降到 32%，比人工 agent 还低 7 个百分点，而循环从未显式优化这一点。</p>
-<p><b class="kicker">为什么值得读</b>：看自动演化实际「发现」了哪些 harness 机制（搜索策略、上下文压缩记忆），比读人写的设计更能反映什么真的有用。</p>
-<p><b class="kicker">局限</b>：单次 8 天运行、单一 agent 系列，结论依赖特定基座与任务套件，难说可复现。</p>
-<p class="src">→ <a href="https://arxiv.org/abs/2609.26457" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.26457</a></p>
-<h3>Measuring the Serving Stack Instead of the Model: Hidden Confounds in Local Tool-Use Evaluation</h3>
-<p>本文指出本地部署栈会污染工具调用能力的评测结论：Ollama 中 tools= 请求由每模型的静态模板 flag 决定，有的模型以文本形式返回调用、有的走原生 tool_calls，而 Phi-3 和 Gemma-3 在推理前就被直接拒绝；若 harness 不把拒绝和重试耗尽保留为结构化失败元数据，下游分析会把它们误判为模型不调用并<b class="hl">天真地报出 0% 的调用保真度</b>。在保留原生通道的同时附加文本工具列表能恢复大部分保真度，而统一走文本协议反而会拉低本身支持原生调用的 Llama-3.2；跨 Ollama、llama.cpp、vLLM、SGLang 的探测显示同一请求处理方式各异，约束解码消除解析失败却可能导致不终止，turn-pooled 与 per-instance 估计相差可达约 55 个点。</p>
-<p><b class="kicker">为什么值得读</b>：做 agent 评测时最容易被忽略的混淆源，附带一份把 serving 行为纳入评测协议的检查清单。</p>
-<p><b class="kicker">局限</b>：只覆盖本地开源部署栈与少数小模型，对调用托管 API 的场景参考价值有限。</p>
-<p class="src">→ <a href="https://arxiv.org/abs/2609.26693" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.26693</a></p>
-<h2 id="section-4">社区在聊什么</h2>
+<h2 id="section-3">社区在聊什么</h2>
 <h4>前沿模型集中发布，争论从&quot;能力&quot;转向&quot;这对 agent 编排意味着什么&quot;</h4>
 <p>这周的讨论被几场模型更新占满：Claude Opus 5.5<sup class="score" tabindex="0" data-tip="热度 1562 · 968 条评论" aria-label="热度 1562 · 968 条评论">↑1562</sup><a href="https://www.anthropic.com/claude-opus-5-5" target="_blank" rel="noopener noreferrer">↗</a>、GPT-6 Sol and Luna<sup class="score" tabindex="0" data-tip="热度 1551 · 744 条评论" aria-label="热度 1551 · 744 条评论">↑1551</sup><a href="https://openai.com/index/introducing-gpt-6-sol-and-luna/" target="_blank" rel="noopener noreferrer">↗</a>、Grok 4.7<sup class="score" tabindex="0" data-tip="热度 603 · 519 条评论" aria-label="热度 603 · 519 条评论">↑603</sup>——把模型放进 token 预算和单任务成本的坐标系里，才是工程侧关心的读法。与之相对，GPT-6 Astra 破解 2005 年以来未解的 Enigma 报文<sup class="score" tabindex="0" data-tip="热度 663 · 387 条评论" aria-label="热度 663 · 387 条评论">↑663</sup><a href="https://www.cryptocellar.org/bgac/the-mvueh-break.html" target="_blank" rel="noopener noreferrer">↗</a>和 Did OpenAI solve the wrong Navier-Stokes problem?<sup class="score" tabindex="0" data-tip="热度 108 · 59 条评论" aria-label="热度 108 · 59 条评论">↑108</sup><a href="https://www.scientificamerican.com/article/did-openai-solve-the-wrong-navier-stokes-problem/" target="_blank" rel="noopener noreferrer">↗</a>构成了一组对照：社区在追问&quot;宣称的突破，验证条件到底是什么&quot;，这与 agent 评测里的老问题同源。</p>
 <h4>agent 真正落地时撞上的墙：权限、平台对抗与&quot;提示词到底是不是抽象层&quot;</h4>
@@ -332,7 +303,7 @@ img{max-width:100%;height:auto}
 <h4>非 AI 的系统与性能工程：这周量不大但质量高</h4>
 <p>AMD Ryzen 两年内如何快了 50%<sup class="score" tabindex="0" data-tip="热度 345 · 132 条评论" aria-label="热度 345 · 132 条评论">↑345</sup><a href="https://lemire.me/blog/2026/09/18/how-did-amd-ryzen-get-50-faster-in-two-years/" target="_blank" rel="noopener noreferrer">↗</a>是本周最扎实的性能工程贴，<b class="hl">讲的是在同一套约束下靠持续的微架构改进累积出 50% 这种量级的收益，方法论上和&quot;给 agent 系统做逐层降本&quot;是一回事</b>。遗留系统与兼容层方向有 Microsoft killed FoxPro in 2007. Anyway, here&#x27;s FoxPro revived<sup class="score" tabindex="0" data-tip="热度 328 · 190 条评论" aria-label="热度 328 · 190 条评论">↑328</sup><a href="https://foxscript.org/" target="_blank" rel="noopener noreferrer">↗</a>，是关于技术债与迁移的鲜活案例；底层折腾则有 ReBarUEFI: Resizable BAR for almost any UEFI system<sup class="score" tabindex="0" data-tip="热度 159 · 49 条评论" aria-label="热度 159 · 49 条评论">↑159</sup><a href="https://github.com/xCuri0/ReBarUEFI" target="_blank" rel="noopener noreferrer">↗</a>、Resident Evil 4 GameCube 完全字节一致的 C/C++ 反编译<sup class="score" tabindex="0" data-tip="热度 137 · 99 条评论" aria-label="热度 137 · 99 条评论">↑137</sup><a href="https://github.com/adonis-singh/re4" target="_blank" rel="noopener noreferrer">↗</a>——后者本质上是一次极端严格的等价性验证工程，和迁移验证的思路相通——以及用零件攒家用服务器<sup class="score" tabindex="0" data-tip="热度 91 · 53 条评论" aria-label="热度 91 · 53 条评论">↑91</sup><a href="https://asmat.ca/blog/i-went-bananas/" target="_blank" rel="noopener noreferrer">↗</a>。</p>
 <p>需要说明的是，本周 36 条里约有 8 条与 agent 工程和系统设计都不沾边，包括美国撤销电厂气候污染限制<sup class="score" tabindex="0" data-tip="热度 260 · 266 条评论" aria-label="热度 260 · 266 条评论">↑260</sup><a href="https://text.hrw.org/news/2026/09/17/us-revokes-limits-on-power-plants-climate-pollution" target="_blank" rel="noopener noreferrer">↗</a>、Qwen Image 2.1<sup class="score" tabindex="0" data-tip="热度 735 · 198 条评论" aria-label="热度 735 · 198 条评论">↑735</sup><a href="https://qwen.ai/blog?id=qwen-image-2.1" target="_blank" rel="noopener noreferrer">↗</a>、旅鼠的晚年<sup class="score" tabindex="0" data-tip="热度 154 · 33 条评论" aria-label="热度 154 · 33 条评论">↑154</sup><a href="https://www.filfre.net/2026/09/the-lamentable-later-life-of-lemmings/" target="_blank" rel="noopener noreferrer">↗</a>、UV 指数科普<sup class="score" tabindex="0" data-tip="热度 82 · 69 条评论" aria-label="热度 82 · 69 条评论">↑82</sup><a href="https://blog.asciitweezers.com/the-uv-index-is-not-the-warm-sensation-of-sunlight-on-bare-skin/" target="_blank" rel="noopener noreferrer">↗</a>、Show HN: Radius 这个 Meetup 替代品<sup class="score" tabindex="0" data-tip="热度 163 · 81 条评论" aria-label="热度 163 · 81 条评论">↑163</sup><a href="https://radius.to/" target="_blank" rel="noopener noreferrer">↗</a>、秘书问题的意外绕过<sup class="score" tabindex="0" data-tip="热度 82 · 13 条评论" aria-label="热度 82 · 13 条评论">↑82</sup><a href="https://www.evalapply.org/posts/side-step-secretary-problem-hiring/index.html" target="_blank" rel="noopener noreferrer">↗</a>、Discord 年龄确认更新<sup class="score" tabindex="0" data-tip="热度 116 · 81 条评论" aria-label="热度 116 · 81 条评论">↑116</sup><a href="https://discord.com/blog/safer-for-teens-same-discord-for-adults" target="_blank" rel="noopener noreferrer">↗</a>和数学与人工智能顾问组<sup class="score" tabindex="0" data-tip="热度 160 · 80 条评论" aria-label="热度 160 · 80 条评论">↑160</sup><a href="https://terrytao.wordpress.com/2026/09/21/advisory-group-on-mathematics-and-artificial-intelligence/" target="_blank" rel="noopener noreferrer">↗</a>，可以直接跳过。</p>
-<h2 id="section-5">在涨什么</h2>
+<h2 id="section-4">在涨什么</h2>
 <h4>Agent 评测与可靠性（BenchLM · 模型与榜单更新）</h4>
 <ul class="cols2">
 <li><b class="item">The evaluator must expose the failure</b> — 一条关于评测器应当把失败暴露出来的榜单更新条目。 <a href="https://benchlm.ai/llm-evaluation-frameworks" target="_blank" rel="noopener noreferrer">↗</a></li>
@@ -344,7 +315,7 @@ img{max-width:100%;height:auto}
 <li><b class="item">ResumeContext</b> — 与简历相关的工具。 <a href="https://www.producthunt.com/products/resumecontext" target="_blank" rel="noopener noreferrer">↗</a></li>
 </ul>
 <p>其余 38 条（1 条 GitHub Trending、37 条 Product Hunt）仅有名称、无可依据的说明，无法按上述口径判断归属，名称大致落在 AI 工具、安全与合规、音视频、开发者工具、营销与增长等方向。</p>
-<details class="fold" id="section-6"><summary>还没细看的（聚合稿）</summary><blockquote><p>49 条主题匹配但未进精选，这里给出核心观点供你判断是否值得回头细读。取正文最全的 40 条。</p></blockquote>
+<details class="fold" id="section-5"><summary>还没细看的（聚合稿）</summary><blockquote><p>49 条主题匹配但未进精选，这里给出核心观点供你判断是否值得回头细读。取正文最全的 40 条。</p></blockquote>
 <h4>新模型发布与价格战</h4>
 <ul>
 <li><b class="item">Claude Opus 5.5 与 GPT-6 Sol/Luna 同日发布，全线降价 40–50%</b> — Anthropic 称 Opus 5.5 在多数任务上达到 Claude Fable 5.1 水平、运行成本比 Opus 5 低 40%（发布推文 17.2M 阅读）；OpenAI 的 GPT-6 Sol/Luna 定价为 GPT-5.6 对应型号的一半。Simon Willison 列出的价格表：GPT-6 Luna $0.10/M 输入、$0.01/M 缓存输入、$0.50/M 输出；GPT-6 Sol $2/$0.20/$10；Grok 4.7 $2/$0.50/$6；Claude Opus 5.5 $4/$0.20/…。 <a href="https://www.latent.space/p/ainews-claude-opus-55-the-new-default" target="_blank" rel="noopener noreferrer">原文</a> <a href="https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/" target="_blank" rel="noopener noreferrer">原文</a></li>
@@ -399,6 +370,35 @@ img{max-width:100%;height:auto}
 <li><b class="item">voxium：全员对着 Claude 按回车</b> — 入职大公司半个月，规格、代码、测试、PRD、工单及其解决方案、报告全部由 Claude Code 产出，团队里没人喜欢；高层多次表示&quot;推代码不是瓶颈，为什么还慢&quot;，从 L1 到 L7 每天工作 12–13 小时，没人在读东西。 <a href="https://simonwillison.net/2026/Sep/20/voxium/" target="_blank" rel="noopener noreferrer">原文</a></li>
 <li><b class="item">@therealcornpop：AI 写的短视频脚本一眼可辨</b> — 不只是&quot;不是 X，而是 Y&quot;、三段式排比、被标点切碎的顿挫感这些 AI 腔，更关键的是内容里什么都没有——听不出作者对所讲话题有任何观点。 <a href="https://simonwillison.net/2026/Sep/22/therealcornpop/" target="_blank" rel="noopener noreferrer">原文</a></li>
 <li><b class="item">10 月 14 日旧金山：Agentic Engineering 主题的 Birds of a Feather 聚会</b> — Simon Willison 与 Jesse Vincent 合办的晚间活动，面向在编码 agent 之上做古怪实验的人；形式是一场流动的对话加非正式 show-and-tell，不需要演示，特别欢迎未公开的、没有明显市场的未完成项目。 <a href="https://simonwillison.net/2026/Sep/23/bof-agentic-engineering/" target="_blank" rel="noopener noreferrer">原文</a></li>
-</ul></details><h2 id="section-7">往期</h2>
+</ul></details>
+<h2 id="section-6">论文</h2>
+<blockquote><p>37 篇候选中选出 6 篇（预算 6 篇）。arXiv 无投票机制，取舍由语义判断，不是按热度。</p></blockquote>
+<h3>CliffCompaction: Cost-Efficient Compaction for Long-Horizon Coding Agents</h3>
+<p>CliffCompaction 提出一种长时程编码 agent 的上下文自动压缩方法：只做截断和丢弃、绝不改写或复述原文，且每次压缩只作用于原始内容、不对压缩结果再压缩，从而避免上下文漂移累积。在有界上下文下<b class="hl">成本最多降低 50%，同时在 Terminal-Bench 上性能持平或更好</b>；配合并行 test-time scaling 后，Kimi K2.6 可追平 Opus 4.7 且成本更低。在 KernelBench 上跨百万 token 会话持续学习，200 步达 2.23× CUDA 加速、400 步 3.58×，超过专门的搜索算法与训练过的 agent。作者开源了与 scaffold 无关的 API-proxy 实现，可直接接 Claude Code / Codex。</p>
+<p><b class="kicker">为什么值得读</b>：直击上下文管理与 token 预算：一个可即插即用、且把「压缩保真性」讲清楚的 compaction 机制。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2609.26779" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.26779</a></p>
+<h3>Grow the Harness, Not the Context: From Strategy-Free Scaffolds to Reusable Specialist Agents</h3>
+<p>Growing Harness 主张把反复出现的控制逻辑从模型上下文中搬到可执行代码里：从一个只暴露模型与工具接口、不含任何任务控制器的「无策略脚手架」出发，用函数级执行 trace 把每次失败定位到有界代码面，优化器批量修复一窗口失败，并用 success-first 的 held-out 门控回滚有害改动，所有改动累积进同一个共享 harness。在 BrowseComp-Plus 与 WebArena-Verified、4B 到 120B 三种部署模型的六个组合中，五个取得最高平均成功率，<b class="hl">相比 Tool-Calling agent 减少 76.0–91.8% 的 LLM 调用、74.4–98.6% 的推理成本</b>；WebArena-Verified 上跨模型规模稳定在 44.7–45.3%，而 Tool-Calling 在 4B 模型上掉到 6.7%。</p>
+<p><b class="kicker">为什么值得读</b>：harness 自身可被训练出来这一路线的干净样本，且把「控制搬出上下文」换算成了明确的调用数与成本收益。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2609.26760" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.26760</a></p>
+<h3>FIRE: Failure-Informed Runtime Engineering for Reliable Language-Model Agents</h3>
+<p>FIRE 研究的是 harness 层的运行时策略：在曾导致失败的状态上注入定向自然语言指令或直接拒绝某些动作，不改权重也不改用户 prompt。在完整的 87 题 Terminal-Bench 2.1 上每题两次尝试，三个 GPT-5.6 档位的 pass^2 全部提升，<b class="hl">Sol 的 best-of-two 只涨 1.2 个点而重复成功率涨了 9.2 个点</b>，说明策略主要是把「已能做到」转成「稳定交付」；策略加持的 Terra 以约一半成本超过无辅助的 Sol。五臂随机实验中真实策略 61%，无策略 39%、时间匹配的安慰剂 36%、泛化验证/重新考虑提示 39–43%，且 24 次策略尝试中 22 次出现了预期的纠正行为。</p>
+<p><b class="kicker">为什么值得读</b>：把「可靠性」和「能力」分开度量（pass^2 vs best-of-n），并用对照实验证明 harness 层干预的机制有效性——agent 可靠性工程的范本。</p>
+<p><b class="kicker">局限</b>：策略是针对已观测失败状态人工/半自动构造的，跨任务分布的可迁移性未验证。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2609.26048" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.26048</a></p>
+<h3>RRSI: Regularized Recursive Self-Improvement of Agent Harnesses</h3>
+<p>RRSI 指出 agent harness 的递归自改进容易记忆训练任务、in-distribution 大涨而 OOD 归零，因而给提议与选择两端都加上正则：提议器用随时间退火的编辑预算限制单个候选能捆绑多少改动并鼓励未探索轨迹，选择器配 critic 筛掉 benchmark-specific 提议、配 pruner 删掉过小/过贵/失效的改动。在覆盖编码、agentic workspace 与工程设计的八个 benchmark 上，演化所用的 split 上最多 +14.1 分，<b class="hl">五个 OOD benchmark 上最多只有 +4.7 分</b>，同时产出的 harness 少用 30% policy token。代码已开源。</p>
+<p><b class="kicker">为什么值得读</b>：harness 自动演化这条线最该警惕的过拟合问题，附带可复用的提议/选择正则化设计与 token 开销对比。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2609.24972" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.24972</a></p>
+<h3>Recursive self-improvement of AI research agents</h3>
+<p>AIDE^2 让一个前沿 AI 研究 agent 改写自己的代码：提议改动、在一组 AI R&amp;D 任务上对改后版本做基准测试、按隐藏评测保留最好的版本，被接受的改写成为下一轮被编辑的 agent。在一次自主运行 8 天的循环中发现了 7 项连续改进，<b class="hl">包括新的搜索策略和压缩/管理不断增长上下文的记忆机制</b>；这些收益迁移到四个 held-out benchmark（含分布外的物理天气预报），最强版本追平或超过一个排名靠前的人工工程化生产级研究 agent。另外在一个独立 held-out 任务族上 reward hacking 率从 55% 降到 32%，比人工 agent 还低 7 个百分点，而循环从未显式优化这一点。</p>
+<p><b class="kicker">为什么值得读</b>：看自动演化实际「发现」了哪些 harness 机制（搜索策略、上下文压缩记忆），比读人写的设计更能反映什么真的有用。</p>
+<p><b class="kicker">局限</b>：单次 8 天运行、单一 agent 系列，结论依赖特定基座与任务套件，难说可复现。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2609.26457" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.26457</a></p>
+<h3>Measuring the Serving Stack Instead of the Model: Hidden Confounds in Local Tool-Use Evaluation</h3>
+<p>本文指出本地部署栈会污染工具调用能力的评测结论：Ollama 中 tools= 请求由每模型的静态模板 flag 决定，有的模型以文本形式返回调用、有的走原生 tool_calls，而 Phi-3 和 Gemma-3 在推理前就被直接拒绝；若 harness 不把拒绝和重试耗尽保留为结构化失败元数据，下游分析会把它们误判为模型不调用并<b class="hl">天真地报出 0% 的调用保真度</b>。在保留原生通道的同时附加文本工具列表能恢复大部分保真度，而统一走文本协议反而会拉低本身支持原生调用的 Llama-3.2；跨 Ollama、llama.cpp、vLLM、SGLang 的探测显示同一请求处理方式各异，约束解码消除解析失败却可能导致不终止，turn-pooled 与 per-instance 估计相差可达约 55 个点。</p>
+<p><b class="kicker">为什么值得读</b>：做 agent 评测时最容易被忽略的混淆源，附带一份把 serving 行为纳入评测协议的检查清单。</p>
+<p><b class="kicker">局限</b>：只覆盖本地开源部署栈与少数小模型，对调用托管 API 的场景参考价值有限。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2609.26693" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.26693</a></p><h2 id="section-7">往期</h2>
 <ul class="index"><li><span class="wk">2026-W38</span><a href="2026-W38.html">第 38 周</a><span class="n">515 条</span><a class="alt" href="2026-W38.candidates.html">候选</a></li></ul><div class="foot">自动生成 · 不含个人语境 &nbsp;·&nbsp; <a href="./sources.html">资讯源</a><br><span class="health">本周抓取 1 次，最近一次 2026-09-23 10:34 · <b>1 个源失败</b>：bytedance-seed</span></div>
 </main></div></body></html>

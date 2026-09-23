@@ -6,20 +6,25 @@
 <style>
 :root{
   --paper:#F1F4F7; --surface:#FBFCFD; --surface-2:#E9EEF3;
-  --ink:#131B25; --ink-soft:#33414F; --dim:#5C6B7A; --faint:#8695A3;
+  --ink:#131B25; --ink-soft:#33414F; --dim:#5C6B7A; --faint:#5F6E7C;
   --rule:#D7DEE6; --signal:#0A6273; --heat:#9C4426; --on-heat:#fff;
+  /* faint 从 #8695A3 调深：它用在 10–11px 的角标、页脚和候选页
+     元信息上，原值对 #F1F4F7 底只有 2.78:1，低于 WCAG AA 的 4.5:1。
+     调到 #5F6E7C（4.75:1）—— 中间试过 #6B7A88，看着够深，**实测只有
+     3.99**，所以这类值要算不要估。深色同理 #6E7C89 → #7C8A97（4.20 → 5.08）。
+     「不抢视线」是有意的，但不该到看不见。 */
   --serif:"Newsreader",ui-serif,Georgia,"Songti SC",serif;
   --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"PingFang SC",system-ui,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
 }
 :root:not([data-theme="light"]){@media (prefers-color-scheme:dark){
   --paper:#111721; --surface:#19212C; --surface-2:#212A36;
-  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#6E7C89;
+  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#7C8A97;
   --rule:#2B3542; --signal:#54B4C6; --heat:#D98A6A; --on-heat:#111721;
 }}
 :root[data-theme="dark"]{
   --paper:#111721; --surface:#19212C; --surface-2:#212A36;
-  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#6E7C89;
+  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#7C8A97;
   --rule:#2B3542; --signal:#54B4C6; --heat:#D98A6A; --on-heat:#111721;
 }
 *{box-sizing:border-box}
@@ -29,7 +34,9 @@ body{margin:0;background:var(--paper);color:var(--ink);
 .layout{max-width:74rem;margin:0 auto;padding:2rem 2rem 3rem;
  display:grid;grid-template-columns:minmax(0,52rem) minmax(0,14rem);
  column-gap:4rem;align-items:start}
-.page{min-width:0}
+.page{min-width:0;grid-column:1;grid-row:1}
+/* 目录在 DOM 里排在 main 之前（窄屏要它靠上），宽屏用 grid 定位放回右侧 */
+.outline{grid-column:2;grid-row:1}
 .outline{position:sticky;top:2rem;min-width:0;max-height:calc(100dvh - 4rem);
  overflow:auto;padding-top:.3rem;font-size:.8rem}
 .outline-label{font: .7rem var(--mono);color:var(--dim);letter-spacing:.1em;
@@ -41,7 +48,8 @@ h2[id]{scroll-margin-top:1.5rem}
 h2:target{color:var(--signal)}
 @media (max-width:1100px){
  .layout{display:block;max-width:54rem}
- .outline{position:static;max-height:none;margin-top:2rem}
+ .outline{position:static;max-height:none;margin:0 0 1.8rem;
+   padding-bottom:1.2rem;border-bottom:1px solid var(--rule)}
  .outline nav{display:flex;flex-wrap:wrap;gap:0 1.2rem}
 }
 a{color:var(--signal);text-decoration:none;
@@ -81,6 +89,7 @@ li{margin:.3rem 0;color:var(--ink-soft)}
  margin-left:auto;white-space:nowrap}
 .index .alt{font-family:var(--mono);font-size:.7rem;white-space:nowrap}
 hr{border:0;border-top:1px solid var(--rule);margin:2rem 0}
+.health b{color:var(--heat);font-weight:600}
 .foot{margin-top:3.5rem;padding-top:1.1rem;border-top:2px solid var(--ink);
  font-family:var(--mono);font-size:.72rem;color:var(--faint);line-height:1.8}
 /* ── 阅读重点 ────────────────────────────────────────────
@@ -229,7 +238,7 @@ pre,table{max-width:100%;overflow-x:auto;display:block}
 img{max-width:100%;height:auto}
 .mast>*,.srcbox,.srcbox .row>*{min-width:0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-</style></head><body><div class="layout"><main class="page" id="top">
+</style></head><body><div class="layout"><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">进正文 · 28</a><a href="#section-2">进综述 · 7</a><a href="#section-3">论文 · 2</a><a href="#section-4">稍后读 · 1</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
 <header class="mast"><h1 class="wordmark"><a href="./">资讯周报</a> <em>资讯源</em></h1><div class="sweep">38 个源，其中 2 个已停用</div></header>
 <p class="tagline">这份清单由 sources.yaml 生成，和抓取用的是同一份配置。</p>
 <nav class="nav"><a href="./">本期 / 往期</a><a href="./candidates.html">本期候选</a><a href="./sources.html" aria-current="page">资讯源</a></nav>
@@ -245,4 +254,4 @@ img{max-width:100%;height:auto}
 <h2 id="section-4">稍后读<span class="n">1</span></h2>
 <p class="tagline">自己收藏的，不参与评选</p>
 <ul class="srcs"><li class="srcbox is-off"><div class="srchead"><h3>B站收藏夹</h3><div class="chips"><span class="chip">AI 工程</span><span class="chip off">已停用</span></div></div><div class="sid">bilibili-fav</div><div class="row"><span class="k">站点</span><a href="https://space.bilibili.com/" target="_blank" rel="noopener noreferrer">https://space.bilibili.com/</a></div><div class="row"><span class="k">抓取</span><code>/bilibili/fav/&lt;uid&gt;/&lt;fid&gt;</code><span class="chip dim">自建 RSSHub</span></div><div class="row"><span class="k">原因</span><span class="why">暂不需要（B 站收藏夹稍后读）</span></div></li></ul><div class="foot"><a href="./">← 回周报</a></div>
-</main><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">进正文 · 28</a><a href="#section-2">进综述 · 7</a><a href="#section-3">论文 · 2</a><a href="#section-4">稍后读 · 1</a><a href="#top">↑ 回到页首</a></nav></aside></div></body></html>
+</main></div></body></html>

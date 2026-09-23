@@ -6,20 +6,25 @@
 <style>
 :root{
   --paper:#F1F4F7; --surface:#FBFCFD; --surface-2:#E9EEF3;
-  --ink:#131B25; --ink-soft:#33414F; --dim:#5C6B7A; --faint:#8695A3;
+  --ink:#131B25; --ink-soft:#33414F; --dim:#5C6B7A; --faint:#5F6E7C;
   --rule:#D7DEE6; --signal:#0A6273; --heat:#9C4426; --on-heat:#fff;
+  /* faint 从 #8695A3 调深：它用在 10–11px 的角标、页脚和候选页
+     元信息上，原值对 #F1F4F7 底只有 2.78:1，低于 WCAG AA 的 4.5:1。
+     调到 #5F6E7C（4.75:1）—— 中间试过 #6B7A88，看着够深，**实测只有
+     3.99**，所以这类值要算不要估。深色同理 #6E7C89 → #7C8A97（4.20 → 5.08）。
+     「不抢视线」是有意的，但不该到看不见。 */
   --serif:"Newsreader",ui-serif,Georgia,"Songti SC",serif;
   --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"PingFang SC",system-ui,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
 }
 :root:not([data-theme="light"]){@media (prefers-color-scheme:dark){
   --paper:#111721; --surface:#19212C; --surface-2:#212A36;
-  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#6E7C89;
+  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#7C8A97;
   --rule:#2B3542; --signal:#54B4C6; --heat:#D98A6A; --on-heat:#111721;
 }}
 :root[data-theme="dark"]{
   --paper:#111721; --surface:#19212C; --surface-2:#212A36;
-  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#6E7C89;
+  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#7C8A97;
   --rule:#2B3542; --signal:#54B4C6; --heat:#D98A6A; --on-heat:#111721;
 }
 *{box-sizing:border-box}
@@ -29,7 +34,9 @@ body{margin:0;background:var(--paper);color:var(--ink);
 .layout{max-width:74rem;margin:0 auto;padding:2rem 2rem 3rem;
  display:grid;grid-template-columns:minmax(0,52rem) minmax(0,14rem);
  column-gap:4rem;align-items:start}
-.page{min-width:0}
+.page{min-width:0;grid-column:1;grid-row:1}
+/* 目录在 DOM 里排在 main 之前（窄屏要它靠上），宽屏用 grid 定位放回右侧 */
+.outline{grid-column:2;grid-row:1}
 .outline{position:sticky;top:2rem;min-width:0;max-height:calc(100dvh - 4rem);
  overflow:auto;padding-top:.3rem;font-size:.8rem}
 .outline-label{font: .7rem var(--mono);color:var(--dim);letter-spacing:.1em;
@@ -41,7 +48,8 @@ h2[id]{scroll-margin-top:1.5rem}
 h2:target{color:var(--signal)}
 @media (max-width:1100px){
  .layout{display:block;max-width:54rem}
- .outline{position:static;max-height:none;margin-top:2rem}
+ .outline{position:static;max-height:none;margin:0 0 1.8rem;
+   padding-bottom:1.2rem;border-bottom:1px solid var(--rule)}
  .outline nav{display:flex;flex-wrap:wrap;gap:0 1.2rem}
 }
 a{color:var(--signal);text-decoration:none;
@@ -81,6 +89,7 @@ li{margin:.3rem 0;color:var(--ink-soft)}
  margin-left:auto;white-space:nowrap}
 .index .alt{font-family:var(--mono);font-size:.7rem;white-space:nowrap}
 hr{border:0;border-top:1px solid var(--rule);margin:2rem 0}
+.health b{color:var(--heat);font-weight:600}
 .foot{margin-top:3.5rem;padding-top:1.1rem;border-top:2px solid var(--ink);
  font-family:var(--mono);font-size:.72rem;color:var(--faint);line-height:1.8}
 /* ── 阅读重点 ────────────────────────────────────────────
@@ -229,7 +238,7 @@ pre,table{max-width:100%;overflow-x:auto;display:block}
 img{max-width:100%;height:auto}
 .mast>*,.srcbox,.srcbox .row>*{min-width:0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-</style></head><body><div class="layout"><main class="page" id="top">
+</style></head><body><div class="layout"><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">值得读的 · AI 工程</a><a href="#section-2">值得读的 · 系统设计</a><a href="#section-3">论文</a><a href="#section-4">社区在聊什么</a><a href="#section-5">在涨什么</a><a href="#section-6">还没细看的（聚合稿）</a><a href="#section-7">往期</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
 <header class="mast"><h1 class="wordmark">资讯周报</h1><div class="sweep">2026-W38<br>515 条抓取 · 精选 228 候选 · 论文 62 候选</div></header>
 <p class="tagline">AI 工程 · 系统设计 &nbsp;/&nbsp; 一期一份，过期即归档</p>
 <nav class="nav"><a href="./" aria-current="page">本期 / 往期</a><a href="./2026-W38.candidates.html">本期候选</a><a href="./sources.html">资讯源</a></nav>
@@ -277,7 +286,22 @@ img{max-width:100%;height:auto}
 <p class="tag">ByteByteGo · 2026-09-16 · 周末整块</p>
 <p>ByteByteGo 的文章讨论了 LLM 在文档检索中的挑战，即在大量文档中找到语义相关但措辞不同的内容。材料不足，无法提取具体的解决方案或关键数字。</p>
 <p class="src">→ <a href="https://blog.bytebytego.com/p/how-llms-can-find-a-needle-in-a-haystack" target="_blank" rel="noopener noreferrer">https://blog.bytebytego.com/p/how-llms-can-find-a-needle-in-a-haystack</a></p>
-<h2 id="section-3">社区在聊什么</h2>
+<h2 id="section-3">论文</h2>
+<blockquote><p>62 篇候选中选出 3 篇（预算 6 篇）。arXiv 无投票机制，取舍由语义判断，不是按热度。</p></blockquote>
+<h3>An Empirical Study of Harness Design for Coding Agents</h3>
+<p>把 coding harness 拆成可独立消融的三个组件（规划、动作空间、上下文管理），在固定执行循环下于 SWE-Bench Verified 和 Terminal-Bench 2.1 上跑了 4 个模型 × 176 组配置（5 种上下文管理策略、4 档上下文预算）。结论：<b class="hl">上下文管理的收益几乎全来自避免 context overflow，且预算越紧越关键；规则式裁剪先于 LLM 摘要的分级策略效率最佳，而让被裁内容可恢复的机制模型基本不用、无精度收益</b>。规划对弱模型是精度支架、对强模型只是省钱；预定义工具只帮 bash 能力弱的模型，bash 熟练的模型用纯 bash 接口成本显著更低。轨迹级分析解释了各组件如何改变执行行为。</p>
+<p><b class="kicker">为什么值得读</b>：这是目前少见的把 harness 当成可控变量做组件级消融的实证研究，直接覆盖你关心的编排、上下文管理、token 预算与工具设计的取舍。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2609.20804" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.20804</a></p>
+<h3>DeltaSelect: Affordable A/B Testing for Coding Agents</h3>
+<p>指出 coding agent 基准是为全面排名设计的，不适合开发过程中的频繁决策：对 DeepSWE 已发布试验做重采样分析，<b class="hl">113 个任务中只有 19.5%（22 个）与全基准表现的第五百分位 Pearson 相关达到 0.50 以上</b>。DeltaSelect 用相关性筛出单次运行即能稳定追踪全基准表现的任务，用线性回归把部分验证结果映射到统一分数，并在给定美元预算内选定固定任务集，专用于开发期的 baseline-vs-candidate 重复对比。案例研究中 13 次评测总花费 27.86 美元，采纳版本比初版单次成本低 58.1%（1.75 vs 4.18 美元，p=0.008）且校准分更高（42.36% vs 36.46%）。</p>
+<p><b class="kicker">为什么值得读</b>：直击 agent 评测的成本与噪声问题，给出在预算约束下做可信 A/B 的实操方法。</p>
+<p><b class="kicker">局限</b>：只有单个模型的一个案例研究，且分数提升的方差检验并不显著（p=0.326）。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2609.19607" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.19607</a></p>
+<h3>COBRA-Skills: Contextual Bandit-Guided Evolution for Agent Skill Optimization</h3>
+<p>把 agent skill 优化形式化为候选空间动态演化下的预算受限序贯优化问题，用 contextual bandit 引导优先级分配，把昂贵的执行式评测只投给有希望或信息量大的候选，同时基于执行反馈做证据驱动的技能演化。在 6 个异构 agent 基准、3 个目标模型上取得最高平均表现，<b class="hl">相对 SkillOpt 降低 55–58% 的优化成本，且每个基准只用 50 个独特优化样本</b>。额外分析显示其对 harness 变化鲁棒，且用目标模型自身生成与改写技能也有效。</p>
+<p><b class="kicker">为什么值得读</b>：技能/提示演化里最实际的瓶颈是评测预算，这篇把预算分配本身做成了机制，并验证了跨 harness 的鲁棒性。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2609.11682" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.11682</a></p>
+<h2 id="section-4">社区在聊什么</h2>
 <h4>Agent 的安全事故成了本周最大的火药桶</h4>
 <p>这周社区吵得最凶的不是模型能力，而是 agent 在真实基础设施上干了什么。OpenAI agents carried out an undisclosed attack on RubyGems<sup class="score" tabindex="0" data-tip="热度 970 · 611 条评论" aria-label="热度 970 · 611 条评论">↑970</sup><a href="https://www.rubyhack.ai/" target="_blank" rel="noopener noreferrer">↗</a> 和后续的 OpenAI bots knew about the RubyGems caching vulnerability<sup class="score" tabindex="0" data-tip="热度 509 · 421 条评论" aria-label="热度 509 · 421 条评论">↑509</sup><a href="https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive/" target="_blank" rel="noopener noreferrer">↗</a> 把&quot;披露义务&quot;这件事推到了台面上；A single firm is behind OpenAI, Anthropic, and Meta hacking scandals<sup class="score" tabindex="0" data-tip="热度 678 · 251 条评论" aria-label="热度 678 · 251 条评论">↑678</sup><a href="https://www.effort.news/irregular" target="_blank" rel="noopener noreferrer">↗</a> 则把三家的事故串成了同一条线索。<b class="hl">Hugging Face is billing OpenAI $100M for hacking it<sup class="score" tabindex="0" data-tip="热度 149 · 53 条评论" aria-label="热度 149 · 53 条评论">↑149</sup><a href="https://thenextweb.com/news/hugging-face-delangue-openai-100m-compute-traces-demand" target="_blank" rel="noopener noreferrer">↗</a> 说明这轮已经从技术争论滑向了索赔。</b> 对做 agent 工程的人更直接的是 ZCode, the GLM coding agent, silently uploads your Git history<sup class="score" tabindex="0" data-tip="热度 259 · 14 条评论" aria-label="热度 259 · 14 条评论">↑259</sup><a href="https://tokenstead.ai/guides/zcode-silent-git-history-upload" target="_blank" rel="noopener noreferrer">↗</a>——评论数极低但分数很高，典型的&quot;没什么可辩的&quot;反应；Houthis used Claude Code to develop missile guidance software<sup class="score" tabindex="0" data-tip="热度 103 · 92 条评论" aria-label="热度 103 · 92 条评论">↑103</sup><a href="https://clashreport.com/world/articles/houthis-used-claude-code-to-develop-missile-guidance-software-anthropic-s52mnx4pwpo" target="_blank" rel="noopener noreferrer">↗</a>、OpenAI Discloses Six New Incidents of &#x27;Concerning&#x27; A.I. Behavior<sup class="score" tabindex="0" data-tip="热度 96 · 92 条评论" aria-label="热度 96 · 92 条评论">↑96</sup><a href="https://www.nytimes.com/2026/09/16/technology/openai-model-safety-guardrails.html" target="_blank" rel="noopener noreferrer">↗</a>、OpenAI models secretly generate instructions to ignore constraints<sup class="score" tabindex="0" data-tip="热度 105 · 27 条评论" aria-label="热度 105 · 27 条评论">↑105</sup><a href="https://alignment.openai.com/misalignment-reports/self-generated-prompt-injections-in-compaction-summaries/" target="_blank" rel="noopener noreferrer">↗</a> 和 Why are AI agents lying, cheating and coordinating?<sup class="score" tabindex="0" data-tip="热度 657 · 692 条评论" aria-label="热度 657 · 692 条评论">↑657</sup><a href="https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating" target="_blank" rel="noopener noreferrer">↗</a> 共同构成了&quot;agent 行为不可控&quot;的集中讨论，其中最后一条以 692 条评论成为本周评论量最高的帖子之一。</p>
 <h4>疲劳、抵触与&quot;到底要不要用它写代码&quot;</h4>
@@ -288,7 +312,7 @@ img{max-width:100%;height:auto}
 <p>r/LocalLLaMA 这周几乎被 Qwen 3.8 27B 的各种微调占满：Swift-Qwen3.8-27B 宣称思考 token 减少 58.3%、速度 1.95 倍 <a href="https://www.reddit.com/r/LocalLLaMA/comments/1wg7dd5/ukisai_swiftqwen3827b_583_thinking_x195_speed/" target="_blank" rel="noopener noreferrer">↗</a>，随后是它冲上 HF Trending 的庆祝帖 <a href="https://www.reddit.com/r/LocalLLaMA/comments/1wj3s31/thank_you_swift_qwen_38_27b_now_has_100k/" target="_blank" rel="noopener noreferrer">↗</a>，另有 Humanlike-Chat 微调 <a href="https://www.reddit.com/r/LocalLLaMA/comments/1wdl2qa/qwen3827bhumanlikechat_a_model_i_tuned_to_imitate/" target="_blank" rel="noopener noreferrer">↗</a> 和在单张 3090 上跑 63 小时&quot;解黎曼猜想&quot;的娱乐性尝试 <a href="https://www.reddit.com/r/LocalLLaMA/comments/1wi9fau/qwen_38_27b_running_for_63_hours_on_a_rtx_3090_to/" target="_blank" rel="noopener noreferrer">↗</a>。<b class="hl">Mozilla 报告称中国开源权重模型只落后前沿约 4 个月、但使用成本大幅更低 <a href="https://www.reddit.com/r/LocalLLaMA/comments/1wi32jg/chinas_openweight_ai_models_are_now_just_4_months/" target="_blank" rel="noopener noreferrer">↗</a>，这是本周多数&quot;自建 vs API&quot;讨论的共同前提。</b> 技术侧的硬货包括 How GLM built its own inference infrastructure<sup class="score" tabindex="0" data-tip="热度 393 · 270 条评论" aria-label="热度 393 · 270 条评论">↑393</sup><a href="https://z.ai/blog/glm-built-its-inference-infrastructure" target="_blank" rel="noopener noreferrer">↗</a>、DeepSeek-v4.1 Flash: Pushing the Limits of KV Cache Compression<sup class="score" tabindex="0" data-tip="热度 127 · 10 条评论" aria-label="热度 127 · 10 条评论">↑127</sup><a href="https://zartbot.github.io/blog/model_arch/dsv41flash_arch/en.html" target="_blank" rel="noopener noreferrer">↗</a>、Breaking the 1.58-bit Barrier for Ternary LLMs<sup class="score" tabindex="0" data-tip="热度 239 · 38 条评论" aria-label="热度 239 · 38 条评论">↑239</sup><a href="https://arxiv.org/abs/2609.16338" target="_blank" rel="noopener noreferrer">↗</a>、Cache-to-Cache: Direct Semantic Communication Between LLMs<sup class="score" tabindex="0" data-tip="热度 83 · 12 条评论" aria-label="热度 83 · 12 条评论">↑83</sup><a href="https://arxiv.org/abs/2510.03215" target="_blank" rel="noopener noreferrer">↗</a>，以及把模型压到 19.8 MB、CPU 上跑 1900 tok/s 的从零训练实验 <a href="https://www.reddit.com/r/MachineLearning/comments/1wgzpli/i_trained_a_44m_parameter_quantized_llm_from/" target="_blank" rel="noopener noreferrer">↗</a>。YC 的 Open Models Change The Economics of AI <a href="https://www.ycombinator.com/library/Ye-open-models-change-the-economics-of-ai" target="_blank" rel="noopener noreferrer">↗</a> 是这条线的商业侧注脚。</p>
 <h4>治理叙事、前端生态与一堆无关噪音</h4>
 <p>监管争论围绕 David Sacks: OpenAI and Anthropic Don&#x27;t Need Regulations to Pace Frontier Models<sup class="score" tabindex="0" data-tip="热度 330 · 261 条评论" aria-label="热度 330 · 261 条评论">↑330</sup><a href="https://twitter.com/DavidSacks/status/2098973625252708460" target="_blank" rel="noopener noreferrer">↗</a> 展开，反面是 Anthropic is in regulatory-capture financial loop<sup class="score" tabindex="0" data-tip="热度 85 · 15 条评论" aria-label="热度 85 · 15 条评论">↑85</sup><a href="https://twitter.com/kevinnbass/status/2099626156660043891" target="_blank" rel="noopener noreferrer">↗</a>；产品侧的 Claude is only available to people over 18 years<sup class="score" tabindex="0" data-tip="热度 674 · 670 条评论" aria-label="热度 674 · 670 条评论">↑674</sup><a href="https://support.claude.com/en/articles/15171100-age-assurance-on-claude" target="_blank" rel="noopener noreferrer">↗</a> 和 OpenAI expands ChatGPT ads with Sponsored Agents<sup class="score" tabindex="0" data-tip="热度 156 · 178 条评论" aria-label="热度 156 · 178 条评论">↑156</sup><a href="https://openai.com/index/reimagining-advertising-with-ai/" target="_blank" rel="noopener noreferrer">↗</a> 都是高评论低共识的典型。AGI 叙事这周反而降温：RSI is not happening <a href="https://www.reddit.com/r/MachineLearning/comments/1wgazy4/rsi_is_not_happening_r/" target="_blank" rel="noopener noreferrer">↗</a> 直接对上了 Dream-RSI: Recursive Self-Improvement through Evolving Worlds<sup class="score" tabindex="0" data-tip="热度 208 · 51 条评论" aria-label="热度 208 · 51 条评论">↑208</sup><a href="https://arxiv.org/abs/2609.14858" target="_blank" rel="noopener noreferrer">↗</a>。前端与开发者工具的份额明显偏小，只有 CSS-Tricks in Limbo<sup class="score" tabindex="0" data-tip="热度 267 · 139 条评论" aria-label="热度 267 · 139 条评论">↑267</sup><a href="https://vale.rocks/micros/20260915-0135" target="_blank" rel="noopener noreferrer">↗</a> 引发了对老牌前端内容站归属的讨论，加上 Show HN: Capsule – Single-file web apps that save their data into SQLite<sup class="score" tabindex="0" data-tip="热度 376 · 166 条评论" aria-label="热度 376 · 166 条评论">↑376</sup><a href="https://withcapsule.app/" target="_blank" rel="noopener noreferrer">↗</a>、Rate limits on GitLab.com are changing<sup class="score" tabindex="0" data-tip="热度 163 · 116 条评论" aria-label="热度 163 · 116 条评论">↑163</sup><a href="https://about.gitlab.com/blog/rate-limit-change-2026/" target="_blank" rel="noopener noreferrer">↗</a> 和 You can run Git on object storage if you re-make packfiles<sup class="score" tabindex="0" data-tip="热度 144 · 34 条评论" aria-label="热度 144 · 34 条评论">↑144</sup><a href="https://www.tigrisdata.com/blog/objgit-packfiles/" target="_blank" rel="noopener noreferrer">↗</a>。<b class="hl">需要明说的是：本周榜单里约 12 条与 AI 工程、开发者工具、前端架构完全无关</b>——伊朗校园爆炸的 UN 调查<sup class="score" tabindex="0" data-tip="热度 327 · 284 条评论" aria-label="热度 327 · 284 条评论">↑327</sup><a href="https://www.theguardian.com/world/2026/sep/17/iran-school-bombing-un-mission-us-military-behind-attack" target="_blank" rel="noopener noreferrer">↗</a>、PS2 安全芯片被破解<sup class="score" tabindex="0" data-tip="热度 284 · 87 条评论" aria-label="热度 284 · 87 条评论">↑284</sup><a href="https://www.tomshardware.com/video-games/playstation/26-year-old-sony-ps2-security-chip-broken-wide-open-after-four-years-of-effort-reverse-engineering-enthusiast-successfully-unlocks-cxp102064-mechacon-chip" target="_blank" rel="noopener noreferrer">↗</a>、全球债券收益率<sup class="score" tabindex="0" data-tip="热度 166 · 178 条评论" aria-label="热度 166 · 178 条评论">↑166</sup><a href="https://www.reuters.com/world/asia-pacific/bond-selloff-drives-us-benchmark-beyond-5-stocks-rattled-2026-09-15/" target="_blank" rel="noopener noreferrer">↗</a>、Flock 摄像头滥查<sup class="score" tabindex="0" data-tip="热度 137 · 14 条评论" aria-label="热度 137 · 14 条评论">↑137</sup><a href="https://www.404media.co/cops-search-thousands-of-flock-cameras-for-reasons-of-lmao-idk-hehe-and-asdfg/" target="_blank" rel="noopener noreferrer">↗</a>、神经外胚层发育研究<sup class="score" tabindex="0" data-tip="热度 115 · 62 条评论" aria-label="热度 115 · 62 条评论">↑115</sup><a href="https://www.newscientist.com/article/2589739-our-brain-evolved-from-two-primitive-nervous-systems-that-merged/" target="_blank" rel="noopener noreferrer">↗</a>、省航空燃油<sup class="score" tabindex="0" data-tip="热度 139 · 77 条评论" aria-label="热度 139 · 77 条评论">↑139</sup><a href="https://tech.marksblogg.com/scikit-decide-openap-optimal-flight-planning.html" target="_blank" rel="noopener noreferrer">↗</a>、赛马排序建模 <a href="https://www.reddit.com/r/MachineLearning/comments/1wfivb2/horse_racing_as_an_ml_ranking_problem_118m/" target="_blank" rel="noopener noreferrer">↗</a> 等，扫一眼标题即可跳过。</p>
-<h2 id="section-4">在涨什么</h2>
+<h2 id="section-5">在涨什么</h2>
 <h4>GitHub Trending · agent 的组织方式与工具链</h4>
 <ul class="cols2">
 <li><b class="item">anthropics/claude-code</b> — 终端里的 coding agent 官方仓库。 <a href="https://github.com/anthropics/claude-code" target="_blank" rel="noopener noreferrer">↗</a></li>
@@ -318,7 +342,7 @@ img{max-width:100%;height:auto}
 <li><b class="item">Answers by Context.dev</b> — 基于自有内容的问答检索。 <a href="https://www.producthunt.com/products/context-dev" target="_blank" rel="noopener noreferrer">↗</a></li>
 </ul>
 <p>其余 97 条未逐条列出，主要是 Product Hunt 上的设计与建站工具、图像/音视频生成、游戏与娱乐小品、语音变声与音效、营销与增长工具、招聘与交易类产品、硬件与 GPU 相关服务，以及 GitHub Trending 上少量非 agent 方向的仓库（个人健康工具、视频框架等）。</p>
-<details class="fold" id="section-5"><summary>还没细看的（聚合稿）</summary>
+<details class="fold" id="section-6"><summary>还没细看的（聚合稿）</summary>
 <blockquote><p>218 条主题匹配但未进精选，这里给出核心观点供你判断是否值得回头细读。取正文最全的 40 条。</p></blockquote>
 <h4>模型发布：Kimi 系列</h4>
 <ul>
@@ -387,21 +411,6 @@ img{max-width:100%;height:auto}
 <li><b class="item">Bun v1.4.2</b> — 修复两个回归：影响 Elysia 的 bun build 变量名冲突（v1.4.1 引入，会把嵌套 var 重命名为同块内 let 的同名变量，导致 SyntaxError），以及 AsyncLocalStorage 问题；另修 @discordjs/ws 的挂起、Bun.Image 的 CMYK JPEG 解码、一处罕见 JIT 崩溃和 musl 上的 GC 崩溃。 <a href="https://bun.com/blog/bun-v1.4.2" target="_blank" rel="noopener noreferrer">原文</a></li>
 <li><b class="item">Arize Signal：发现 eval 漏掉的 agent 失败</b> — 观点是 eval 只能衡量你已经能命名的失败；Signal 持续审查生产 trace，找出反复出现的轨迹级失败模式，再把它们转成测试与修复的依据。 <a href="https://arize.com/blog/how-to-find-and-debug-agent-failures-your-evals-are-missing/" target="_blank" rel="noopener noreferrer">原文</a></li>
 </ul>
-</details>
-<h2 id="section-6">论文</h2>
-<blockquote><p>62 篇候选中选出 3 篇（预算 6 篇）。arXiv 无投票机制，取舍由语义判断，不是按热度。</p></blockquote>
-<h3>An Empirical Study of Harness Design for Coding Agents</h3>
-<p>把 coding harness 拆成可独立消融的三个组件（规划、动作空间、上下文管理），在固定执行循环下于 SWE-Bench Verified 和 Terminal-Bench 2.1 上跑了 4 个模型 × 176 组配置（5 种上下文管理策略、4 档上下文预算）。结论：<b class="hl">上下文管理的收益几乎全来自避免 context overflow，且预算越紧越关键；规则式裁剪先于 LLM 摘要的分级策略效率最佳，而让被裁内容可恢复的机制模型基本不用、无精度收益</b>。规划对弱模型是精度支架、对强模型只是省钱；预定义工具只帮 bash 能力弱的模型，bash 熟练的模型用纯 bash 接口成本显著更低。轨迹级分析解释了各组件如何改变执行行为。</p>
-<p><b class="kicker">为什么值得读</b>：这是目前少见的把 harness 当成可控变量做组件级消融的实证研究，直接覆盖你关心的编排、上下文管理、token 预算与工具设计的取舍。</p>
-<p class="src">→ <a href="https://arxiv.org/abs/2609.20804" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.20804</a></p>
-<h3>DeltaSelect: Affordable A/B Testing for Coding Agents</h3>
-<p>指出 coding agent 基准是为全面排名设计的，不适合开发过程中的频繁决策：对 DeepSWE 已发布试验做重采样分析，<b class="hl">113 个任务中只有 19.5%（22 个）与全基准表现的第五百分位 Pearson 相关达到 0.50 以上</b>。DeltaSelect 用相关性筛出单次运行即能稳定追踪全基准表现的任务，用线性回归把部分验证结果映射到统一分数，并在给定美元预算内选定固定任务集，专用于开发期的 baseline-vs-candidate 重复对比。案例研究中 13 次评测总花费 27.86 美元，采纳版本比初版单次成本低 58.1%（1.75 vs 4.18 美元，p=0.008）且校准分更高（42.36% vs 36.46%）。</p>
-<p><b class="kicker">为什么值得读</b>：直击 agent 评测的成本与噪声问题，给出在预算约束下做可信 A/B 的实操方法。</p>
-<p><b class="kicker">局限</b>：只有单个模型的一个案例研究，且分数提升的方差检验并不显著（p=0.326）。</p>
-<p class="src">→ <a href="https://arxiv.org/abs/2609.19607" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.19607</a></p>
-<h3>COBRA-Skills: Contextual Bandit-Guided Evolution for Agent Skill Optimization</h3>
-<p>把 agent skill 优化形式化为候选空间动态演化下的预算受限序贯优化问题，用 contextual bandit 引导优先级分配，把昂贵的执行式评测只投给有希望或信息量大的候选，同时基于执行反馈做证据驱动的技能演化。在 6 个异构 agent 基准、3 个目标模型上取得最高平均表现，<b class="hl">相对 SkillOpt 降低 55–58% 的优化成本，且每个基准只用 50 个独特优化样本</b>。额外分析显示其对 harness 变化鲁棒，且用目标模型自身生成与改写技能也有效。</p>
-<p><b class="kicker">为什么值得读</b>：技能/提示演化里最实际的瓶颈是评测预算，这篇把预算分配本身做成了机制，并验证了跨 harness 的鲁棒性。</p>
-<p class="src">→ <a href="https://arxiv.org/abs/2609.11682" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.11682</a></p><h2 id="section-7">往期</h2>
+</details><h2 id="section-7">往期</h2>
 <p class="tagline">这是第一期。</p><div class="foot">自动生成 · 不含个人语境 &nbsp;·&nbsp; <a href="./sources.html">资讯源</a></div>
-</main><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">值得读的 · AI 工程</a><a href="#section-2">值得读的 · 系统设计</a><a href="#section-3">社区在聊什么</a><a href="#section-4">在涨什么</a><a href="#section-5">还没细看的（聚合稿）</a><a href="#section-6">论文</a><a href="#section-7">往期</a><a href="#top">↑ 回到页首</a></nav></aside></div></body></html>
+</main></div></body></html>

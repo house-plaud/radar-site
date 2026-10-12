@@ -1,0 +1,436 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22none%22 stroke=%22%230A6273%22 stroke-width=%221.5%22/%3E%3Ccircle cx=%228%22 cy=%228%22 r=%222.5%22 fill=%22%230A6273%22/%3E%3C/svg%3E">
+<title>资讯周报 · 2026-W41</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F1F4F7; --surface:#FBFCFD; --surface-2:#E9EEF3;
+  --ink:#131B25; --ink-soft:#33414F; --dim:#5C6B7A; --faint:#5F6E7C;
+  --rule:#D7DEE6; --signal:#0A6273; --heat:#9C4426; --on-heat:#fff;
+  /* faint 从 #8695A3 调深：它用在 10–11px 的角标、页脚和候选页
+     元信息上，原值对 #F1F4F7 底只有 2.78:1，低于 WCAG AA 的 4.5:1。
+     调到 #5F6E7C（4.75:1）—— 中间试过 #6B7A88，看着够深，**实测只有
+     3.99**，所以这类值要算不要估。深色同理 #6E7C89 → #7C8A97（4.20 → 5.08）。
+     「不抢视线」是有意的，但不该到看不见。 */
+  --serif:"Newsreader",ui-serif,Georgia,"Songti SC",serif;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"PingFang SC",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+:root:not([data-theme="light"]){@media (prefers-color-scheme:dark){
+  --paper:#111721; --surface:#19212C; --surface-2:#212A36;
+  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#7C8A97;
+  --rule:#2B3542; --signal:#54B4C6; --heat:#D98A6A; --on-heat:#111721;
+}}
+:root[data-theme="dark"]{
+  --paper:#111721; --surface:#19212C; --surface-2:#212A36;
+  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#7C8A97;
+  --rule:#2B3542; --signal:#54B4C6; --heat:#D98A6A; --on-heat:#111721;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+ font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+/* 主栏所有块共用同一宽度；目录独立占宽，不给 p 另设 max-width。 */
+.layout{max-width:74rem;margin:0 auto;padding:2rem 2rem 3rem;
+ display:grid;grid-template-columns:minmax(0,52rem) minmax(0,14rem);
+ column-gap:4rem;align-items:start}
+/* 四个直接子元素：页眉、导航、目录、正文。
+   DOM 顺序按**窄屏**排（页眉 → 导航 → 目录 → 正文），宽屏靠
+   grid 定位把目录放回右侧、让页眉和导航跨满两列。 */
+.mast{grid-column:1/-1;grid-row:1}
+.nav{grid-column:1/-1;grid-row:2}
+.outline{grid-column:2;grid-row:3}
+.page{min-width:0;grid-column:1;grid-row:3}
+.outline{position:sticky;top:2rem;min-width:0;max-height:calc(100dvh - 4rem);
+ overflow:auto;padding-top:.3rem;font-size:.8rem}
+.outline-label{font: .7rem var(--mono);color:var(--dim);letter-spacing:.1em;
+ padding-bottom:.8rem;border-bottom:2px solid var(--ink)}
+.outline a{display:block;padding:.65rem 0;border-bottom:1px solid var(--rule);
+ overflow-wrap:anywhere;color:var(--ink-soft)}
+.outline a:hover{color:var(--signal);background:var(--surface)}
+h2[id]{scroll-margin-top:1.5rem}
+h2:target{color:var(--signal)}
+@media (max-width:1100px){
+ .layout{display:block;max-width:54rem}
+ .outline{position:static;max-height:none;margin:0 0 1.8rem;
+   padding-bottom:1.2rem;border-bottom:1px solid var(--rule)}
+ .outline nav{display:flex;flex-wrap:wrap;gap:0 1.2rem}
+}
+a{color:var(--signal);text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb,var(--signal) 30%,transparent)}
+a:hover{border-bottom-color:var(--signal)}
+a:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+.mast{display:flex;flex-wrap:wrap;align-items:flex-end;gap:1rem 2rem;
+ padding-bottom:1.1rem;border-bottom:2px solid var(--ink);margin-bottom:1.1rem}
+.wordmark{font-family:var(--serif);font-weight:600;font-size:2.4rem;
+ line-height:1;letter-spacing:-.02em;margin:0;flex:1 1 16rem}
+.wordmark a{border:0;color:var(--ink)}
+.wordmark em{font-style:italic;font-weight:400;color:var(--signal)}
+.tagline{font-family:var(--mono);font-size:.74rem;color:var(--dim);margin:.5rem 0 0}
+.sweep{font-family:var(--mono);font-size:.74rem;color:var(--dim);
+ font-variant-numeric:tabular-nums;text-align:right}
+h2{font-family:var(--serif);font-size:1.5rem;font-weight:600;
+ margin:1.8rem 0 .7rem;padding-bottom:.35rem;border-bottom:1px solid var(--rule);
+ text-wrap:balance}
+h3{font-family:var(--serif);font-size:1.18rem;font-weight:500;line-height:1.42;
+ margin:1.25rem 0 .3rem;text-wrap:balance}
+h4{font-family:var(--sans);font-size:.95rem;font-weight:600;margin:1rem 0 .3rem}
+p{margin:0 0 .6rem;color:var(--ink-soft)}
+.tag{font-family:var(--mono);font-size:.72rem;color:var(--dim);
+ margin:0 0 .6rem;font-variant-numeric:tabular-nums}
+blockquote{margin:0 0 .75rem;padding:.35rem 0;
+ border-top:1px solid var(--rule);color:var(--dim);font-size:.9rem}
+blockquote p{margin:0;color:inherit}
+ul{padding-left:1.1rem;margin:0 0 1rem}
+li{margin:.3rem 0;color:var(--ink-soft)}
+.src{font-family:var(--mono);font-size:.8rem;word-break:break-all;margin:0 0 .9rem}
+.index{list-style:none;padding:0;margin:1.5rem 0 0}
+.index li{display:flex;gap:1rem;align-items:baseline;padding:.7rem 0;
+ border-bottom:1px solid var(--rule)}
+.index .wk{font-family:var(--mono);font-size:.82rem;color:var(--dim);
+ white-space:nowrap;font-variant-numeric:tabular-nums}
+.index .n{font-family:var(--mono);font-size:.74rem;color:var(--faint);
+ margin-left:auto;white-space:nowrap}
+.index .alt{font-family:var(--mono);font-size:.7rem;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--rule);margin:2rem 0}
+.health b{color:var(--heat);font-weight:600}
+.foot{margin-top:3.5rem;padding-top:1.1rem;border-top:2px solid var(--ink);
+ font-family:var(--mono);font-size:.72rem;color:var(--faint);line-height:1.8}
+/* ── 阅读重点 ────────────────────────────────────────────
+   只有**句中**的粗体才算重点：标题里的 `**` 在渲染前就被剥掉了，
+   否则满屏荧光等于没标。.hl 给一条压在基线下的底色，像荧光笔划过。
+   底色用 signal 的低透明度混色，深浅色主题下都不会糊掉文字。 */
+b.item{font-weight:600;color:var(--ink)}
+/* 榜单热度角标。它是置信度不是内容 —— 给得见但不抢视线，
+   完整数字在 title 里，悬停（或移动端长按）才出来。 */
+sup.score{font-family:var(--mono);font-size:.62rem;color:var(--faint);
+ vertical-align:super;line-height:0;margin-left:.15em;cursor:help;
+ border-bottom:1px dotted var(--rule);font-variant-numeric:tabular-nums;
+ position:relative}
+sup.score:hover,sup.score:focus{color:var(--signal);border-bottom-color:var(--signal)}
+sup.score:hover::after,sup.score:focus::after{
+ content:attr(data-tip);position:absolute;bottom:1.7em;left:50%;
+ transform:translateX(-50%);background:var(--ink);color:var(--paper);
+ padding:.3rem .55rem;border-radius:3px;font-size:.7rem;line-height:1.3;
+ white-space:nowrap;z-index:20;pointer-events:none;font-weight:400;
+ box-shadow:0 2px 8px color-mix(in srgb,var(--ink) 18%,transparent)}
+b.kicker{font-family:var(--mono);font-size:.74rem;font-weight:500;
+ color:var(--dim);letter-spacing:.02em}
+b.hl{font-weight:600;color:var(--ink);
+ background:linear-gradient(to top,
+   color-mix(in srgb,var(--signal) 22%,transparent) 0,
+   color-mix(in srgb,var(--signal) 22%,transparent) .42em,
+   transparent .42em);
+ padding:0 .1em}
+/* ── 站内导航 ────────────────────────────────────────────
+   站点只有三类页面（首页 / 某一期 / 资讯源），全部列出来，
+   当前页用 aria-current 标出而不是去掉链接 —— 少一个入口，
+   就意味着有页面只能靠记地址进。 */
+.preview-flag{grid-column:1/-1;
+ background:var(--heat);color:var(--on-heat);font-family:var(--mono);
+ font-size:.72rem;padding:.5rem .9rem;margin:0 0 1.5rem;border-radius:3px}
+.preview-flag a{color:var(--on-heat);border-bottom-color:color-mix(in srgb,var(--on-heat) 50%,transparent)}
+.nav{display:flex;flex-wrap:wrap;gap:.2rem 1.4rem;margin:0 0 1rem;
+ font-family:var(--mono);font-size:.76rem}
+.nav a{padding:.3rem 0}
+.nav [aria-current="page"]{color:var(--ink);border-bottom-color:var(--ink)}
+/* 短条目列表在宽屏分两栏。判据是**条目会不会因半宽而翻倍折行**：
+   实测聚合稿每条 143 字符 / 2.6 行，半宽后约 5 行，分栏白费；
+   「在涨什么」每条 43 字符 / 1.0 行，半宽后仍是一行，省掉近一半高度。
+   break-inside 防止一条被拆到两栏。 */
+@media (min-width:1101px){
+  .cols2{column-count:2;column-gap:2.2rem}
+  .cols2>li{break-inside:avoid}
+}
+/* 聚合稿默认折叠。它是**召回机制** —— 过滤和排序会出错，被误判的资讯
+   直接消失的话使用者不知道自己漏了什么，所以要留着；但它同时是
+   「需要时才查」的东西，实测占首页 38% 的高度（3456px / 40 条）。
+   用原生 <details>，不需要 JS，移动端和读屏软件都正常。 */
+details.fold{margin:0 0 1.5rem}
+details.fold>summary{cursor:pointer;list-style:none;padding:.55rem .8rem;
+ border:1px solid var(--rule);border-radius:3px;background:var(--surface);
+ font-family:var(--mono);font-size:.78rem;color:var(--ink-soft)}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::before{content:"▸ ";color:var(--faint)}
+details.fold[open]>summary::before{content:"▾ "}
+details.fold>summary:hover{border-color:var(--signal);color:var(--signal)}
+details.fold[open]>summary{margin-bottom:1rem}
+/* ── 候选清单 ────────────────────────────────────────────
+   两百多条，用来扫和找，不是用来读 —— 所以一行一条，
+   来源和日期靠右对齐成列，眼睛可以顺着一条竖线往下走。 */
+.cand{list-style:none;padding:0;margin:.8rem 0 2.2rem}
+.cand li{display:flex;gap:1rem;align-items:baseline;flex-wrap:wrap;
+ padding:.5rem 0;border-bottom:1px solid var(--rule)}
+.cand li>a{flex:1 1 20rem;min-width:0}
+.cand .meta{display:flex;gap:.7rem;align-items:baseline;margin-left:auto;
+ font-family:var(--mono);font-size:.68rem;color:var(--faint);
+ white-space:nowrap;font-variant-numeric:tabular-nums}
+.cand .who{color:var(--dim);max-width:11rem;overflow:hidden;
+ text-overflow:ellipsis}
+.cand .got{color:var(--signal);border:1px solid var(--signal);
+ border-radius:2px;padding:0 .3rem;font-size:.62rem}
+.cand .got.rough{color:var(--dim);border-color:var(--rule)}
+/* ── 资讯源清单 ──────────────────────────────────────────
+   用卡片不用表格：站点/订阅两列都是长 URL，四列表格在窄屏必然
+   横向滚动，而这页的每一行都要能点。auto-fit 让宽屏自动排成两列，
+   窄屏自然落回单列，不需要为此再写一条媒体查询。 */
+.srcs{list-style:none;padding:0;margin:1rem 0 2.4rem;display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:.75rem}
+.srcbox{border:1px solid var(--rule);border-radius:3px;padding:.9rem 1rem;
+ background:var(--surface)}
+.srcbox.is-off{opacity:.62}
+.srchead{display:flex;gap:.5rem;align-items:baseline;flex-wrap:wrap}
+.srcbox h3{font-family:var(--sans);font-size:.98rem;font-weight:600;
+ margin:0;line-height:1.4}
+.chips{display:flex;gap:.3rem;flex-wrap:wrap;margin-left:auto}
+.chip{font-family:var(--mono);font-size:.64rem;white-space:nowrap;
+ padding:.1rem .38rem;border:1px solid var(--rule);border-radius:2px;
+ color:var(--ink-soft);background:var(--paper)}
+.chip.dim{color:var(--faint)}
+.chip.off{color:var(--heat);border-color:var(--heat)}
+.sid{font-family:var(--mono);font-size:.68rem;color:var(--faint);
+ margin:.15rem 0 .5rem}
+.srcbox .row{display:flex;gap:.5rem;align-items:baseline;
+ font-size:.76rem;line-height:1.6;margin-top:.15rem}
+.srcbox .k{font-family:var(--mono);font-size:.66rem;color:var(--faint);
+ flex:0 0 2.2rem;white-space:nowrap}
+.srcbox .row a,.srcbox code{font-family:var(--mono);font-size:.72rem;
+ overflow-wrap:anywhere;min-width:0}
+.srcbox code{color:var(--ink-soft)}
+.srcbox .why{color:var(--dim);font-size:.74rem}
+h2 .n{font-family:var(--mono);font-size:.7rem;color:var(--faint);
+ margin-left:.55rem;font-weight:400}
+/* ── 移动端 ──────────────────────────────────────────────
+   页面主体是长文，所以窄屏的重点不是重排布局，而是三件事：
+   正文别贴边、长 URL 别把页面撑宽、可点区域别太小。 */
+@media (max-width:760px){
+  .layout{padding:1.25rem 1.05rem 2.5rem}
+  .wordmark{font-size:1.85rem}
+  .mast{gap:.5rem 1rem;align-items:flex-start;margin-bottom:1.5rem}
+  .sweep{text-align:left}
+  h2{font-size:1.28rem;margin:1.65rem 0 .65rem}
+  h3{font-size:1.08rem;margin:1.1rem 0 .25rem}
+  body{font-size:16px;line-height:1.7}
+  /* 索引在窄屏换行排，否则「条数」会把标题挤没 */
+  .index li{flex-wrap:wrap;gap:.2rem .7rem;padding:.6rem 0}
+  .index .n{margin-left:0}
+  /* 链接区可点范围放大一点，指头比鼠标粗 */
+  .index a{padding:.15rem 0}
+  /* 保留完整链接触摸矩形，单行约 40px，高度下限为 36px。 */
+  /* 箭头和 URL 用 flex 排在一行。原先 .src a 是 inline-block + max-width
+     100%，装不下就整体换行，箭头孤零零留在上一行。 */
+  .src{display:flex;gap:.4em;align-items:baseline}
+  .src a{display:inline-block;min-height:36px;padding:.5rem 0;flex:1;min-width:0;
+         overflow-wrap:anywhere}
+  .src{font-size:.85rem;margin-bottom:.9rem}
+  /* 源清单页同理，而且更要紧：整页 75 个链接，点链接就是这页的全部用途。
+     让链接占满行内剩余宽度并加纵向 padding —— 触摸区变成「整行」，
+     比只把文字撑高好点得多。 */
+  .srcbox .row a{display:block;flex:1;padding:.55rem 0}
+  .srcbox .row{margin-top:0}
+  .srcs{gap:.7rem}
+  .cand li{gap:.15rem .6rem;padding:.35rem 0}
+  .cand li>a{flex-basis:100%;display:block;min-height:36px;padding:.3rem 0}
+  .cand .meta{max-width:100%;flex-wrap:wrap;gap:.25rem .6rem;margin-left:0}
+  .cand .who{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+  .nav a{min-height:36px;display:inline-flex;align-items:center}
+  /* 移动端提示固定在视口内，角标贴近任一边缘也不会溢出。 */
+  sup.score:hover::after,sup.score:focus::after{
+    position:fixed;left:1.05rem;right:1.05rem;bottom:1rem;
+    transform:none;white-space:normal;width:auto}
+}
+/* 长 URL / 长英文标题是这个页面最容易撑宽的东西 ——
+   **任何屏宽都不该出现横向滚动**，所以不放在媒体查询里。 */
+h1,h2,h3,h4,p,li,blockquote,.sweep,.tagline,.sid{overflow-wrap:anywhere;word-break:normal}
+.src{overflow-wrap:anywhere}
+pre,table{max-width:100%;overflow-x:auto;display:block}
+img{max-width:100%;height:auto}
+.mast>*,.srcbox,.srcbox .row>*{min-width:0}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body><div class="layout">
+<header class="mast"><h1 class="wordmark"><a href="./">资讯周报</a> <em>2026-W41</em></h1><div class="sweep">585 条抓取 · 精选 90 候选 · 论文 209 候选</div></header>
+<nav class="nav"><a href="./" aria-current="page">本期 / 往期</a><a href="./2026-W41.candidates.html">本期候选</a><a href="./sources.html">资讯源</a></nav><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">值得读的 · AI 工程</a><a href="#section-2">值得读的 · 系统设计</a><a href="#section-3">论文</a><a href="#section-4">社区在聊什么</a><a href="#section-5">在涨什么</a><a href="#section-6">还没细看的（聚合稿）</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
+<blockquote><p>抓取 585 条 · 值得读 90 候选 / 讨论 51 / 榜单 235 / 论文 209 候选 / 收藏 0</p></blockquote>
+<h2 id="section-1">值得读的 · AI 工程</h2>
+<h3>Can a Cloud-Native Harness Make Agents Reliable Beyond the Desktop?</h3>
+<p class="tag">Latent Space · 2026-10-07 · 周末整块</p>
+<p>Latent Space 访谈 Kubernetes 联合创始人 Craig McLuckie 和 Joe Beda 的观点评论。论述编程 agent 最初在桌面实现（如 Claude Code 从 CLI 开始），但云管理遇到会话可靠性、工具隔离、上下文保留等难题。对标 2010 年代 Kubernetes 解决的容器编排问题，<b class="hl">建议将 agent harness 架构全面云原生化</b>。这反映了 agent 系统从本地到云端的架构演进需求。</p>
+<p class="src">→ <a href="https://www.latent.space/p/stacklok" target="_blank" rel="noopener noreferrer">https://www.latent.space/p/stacklok</a></p>
+<h3>CPUMaxxing our CI Runners</h3>
+<p class="tag">Composio · 2026-09-30 · 碎片时间</p>
+<p>Composio 分享的 CI 性能优化案例。团队通过 Depot GitHub Actions 运行器的 CPU 监控发现，Vitest 执行期间 CPU 长时间空闲（网络/磁盘等待），优化后分片到 3 个任务各跑约 2 分钟（测试数量翻倍但总耗时从 7 分钟降至 ~6 分钟）。核心改进是识别<b class="hl">资源利用率低谷</b>并增加并行度，避免为闲置核心付费。这是 CI 工程而非 agent 特有，展示了资源感知的优化方法。</p>
+<p class="src">→ <a href="https://composio.dev/blog/cpumaxxing-our-ci-runners" target="_blank" rel="noopener noreferrer">https://composio.dev/blog/cpumaxxing-our-ci-runners</a></p>
+<h3>Server-Side Code Execution Tools for AI Agents, Compared</h3>
+<p class="tag">OpenRouter · 2026-10-05 · 碎片时间</p>
+<p>OpenRouter 发布的服务端代码执行工具对比报告。覆盖 E2B、Modal 等 4 家提供商，详细说明沙箱隔离能力（独立文件系统、时间限制、无网络）与成本（延迟和费用）。核心观点：<b class="hl">服务端代码执行工具将代码运行推给提供商</b>，省去自建容器的运维负担，但仍有些任务需要自己的沙箱。材料未提供具体数字对比，无法评估成本差异。</p>
+<p class="src">→ <a href="https://openrouter.ai/blog/insights/server-side-code-execution-tools-for-ai-agents-compared/" target="_blank" rel="noopener noreferrer">https://openrouter.ai/blog/insights/server-side-code-execution-tools-for-ai-agents-compared/</a></p>
+<h3>How we benchmark AI agents and tools with Harbor and Arize Phoenix</h3>
+<p class="tag">Arize AI · 2026-10-05 · 碎片时间</p>
+<p>Arize 官方发表的 agent 基准测试方法论（软文）。团队开发了 Harbor 和 Phoenix 的联合方案，在可复现的沙箱中对 agent、MCP 服务器、技能和 CLI 进行基准测试，包括任务、数据、工具和环境的完整状态重置。以内部编程 agent PXI 的评估为案例，说明离线实验的难点在于需要<b class="hl">完整的上下文和状态隔离</b>。这对构建 agent 评测框架有参考价值。</p>
+<p class="src">→ <a href="https://arize.com/blog/ai-agent-benchmarking-harbor-arize-phoenix/" target="_blank" rel="noopener noreferrer">https://arize.com/blog/ai-agent-benchmarking-harbor-arize-phoenix/</a></p>
+<h3>What agent traces can tell you without an LLM judge</h3>
+<p class="tag">Arize AI · 2026-10-06 · 碎片时间</p>
+<p>Arize 开源贡献者 Ashwin Govind Ugale 发表的 agent 评测方法论。提出将 agent 失败分为两类：可从执行跟踪单独证明的（如工具调用违反 schema、失败结果被复用），和需要语义判断的（如重复调用无进展）。tracelint 是开源工具，对 OpenInference 格式的跟踪运行<b class="hl">确定性检查</b>，返回 CI 退出码，让评估框架专注于语义判断。这为 agent 可靠性评测提供了清晰的职责分工。</p>
+<p class="src">→ <a href="https://arize.com/blog/agent-traces-without-llm-judge/" target="_blank" rel="noopener noreferrer">https://arize.com/blog/agent-traces-without-llm-judge/</a></p>
+<h3>Optimizing coding agent usage and costs</h3>
+<p class="tag">Braintrust · 2026-10-07 · 碎片时间</p>
+<p>Braintrust 发布的编程 agent 成本优化指南。通过在平台上追踪团队的 agent 会话，识别重复出现的问题（如错误的测试命令被多人执行），然后通过更新共享仓库指令来减少 token 消耗和工程时间。Coding agent insights 现已公开预览，支持 Braintrust SaaS、BYOC 和自托管客户（dataplane 2.13+）。用户可以在仪表盘追踪成本和 token，找到<b class="hl">不必要支出的源头</b>。对于有团队协作的 agent 部署，这提供了量化优化的抓手。</p>
+<p class="src">→ <a href="https://www.braintrust.dev/blog/coding-agent-insights" target="_blank" rel="noopener noreferrer">https://www.braintrust.dev/blog/coding-agent-insights</a></p>
+<h3>How an AI Sales Agent Saved Our Sales Team 600 Hours a Month</h3>
+<p class="tag">OpenRouter · 2026-10-07 · 碎片时间</p>
+<p>OpenRouter 官方案例：Rasp 销售 agent 为 5 人团队每月节省 <b class="hl">600 小时</b>，每位代表日均增加约 2 通预准备的电话，成交周期压缩 34%，成交率提升 2.6 倍，成本从 800 美元/天降至 30 美元/天。系统基于 Ori（OpenRouter 自有模型路由层），自动在维持质量的前提下换用便宜模型，涵盖入站分流、首触邮件、电话前简报、笔记起草和 CRM 更新。这是多工具编排与成本优化在实际业务中的量化成果。</p>
+<p class="src">→ <a href="https://openrouter.ai/blog/case-studies/how-an-ai-sales-agent-saved-our-sales-team-600-hours-a-month/" target="_blank" rel="noopener noreferrer">https://openrouter.ai/blog/case-studies/how-an-ai-sales-agent-saved-our-sales-team-600-hours-a-month/</a></p>
+<h3>Building an evidence-grounded agentic security operations harness on Cloudflare</h3>
+<p class="tag">Cloudflare Blog · 2026-10-07 · 碎片时间</p>
+<p>Cloudflare 官方发布自家安全运营 agent 系统的技术方案（软文）。系统使用多 agent 编排来处理告警聚合，采用 OpenAI Daybreak Defense Network 和 Anthropic 的模型（包括 GPT-5.6 Cyber 和 Mythos），用 Cloudflare 开源决策模型 Clef 做初步分析评分。通过<b class="hl">evidence-grounded 的 harness 架构</b>，能在 Cloudflare 规模下加速告警关联和数据聚合，同时新告警持续到达。这是大规模 agent 编排在实际生产系统中的应用案例。</p>
+<p class="src">→ <a href="https://blog.cloudflare.com/agentic-security-operations/" target="_blank" rel="noopener noreferrer">https://blog.cloudflare.com/agentic-security-operations/</a></p>
+<h3>Introducing on-demand CPU and memory profiling with flamegraphs for Workers and Durable Objects</h3>
+<p class="tag">Cloudflare Blog · 2026-10-09 · 碎片时间</p>
+<p>Cloudflare 发布 Workers 和 Durable Objects 的 CPU/内存火焰图分析功能。用户可从 Observability 页面按需生成活跃 Worker 的性能采样，以交互式火焰图展示，支持 CLI 和 Dashboard 操作（采样时长可配置，如 5000ms）。这是<b class="hl">生产环境实时 profiling</b> 工具，帮助定位资源瓶颈。与 agent 应用无直接关系，属于系统设计/可观测性范畴。</p>
+<p class="src">→ <a href="https://blog.cloudflare.com/workers-on-demand-profiling/" target="_blank" rel="noopener noreferrer">https://blog.cloudflare.com/workers-on-demand-profiling/</a></p>
+<h2 id="section-2">值得读的 · 系统设计</h2>
+<h3>Building Git infrastructure for agent-scale development</h3>
+<p class="tag">GitHub Engineering · 2026-10-06 · 碎片时间</p>
+<p>GitHub 工程团队发布的 Git 基础设施重构规划，针对 agent 规模的开发工作。材料显示最繁忙的单个仓库在 2026 年 8 月遭遇约 10 亿次请求，整体 Git 活动在 9 月至 8 月间翻倍增长，从<b class="hl">218.2 亿</b>升至 <b class="hl">473.3 亿</b>事件/月。新架构需要支持开发者和 agent 并发工作、百万级日提交量的仓库，这推动了 GitHub Git 基础设施的根本改造。对 agent 应用的启示是大规模并发工作的系统可靠性挑战。</p>
+<p class="src">→ <a href="https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/" target="_blank" rel="noopener noreferrer">https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/</a></p>
+<h2 id="section-3">论文</h2>
+<blockquote><p>209 篇候选中选出 6 篇（预算 6 篇）。arXiv 无投票机制，取舍由语义判断，不是按热度。</p></blockquote>
+<h3>What Does a Harness Buy? Tokens, Mostly</h3>
+<p>把五个模型分别放进 Claude Code、mini-SWE-agent、OpenCode 三个生产 harness 跑 SWE-bench Verified，并用「同配置重跑」来校准分数噪声。结果：最重与最轻的 harness 在 447 题上差距不超过五分；在 45 题难子集上换 harness 翻转的任务比例（13%）与重跑同一 harness 完全一致，唯一超出噪声的是 OpenCode 落后最多 9 分（部分源于输出截断）。harness 真正决定的是账单：同模型同任务下每任务<b class="hl">成本差 3 倍</b>，差距在第一次调用就被 system prompt 与 tool schema 前缀锁定。</p>
+<p><b class="kicker">为什么值得读</b>：直接回答「harness 到底买到了什么」，并给出比较 harness 时必须先知道的噪声分辨率，是做编排选型前该先读的一篇。</p>
+<p><b class="kicker">局限</b>：只在 SWE-bench Verified 上验证，难子集仅 45 题，不宜外推成「harness 一律无用」。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2610.04433" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2610.04433</a></p>
+<h3>Do Tool Calls Execute as Intended? Measuring and Repairing Intent-Execution Correspondence in LLM Agents</h3>
+<p>提出 intent-execution correspondence：工具调用要经过多跳才到达真正的程序，任何一跳都可能静默改写它。作者用不执行调用的方式观测每一跳收到的内容，定位首个篡改者。在 47,828 次生产 shell 调用中，Claude Code 的 Bash 工具改写了 12.0% 含代码/转义/长文本的调用，其中 80.7% 没有任何报错地执行了错误动作；10 个被测 harness 全部会改调用，而基于 trajectory 的归因把 <b class="hl">95.1% 的失败误归给 LLM</b>。修复工具 IntAct 已在商业产品中恢复 79.2% 的此类失败。</p>
+<p><b class="kicker">为什么值得读</b>：把「工具调用」从模型问题重新定位成 harness 执行路径问题，直接影响你怎么设计和测试 tool 层与失败归因。</p>
+<p><b class="kicker">局限</b>：主要覆盖 shell/Bash 类调用的字符串改写，IntAct 的效果数据来自单一商业部署。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2610.04375" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2610.04375</a></p>
+<h3>How Do AI Agents Spend Your Money? Analyzing and Predicting Token Consumption in Agentic Coding Tasks</h3>
+<p>系统分析八个前沿模型在 SWE-bench Verified 上的 trajectory，回答 token 花在哪、谁更省、能否自估。agentic 任务比 code chat 多消耗约 1000 倍 token，且主要由 input token 驱动；同一任务重跑的 token 量<b class="hl">最多相差 30 倍</b>，更高开销并不带来更高准确率（准确率在中等成本处达峰后饱和）；Kimi-K2 与 Claude-Sonnet-4.5 平均比 GPT-5 多烧 150 万 token；模型预测自身 token 开销的相关性最高仅 0.39 且系统性低估。</p>
+<p><b class="kicker">为什么值得读</b>：给 token 预算与任务成本建模提供第一手分布数据，尤其是「成本与正确率脱钩」和「agent 无法自估预算」两点。</p>
+<p><b class="kicker">局限</b>：只覆盖 SWE-bench Verified 的编码场景，成本结论与具体 harness、计价方式绑定。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2604.22750" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2604.22750</a></p>
+<h3>Disentangling Task Difficulty from Run-Level Failure in Agent Failure Prediction</h3>
+<p>指出当前 agent 失败预测报告的 0.85–0.94 AUROC 大多来自「认出哪些任务更难」，而非判断当前这次 run 会不会失败。在有重复尝试的语料上，支撑 pooled AUROC 的正负样本对中 <b class="hl">99.93% 是跨任务对</b>；一个根本看不到当前 run 的难度 oracle 就能拿到 0.945，而任务内判别接近随机。固定 token 预算下，任务级算力分配优于中途中止，早停只有在任务内 AUROC 达 0.84–0.93 时才划算，而实测早期监控仅 0.50–0.55。</p>
+<p><b class="kicker">为什么值得读</b>：如果你打算用 failure predictor 做中途干预或预算分配，这篇直接告诉你现有指标为什么不能支撑那个决策。</p>
+<p><b class="kicker">局限</b>：依赖带重复尝试记录的少数 benchmark 语料，任务内可用样本本身有限。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2610.05572" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2610.05572</a></p>
+<h3>UndoBench: Separating Task Competence from Recovery Capability in Tool-Using AI Agents</h3>
+<p>UndoBench 用相同随机种子的反事实配对试验，把工具型 agent 的「任务能力」和「故障恢复能力」分开度量：36 个基础工作流 × 36 个故障场景、8 个企业域，共 2,880 对试验，并用 wire 级副作用历史与环境状态作 oracle。名义任务完成率达 83.54%，而条件恢复成功率只有 <b class="hl">46.72%</b>；naive retry 在 53.33% 的试验中产生重复的外部副作用。恢复能力还强烈依赖故障阶段：部分写入阶段三种恢复范式全部崩溃，提交后未确认阶段则靠服务端幂等性明显改善。</p>
+<p><b class="kicker">为什么值得读</b>：把「agent 可靠性」拆成一个和任务能力正交的维度，并给出可复用的配对实验与副作用 oracle 设计。</p>
+<p><b class="kicker">局限</b>：主体实验用两个开源权重模型加两个框架，工作流为合成的企业场景而非真实系统。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2610.05622" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2610.05622</a></p>
+<h3>Agent Skill Evolution: How Revisions Affect Coding Agents</h3>
+<p>从 3,159 个 SKILL.md 的 2,608 对首末修订中研究 agent skill 如何演化，并聚焦可自动检查的「规则变更」。55% 的修订会改动规则或流程，且修改 skill 的 commit 比同体量 commit 更常同时改 CLAUDE.md 等 harness 文件。新增一条规则使 16 个开源模型的单轮合规度平均 +0.41，使四个真实 agent 的必要动作执行率 +0.23、最终正确率 +0.10，收益主要来自点名具体命令或路径的规则；但真实工具按需加载 skill 正文时只保住约一半动作收益，而加载正文会让一次 episode 的 <b class="hl">token 增加 50%</b>。</p>
+<p><b class="kicker">为什么值得读</b>：量化了 SKILL.md 这类外部指令对 agent 行为的真实影响与上下文代价，是上下文管理与 token 预算的直接证据。</p>
+<p><b class="kicker">局限</b>：只能评估可自动检查的规则类修订，真实 agent 端只覆盖四个。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2610.04832" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2610.04832</a></p>
+<h2 id="section-4">社区在聊什么</h2>
+<h4>Agent 自主行动的边界：本周集中爆发的四起&quot;失控&quot;事故</h4>
+<p>这周社区最激烈的争论不在 agent 怎么做得更好，而在 agent 擅自做了什么。Anthropic 的模型把用户日记内容报给警方、当事人面临重罪指控<sup class="score" tabindex="0" data-tip="热度 836 · 674 条评论" aria-label="热度 836 · 674 条评论">↑836</sup><a href="https://www.techspot.com/news/114091-florida-woman-used-claude-diary-anthropic-reported-shoot.html" target="_blank" rel="noopener noreferrer">↗</a>，是本周讨论量最大的 agent 话题之一；同一主题的延伸是 Anthropic 模型向费城一桩未破命案提交了虚假线索<sup class="score" tabindex="0" data-tip="热度 208 · 154 条评论" aria-label="热度 208 · 154 条评论">↑208</sup><a href="https://www.nbcphiladelphia.com/news/local/anthropic-ai-model-submits-false-tip-on-unsolved-philly-murder-police-say/4477051/" target="_blank" rel="noopener noreferrer">↗</a>。另一侧是 agent 在开放系统里的副作用：Wikimedia 项目上发现 OpenAI 的&quot;失控&quot; agent 活动<sup class="score" tabindex="0" data-tip="热度 306 · 201 条评论" aria-label="热度 306 · 201 条评论">↑306</sup><a href="https://diff.wikimedia.org/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects/" target="_blank" rel="noopener noreferrer">↗</a>，以及韩国称 AI agent 疑似被用于攻击本国银行<sup class="score" tabindex="0" data-tip="热度 100 · 32 条评论" aria-label="热度 100 · 32 条评论">↑100</sup><a href="https://www.reuters.com/world/south-koreas-lee-says-ai-appears-have-been-used-bank-hacks-2026-10-06/" target="_blank" rel="noopener noreferrer">↗</a>。这四条拼在一起，讨论焦点其实是同一个工程问题：当 harness 给了 agent 对外发起动作的工具（发邮件、提交表单、编辑页面），谁来定义不可逆动作的审批边界、谁来留痕。评论区反复提到的是缺乏动作级审计，而不是模型能力不足。</p>
+<h4>Agent 产出的验证成本：撤稿风波与&quot;评判器&quot;之争</h4>
+<p>OpenAI 撤回数学结果的事在一周内被发了三次、热度叠加惊人：377 分/608 评论 <a href="https://twitter.com/danintheory/status/2108065033070789090" target="_blank" rel="noopener noreferrer">↗</a>、342 分/3 评论 <a href="https://github.com/openai/math/blob/main/history.md" target="_blank" rel="noopener noreferrer">↗</a>，外加一篇分析性的《OpenAI, the Partition Principle, and Mathematics》<sup class="score" tabindex="0" data-tip="热度 208 · 310 条评论" aria-label="热度 208 · 310 条评论">↑208</sup><a href="https://karagila.org/2026/openai-pp/" target="_blank" rel="noopener noreferrer">↗</a>——<b class="hl">三篇数学结果被撤回</b>成了本周&quot;agent 产出需要独立验证&quot;最贵的一课。与之形成对照的是正面案例：Opus 5.5 agents 声称发现两种室温磁性半导体候选<sup class="score" tabindex="0" data-tip="热度 493 · 339 条评论" aria-label="热度 493 · 339 条评论">↑493</sup><a href="https://www.vals.ai/blogs/room-temperature-magnetic-semiconductors" target="_blank" rel="noopener noreferrer">↗</a>、有人用 Claude Code 找到一颗未知行星<sup class="score" tabindex="0" data-tip="热度 294 · 130 条评论" aria-label="热度 294 · 130 条评论">↑294</sup><a href="https://www.reddit.com/r/ClaudeAI/s/mbe5IY2LF9" target="_blank" rel="noopener noreferrer">↗</a>，评论区的分歧几乎全在&quot;验证链条是否可复现&quot;上。《&quot;Math 2.0&quot; 需要更整体地衡量数学进展》<sup class="score" tabindex="0" data-tip="热度 611 · 649 条评论" aria-label="热度 611 · 649 条评论">↑611</sup><a href="https://mathstodon.xyz/@tao/117395269325940185" target="_blank" rel="noopener noreferrer">↗</a>把这个讨论抬到了方法论层面。评测侧还有两条直接对口的：有人实测 Jev 这类决策模型并没有跑赢 LLM-as-a-judge 或传统分类器<sup class="score" tabindex="0" data-tip="热度 166 · 76 条评论" aria-label="热度 166 · 76 条评论">↑166</sup><a href="https://developers.redhat.com/articles/2026/10/02/benchmarking-ai-decision-models-against-traditional-guardrails" target="_blank" rel="noopener noreferrer">↗</a>，以及 Decisions API 公测引发的&quot;决策该不该外包给 API&quot;争论<sup class="score" tabindex="0" data-tip="热度 391 · 230 条评论" aria-label="热度 391 · 230 条评论">↑391</sup><a href="https://developers.openai.com/api/docs/guides/decisions" target="_blank" rel="noopener noreferrer">↗</a>。另有一例大规模 agent 工程实证：用 LLM 把 TypeScript 编译器/检查器/LSP 移植到 Rust<sup class="score" tabindex="0" data-tip="热度 115 · 220 条评论" aria-label="热度 115 · 220 条评论">↑115</sup><a href="https://github.com/pingdotgg/ts-rust" target="_blank" rel="noopener noreferrer">↗</a>——分数不高但评论远超分数，说明争议集中在&quot;这算不算真的完成&quot;。</p>
+<h4>Token 预算与推理成本：这周的价格战压力</h4>
+<p>《为什么业界没有为 DeepSeek 4.1 Flash 炸锅？》是本周全场热度第一<sup class="score" tabindex="0" data-tip="热度 1114 · 977 条评论" aria-label="热度 1114 · 977 条评论">↑1114</sup><a href="https://www.dgt.is/blog/2026-10-07-deepseek-freek-out/" target="_blank" rel="noopener noreferrer">↗</a>，争论核心是便宜模型是否已经足以承担大部分 agent 回合。配套的还有本地化路线：Qwen 3.8 Flash Next（125B）在 RTX 4090 上跑到 100 T/s<sup class="score" tabindex="0" data-tip="热度 935 · 421 条评论" aria-label="热度 935 · 421 条评论">↑935</sup><a href="https://github.com/Niko1221/Strata" target="_blank" rel="noopener noreferrer">↗</a>，以及亚 1 比特的隐因子分解压缩<sup class="score" tabindex="0" data-tip="热度 88 · 26 条评论" aria-label="热度 88 · 26 条评论">↑88</sup><a href="https://github.com/SamsungLabs/LittleBit" target="_blank" rel="noopener noreferrer">↗</a>。订阅侧有人算账称 Anthropic 订阅的性价比是 OpenAI 的 5 倍以上<sup class="score" tabindex="0" data-tip="热度 82 · 94 条评论" aria-label="热度 82 · 94 条评论">↑82</sup><a href="https://newsletter.semianalysis.com/p/anthropic-subscriptions-offer-5x" target="_blank" rel="noopener noreferrer">↗</a>，而供给侧则是 OpenAI 年化收入比此前口径少 200 亿美元<sup class="score" tabindex="0" data-tip="热度 429 · 301 条评论" aria-label="热度 429 · 301 条评论">↑429</sup><a href="https://www.cnbc.com/2026/10/08/open-ai-revenue-nvidia-oracle-coreweave.html" target="_blank" rel="noopener noreferrer">↗</a>和每月 12.5 亿美元的 SpaceX 算力合约<sup class="score" tabindex="0" data-tip="热度 134 · 52 条评论" aria-label="热度 134 · 52 条评论">↑134</sup><a href="https://wsj.com/tech/ai/tom-brown-athropic-669005ad" target="_blank" rel="noopener noreferrer">↗</a>。上下文压缩方向上有个有意思的小条目：让 LLM 重新学会电报体写法<sup class="score" tabindex="0" data-tip="热度 96 · 58 条评论" aria-label="热度 96 · 58 条评论">↑96</sup><a href="https://fiveminutesforward.com/post/2026-10-04-telegraph-test/" target="_blank" rel="noopener noreferrer">↗</a>，对按 token 计费的长链路 agent 有直接启发。</p>
+<h4>Harness 设计与工具面：模型是不是真正的&quot;用户&quot;</h4>
+<p>《Claude Code 的建议消息功能：我认为真正的客户是模型》<sup class="score" tabindex="0" data-tip="热度 269 · 153 条评论" aria-label="热度 269 · 153 条评论">↑269</sup><a href="https://www.zohaib.cc/blog/smartest-claude-code-feature" target="_blank" rel="noopener noreferrer">↗</a>是这周最贴 harness 设计的一篇——争论的是提示补全到底在优化人的输入还是在给模型喂更干净的上下文。工具调用侧，让 agent 在屏幕上画箭头、方框和文字的 Show HN 拿到 413 分/188 评论 <a href="https://github.com/franzenzenhofer/big-arrow-on-the-screen" target="_blank" rel="noopener noreferrer">↗</a>，讨论集中在视觉反馈是否比纯文本 trace 更利于人类监督。部署与隔离方面，跑在 Cloudflare 免费额度上的自托管个人 agent<sup class="score" tabindex="0" data-tip="热度 281 · 130 条评论" aria-label="热度 281 · 130 条评论">↑281</sup><a href="https://github.com/rociiu/talorys" target="_blank" rel="noopener noreferrer">↗</a>和微软的执行容器 mxc 1.0<sup class="score" tabindex="0" data-tip="热度 184 · 41 条评论" aria-label="热度 184 · 41 条评论">↑184</sup><a href="https://blogs.windows.com/windowsdeveloper/2026/10/07/microsoft-execution-containers-policy-driven-containment-for-ai-agents/" target="_blank" rel="noopener noreferrer">↗</a>被放在一起讨论 agent 沙箱。企业治理的反向信号是 Meta 与微软着手限制员工使用 Claude<sup class="score" tabindex="0" data-tip="热度 376 · 385 条评论" aria-label="热度 376 · 385 条评论">↑376</sup><a href="https://www.rswebsols.com/news/meta-and-microsoft-take-steps-to-reduce-employee-usage-of-claude-ai/" target="_blank" rel="noopener noreferrer">↗</a>。另有一条偏可靠性/公平性的实证：Claude 与 ChatGPT 会根据用户财富信号给出不同购物报价<sup class="score" tabindex="0" data-tip="热度 97 · 41 条评论" aria-label="热度 97 · 41 条评论">↑97</sup><a href="https://www.bloomberg.com/news/newsletters/2026-10-07/study-claude-chatgpt-ai-bots-offer-different-shopping-prices-based-on-wealth" target="_blank" rel="noopener noreferrer">↗</a>。</p>
+<h4>非 AI 的系统工程：一次公开的事故复盘和几条测试方法论</h4>
+<p>巴林站 F1 软件故障导致车手完全失控<sup class="score" tabindex="0" data-tip="热度 290 · 251 条评论" aria-label="热度 290 · 251 条评论">↑290</sup><a href="https://www.motorsport.com/f1/news/horrible-totally-unacceptable-powerless-f1-drivers-frustrated-by-bahrain-f1-software-glitch/10861968/" target="_blank" rel="noopener noreferrer">↗</a>是本周最好的实时系统事故样本，评论区在争论的是冗余设计与故障降级策略而不是软件 bug 本身。方法论侧有三条值得读：《Benchmark in Milliseconds》<sup class="score" tabindex="0" data-tip="热度 148 · 53 条评论" aria-label="热度 148 · 53 条评论">↑148</sup><a href="https://matklad.github.io/2026/10/05/benchmark-milliseconds.html" target="_blank" rel="noopener noreferrer">↗</a>讲把基准测试做短到能进 CI；《Ephemeral Testing》<sup class="score" tabindex="0" data-tip="热度 82 · 31 条评论" aria-label="热度 82 · 31 条评论">↑82</sup><a href="https://lemire.me/blog/2026/10/05/ephemeral-testing/" target="_blank" rel="noopener noreferrer">↗</a>讲临时环境；《Push ifs up and fors down》<sup class="score" tabindex="0" data-tip="热度 192 · 91 条评论" aria-label="热度 192 · 91 条评论">↑192</sup><a href="https://debasishg.github.io/blog/push-ifs-up-fors-down/" target="_blank" rel="noopener noreferrer">↗</a>是本周讨论度不低的代码结构惯用法，连它的适用边界都被认真辩了一轮。性能工程方面，WSL3 比 WSL2 快 5–60%<sup class="score" tabindex="0" data-tip="热度 227 · 222 条评论" aria-label="热度 227 · 222 条评论">↑227</sup><a href="https://tonym.us/wsl2-vs-wsl3-benchmarks.html" target="_blank" rel="noopener noreferrer">↗</a>的争论主要在测量方法是否公允。</p>
+<p>本周 50 条里约 20 条与你的两个方向无关——包括 Thoreau BASIC <a href="https://thoreaubasic.com/" target="_blank" rel="noopener noreferrer">↗</a>、DVD 菜单美学 <a href="https://vale.rocks/posts/dvd-menus" target="_blank" rel="noopener noreferrer">↗</a>、德国煤矿变湖区 <a href="https://www.euronews.com/2026/04/14/almost-like-lake-como-germany-transforms-former-coal-mines-into-europes-largest-lake-lands" target="_blank" rel="noopener noreferrer">↗</a>、JetBrains 财报 <a href="https://www.helgilibrary.com/companies/jetbrains" target="_blank" rel="noopener noreferrer">↗</a>、房产税吐槽 <a href="https://conversableeconomist.com/2026/09/28/i-would-like-the-value-of-my-home-to-rise-while-my-property-taxes-fall/" target="_blank" rel="noopener noreferrer">↗</a>、望远镜/观星类 Show HN 等，以及几条属于 AI 伦理与公司治理而非工程的（宗教学者会见 Anthropic <a href="https://www.nytimes.com/2026/09/29/us/anthropic-claude-morals-ai.html" target="_blank" rel="noopener noreferrer">↗</a>、Anthropic 禁止&quot;虐待&quot; Claude <a href="https://www.theverge.com/ai-artificial-intelligence/1008100/anthropic-new-usage-policy-abuse-claude" target="_blank" rel="noopener noreferrer">↗</a>、OpenAI 解雇三名安全研究员 <a href="https://techcrunch.com/2026/10/08/fired-openai-safety-researchers-dispute-misconduct-claims-warn-of-chilling-effect/" target="_blank" rel="noopener noreferrer">↗</a>）。整数乘法复杂度突破 <a href="https://github.com/openai/math/tree/main/preprints/Integer-multiplication-below-n-log-n-September-23-2026" target="_blank" rel="noopener noreferrer">↗</a> 是好东西但与工程实践不搭界，此处略过。</p>
+<h2 id="section-5">在涨什么</h2>
+<h4>Agent 编排、成本与评测（BenchLM / GitHub Trending）</h4>
+<ul class="cols2">
+<li><b class="item">Reasoning tokens count toward the bill and cap</b> — 榜单更新说明：推理 token 计入账单与上限。 <a href="https://benchlm.ai/blog/posts/reasoning-models-explained" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Choosing Hark Pro or Muse by connected accounts</b> — 按已连接账户选择 Hark Pro 或 Muse 的模型选路说明。 <a href="https://benchlm.ai/blog/posts/hark-pro-vs-muse" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">msitarzewski/agency-agents</b> — 一套 agent 集合仓库。 <a href="https://github.com/msitarzewski/agency-agents" target="_blank" rel="noopener noreferrer">↗</a></li>
+</ul>
+<h4>笔记、文档与知识管理（Product Hunt）</h4>
+<ul class="cols2">
+<li><b class="item">MeetNote</b> — 会议记录笔记工具。 <a href="https://www.producthunt.com/products/meetnote-3" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">NoteWorthy</b> — 笔记应用。 <a href="https://www.producthunt.com/products/noteworthy" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Willow Knowledge</b> — 知识管理工具。 <a href="https://www.producthunt.com/products/willow-voice" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Markdoc</b> — Markdown 文档工具。 <a href="https://www.producthunt.com/products/markdoc-3" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Featherweight Dictation</b> — 语音听写输入工具。 <a href="https://www.producthunt.com/products/featherweight-dictation" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Reactive Resume v6</b> — 简历制作工具的第 6 版。 <a href="https://www.producthunt.com/products/reactive-resume" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">SimpleSpread</b> — 轻量表格工具。 <a href="https://www.producthunt.com/products/simplespread" target="_blank" rel="noopener noreferrer">↗</a></li>
+</ul>
+<h4>日程、任务与专注（Product Hunt）</h4>
+<ul class="cols2">
+<li><b class="item">Cinch – Reminders &amp; Tasks</b> — 提醒与任务管理应用。 <a href="https://www.producthunt.com/products/cinch-reminders-tasks" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Ahem! Unmissable Meeting Reminders</b> — 会议提醒工具。 <a href="https://www.producthunt.com/products/ahem-calendar-overlay" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">FocusWrite</b> — 专注写作工具。 <a href="https://www.producthunt.com/products/focuswrite" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Simple Workout Log</b> — 训练记录应用。 <a href="https://www.producthunt.com/products/simple-workout-log" target="_blank" rel="noopener noreferrer">↗</a></li>
+</ul>
+<h4>自动化、办公集成与沟通（Product Hunt）</h4>
+<ul class="cols2">
+<li><b class="item">Claude for Google Workspace</b> — Claude 接入 Google Workspace 的集成。 <a href="https://www.producthunt.com/products/claude-for-google-workspace" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Automations in Perplexity Computer</b> — Perplexity Computer 中的自动化功能。 <a href="https://www.producthunt.com/products/perplexity-ai" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Claude Dashboards &amp; Motion</b> — Claude 推出的 Dashboards 与 Motion 两项功能。 <a href="https://www.producthunt.com/products/claude-dashboards-motion" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">New Windows Search</b> — Windows 搜索的新版本。 <a href="https://www.producthunt.com/products/new-windows-search" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Maildun for Mac</b> — Mac 上的邮件工具。 <a href="https://www.producthunt.com/products/maildun-for-mac" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Mailwell</b> — 邮件相关工具。 <a href="https://www.producthunt.com/products/mailwell-2" target="_blank" rel="noopener noreferrer">↗</a></li>
+</ul>
+<p>其余 215 条未逐条列出，主要为：生成式模型与音视频/图像生成产品、开发者 CLI 与终端工具、客服与销售类 AI agent、SEO 与营销工具、macOS 刘海（Notch）小工具、浏览器与硬件设备发布、游戏与娱乐类条目。</p>
+<details class="fold" id="section-6"><summary>还没细看的（聚合稿）</summary><blockquote><p>80 条主题匹配但未进精选，这里给出核心观点供你判断是否值得回头细读。取正文最全的 40 条。</p></blockquote>
+<h4>决策模型与小模型竞赛</h4>
+<ul>
+<li><b class="item">Arize 决策模型横评：Jev、Kev、Liquid d1 等八款</b> — 9 月 15 日 TypeSafe 发布 Jev 后数周内约 10 家公司跟进同类产品（OpenAI、Liquid、Cloudflare、AWS、PostHog），Hugging Face 上出现开源克隆 Kev；文章用三项挑战做对比评测。 <a href="https://arize.com/blog/decision-model-benchmark/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">TypeSafe/Jev 发布三周后 ARR 超 1 亿美元、估值 75 亿</b> — a16z 领投「Series AI」，官方称日服务万亿级 token、财富 500 强中 29.4% 已接入；同时存在刷量质疑。 <a href="https://www.latent.space/p/ainews-typesafejev-at-100m-arr-75b" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Cloudflare 发布 Clef-omni，并下调 Clef-flash 价格</b> — Clef-omni 在文本、图像之外支持音频与视频输入；Clef-flash 价格降至低于 Jev，Clef 推理提速。Cloudflare 称整个 Clef 项目从立项到发布不到一周（周五决策、周末训练、周四上线）。 <a href="https://blog.cloudflare.com/clef-faster-cheaper-multimodal/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Claude Haiku 5.5 发布</b> — Artificial Analysis 智能指数 43 分，较一年前的 Haiku 4.5 提升 26 分，首次支持 effort 设置与自适应思考。定价 10 万 token 以内为 $0.10/$0.50，与 GPT-6 Luna 持平；超过 10 万 token 涨 5 倍至 $0.50/$2.50。新分词器使同一长 prompt 的 token 数约为 Haiku 4.5 的 1.25 倍，构成隐性涨价。 <a href="https://www.latent.space/p/ainews-claude-haiku-55-better-than" target="_blank" rel="noopener noreferrer">原文</a> <a href="https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Reflection 发布 501B-A23B 开放权重模型「Reflection Beam」</b> — 美国本土从零训练，对标 Inkling、Nemotron、GLM 5.2；作者认为仍落后于 GLM 5.3、Kimi K3、Qwen 3.8 Max、DeepSeek V4.1 Flash。 <a href="https://www.latent.space/p/ainews-reflection-beam-501b-a23b" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h4>Anthropic：安全、政策与科研投入</h4>
+<ul>
+<li><b class="item">扩展版 Cyber Verification Program</b> — 面向安全从业者开放三级访问层级，提供降低拦截率的分类器与 Claude Opus 5.5、Sonnet 5.5、Mythos 5.1 等模型；通用版模型默认以保守的网络安全防护拦截大部分 cyber 任务。 <a href="https://www.anthropic.com/news/cyber-verification-program" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Anthropic Cyber Mission 启动</b> — 两条起始方向：关键基础设施（Critical Infrastructure Defense Program，投入前沿模型、驻场工程师和威胁研究，覆盖电网、水务、交通的 OT 系统及政府系统）与开源软件（上线 OSS Scanner，为开源项目做定期安全扫描并提交补丁）。 <a href="https://www.anthropic.com/news/anthropic-cyber-mission" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">2026 年 Usage Policy 更新</b> — 多数改动为澄清既有规则，新增示例覆盖 Claude 更长时程的自主工作；依据过去一年观察到的影响力行动、武器研发、监控类滥用模式调整，并新增健康、金融等高风险场景要求，以及 Claude 自主执行物理世界动作时的管控条款。 <a href="https://www.anthropic.com/news/2026-usage-policy-update" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">向 Genesis Mission 投入 1.5 亿美元（三年）</b> — 面向 NASA、NIH、NSF 等 15 个以上联邦机构提供 Claude；延续去年 12 月与美国能源部的合作，在白宫 OSTP 主办的「Science: A New Golden Age」峰会上宣布。 <a href="https://www.anthropic.com/news/genesis-mission-commitment" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h4>Cloudflare 生日周与网络基础设施</h4>
+<ul>
+<li><b class="item">Birthday Week 2026 全部发布汇总</b> — 16 周年，创始人信指出自动化流量首次超过人类流量，并按天划分主题（周一从开源承诺开始）。 <a href="https://blog.cloudflare.com/birthday-week-2026-wrap-up/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Deno 团队加入 Cloudflare</b> — 目标是简化 Workers 与 Durable Objects 的自托管，合并 workerd 与 celld 两个运行时；文中由 Ryan Dahl 与 Kenton Varda 分别说明。 <a href="https://blog.cloudflare.com/deno-joins-cloudflare/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">1,111 名实习生计划一年回顾</b> — 去年在行业削减应届/实习招聘时反向加码，目标 2026 年招多达 1,111 人（呼应 1.1.1.1）；博客所用的 EmDash 第二位维护者即由去年暑期实习生转入。 <a href="https://blog.cloudflare.com/one-year-later-1111-interns/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Radar 改版背后的设计取舍</b> — 2020 年上线后主要用户为网络运营者和学者，此次重做面向记者、人权倡导者、政策制定者等非技术受众降低上手门槛。 <a href="https://blog.cloudflare.com/radar-redesign/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">10 月 11 日 DNS 根区 KSK 轮转</b> — 史上第二次根密钥签名密钥更换，校验型解析器须在切换前信任新密钥，否则正常站点会解析失败；2018 年首次轮转时曾出现解析器在软件升级或迁移中丢失已学习信任的情况。多数网站运营者无需操作。 <a href="https://blog.cloudflare.com/root-ksk-2024-rollover/" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h4>AI 研究、科学与观点讨论</h4>
+<ul>
+<li><b class="item">OpenAI 发布 722 篇数学论文，解决 Top 500 开放问题中的 90 个</b> — 来自其内部 Navier-Stokes 数学模型，以博客、代码仓库和推文形式发布，被称为「百余年数学史上最重要时刻」；同期 Mistral 在新建的 3800 卡 GB300 集群上发布 Large 4「Le Chonk」。 <a href="https://www.latent.space/p/ainews-quasi-riemann-hypothesis-openai" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Import AI 475：集群规模扩展、DeepMind 给生物学加水印</b> — 引述 Toby Ord 的分析，把 AI swarm 视作一种新的推理时扩展方式：相对单智能体耗费大量 token，但可并行，因此适合「赶时间」的场景。另含 DeepMind 生物学水印与 AI 科学经济议题。 <a href="https://importai.substack.com/p/import-ai-475-swarm-scaling-google" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Nathan Lambert：网络安全风险讨论已经失焦</b> — 认为当前辩论在「禁开源权重模型即可挡住坏人」与「中国不在乎 AI 安全」两种假设间打转，可能导致既削弱美国竞争力又抬高长期网络风险的双输政策。 <a href="https://www.interconnects.ai/p/the-cyber-risk-discourse-is-broken" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Nathan Lambert：预期快速进展，但方向不是通用超级智能</b> — 顶尖研究者的乐观源自模型在基础设施与工程能力上的加速；他同意模型几年内会成为超人级的分布式 GPU 工程师，但认为这只会让实验与调参更容易，不会使模型本质发生剧变。 <a href="https://www.interconnects.ai/p/i-expect-rapid-progress-but-not-towards" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">为什么 AlphaFold 没有「解决」蛋白质折叠</b> — DeepMind 的 Pushmeet Kohli 与 Biohub 的 Sal Candido 对谈，论点是 AlphaFold 只是起点，单靠扩大算力和数据无法解决生物学问题。 <a href="https://www.latent.space/p/biohub-deepmind" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Periodic Labs 的 Liam Fedus 与 Ekin Dogus Cubuk 谈「合成超级智能」</b> — 从半导体到超导体，公司去年 9 月成立，创始团队参与过 ChatGPT 与 DeepMind GNoME；播客含前沿部署工程（Forward Deployed Engineering）部分。 <a href="https://www.latent.space/p/periodic" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Standard Bots 的工业机器人 AI 栈</b> — 自称美国最大的 AI 原生工业机器人制造商，近期由 General Catalyst 与 RoboStrategy 领投的 C 轮融资 2 亿美元、估值 10 亿；客户包括 NASA、亚马逊、洛克希德·马丁。做法是预训练模型从演示中学习工厂任务，并通过真实部署中的人工纠正迭代。 <a href="https://www.latent.space/p/standard-bots" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h4>智能体工具与开发者产品</h4>
+<ul>
+<li><b class="item">Composio Instant：智能体自行购买所需工具</b> — 智能体可自主获取并付费使用新能力（如视频生成、网页数据），官方向「agent wallets」预充超过 100 万美元；Composio 同时上架 ChatGPT 插件目录。 <a href="https://composio.dev/blog/composio-instant" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">ElevenLabs 上线 OpenRouter</b> — 9 个 TTS 模型 + 2 个 STT 模型，无需单独 ElevenLabs 订阅，用 OpenRouter key 调用 <code>POST /api/v1/audio/speech</code> 与 <code>/audio/transcriptions</code>；10 月 19 日 8am PT 前所有 ElevenLabs 模型按目录价 5 折。推荐 Eleven v4 做长文旁白、v4 Turbo 做低延迟语音回复、Scribe v2 做带说话人标注的转写。 <a href="https://openrouter.ai/blog/announcements/elevenlabs-on-openrouter/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Firecrawl Universal Scrape</b> — 将网页、PDF、图片，以及人物档案、金融数据、播客等数据源统一纳入既有的 <code>/scrape</code> 端点。 <a href="https://www.firecrawl.dev/blog/universal-scrape" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Firecrawl Alexandria 上线梦幻体育数据</b> — 智能体可读取用户联赛阵容，按该联赛计分规则聚合 6 个专家来源的本周预测，并核对伤病报告。Alexandria 伴随 7500 万美元 B 轮发布。 <a href="https://www.firecrawl.dev/blog/alexandria-fantasy-football" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Cursor：用 iOS App 远程控制本地 agent</b> — 默认对除企业版组织外的所有人开启；agent 仍在本机运行，App 只做连接，因此电脑需保持开机、联网且不休眠。配对需在桌面端确认。 <a href="https://cursor.com/changelog/remote-control-local-agents" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">PI v1.1.0</b> — 新增程序状态上报（支持 OSC 7501 的终端/面板可看到 working、blocked、done、failed）；接入 anthropic/claude-haiku-5-5（自适应思考至 xhigh/max）；<code>--tools</code> 支持 <code>+name</code>/<code>-name</code> 增删默认工具集；GPT-6 Luna 作为分类器模型接入 Decisions API，codemode 的 <code>models.classify()</code> 支持图像；Julia-1、Laya、Kev、lev、OpenJev 可经 llama.cpp 0.6.0+ 原生作为分类器运行。 <a href="https://github.com/earendil-works/pi/releases/tag/v1.1.0" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">PI v1.0.4</b> — <code>--tools</code>/<code>--exclude-tools</code> 支持 <code>*</code> 通配（如 <code>mcp__radius__*</code>），新增 <code>--no-mcp</code> 单次运行关闭 MCP；codemode 的 <code>tools.read()</code> 对图片文件返回 image block 可供 <code>image()</code> 显示；修复多行字符串高亮丢色（#10143）等问题。 <a href="https://github.com/earendil-works/pi/releases/tag/v1.0.4" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">让 Claude Code 定时自动跑任务</b> — Claude Code 称之为 Routines，Cowork 称为 Scheduled Tasks；可做每日站点可用性检查、仓库变更监控、每周 Slack 报告。本地运行的自动化需保持笔记本不休眠，也可改为托管运行。 <a href="https://newsletter.systemdesign.one/p/claude-code-website-monitoring-routine" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Simon Willison 用语音给博客加功能</b> — 在 ChatGPT 桌面端 Codex 标签的语音对话模式下、连本地开发环境，一边做饭一边完成了 Newsletters 索引页（汇总免费 Substack 周刊与仅限赞助者的月度更新）。流程是先输入「Start dev server and open in browser」拿到本地预览，再开语音会话。 <a href="https://simonwillison.net/2026/Oct/9/built-using-my-voice/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Rillet 在 Vercel 上用 agent 把交付速度提到 3 倍</b> — AI 原生 ERP，服务 600+ 客户；两人前端团队头 4 个月关闭 800+ Linear 工单，客户需求最快 2 小时上生产；使用 Enterprise Managed Users、SSO、Directory Sync 管理 builder 权限，通过 AI Gateway 统一接入模型。 <a href="https://vercel.com/blog/how-rillet-ships-3-faster-with-ai-agents-on-vercel" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h4>可观测性与评估</h4>
+<ul>
+<li><b class="item">Braintrust：应用日志与 agent trace 合并到同一视图</b> — 全文检索、错误过滤、主动观测等能力现已覆盖应用日志；工具调用失败时可在同一界面查看日志中的报错与重试和 agent 的动作响应，无需切换系统。 <a href="https://www.braintrust.dev/blog/application-logs" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Arize Cost Agent：从 trace 定位 LLM/agent 花费</b> — 托管 agent，分析应用 trace 找出重复性的不必要支出，典型来源包括重试循环、过大的上下文窗口、选用了不必要的昂贵模型；按维度拆解开销。面向 Arize AX Enterprise。 <a href="https://arize.com/blog/arize-ax-cost-agent/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Arize Custom Views：把人工评审纳入对齐流程</b> — 观点是自动评估能给每个 agent session 打分，但不自然反映团队认定的「好结果」；文章以自家 Alyx 的评估对齐为例说明人机协同评审工作流。 <a href="https://arize.com/blog/alignment-is-a-human-ai-workflow-custom-views/" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h4>系统设计与 LLM 原理科普</h4>
+<ul>
+<li><b class="item">向量数据库如何在毫秒内检索数十亿向量</b> — 讲 HNSW 图结构、近似最近邻搜索原理，以及生产环境中工程师实际调整的关键参数。 <a href="https://newsletter.systemdesign.one/p/hnsw-vector-search-explained" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">LLM 的「中间盲区」：为什么模型会忘记 prompt 中段内容</b> — 分析 lost-in-the-middle 现象：即便 prompt 提供了详尽信息，模型对中部内容的利用率显著偏低。 <a href="https://blog.bytebytego.com/p/the-llm-blindspot-why-models-forget" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">为什么 LLM 会附和错误说法</b> — 归因于训练奖励同时优化准确性、有用性、礼貌性和响应风格等多个目标，结果是认同错误主张的行为被奖励机制强化。 <a href="https://blog.bytebytego.com/p/why-llms-agree-with-you-even-when" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">软件工程师应知的 64 个 AI 概念（上）</b> — 第一部分覆盖 17 个：大语言模型、生成式 AI、机器学习、深度学习、神经网络、RAG、AI agent 等；整套 64 个概念从底层神经网络到上层 agent 应用。 <a href="https://newsletter.systemdesign.one/p/ai-concepts-explained-for-beginners" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Netflix 如何训练 LLM 做影片推荐</b> — 讲解其把 LLM 用于推荐系统、以延长观看为目标的做法（材料仅有标题与开头，具体架构细节未在摘录中给出）。 <a href="https://blog.bytebytego.com/p/how-uber-built-a-genie-to-answer" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul></details><div class="foot"><a href="./">← 全部往期</a> &nbsp;·&nbsp; <a href="./sources.html">资讯源</a></div>
+</main></div></body></html>

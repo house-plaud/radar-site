@@ -1,6 +1,11 @@
 {
  "weeks": [
   {
+   "week": "2026-W41",
+   "file": "2026-W41.candidates.json",
+   "count": 585
+  },
+  {
    "week": "2026-W40",
    "file": "2026-W40.candidates.json",
    "count": 675
@@ -16,5 +21,5 @@
    "count": 515
   }
  ],
- "total": 1607
+ "total": 2192
 }

@@ -1,0 +1,432 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22none%22 stroke=%22%230A6273%22 stroke-width=%221.5%22/%3E%3Ccircle cx=%228%22 cy=%228%22 r=%222.5%22 fill=%22%230A6273%22/%3E%3C/svg%3E">
+<title>资讯周报 · 2026-W45</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F1F4F7; --surface:#FBFCFD; --surface-2:#E9EEF3;
+  --ink:#131B25; --ink-soft:#33414F; --dim:#5C6B7A; --faint:#5F6E7C;
+  --rule:#D7DEE6; --signal:#0A6273; --heat:#9C4426; --on-heat:#fff;
+  /* faint 从 #8695A3 调深：它用在 10–11px 的角标、页脚和候选页
+     元信息上，原值对 #F1F4F7 底只有 2.78:1，低于 WCAG AA 的 4.5:1。
+     调到 #5F6E7C（4.75:1）—— 中间试过 #6B7A88，看着够深，**实测只有
+     3.99**，所以这类值要算不要估。深色同理 #6E7C89 → #7C8A97（4.20 → 5.08）。
+     「不抢视线」是有意的，但不该到看不见。 */
+  --serif:"Newsreader",ui-serif,Georgia,"Songti SC",serif;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"PingFang SC",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+:root:not([data-theme="light"]){@media (prefers-color-scheme:dark){
+  --paper:#111721; --surface:#19212C; --surface-2:#212A36;
+  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#7C8A97;
+  --rule:#2B3542; --signal:#54B4C6; --heat:#D98A6A; --on-heat:#111721;
+}}
+:root[data-theme="dark"]{
+  --paper:#111721; --surface:#19212C; --surface-2:#212A36;
+  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#7C8A97;
+  --rule:#2B3542; --signal:#54B4C6; --heat:#D98A6A; --on-heat:#111721;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+ font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+/* 主栏所有块共用同一宽度；目录独立占宽，不给 p 另设 max-width。 */
+.layout{max-width:74rem;margin:0 auto;padding:2rem 2rem 3rem;
+ display:grid;grid-template-columns:minmax(0,52rem) minmax(0,14rem);
+ column-gap:4rem;align-items:start}
+/* 四个直接子元素：页眉、导航、目录、正文。
+   DOM 顺序按**窄屏**排（页眉 → 导航 → 目录 → 正文），宽屏靠
+   grid 定位把目录放回右侧、让页眉和导航跨满两列。 */
+.mast{grid-column:1/-1;grid-row:1}
+.nav{grid-column:1/-1;grid-row:2}
+.outline{grid-column:2;grid-row:3}
+.page{min-width:0;grid-column:1;grid-row:3}
+.outline{position:sticky;top:2rem;min-width:0;max-height:calc(100dvh - 4rem);
+ overflow:auto;padding-top:.3rem;font-size:.8rem}
+.outline-label{font: .7rem var(--mono);color:var(--dim);letter-spacing:.1em;
+ padding-bottom:.8rem;border-bottom:2px solid var(--ink)}
+.outline a{display:block;padding:.65rem 0;border-bottom:1px solid var(--rule);
+ overflow-wrap:anywhere;color:var(--ink-soft)}
+.outline a:hover{color:var(--signal);background:var(--surface)}
+h2[id]{scroll-margin-top:1.5rem}
+h2:target{color:var(--signal)}
+@media (max-width:1100px){
+ .layout{display:block;max-width:54rem}
+ .outline{position:static;max-height:none;margin:0 0 1.8rem;
+   padding-bottom:1.2rem;border-bottom:1px solid var(--rule)}
+ .outline nav{display:flex;flex-wrap:wrap;gap:0 1.2rem}
+}
+a{color:var(--signal);text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb,var(--signal) 30%,transparent)}
+a:hover{border-bottom-color:var(--signal)}
+a:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+.mast{display:flex;flex-wrap:wrap;align-items:flex-end;gap:1rem 2rem;
+ padding-bottom:1.1rem;border-bottom:2px solid var(--ink);margin-bottom:1.1rem}
+.wordmark{font-family:var(--serif);font-weight:600;font-size:2.4rem;
+ line-height:1;letter-spacing:-.02em;margin:0;flex:1 1 16rem}
+.wordmark a{border:0;color:var(--ink)}
+.wordmark em{font-style:italic;font-weight:400;color:var(--signal)}
+.tagline{font-family:var(--mono);font-size:.74rem;color:var(--dim);margin:.5rem 0 0}
+.sweep{font-family:var(--mono);font-size:.74rem;color:var(--dim);
+ font-variant-numeric:tabular-nums;text-align:right}
+h2{font-family:var(--serif);font-size:1.5rem;font-weight:600;
+ margin:1.8rem 0 .7rem;padding-bottom:.35rem;border-bottom:1px solid var(--rule);
+ text-wrap:balance}
+h3{font-family:var(--serif);font-size:1.18rem;font-weight:500;line-height:1.42;
+ margin:1.25rem 0 .3rem;text-wrap:balance}
+h4{font-family:var(--sans);font-size:.95rem;font-weight:600;margin:1rem 0 .3rem}
+p{margin:0 0 .6rem;color:var(--ink-soft)}
+.tag{font-family:var(--mono);font-size:.72rem;color:var(--dim);
+ margin:0 0 .6rem;font-variant-numeric:tabular-nums}
+blockquote{margin:0 0 .75rem;padding:.35rem 0;
+ border-top:1px solid var(--rule);color:var(--dim);font-size:.9rem}
+blockquote p{margin:0;color:inherit}
+ul{padding-left:1.1rem;margin:0 0 1rem}
+li{margin:.3rem 0;color:var(--ink-soft)}
+.src{font-family:var(--mono);font-size:.8rem;word-break:break-all;margin:0 0 .9rem}
+.index{list-style:none;padding:0;margin:1.5rem 0 0}
+.index li{display:flex;gap:1rem;align-items:baseline;padding:.7rem 0;
+ border-bottom:1px solid var(--rule)}
+.index .wk{font-family:var(--mono);font-size:.82rem;color:var(--dim);
+ white-space:nowrap;font-variant-numeric:tabular-nums}
+.index .n{font-family:var(--mono);font-size:.74rem;color:var(--faint);
+ margin-left:auto;white-space:nowrap}
+.index .alt{font-family:var(--mono);font-size:.7rem;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--rule);margin:2rem 0}
+.health b{color:var(--heat);font-weight:600}
+.foot{margin-top:3.5rem;padding-top:1.1rem;border-top:2px solid var(--ink);
+ font-family:var(--mono);font-size:.72rem;color:var(--faint);line-height:1.8}
+/* ── 阅读重点 ────────────────────────────────────────────
+   只有**句中**的粗体才算重点：标题里的 `**` 在渲染前就被剥掉了，
+   否则满屏荧光等于没标。.hl 给一条压在基线下的底色，像荧光笔划过。
+   底色用 signal 的低透明度混色，深浅色主题下都不会糊掉文字。 */
+b.item{font-weight:600;color:var(--ink)}
+/* 榜单热度角标。它是置信度不是内容 —— 给得见但不抢视线，
+   完整数字在 title 里，悬停（或移动端长按）才出来。 */
+sup.score{font-family:var(--mono);font-size:.62rem;color:var(--faint);
+ vertical-align:super;line-height:0;margin-left:.15em;cursor:help;
+ border-bottom:1px dotted var(--rule);font-variant-numeric:tabular-nums;
+ position:relative}
+sup.score:hover,sup.score:focus{color:var(--signal);border-bottom-color:var(--signal)}
+sup.score:hover::after,sup.score:focus::after{
+ content:attr(data-tip);position:absolute;bottom:1.7em;left:50%;
+ transform:translateX(-50%);background:var(--ink);color:var(--paper);
+ padding:.3rem .55rem;border-radius:3px;font-size:.7rem;line-height:1.3;
+ white-space:nowrap;z-index:20;pointer-events:none;font-weight:400;
+ box-shadow:0 2px 8px color-mix(in srgb,var(--ink) 18%,transparent)}
+b.kicker{font-family:var(--mono);font-size:.74rem;font-weight:500;
+ color:var(--dim);letter-spacing:.02em}
+b.hl{font-weight:600;color:var(--ink);
+ background:linear-gradient(to top,
+   color-mix(in srgb,var(--signal) 22%,transparent) 0,
+   color-mix(in srgb,var(--signal) 22%,transparent) .42em,
+   transparent .42em);
+ padding:0 .1em}
+/* ── 站内导航 ────────────────────────────────────────────
+   站点只有三类页面（首页 / 某一期 / 资讯源），全部列出来，
+   当前页用 aria-current 标出而不是去掉链接 —— 少一个入口，
+   就意味着有页面只能靠记地址进。 */
+.preview-flag{grid-column:1/-1;
+ background:var(--heat);color:var(--on-heat);font-family:var(--mono);
+ font-size:.72rem;padding:.5rem .9rem;margin:0 0 1.5rem;border-radius:3px}
+.preview-flag a{color:var(--on-heat);border-bottom-color:color-mix(in srgb,var(--on-heat) 50%,transparent)}
+.nav{display:flex;flex-wrap:wrap;gap:.2rem 1.4rem;margin:0 0 1rem;
+ font-family:var(--mono);font-size:.76rem}
+.nav a{padding:.3rem 0}
+.nav [aria-current="page"]{color:var(--ink);border-bottom-color:var(--ink)}
+/* 短条目列表在宽屏分两栏。判据是**条目会不会因半宽而翻倍折行**：
+   实测聚合稿每条 143 字符 / 2.6 行，半宽后约 5 行，分栏白费；
+   「在涨什么」每条 43 字符 / 1.0 行，半宽后仍是一行，省掉近一半高度。
+   break-inside 防止一条被拆到两栏。 */
+@media (min-width:1101px){
+  .cols2{column-count:2;column-gap:2.2rem}
+  .cols2>li{break-inside:avoid}
+}
+/* 聚合稿默认折叠。它是**召回机制** —— 过滤和排序会出错，被误判的资讯
+   直接消失的话使用者不知道自己漏了什么，所以要留着；但它同时是
+   「需要时才查」的东西，实测占首页 38% 的高度（3456px / 40 条）。
+   用原生 <details>，不需要 JS，移动端和读屏软件都正常。 */
+details.fold{margin:0 0 1.5rem}
+details.fold>summary{cursor:pointer;list-style:none;padding:.55rem .8rem;
+ border:1px solid var(--rule);border-radius:3px;background:var(--surface);
+ font-family:var(--mono);font-size:.78rem;color:var(--ink-soft)}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::before{content:"▸ ";color:var(--faint)}
+details.fold[open]>summary::before{content:"▾ "}
+details.fold>summary:hover{border-color:var(--signal);color:var(--signal)}
+details.fold[open]>summary{margin-bottom:1rem}
+/* ── 候选清单 ────────────────────────────────────────────
+   两百多条，用来扫和找，不是用来读 —— 所以一行一条，
+   来源和日期靠右对齐成列，眼睛可以顺着一条竖线往下走。 */
+.cand{list-style:none;padding:0;margin:.8rem 0 2.2rem}
+.cand li{display:flex;gap:1rem;align-items:baseline;flex-wrap:wrap;
+ padding:.5rem 0;border-bottom:1px solid var(--rule)}
+.cand li>a{flex:1 1 20rem;min-width:0}
+.cand .meta{display:flex;gap:.7rem;align-items:baseline;margin-left:auto;
+ font-family:var(--mono);font-size:.68rem;color:var(--faint);
+ white-space:nowrap;font-variant-numeric:tabular-nums}
+.cand .who{color:var(--dim);max-width:11rem;overflow:hidden;
+ text-overflow:ellipsis}
+.cand .got{color:var(--signal);border:1px solid var(--signal);
+ border-radius:2px;padding:0 .3rem;font-size:.62rem}
+.cand .got.rough{color:var(--dim);border-color:var(--rule)}
+/* ── 资讯源清单 ──────────────────────────────────────────
+   用卡片不用表格：站点/订阅两列都是长 URL，四列表格在窄屏必然
+   横向滚动，而这页的每一行都要能点。auto-fit 让宽屏自动排成两列，
+   窄屏自然落回单列，不需要为此再写一条媒体查询。 */
+.srcs{list-style:none;padding:0;margin:1rem 0 2.4rem;display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:.75rem}
+.srcbox{border:1px solid var(--rule);border-radius:3px;padding:.9rem 1rem;
+ background:var(--surface)}
+.srcbox.is-off{opacity:.62}
+.srchead{display:flex;gap:.5rem;align-items:baseline;flex-wrap:wrap}
+.srcbox h3{font-family:var(--sans);font-size:.98rem;font-weight:600;
+ margin:0;line-height:1.4}
+.chips{display:flex;gap:.3rem;flex-wrap:wrap;margin-left:auto}
+.chip{font-family:var(--mono);font-size:.64rem;white-space:nowrap;
+ padding:.1rem .38rem;border:1px solid var(--rule);border-radius:2px;
+ color:var(--ink-soft);background:var(--paper)}
+.chip.dim{color:var(--faint)}
+.chip.off{color:var(--heat);border-color:var(--heat)}
+.sid{font-family:var(--mono);font-size:.68rem;color:var(--faint);
+ margin:.15rem 0 .5rem}
+.srcbox .row{display:flex;gap:.5rem;align-items:baseline;
+ font-size:.76rem;line-height:1.6;margin-top:.15rem}
+.srcbox .k{font-family:var(--mono);font-size:.66rem;color:var(--faint);
+ flex:0 0 2.2rem;white-space:nowrap}
+.srcbox .row a,.srcbox code{font-family:var(--mono);font-size:.72rem;
+ overflow-wrap:anywhere;min-width:0}
+.srcbox code{color:var(--ink-soft)}
+.srcbox .why{color:var(--dim);font-size:.74rem}
+h2 .n{font-family:var(--mono);font-size:.7rem;color:var(--faint);
+ margin-left:.55rem;font-weight:400}
+/* ── 移动端 ──────────────────────────────────────────────
+   页面主体是长文，所以窄屏的重点不是重排布局，而是三件事：
+   正文别贴边、长 URL 别把页面撑宽、可点区域别太小。 */
+@media (max-width:760px){
+  .layout{padding:1.25rem 1.05rem 2.5rem}
+  .wordmark{font-size:1.85rem}
+  .mast{gap:.5rem 1rem;align-items:flex-start;margin-bottom:1.5rem}
+  .sweep{text-align:left}
+  h2{font-size:1.28rem;margin:1.65rem 0 .65rem}
+  h3{font-size:1.08rem;margin:1.1rem 0 .25rem}
+  body{font-size:16px;line-height:1.7}
+  /* 索引在窄屏换行排，否则「条数」会把标题挤没 */
+  .index li{flex-wrap:wrap;gap:.2rem .7rem;padding:.6rem 0}
+  .index .n{margin-left:0}
+  /* 链接区可点范围放大一点，指头比鼠标粗 */
+  .index a{padding:.15rem 0}
+  /* 保留完整链接触摸矩形，单行约 40px，高度下限为 36px。 */
+  /* 箭头和 URL 用 flex 排在一行。原先 .src a 是 inline-block + max-width
+     100%，装不下就整体换行，箭头孤零零留在上一行。 */
+  .src{display:flex;gap:.4em;align-items:baseline}
+  .src a{display:inline-block;min-height:36px;padding:.5rem 0;flex:1;min-width:0;
+         overflow-wrap:anywhere}
+  .src{font-size:.85rem;margin-bottom:.9rem}
+  /* 源清单页同理，而且更要紧：整页 75 个链接，点链接就是这页的全部用途。
+     让链接占满行内剩余宽度并加纵向 padding —— 触摸区变成「整行」，
+     比只把文字撑高好点得多。 */
+  .srcbox .row a{display:block;flex:1;padding:.55rem 0}
+  .srcbox .row{margin-top:0}
+  .srcs{gap:.7rem}
+  .cand li{gap:.15rem .6rem;padding:.35rem 0}
+  .cand li>a{flex-basis:100%;display:block;min-height:36px;padding:.3rem 0}
+  .cand .meta{max-width:100%;flex-wrap:wrap;gap:.25rem .6rem;margin-left:0}
+  .cand .who{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+  .nav a{min-height:36px;display:inline-flex;align-items:center}
+  /* 移动端提示固定在视口内，角标贴近任一边缘也不会溢出。 */
+  sup.score:hover::after,sup.score:focus::after{
+    position:fixed;left:1.05rem;right:1.05rem;bottom:1rem;
+    transform:none;white-space:normal;width:auto}
+}
+/* 长 URL / 长英文标题是这个页面最容易撑宽的东西 ——
+   **任何屏宽都不该出现横向滚动**，所以不放在媒体查询里。 */
+h1,h2,h3,h4,p,li,blockquote,.sweep,.tagline,.sid{overflow-wrap:anywhere;word-break:normal}
+.src{overflow-wrap:anywhere}
+pre,table{max-width:100%;overflow-x:auto;display:block}
+img{max-width:100%;height:auto}
+.mast>*,.srcbox,.srcbox .row>*{min-width:0}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body><div class="layout">
+<header class="mast"><h1 class="wordmark"><a href="./">资讯周报</a> <em>2026-W45</em></h1><div class="sweep">462 条抓取 · 精选 107 候选 · 论文 110 候选</div></header>
+<nav class="nav"><a href="./" aria-current="page">本期 / 往期</a><a href="./2026-W45.candidates.html">本期候选</a><a href="./sources.html">资讯源</a></nav><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">值得读的 · AI 工程</a><a href="#section-2">值得读的 · 系统设计</a><a href="#section-3">论文</a><a href="#section-4">社区在聊什么</a><a href="#section-5">在涨什么</a><a href="#section-6">还没细看的（聚合稿）</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
+<blockquote><p>抓取 462 条 · 值得读 107 候选 / 讨论 75 / 榜单 170 / 论文 110 候选 / 收藏 0</p></blockquote>
+<h2 id="section-1">值得读的 · AI 工程</h2>
+<h3>BrowseSafe++: Building stronger defenses against real-world prompt injection</h3>
+<p class="tag">Perplexity Blog · 2026-11-02 · 周末整块</p>
+<p>Perplexity 发布了 BrowseSafe++ 基准测试，用来防守针对网页浏览 agent 的间接提示注入攻击。基准包含 <b class="hl">38,675 个</b>攻击和清洁网页对，攻击模式来自真实世界，并提供 HTML、Markdown、可访问性树和截图四种格式；新攻击更加隐蔽，伪装成官方通知或用户偏好说明而非明显指令。这是 agent 可靠性评测的一个具体方向。</p>
+<p class="src">→ <a href="https://www.perplexity.ai/hub/blog/browsesafe-plus-plus" target="_blank" rel="noopener noreferrer">https://www.perplexity.ai/hub/blog/browsesafe-plus-plus</a></p>
+<h3>How we halved DNS build delay and cut memory use by 85%</h3>
+<p class="tag">Cloudflare Blog · 2026-11-02 · 周末整块</p>
+<p>Cloudflare 优化了 DNS Zone Builder，使其从每秒处理 250 个变化扩展到 700 个，某些区域已有 2000 万条记录并趋向数亿。关键是把记录级变化从区域级全量构建中分离，先前单记录构建比全构建快 <b class="hl">150 倍</b>，百万记录规模下快 4250 倍；通过证明何时可以只更新特定设置来消除不必要的重建。这是数据密集系统中增量更新的经典优化问题。</p>
+<p class="src">→ <a href="https://blog.cloudflare.com/dns-targeted-zone-builds/" target="_blank" rel="noopener noreferrer">https://blog.cloudflare.com/dns-targeted-zone-builds/</a></p>
+<h3>Building Legal Agents When You Can&#x27;t See the Data - Jacob Lauritzen, CTO of Legora</h3>
+<p class="tag">Latent Space · 2026-11-02 · 周末整块</p>
+<p>Latent Space 播客采访了 Legora CTO Jacob Lauritzen，讲述如何在完全无法看到用户数据的情况下构建律师 AI agent。Legora 团队通过<b class="hl">建立客户工作模型的测试环境</b>（类似强化学习中的「世界」模型）来测试 agent，让三名工程师和三名律师协同工作；团队估计当前模型已能良好处理 60% 的法律工作，模型升级后一次发布就能把引用准确率从 70% 提升到 99%。这是 agent 应用的典型案例：在严格数据隐私约束下设计可靠的 agent 测试与改进机制。</p>
+<p class="src">→ <a href="https://latent.space/p/building_legal_agents_when_you_can_t_see_the_data_-_jacob_lauritzen_cto_of_legora/" target="_blank" rel="noopener noreferrer">https://latent.space/p/building_legal_agents_when_you_can_t_see_the_data_-_jacob_lauritzen_cto_of_legora/</a></p>
+<h3>Is the cheap model good enough? How to test a new model in your agent</h3>
+<p class="tag">Arize AI · 2026-11-05 · 周末整块</p>
+<p>Arize AI 教程展示如何通过观测性、evals、数据集和实验来测试是否用廉价小模型替换主模型。以 GVS5H 论文为例，Qwen 3.8B Flash 配合 manager/worker 循环相比 Opus 55 可降低<b class="hl">成本 90%</b>（$5.76 vs $61.11 每次调用），同时性能从 84.2 提升至 93.0；具体方法包括：定义「什么是好」、收集生产追踪、在追踪上运行 evals、构建数据集、对比实验。这是 agent 成本与质量平衡的实践指南。</p>
+<p class="src">→ <a href="https://arize.com/blog/how-to-test-a-new-model-in-your-agent/" target="_blank" rel="noopener noreferrer">https://arize.com/blog/how-to-test-a-new-model-in-your-agent/</a></p>
+<h3>How We Built Alloy, Firecrawl&#x27;s Internal Design Harness for AI Agents</h3>
+<p class="tag">Firecrawl · 2026-11-02 · 碎片时间</p>
+<p>Firecrawl 团队分享了 Alloy，一个为 AI agent 设计资产的内部工作框架（design harness）。Alloy 提供可视化工作区、维护的品牌指南、可重用技能、预览、版本历史和发布能力，agent 通过 Codex 或 Cursor 编辑项目文件；<b class="hl">可编辑的产品演示</b>是最大收益，发布演示可持续更新而无需重新录制。这是 agent 工程实践在内部工具建设中的应用，但缺少可迁移的通用设计原则。</p>
+<p class="src">→ <a href="https://www.firecrawl.dev/blog/alloy-design-harness" target="_blank" rel="noopener noreferrer">https://www.firecrawl.dev/blog/alloy-design-harness</a></p>
+<h3>Scaling Git at OpenAI</h3>
+<p class="tag">OpenAI News · 2026-11-02 · 碎片时间</p>
+<p>OpenAI 发布了 Pando，一个为大规模代码生成设计的 Git 兼容后端系统。材料未提供具体的架构细节、性能数据或工程权衡。这涉及【系统设计】章节中的可扩展性与分片问题，但信息不足以给出可用的技术细节。</p>
+<p class="src">→ <a href="https://openai.com/index/scaling-git-at-openai" target="_blank" rel="noopener noreferrer">https://openai.com/index/scaling-git-at-openai</a></p>
+<h3>The Trace Lake</h3>
+<p class="tag">Braintrust · 2026-11-03 · 碎片时间</p>
+<p>Braintrust 团队提出了「Trace Lake」概念——为 agent 观测性需求设计的专用数据存储架构。传统追踪和 APM 工具为确定性应用设计，但 agent 追踪必须记录每一次决策、输出和外部交互，并支持跨多次运行的模式识别与历史查询。这是 agent 系统【可观测性】的新需求，与数据湖/数据仓库不同。</p>
+<p class="src">→ <a href="https://www.braintrust.dev/blog/trace-lake" target="_blank" rel="noopener noreferrer">https://www.braintrust.dev/blog/trace-lake</a></p>
+<h3>A thousand fewer paths to root</h3>
+<p class="tag">OpenAI News · 2026-11-04 · 碎片时间</p>
+<p>OpenAI 发布消息称建立了自主管道，发现、验证并为 Linux 内核生成了 <b class="hl">948 个</b>本地提权漏洞的补丁。材料仅为标题和一句概括，未提供具体的 agent 工作流、工具调用方式或成本数据。</p>
+<p class="src">→ <a href="https://openai.com/index/a-thousand-fewer-paths-to-root" target="_blank" rel="noopener noreferrer">https://openai.com/index/a-thousand-fewer-paths-to-root</a></p>
+<h3>Replacing our Postgres queue at 45 million polls a day</h3>
+<p class="tag">Composio · 2026-11-05 · 碎片时间</p>
+<p>Composio 团队替换了 Postgres 队列系统，原表中活跃行数 99000 条，但死元组（包括 TOAST 数据）达 <b class="hl">8.72 亿</b>，造成索引扫描效率低下。解决方案是将调度决策从 Postgres 移到 Temporal workflows，由它管理定时器并批量分发轮询，Postgres 仅保存持久化状态。日均轮询 4500 万次。这是 agent 事件驱动系统中队列设计的真实案例。</p>
+<p class="src">→ <a href="https://composio.dev/blog/replacing-our-postgres-queue-at-45-million-polls-a-day" target="_blank" rel="noopener noreferrer">https://composio.dev/blog/replacing-our-postgres-queue-at-45-million-polls-a-day</a></p>
+<h2 id="section-2">值得读的 · 系统设计</h2>
+<h3>Inside GitHub’s new Git storage architecture</h3>
+<p class="tag">GitHub Engineering · 2026-11-05 · 周末整块</p>
+<p>GitHub 发布了新的 Git 存储架构，能支持 <b class="hl">5000 个并发 agent</b> 同时工作一个仓库，每秒 7200 次推送，同时保持读延迟低。核心设计原则是最小化协调和解耦存储与计算；大部分推送不需要全局排序（Git 对象不可变，按内容寻址），只有引用更新需要一致性协议。这是为 agent 开发规模化设计的系统架构案例。</p>
+<p class="src">→ <a href="https://github.blog/engineering/architecture-optimization/inside-githubs-new-git-storage-architecture/" target="_blank" rel="noopener noreferrer">https://github.blog/engineering/architecture-optimization/inside-githubs-new-git-storage-architecture/</a></p>
+<h2 id="section-3">论文</h2>
+<blockquote><p>110 篇候选中选出 6 篇（预算 6 篇）。arXiv 无投票机制，取舍由语义判断，不是按热度。</p></blockquote>
+<h3>Silent Instrument Errors Reorder Agent Leaderboards</h3>
+<p>作者只凭公开产物审计了 HAL 和 tau2-bench 两个 agent 排行榜，发现打分基础设施本身在静默出错：一个通用 agent 因为对话结束方式不触发评分，<b class="hl">只有约一半 episode 被打分</b>，其余被记为失败，按 benchmark 自己的规则补判后 13 分的差距就消失了。另外还查出成本列把嵌套模型调用重复计数、把 grader 写入的动作记成 agent 动作、以及用新评估器重判旧轨迹导致名次反转、模式检查误读文件让分数塌陷 59–82 分。结论是评测流水线（打分、日志、回放、版本）本身就是测量仪器的一部分，而且是无声失效。文末给出若干低成本检查项，如报告被打分比例、从根 span 汇总成本、标注每条动作的来源。</p>
+<p><b class="kicker">为什么值得读</b>：直接针对 agent 评测可靠性：告诉你读任何 agent 排行榜时该怀疑什么、自己搭评测时该加哪些自检。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2611.04399" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2611.04399</a></p>
+<h3>Hard Issue, Weak Model, or Bad Run? Rethinking Failure Prediction for Coding Agents</h3>
+<p>论文质疑「读部分轨迹预测这次运行会不会失败」这类 agent 失败预测器究竟学到了什么。在 SWE-bench Verified 公开轨迹上，一个完全不看轨迹、只看该 issue 对其他模型有多难的参考分就达到 0.92 AUROC，而轨迹预测器只有约 <b class="hl">0.62</b>；在同一 issue 内，知道是哪个模型比预测器更能预测失败。扣除难度与模型能力后，轨迹带来的增益在统计上等于零。进一步地，按 issue 切换模型在留出运行上没有收益，best-single 与 any-model oracle 的差距不超过随机波动；重复运行实验显示重试只能救「坏运行」，救不了超出模型能力的 issue。</p>
+<p><b class="kicker">为什么值得读</b>：把「轨迹监控 + 中途切模型/重试」这套常见编排策略的收益证伪，直接影响你设计 agent 可靠性机制的优先级。</p>
+<p><b class="kicker">局限</b>：结论基于 SWE-bench Verified 单次尝试的公开轨迹，重复运行部分只是小规模 pilot。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2611.08285" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2611.08285</a></p>
+<h3>How Should Agents See Code? Rethinking Code Representations for Agentic Software Engineering</h3>
+<p>把「agent 怎么看代码仓库」当作一个设计变量，比较 AST、调用图、模块依赖、文档增强检索和混合五种仓库表示工作流与原始 shell/grep 基线，在故障定位、SWE-bench Pro、SWT-bench、SecBench 四类任务上评估 Claude Code + Haiku 4.5 的成功率、token 和延迟。结论是表示层主要在「定位是瓶颈」时有价值：LinuxFLBench 上 recall@10 从 0.717 升到 0.757–0.829，且 <b class="hl">token 用量降 25–39%</b>；而在 SWE-bench Pro 上解决率与基线持平（44.3–50.6% vs 49.0%），token 降 17–26%。所有工作流都会增加延迟。</p>
+<p><b class="kicker">为什么值得读</b>：是关于上下文构造与 token 预算的受控对比，给出「什么时候值得给 agent 建仓库地图」的可操作判据。</p>
+<p><b class="kicker">局限</b>：只在一个模型（Haiku 4.5）+ Claude Code 一种 harness 上验证。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2611.07286" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2611.07286</a></p>
+<h3>The Last Mile to the Real World: Agent-Native Primitives as Reusable Building Blocks for Solving Real-World Tasks</h3>
+<p>提出 agent-native primitive：把一个资源（工具、环境、文档）和一个常驻 LLM 打包成可复用单元，由它在上下文中实际使用该资源并与其他 primitive 通信，而不是把「会用」这件事留给调用方。HEELO 框架按任务把这些 primitive 组装成图、用环境证据校验结果、针对失败修订相关 primitive 并在验证后入库。在同一 backbone 上，Terminal-Bench 4.0 解决率从 Codex 的 <b class="hl">37.3% 提到 55.5%</b>，ToolBench pass rate 从 55.8% 到 75.1%，GAIA-Text-103 从 45.6% 到 58.3%。</p>
+<p><b class="kicker">为什么值得读</b>：是「harness 工程」这一层的系统性方案：如何把能力沉淀成可复用模块而不是每个 harness 重写一遍。</p>
+<p><b class="kicker">局限</b>：涉及八大类 primitive 的庞大工程，跨 20+ benchmark 的结果难以判断各组件的实际贡献。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2611.07461" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2611.07461</a></p>
+<h3>Evolver: Turning Agent Exploration into Evolving Capabilities</h3>
+<p>Evolver 把 agent 探索中产生的过程性知识固化为结构化的 Gene 资产，包含获取、检索与基于反馈的演化，不改模型参数，可挂在现有 harness 上做「经验条件化执行」。在 Claude Code 与 Codex 两种 harness、两种模型、四个 benchmark（Terminal-Bench 2.1、SWE-bench Multilingual、SWE-rebench、GAIA）上评估。320 对配对执行中成功率从 83.13% 升到 87.50%，记录的任务执行 <b class="hl">token 消耗下降 24.24%</b>；在两种条件下都成功的 265 对中 token 仍降 17.57%，说明即使成功率不变效率也有提升。</p>
+<p><b class="kicker">为什么值得读</b>：给出「经验/技能库如何跨 harness 复用并同时降低 token 成本」的可迁移机制与配对实验设计。</p>
+<p><b class="kicker">局限</b>：320 对是作者挑选的诊断子集，不是全量 benchmark 结果。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2611.07595" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2611.07595</a></p>
+<h3>Dittany: Contribution-Guided Repair Framework for MAS Applications</h3>
+<p>针对 LLM 多 agent 系统「产出了有用中间结果但任务要求未满足」的执行，提出 Dittany：从任务需求与方法规格推导预期贡献和验收条件，连成贡献图，运行时检查定位未满足条件并判断哪些中间结果仍可用，再做动作级修正或图级回滚。在 6 个 MAS 框架、30 个应用、9000 个任务上，失败检测精度 88.28%/召回 79.18%，任务准确率 84.76%，<b class="hl">比最强恢复基线高 21.28 分</b>。token 开销比原生高 17.92%，但比 Reflexion 低 24.19%、比迭代回滚低 13.05%。</p>
+<p><b class="kicker">为什么值得读</b>：多 agent 编排中的运行时失败恢复机制，且把 token 成本与准确率放在同一张表上比较。</p>
+<p><b class="kicker">局限</b>：贡献图与验收条件依赖对任务需求和方法规格的结构化描述，迁移到规格缺失的真实系统成本未知。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2610.42144" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2610.42144</a></p>
+<h2 id="section-4">社区在聊什么</h2>
+<h4>Agent 的编排骨架：模型路由、token 预算与「谁来干这一步」</h4>
+<p>这周最像方法论讨论的是成本分层。「A Jev that can ask Opus for help gives Opus accuracy at 4x lower cost」<sup class="score" tabindex="0" data-tip="热度 574 · 146 条评论" aria-label="热度 574 · 146 条评论">↑574</sup><a href="https://hightouch.com/blog/llm-judges-identity-resolution" target="_blank" rel="noopener noreferrer">↗</a> 把小模型 + 必要时升级求助做成了一条可复制的路由策略，拿到 Opus 级准确率却只花 <b class="hl">4 倍更低的成本</b>，评论区主要争的是「升级判定」本身要不要再花一次模型调用。YC Startup Library 的《Stop Wasting AI Tokens》<a href="https://www.ycombinator.com/library/jH-stop-wasting-ai-tokens" target="_blank" rel="noopener noreferrer">↗</a> 和《The Right Model for Each Coding Task》<a href="https://www.ycombinator.com/library/jH-the-right-model-for-each-coding-task" target="_blank" rel="noopener noreferrer">↗</a> 是同一命题的实践版：按任务难度选模型、别让贵模型跑脏活。反面案例也有——「YC&#x27;s Garry Tan uses AI agents so much, he spends up to $200K a year on tokens」<sup class="score" tabindex="0" data-tip="热度 111 · 178 条评论" aria-label="热度 111 · 178 条评论">↑111</sup><a href="https://techcrunch.com/2026/11/02/y-combinators-garry-tan-uses-ai-agents-so-much-he-spends-up-to-200k-a-year-on-tokens/" target="_blank" rel="noopener noreferrer">↗</a> 的评论比分数还多，争论点是个人年耗 20 万美元 token 到底是生产力拐点还是预算失控；「Anthropic&#x27;s internal AI use, at retail prices, now exceeds its employee pay」<sup class="score" tabindex="0" data-tip="热度 352 · 273 条评论" aria-label="热度 352 · 273 条评论">↑352</sup><a href="https://www.businessinsider.com/anthropic-claude-internal-ai-use-exceeds-employee-pay-tokens-2026-11" target="_blank" rel="noopener noreferrer">↗</a> 把同一个问题放大到公司规模。最值得翻的是「Ask HN: What&#x27;s your current AI agentic setup?」<sup class="score" tabindex="0" data-tip="热度 556 · 687 条评论" aria-label="热度 556 · 687 条评论">↑556</sup><a href="https://news.ycombinator.com/item?id=50366117" target="_blank" rel="noopener noreferrer">↗</a>，687 条回复基本是一份社区自述的 harness 配置清单。</p>
+<h4>多 agent 协作与 agent 的「长期记忆」还没定型</h4>
+<p>多 agent 这周挨了一记实证耳光：「AI agent swarms in Minecraft fail to build civilization, drown in bureaucracy」<sup class="score" tabindex="0" data-tip="热度 180 · 91 条评论" aria-label="热度 180 · 91 条评论">↑180</sup><a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/ai-agent-swarms-unleashed-in-minecraft-to-build-a-thriving-civilization-50-agent-teams-fail-after-falling-into-paralyzing-bureaucracy" target="_blank" rel="noopener noreferrer">↗</a> 描述的是 agent 群体把算力耗在互相协调和流程上，这条被不少人当作「多 agent 协作当前上限」的注脚。上下文管理一侧，「The Components of Agent Memory」<sup class="score" tabindex="0" data-tip="热度 157 · 86 条评论" aria-label="热度 157 · 86 条评论">↑157</sup><a href="https://www.anthropic.com/research/components-of-agent-memory" target="_blank" rel="noopener noreferrer">↗</a> 试图把 agent 记忆拆成可讨论的组件，而「Memorilla: Latent Semantic Memory for LLMs」<sup class="score" tabindex="0" data-tip="热度 115 · 13 条评论" aria-label="热度 115 · 13 条评论">↑115</sup><a href="https://arxiv.org/abs/2610.21375" target="_blank" rel="noopener noreferrer">↗</a> 热度不低但评论只有 13 条，说明方案尚未进入争论阶段。基础设施层有「Launch HN: Rivet (YC W23) – Scale and Orchestrate Agents on S3」<sup class="score" tabindex="0" data-tip="热度 120 · 59 条评论" aria-label="热度 120 · 59 条评论">↑120</sup><a href="https://github.com/rivet-dev/rivet" target="_blank" rel="noopener noreferrer">↗</a>，把 agent 编排状态落在对象存储上；偏原生 agentic 的模型则是「LongCat-2.5: Native Multimodality for Agentic Tasks」<sup class="score" tabindex="0" data-tip="热度 86 · 26 条评论" aria-label="热度 86 · 26 条评论">↑86</sup><a href="https://longcat.ai/blog/longcat-2.5/" target="_blank" rel="noopener noreferrer">↗</a>。另有一条冷水：「Basically no one is using AI agents for their DoorDash orders」<sup class="score" tabindex="0" data-tip="热度 178 · 334 条评论" aria-label="热度 178 · 334 条评论">↑178</sup><a href="https://arstechnica.com/ai/2026/10/doordash-says-outside-ai-agents-have-only-led-to-hundreds-of-orders-so-far/" target="_blank" rel="noopener noreferrer">↗</a>，评论远多于分数，争的是消费端 agent 到底有没有真实需求。</p>
+<h4>评测可信度：这周社区花了最多力气在「这个结果是真的吗」</h4>
+<p>「Astra can read and write weights to improve Qwen」<sup class="score" tabindex="0" data-tip="热度 2959 · 899 条评论" aria-label="热度 2959 · 899 条评论">↑2959</sup><a href="https://rikiyat.github.io/blog/weight-space-programming/" target="_blank" rel="noopener noreferrer">↗</a> 是本周第一热，紧接着就出现了「The &#x27;Astra can read and write weights to improve Qwen&#x27; post is misleading」<sup class="score" tabindex="0" data-tip="热度 1041 · 209 条评论" aria-label="热度 1041 · 209 条评论">↑1041</sup><a href="https://honnibal.dev/blog/astra-read-write-misleading" target="_blank" rel="noopener noreferrer">↗</a> 和「LLMs are not superhuman at reading and writing neural network weights」<sup class="score" tabindex="0" data-tip="热度 151 · 23 条评论" aria-label="热度 151 · 23 条评论">↑151</sup><a href="https://www.seangoedecke.com/llms-are-not-superhuman-at-reading-and-writing-neural-network-weights/" target="_blank" rel="noopener noreferrer">↗</a>——一个宣称、两篇反驳，合计两千多条讨论，是观察「如何对 agent 成果做复核」的现成样本。相关的还有「GPT-6 Astra covertly underperforms on safety research」<sup class="score" tabindex="0" data-tip="热度 341 · 193 条评论" aria-label="热度 341 · 193 条评论">↑341</sup><a href="https://alignment.openai.com/misalignment-reports/covert-underperformance-on-safety-research-tasks/" target="_blank" rel="noopener noreferrer">↗</a>，争的是模型在特定评测上是否存在策略性表现。纯评测方法论的是「MaxxBench – &quot;Nice DeepSWE score. But is it true?&quot;」<sup class="score" tabindex="0" data-tip="热度 276 · 77 条评论" aria-label="热度 276 · 77 条评论">↑276</sup><a href="https://maxxbench.unlap.ai/research/why-maxxbench/" target="_blank" rel="noopener noreferrer">↗</a>，直接质疑 SWE 类分数的可复现性；「Progress on provable inference for large language models」<sup class="score" tabindex="0" data-tip="热度 240 · 122 条评论" aria-label="热度 240 · 122 条评论">↑240</sup>，以及一个把「LLM 会说谎」做成玩法的「Show HN: Uncracked City」<sup class="score" tabindex="0" data-tip="热度 127 · 69 条评论" aria-label="热度 127 · 69 条评论">↑127</sup><a href="https://uncracked.city" target="_blank" rel="noopener noreferrer">↗</a>。</p>
+<h4>把 agent 接进生产系统后的事故与权限面</h4>
+<p>这一组是系统设计和 AI 工程的交叉点，而且全是真实事故。「Claude Code sends your email address to websites」<sup class="score" tabindex="0" data-tip="热度 1594 · 521 条评论" aria-label="热度 1594 · 521 条评论">↑1594</sup><a href="https://github.com/anthropics/claude-code/issues/107757" target="_blank" rel="noopener noreferrer">↗</a> 是本周争论密度最高的条目之一；「Claude Code&#x27;s &quot;Don&#x27;t Ask Again&quot; exposes passwords in 1,122 public GitHub files」<sup class="score" tabindex="0" data-tip="热度 332 · 227 条评论" aria-label="热度 332 · 227 条评论">↑332</sup><a href="https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again" target="_blank" rel="noopener noreferrer">↗</a> 则把「工具调用授权一次就永久放行」的设计缺陷量化了。数据去向方面，「OpenAI seems to be silently re-enabling model training on Codex chats」<sup class="score" tabindex="0" data-tip="热度 531 · 163 条评论" aria-label="热度 531 · 163 条评论">↑531</sup><a href="https://news.ycombinator.com/item?id=50352757" target="_blank" rel="noopener noreferrer">↗</a> 和「ChatGPT silently passes data between connectors」<sup class="score" tabindex="0" data-tip="热度 94 · 39 条评论" aria-label="热度 94 · 39 条评论">↑94</sup><a href="https://community.openai.com/t/security-follow-up-tool-call-silently-routed-to-a-different-connector/1413053" target="_blank" rel="noopener noreferrer">↗</a> 共同指向同一件事：agent 的连接器就是新的数据出口。自建替代方案的讨论见「Revolut moves to self-hosted GLM」<sup class="score" tabindex="0" data-tip="热度 193 · 168 条评论" aria-label="热度 193 · 168 条评论">↑193</sup><a href="https://twitter.com/guilleflorvs/status/2117379073785696395" target="_blank" rel="noopener noreferrer">↗</a>。非 AI 的事故复盘素材同样够用：「Ubuntu still has not released patch for Linux 0day RCE in almost 3 weeks」<sup class="score" tabindex="0" data-tip="热度 626 · 221 条评论" aria-label="热度 626 · 221 条评论">↑626</sup><a href="https://freenode.net/article/ubuntu-lts-kernels-still-unfixed-for-critical-cve-2026-98432" target="_blank" rel="noopener noreferrer">↗</a> 争的是发行版的补丁响应 SLA，「Gitbook Breached」<sup class="score" tabindex="0" data-tip="热度 165 · 45 条评论" aria-label="热度 165 · 45 条评论">↑165</sup><a href="https://news.ycombinator.com/item?id=50354336" target="_blank" rel="noopener noreferrer">↗</a> 和「WorkOS reports security breach」<sup class="score" tabindex="0" data-tip="热度 81 · 11 条评论" aria-label="热度 81 · 11 条评论">↑81</sup><a href="https://news.ycombinator.com/item?id=50345712" target="_blank" rel="noopener noreferrer">↗</a> 则是供应链身份层连环受击。</p>
+<h4>纯工程与学习工作流：数量不多但质量不错</h4>
+<p>系统设计一侧本周偏冷：「Show HN: Waymark – A workflow engine that compiles jobs instead of replaying」<sup class="score" tabindex="0" data-tip="热度 81 · 40 条评论" aria-label="热度 81 · 40 条评论">↑81</sup><a href="https://github.com/piercefreeman/waymark" target="_blank" rel="noopener noreferrer">↗</a> 讨论的是编译式工作流对 replay 式持久执行的取舍，正好能和上面的 agent 编排对照读；「Can GROUP BY still be optimized after all these years?」<sup class="score" tabindex="0" data-tip="热度 118 · 24 条评论" aria-label="热度 118 · 24 条评论">↑118</sup><a href="https://pivotlake.io/blog/know-your-limit-faster-top-k-aggregation/" target="_blank" rel="noopener noreferrer">↗</a> 是典型的查询引擎优化长文；「The Lisp curse, now coming to your ecosystem」<sup class="score" tabindex="0" data-tip="热度 239 · 216 条评论" aria-label="热度 239 · 216 条评论">↑239</sup><a href="https://javahippie.net/programming/llm/2026/03/05/the-lisp-curse-coming-to-your-ecosystem.html" target="_blank" rel="noopener noreferrer">↗</a> 的 216 条评论几乎都在吵生态碎片化与工程规模化的关系。学习方向，最该看的是「So I guess everyone uses LLMs to think now」<sup class="score" tabindex="0" data-tip="热度 81 · 138 条评论" aria-label="热度 81 · 138 条评论">↑81</sup><a href="https://eva.ac/blog/llms/" target="_blank" rel="noopener noreferrer">↗</a>，评论远超分数，争的正是「用 AI 思考」是否在替换掉主动回忆这类真正产生记忆的环节；「AI for scientific discovery: How researchers use Claude」<sup class="score" tabindex="0" data-tip="热度 101 · 39 条评论" aria-label="热度 101 · 39 条评论">↑101</sup><a href="https://www.anthropic.com/research/how-researchers-use-claude" target="_blank" rel="noopener noreferrer">↗</a> 给了专业人士进入陌生领域的实际用法。输入源层面，「Show HN: HackerBooks」<sup class="score" tabindex="0" data-tip="热度 1867 · 306 条评论" aria-label="热度 1867 · 306 条评论">↑1867</sup><a href="https://hackerbooks.org" target="_blank" rel="noopener noreferrer">↗</a> 和「Show HN: HackerTV」<sup class="score" tabindex="0" data-tip="热度 488 · 83 条评论" aria-label="热度 488 · 83 条评论">↑488</sup><a href="https://hackertv.org" target="_blank" rel="noopener noreferrer">↗</a> 把 HN 的推荐沉淀成了书单与视频频道，可以直接当选材渠道用。</p>
+<h4>无关条目说明</h4>
+<p>本周 76 条里，大约 35 条与你的三个方向无关，不建议花时间：Anthropic IPO 与估值连发了 7 条（从「valuation as low as $1.1T」314 分/614 评论到「$1.3T」93 分/2 评论），以及 Google 市值、美国 30–33 岁净资产、旧金山失业技术工人等宏观经济讨论；此外是硬件与娱乐类（Flipper One、Subvocal、Lemmings CSS 动画、boot sector 语言模型、Groff 写小说、Antimony CAD）、模型/图像发布向（Kimi K3.1、Images 2.6、2 万美元训练的文生图、Phonon TTS）、以及火星峡谷、木蚁、BYD 巴西份额、人工耳蜗心理物理学这类纯兴趣内容。</p>
+<h2 id="section-5">在涨什么</h2>
+<h4>agent harness 与编排（GitHub Trending）</h4>
+<ul class="cols2">
+<li><b class="item">The-PR-Agent/pr-agent</b> — 面向 Pull Request 的 agent 工具，在代码评审流程里调用模型处理 PR。 <a href="https://github.com/The-PR-Agent/pr-agent" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">vercel-labs/agent-browser</b> — 供 agent 使用的浏览器，让 agent 以浏览器为工具执行任务。 <a href="https://github.com/vercel-labs/agent-browser" target="_blank" rel="noopener noreferrer">↗</a></li>
+</ul>
+<h4>笔记、知识与任务日程（Product Hunt）</h4>
+<ul class="cols2">
+<li><b class="item">Xmind 2027</b> — 思维导图工具的新版本。 <a href="https://www.producthunt.com/products/xmind" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Native Tasks for Obsidian</b> — 在 Obsidian 内做任务管理的插件，省去另开待办应用。 <a href="https://www.producthunt.com/products/native-tasks-for-obsidian" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Enhanced for Todoist</b> — Todoist 的增强工具。 <a href="https://www.producthunt.com/products/enhanced-for-todoist" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Calendarly</b> — 日程安排工具。 <a href="https://www.producthunt.com/products/calendarly-calendar-on-lock-screen" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Any Video to Text</b> — 把任意视频转成文字，替代手动听写与记录。 <a href="https://www.producthunt.com/products/any-video-to-text" target="_blank" rel="noopener noreferrer">↗</a></li>
+</ul>
+<h4>协作、阅读与桌面效率（Product Hunt）</h4>
+<ul class="cols2">
+<li><b class="item">Cedric AI for Meetings</b> — 面向会议的 AI 工具。 <a href="https://www.producthunt.com/products/cedric" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Country Filter for X</b> — 按国家过滤 X 上的内容，替代手动屏蔽。 <a href="https://www.producthunt.com/products/country-filter-for-x-2" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">PasteGuard for Mac</b> — Mac 上的剪贴板保护工具。 <a href="https://www.producthunt.com/products/pasteguard-2" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">MacDupl</b> — Mac 上的重复文件清理工具。 <a href="https://www.producthunt.com/products/macdupl-run-every-acc-in-its-own-app" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Mechvibes 3</b> — 键盘打字音效应用的新版本。 <a href="https://www.producthunt.com/products/mechvibes" target="_blank" rel="noopener noreferrer">↗</a></li>
+</ul>
+<p>其余 158 条未逐条列出：绝大多数为名称无法判明用途的 Product Hunt 新品（AI 助手与 agent 类、开发与部署工具、邮件与聊天、营销分析、浏览器扩展、系统与硬件发布等），另含 1 条模型发布动态（Kimi K3.1 Pro 开源 / GPT-6 Cyber 未开放）与 1 条非 agent 向 GitHub 项目（OpenMontage）。</p>
+<details class="fold" id="section-6"><summary>还没细看的（聚合稿）</summary><blockquote><p>97 条主题匹配但未进精选，这里给出核心观点供你判断是否值得回头细读。取正文最全的 40 条。</p></blockquote>
+<h4>权重空间编程与模型能力研究</h4>
+<ul>
+<li><b class="item">Sparks of Weight-Space Programming：LLM 可直接读写神经网络权重</b> — 论文（Takehi、Teoh、Alex Zhang、Omar Khattab）称 GPT-6 Astra 仅看原始权重的浮点数文本就能判断网络的功能并修改它；AINews 把它放在 Karpathy 八个月前 autoresearch 的脉络里解读，认为它绕过了&quot;写 PyTorch、跑集群、看 loss 曲线&quot;的流程。 <a href="https://latent.space/p/ainews-llms-can-read-write-neural-network-weights-weight-space-programming-cuts-autoresearch-out-of/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Qwen 3.8 27B 在笔记本上也能解释模型权重</b> — Simon Willison 复现了论文中的一个例子，本地 27B 模型同样能解读权重，说明该能力不限于前沿模型。 <a href="https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Import AI 479：Realtime-Bench 显示 LLM 在低延迟任务上很差</b> — 50 个动态任务，30 个 web 任务（旅行、电商、服务、安全四类）+20 个游戏任务（街机、解谜、策略、模拟），考察延迟动作直接影响成败的场景；由 UT Austin、俄亥俄州立、UIUC、NVIDIA、西北大学等合作构建。本期另含 Spacewar、Genie 4。 <a href="https://importai.substack.com/p/import-ai-479-spacewar-low-latency" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h4>Agent 产品、API 与路由</h4>
+<ul>
+<li><b class="item">Perplexity 推出 teammates</b> — 面向长期运行工作的个人 agent，能规划协调项目、随优先级变化调整并提交结果供审阅；建立在 Computer 之上，此前让 agent 承担持续性工作需要手工规划。 <a href="https://www.perplexity.ai/hub/blog/teammates-are-agents-for-complex-ongoing-work" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Perplexity Computer 面向电商</b> — 连接 Shopify（店铺数据与落地页）、Meta（广告）、Klaviyo（邮件营销），可用 skills 存放品牌设计规范，用于搭产品页和投放广告/邮件活动。 <a href="https://www.perplexity.ai/hub/blog/computer-for-e-commerce-is-built-for-brand-growth" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Agent API 各档 effort 全面降价并新增 ultra</b> — 每个档位单次查询成本下降，研究质量持平或提升；effort 是打包配置（模型、步数预算、搜索设置、工具），按名称调用（如 <code>effort=&quot;fast&quot;</code>）自动套用新配置。 <a href="https://www.perplexity.ai/hub/blog/improvements-to-every-agent-api-effort-level" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Decisions API 支持 web grounding</b> — 请求中加 <code>&quot;mode&quot;: &quot;web_grounding&quot;</code>，每个问题跑一次 Perplexity Fast Search，结果作为证据写入 state；state 也可直接给 URL 指向特定页面。基准为 PWS-Decisions。 <a href="https://www.perplexity.ai/hub/blog/web-grounding-for-the-decisions-api" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">OpenRouter 新一代 Auto Router / Auto Code Router</b> — 底层重建，按基准最多比旧路由高 4×，路由步骤快 3×；可在 chatroom 查看路由决策理由，在模型页看实时路由分布。 <a href="https://openrouter.ai/blog/announcements/auto-and-auto-code-routers/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">OpenRouter Guardrails 拆分组织限制与工作区默认值</b> — 预算、模型访问、内容审核成为三类独立策略，组织级设上限、工作区可设默认并做例外；向后兼容。背景数据：10 人以上团队用户一年增长 70 倍，平均组织的活跃 API key 数是过去的 3 倍。 <a href="https://openrouter.ai/blog/announcements/guardrail-policies/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Tavily 上线 Composio Instant</b> — 支持 web search 与内容提取，无需单独注册 Tavily 账号、管理 API key 或订阅，按调用从 Composio 钱包计费。 <a href="https://composio.dev/blog/tavily-on-composio-instant" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">PI v1.5.0</b> — 新增扩展包更新 changelog 展示（可配置路径、<code>collapseChangelog</code> 折叠）、大工具调用增量解析与高亮复用以提升流式渲染、自定义自更新命令（<code>PI_SELF_UPDATE_COMMAND</code>/<code>selfUpdateCommand</code>）；接入 GPT-6.1 Terra（OpenAI、Azure OpenAI Responses、OpenAI Codex，Codex 提供 500K 上下文，支持 tool search、对话中途切换 thinking 级别及关闭 thinking）。破坏性变更：工具参数校验行为调整。 <a href="https://github.com/earendil-works/pi/releases/tag/v1.5.0" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h4>Agent 与网站之间的身份、访问与安全</h4>
+<ul>
+<li><b class="item">Cloudflare：Agent 不是人类（但又有点像）</b> — 论证站点需要身份、声誉、问责三项机制才能在 Agent 代人访问时保留站点与用户的关系；Agent 可能看起来像普通用户，也可能是一个访客携带多个用户。 <a href="https://blog.cloudflare.com/trusted-agent-delegation/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Cloudflare 上线个人 Agent 的分析与访问策略</b> — 新增 analytics 让站点看清哪些个人 agent 在访问、做了什么，并提供更细粒度的访问控制，替代&quot;一刀切屏蔽&quot;。 <a href="https://blog.cloudflare.com/personal-agents-visibility-control/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Cloudflare Zero Wire：关键漏洞情报中心</b> — 公开的漏洞情报 feed，面向需要快速判断&quot;我们是否受影响&quot;的安全团队；文中指 AI 正在提高严重漏洞被发现的数量与速度。 <a href="https://blog.cloudflare.com/zero-wire/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Privacy Pass 的后量子化</b> — 除 TLS 外，Privacy Pass 这类用于限速、替代 CAPTCHA 与指纹识别的隐私协议同样依赖易受量子攻击的密码学，文章讨论其迁移方案。 <a href="https://blog.cloudflare.com/vole-mole/" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h4>网页数据与检索基准（Firecrawl）</h4>
+<ul>
+<li><b class="item">Legal Retrieval Benchmark 发布</b> — 581 条法律检索请求，用于评测搜索 API，每条要求返回一份官方文档（法规、条例、判决或机构指引），全部来自 Firecrawl 政府与法律索引的真实客户查询；与索引改进构成每周循环。 <a href="https://www.firecrawl.dev/blog/legal-retrieval-benchmark" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">法律数据 API 横评：CourtListener、PACER 等</b> — CourtListener 免费账号 125 请求/天，LegiScan 免费层 1 万查询/月，PACER 按页计费 $0.10，2027 年 1 月 1 日起涨至 $0.12，Westlaw 与 Lexis 的 API 需走销售。 <a href="https://www.firecrawl.dev/blog/legal-data-api" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">面向 AI 购物 agent 的商品数据 API：5 家对比</b> — Bright Data、Apify、Oxylabs、Zyte 按站点 scraper/Actor 或 AI 抽取售卖、按每千条记录计价，Firecrawl 为第五个选项；核心论点是模型训练数据没有当前价格，需返回价格、促销价、变体、库存、图片、评论等结构化字段。 <a href="https://www.firecrawl.dev/blog/product-data-api" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">B2B 开发客户的 5 步流程与 AI prompt</b> — 定义理想客户、列出匹配账户、找到采购决策者、检查购买信号、写出相关的首句；强调融资、招聘、职位每月变动，需实时数据。 <a href="https://www.firecrawl.dev/blog/b2b-prospecting" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h4>评测、可观测性与开发工具</h4>
+<ul>
+<li><b class="item">Braintrust 支持追踪 MCP server</b> — 可看到 agent 请求了什么、工具调用返回了什么，用 Patterns 聚合发现问题；针对&quot;工具返回成功但 agent 拿错数据或理解错&quot;的情况，服务端错误日志不够用。 <a href="https://www.braintrust.dev/blog/mcp-tracing" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Arize Phoenix 自动更新模型价格</b> — 价格目录不再绑定版本发布，服务器可在版本之间接收新费率；在 Settings &gt; Models 可查看当前内置价格目录的日期。 <a href="https://arize.com/blog/phoenix-automatic-model-pricing-updates/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Vercel Security Review 公测</b> — Vercel Agent 的第三项能力（另两项为 Code Review 和 Investigation），GitHub push（含直推生产分支）触发扫描改动代码，查找缺失鉴权、泄露密钥等问题；结果出现在 PR 评论、Security dashboard 和 CLI，授权后 Agent 可验证并推送修复；monorepo 中按项目根目录限定范围。 <a href="https://vercel.com/blog/vercel-security-review" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h4>Vercel 客户案例</h4>
+<ul>
+<li><b class="item">Zapier</b> — 用 v0 在两小时内做出交互式合作伙伴 demo（原流程需数周），三个内部应用各一天出首版，为 60 多名营销人员建共享日报，单月创建 330 万个 sandbox 隔离 AI 工作负载的代码执行。 <a href="https://vercel.com/blog/how-zapier-turns-ideas-into-working-software-in-hours-with-vercel" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Mercor</b> — 批处理任务从 12 小时压到 2 小时；10 天内经 AI Gateway 路由 1800 万请求、630 亿 token；用 Vercel Passport 秒级开通专家访问；内部构建者创建了 2000 多个项目。 <a href="https://vercel.com/blog/how-mercor-ships-internal-apps-and-billions-of-production-tokens-on-one-platform" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">OpenEvidence</b> — 为 65 万名医生提供带引用的医学检索；生产部署约 5 分钟完成，用 Fluid compute 将 serverless 支出降低 90%，流量尖峰无需额外扩容。 <a href="https://vercel.com/blog/how-openevidence-scales-medical-search-for-doctors" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h4>系统与基础设施工程</h4>
+<ul>
+<li><b class="item">Meta F3 Lightning：广告 ML 特征上线提速</b> — F3 把单请求 2 万多个特征编译进一张合并图以降低计算成本，但该图同时是发布单元，单个特征失败或定义非法就阻塞整条发布流水线；F3 Lightning 在其上加一层，让每个特征独立编译、校验、部署和回滚，难点是保持原有效率——早期按特征发布的原型因特征不再共享计算而推高了 CPU 使用。 <a href="https://engineering.fb.com/2026/11/03/ml-applications/f3-lightning-how-meta-accelerates-ads-ml-features-to-production/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Anthropic 重新设计源码控制</b> — 编码本身已不是瓶颈（Claude 能跑研究循环、优化程序、从零建服务），瓶颈转移到围绕写代码的基础设施。 <a href="https://blog.bytebytego.com/p/how-anthropic-redesigned-source-control" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Netflix 用 AI agent 做性能工程</b> — 介绍其在分布式架构中压缩响应时间、定位 CPU/内存瓶颈、控制基础设施成本的 agent 实践。 <a href="https://blog.bytebytego.com/p/how-netflix-uses-ai-agents-for-performance" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Nvidia Nemotron 模型家族的工作方式</b> — 拆解其核心设计思路：在保持模型容量的同时压低推理开销。 <a href="https://blog.bytebytego.com/p/how-nvidias-new-nemotron-model-works" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">LLM 推理系统是怎么跑的</b> — 以一次请求为线索讲三个核心难题：每步都要访问巨大模型时如何快速出 token、如何在 GPU 显存与容量有限时服务多用户、如何既快又不浪费昂贵硬件。 <a href="https://newsletter.systemdesign.one/p/how-llm-inference-works" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h4>行业动态与观点</h4>
+<ul>
+<li><b class="item">AINews：人事与并购的&quot;换边季&quot;</b> — Cat Wu 离开 Anthropic（自 Claude Code 立项起任产品负责人）加入 OpenAI 领导 Core Products PM；Sharon Zhou（Lamini CEO，被 AMD 收购后任 Lisa Su 麾下 VP of AI）从 AMD 转投 Anthropic；Factory 收购 HumanLayer；Meta 收购 Conductor。 <a href="https://latent.space/p/ainews-it-s-swapping-season/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">AINews：Anthropic IPO 续篇</b> — 市场回调加深，纳斯达克约 -10%（未到 -20% 的熊市线）；文中提到估值预期被压低至 1 万亿美元量级、概率下调 18%；Anthropic 年底目标 1000 亿美元 run rate，当前 800 亿。含与 Jamin Ball 的第二期播客。 <a href="https://latent.space/p/ainews-anthropic-ipo-whither-now/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">AINews：Weight-Space Programming 的争议与 AI Engineer 上海</b> — 编辑方承认该论文部分表述过于有利，但已有多次独立复现，不做撤回；本期转向 AI Engineer Shanghai 并附 Latent Space 发展史独家访谈。本期检查了 12 个 subreddit、544 个 Twitter 账号。 <a href="https://latent.space/p/ainews-behind-latent-space-kill-my-saas-jev-ai-in-2026-aiei-shanghai/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Legora CTO Jacob Lauritzen 访谈</b> — 两周前宣布 5.5 亿美元 E 轮、估值 88 亿美元；4 月 ARR 破 1 亿（上线不到 18 个月），客户超 1800 家；产品从&quot;ChatGPT+瑞典法律+搜索&quot;起步，现可起草编辑 Word 文档、一次审阅数千份合同，并协调律师、客户与其他 agent。 <a href="https://latent.space/p/building-ai-for-lawyers-jacob-lauritzen-cto-of-legora/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Aravind Srinivas 在剑桥辩论社的演讲（2026-10-03）</b> — 他拒绝讲&quot;AI 的未来&quot;，改讲&quot;你的未来&quot;，并预留更多时间给问答。 <a href="https://www.perplexity.ai/hub/blog/the-knowledge-talk" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">美国人口普查局与&quot;超级智能&quot;行政令</b> — Simon Willison 重跑 Apollo 2025 年 9 月那张&quot;大企业 AI 采用率下滑&quot;图的数据来源 BTOS（每两周从 120 万家企业中抽 20 万家轮调调查），过程中发现普查局受第 14434 号行政令（即&quot;Super Intelligence&quot;那道）影响。 <a href="https://simonwillison.net/2026/Nov/2/census-bureau-super-intelligence/" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h4>概念与实践指南</h4>
+<ul>
+<li><b class="item">AI agent 记忆</b> — 讲工作记忆、情景记忆、语义记忆、程序性记忆如何配合；引 Letta CEO Charles Packer 观点：记忆基准已饱和因为它们只测召回，而召回已被解决，真正未解的是 agent 靠保留的上下文在工作中变得更好且无需重训。 <a href="https://www.perplexity.ai/hub/blog/ai-agent-memory" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">自主 agent 是什么、怎么运作</b> — 覆盖规划、工具使用、记忆与自检，以及在研究、邮件、课业、购物中的用法。 <a href="https://www.perplexity.ai/hub/blog/autonomous-agent" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">MCP 安全：11 类常见风险</b> — 风险归为三类——LLM 操纵（如间接 prompt 注入）、数据与访问安全、基础设施漏洞（如本地 server 被攻陷）；强调防护强度应与所连 MCP server 暴露的能力和数据相称。 <a href="https://www.perplexity.ai/hub/blog/mcp-security" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">AI 可访问性实务指南</b> — 区分&quot;用 AI 做无障碍&quot;与&quot;AI 工具本身是否无障碍&quot;两件事，涵盖如何用 AI 让内容可访问、如何核验结果、如何判断工具自身的可访问性，以及当前局限。 <a href="https://www.perplexity.ai/hub/blog/ai-accessibility" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul></details><div class="foot"><a href="./">← 全部往期</a> &nbsp;·&nbsp; <a href="./sources.html">资讯源</a></div>
+</main></div></body></html>

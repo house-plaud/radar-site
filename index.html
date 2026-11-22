@@ -202,197 +202,258 @@ img{max-width:100%;height:auto}
 .mast>*,.srcbox,.srcbox .row>*{min-width:0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style></head><body><div class="layout">
-<header class="mast"><h1 class="wordmark">资讯周报</h1><div class="sweep">2026-W46<br>427 条抓取 · 精选 115 候选 · 论文 70 候选</div></header>
+<header class="mast"><h1 class="wordmark">资讯周报</h1><div class="sweep">2026-W47<br>560 条抓取 · 精选 125 候选 · 论文 160 候选</div></header>
 <p class="tagline">AI 工程 · 系统设计 &nbsp;/&nbsp; 一期一份，过期即归档</p>
-<nav class="nav"><a href="./" aria-current="page">本期 / 往期</a><a href="./2026-W46.candidates.html">本期候选</a><a href="./sources.html">资讯源</a></nav><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">值得读的 · AI 工程</a><a href="#section-2">值得读的 · 系统设计</a><a href="#section-3">论文</a><a href="#section-4">社区在聊什么</a><a href="#section-5">在涨什么</a><a href="#section-6">还没细看的（聚合稿）</a><a href="#section-7">往期</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
-<blockquote><p>抓取 427 条 · 值得读 115 候选 / 讨论 64 / 榜单 178 / 论文 70 候选 / 收藏 0</p></blockquote>
+<nav class="nav"><a href="./" aria-current="page">本期 / 往期</a><a href="./2026-W47.candidates.html">本期候选</a><a href="./sources.html">资讯源</a></nav><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">值得读的 · AI 工程</a><a href="#section-2">值得读的 · 系统设计</a><a href="#section-3">论文</a><a href="#section-4">社区在聊什么</a><a href="#section-5">在涨什么</a><a href="#section-6">还没细看的（聚合稿）</a><a href="#section-7">往期</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
+<blockquote><p>抓取 560 条 · 值得读 125 候选 / 讨论 62 / 榜单 213 / 论文 160 候选 / 收藏 0</p></blockquote>
 <h2 id="section-1">值得读的 · AI 工程</h2>
-<h3>Free Live Masterclass: Building AI Agents That Work in the Real World</h3>
-<p class="tag">ByteByteGo · 2026-11-13 · 周末整块</p>
-<p>这是 ByteByteGo 的课程推广邮件，宣传一场免费线上 masterclass，标题为「不学这些技术就别做 AI agent」，时间为 11 月 15 日周日美西 12 点、时长 1 小时、在 Zoom 上。宣传文本给出的框架是：agent 需要上下文来做决策、工具来行动、guardrail 来守住边界、检查来验证结果，但没给出这些部分如何拼接的具体内容。评论区有一条报名报错「Could not save your seat」的反馈，Alex Xu 回复称已修复。这是官方自办的营销内容，实际方法论无法从材料中判断。</p>
-<p class="src">→ <a href="https://blog.bytebytego.com/p/free-live-masterclass-building-ai" target="_blank" rel="noopener noreferrer">https://blog.bytebytego.com/p/free-live-masterclass-building-ai</a></p>
-<h3>Adapting to AI penetration testing orchestrators: The Modern Security Model</h3>
-<p class="tag">Cloudflare Blog · 2026-11-13 · 周末整块</p>
-<p>这是 Cloudflare 官方博客，讲其应对 LLM 渗透测试编排框架激增的安全模型变化，文中数据均出自 Cloudflare 自身观测。作者称仅过去三天就有超过 50 个框架族尝试扫描 Cloudflare 客户，运行这些框架的 IP 已成千上万并每日增长；ARTEX 作者 Autumn-27 于 10 月 8 日将其下架，此后衍生出逾 12,000 个仓库、数百个含原始血统的 fork。AI 渗透测试与利用工具的日请求量自 10 月 1 日以来增长 30 倍，部分复杂攻击已开始串联窃取的客户凭证做横向移动。这是厂商自述的防守视角，数据未经第三方核实。</p>
-<p class="src">→ <a href="https://blog.cloudflare.com/adapting-to-ai-penetration-testing-orchestrators/" target="_blank" rel="noopener noreferrer">https://blog.cloudflare.com/adapting-to-ai-penetration-testing-orchestrators/</a></p>
-<h3>[AINews] The No AI Slop Manifesto</h3>
-<p class="tag">Latent Space · 2026-11-14 · 周末整块</p>
-<p>这是 Latent Space 的 AINews 一期，头条是起源于 AIE CODE 会议讨论、由 Dex 在闭幕 keynote 中提出的「No AI Slop Manifesto」，已有多位讲者联署并在 Hacker News 上首页。同一期还提到 llama.cpp 和 ggml 达到 1.0（从 llama.cpp 公共头文件移除 35 个废弃函数），SGLang 也在 SGLang Summit 上宣布 1.0。条目开头是 Deepgram 和 Backblaze 的赞助段落，与主体内容无关。对他意味着：跟进 agent 相关工程实践时，可以了解「拒绝 AI 垃圾产出」这套讨论，但不能把它当作工程规范。</p>
-<p class="src">→ <a href="https://latent.space/p/ainews-the-no-ai-slop-manifesto/" target="_blank" rel="noopener noreferrer">https://latent.space/p/ainews-the-no-ai-slop-manifesto/</a></p>
-<h3>The Only Way to Debug AI Agents at Scale</h3>
-<p class="tag">System Design Newsletter · 2026-11-14 · 周末整块</p>
-<p>这是 System Design Newsletter 的一篇文章，标题为「在规模化生产中调试 AI 代理的唯一方法」，开头带 Infisical 赞助的 11 月 18 日 webinar（凭证代理、限定权限、短期会话）推广。文章的核心论点是单建 agent 容易，但数百个 agent 稳定跑在生产里很难，典型失败模式包括陷入推理循环、调错工具、超出 token 预算、返回错误答案。它提出 agent harness 是围绕 LLM 提供的基础设施与控制层，负责管理执行，生产级 harness 的第一个构件是推理循环：规划任务、执行动作、观察结果、调整计划。文章给出的组件清单在摘要中被截断，其余部分材料不足。</p>
-<p class="src">→ <a href="https://newsletter.systemdesign.one/p/ai-agent-observability-opentelemetry" target="_blank" rel="noopener noreferrer">https://newsletter.systemdesign.one/p/ai-agent-observability-opentelemetry</a></p>
-<h3>Introducing ChatGPT Wallet</h3>
-<p class="tag">OpenAI News · 2026-11-13 · 碎片时间</p>
-<p>这是 OpenAI 的产品公告，推出 ChatGPT Wallet，定位为让 ChatGPT Work、Codex 和 dots 中的 agent 在用户批准下完成购买的安全方式，并沿用现有银行卡保护。公告正文只有这一句描述，材料未说明支持的卡组织、地区、额度限制、审批交互细节或上线时间。对他意味着：把支付动作交给 agent 执行时，多了一条带用户确认环节的官方路径，但具体机制目前信息不足。</p>
-<p class="src">→ <a href="https://openai.com/index/introducing-chatgpt-wallet" target="_blank" rel="noopener noreferrer">https://openai.com/index/introducing-chatgpt-wallet</a></p>
-<h3>Token Pass now includes $150 in tokens for $30/month</h3>
-<p class="tag">Vercel · 2026-11-13 · 碎片时间</p>
-<p>这是 Vercel 的 changelog，宣布 Token Pass 在每月每团队 30 美元不变的前提下，包含的 token 额度从 80 美元提高到 150 美元。额度只适用于通过 AI Gateway 提供的精选开放权重模型，包括 Kimi K3、Kimi K3.1 Pro、GLM 5.3、GLM 5.3 Flash 和 DeepSeek V4.1 Flash；每个计费周期重置且不结转。额度用尽后，用标准 AI Gateway key 或 OIDC token 的请求回落到团队的 AI Gateway 余额，而用 Token Pass 专属 key 的请求直接停止、不产生超额扣费。Token Pass 是 Pro 团队的 Early Access 附加项，名额有限、满员后进等候名单；coding agent 可用 CLI 命令 vercel token-pass 接入。对他意味着：给 agent 或编码助手配模型预算时，性价比选项多了一个，但受限于指定开放权重模型池。</p>
-<p class="src">→ <a href="https://vercel.com/changelog/vercel-token-pass-now-includes-one-hundred-fifty-dollars-of-monthly-tokens" target="_blank" rel="noopener noreferrer">https://vercel.com/changelog/vercel-token-pass-now-includes-one-hundred-fifty-dollars-of-monthly-tokens</a></p>
-<h3>Kitesurf is now open source</h3>
-<p class="tag">Cloudflare Blog · 2026-11-13 · 碎片时间</p>
-<p>这是 Cloudflare 官方博客，宣布面向 AI agent 的无状态浏览器 Kitesurf 以 Apache 2.0 许可在 GitHub 开源，可本地运行、修改或部署到自己的 Cloudflare Workers 账户。Kitesurf 的推出时间是八月，九月补充了 WebMCP 支持和改进的兼容性，开源承诺此前已多次提及。技术上它完全跑在 Workers 上，自行解析 HTML、应用 CSS、执行页面 JS、渲染截图，不需要浏览器容器，并支持 Chrome DevTools Protocol，可接 Puppeteer 这类客户端；仓库基于 Rust 编译到 WebAssembly 的开源包，如 Blitz 负责 HTML 解析、DOM、布局与绘制，Stylo 负责 CSS 解析。对他的意味着：agent 的网页操作环节可以用比 Chromium 更轻、可弹性扩展的方案。</p>
-<p class="src">→ <a href="https://blog.cloudflare.com/kitesurf-open-source/" target="_blank" rel="noopener noreferrer">https://blog.cloudflare.com/kitesurf-open-source/</a></p>
-<h3>Daemons can now send traces to Vercel Tracing</h3>
-<p class="tag">Vercel · 2026-11-13 · 碎片时间</p>
-<p>这是 Vercel 的 changelog，宣布 Daemons 现在可以向 Vercel Tracing 发送 OpenTelemetry trace。机制是 Vercel 给每个 daemon 一个 Unix socket 接收 OTLP/HTTP trace，路径写在 VERCEL_OTEL_SOCKET_PATH 环境变量里；把 @vercel/otel 升到 2.3.0 或以上，Node.js daemon 用默认配置就能自动导出。使用时需在 worker 启动前调用 registerOTel 初始化，并通过 Vercel CLI 的 vercel traces search 按服务名检索，加 --json 可返回 JSON 供 agent 使用。对他意味着：后台 worker 的 span 能和项目其它 trace 放在一起查，agent 可以用 CLI 以 JSON 形式拉取追踪数据。</p>
-<p class="src">→ <a href="https://vercel.com/changelog/vercel-daemons-can-now-send-traces-to-vercel-tracing" target="_blank" rel="noopener noreferrer">https://vercel.com/changelog/vercel-daemons-can-now-send-traces-to-vercel-tracing</a></p>
+<h3>How the Claude Code team thinks about verification</h3>
+<p class="tag">claude.dev Blog · 2026-11-16 · 周末整块</p>
+<p>这是 Claude Code 团队在自家 claude.dev 博客发布的工程文章，作者 Addy Osmani，讨论编码 agent 如何用证据验证自己的工作。核心事实：团队约 90% 的代码由 Claude 编写和审阅，他们指出没有验证回路时只能同时运行一两个 Claude，有了验证回路可以并行几十到几百个。内部测试中，用独立评分器按 rubric 检查 Claude 产出，相比标准提示循环最多提升 10 个点的任务成功率，难题上收益最大。文章主张优先投资端到端测试、属性测试和差分测试，并说明团队如何保证验证器本身不出错。对他来说：如果把「给 agent 一个可自证的验证器」做进 harness，会直接决定并行 agent 的规模上限，而「独立 grader 对比自评」是可以照搬的评测模式。</p>
+<p class="src">→ <a href="https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/" target="_blank" rel="noopener noreferrer">https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/</a></p>
+<h3>Engineering AI Discover</h3>
+<p class="tag">Netflix TechBlog · 2026-11-17 · 周末整块</p>
+<p>这是 Netflix 技术博客的文章，作者包括 Varun Khaitan、Peng Ren 等多人的团队，讲 AI Discover 背后「智能层」的工程决策。产品事实：AI Discover 是 Netflix TV 应用里新增的一个 tab，面向一小部分会员开放，做法是从后台静默排序转向可操控的发现——会员选一个主题比如「Quick Watches」，就得到一排匹配片目、一段为什么匹配的简短说明，以及几个更窄的后续主题。技术上的答案是每个请求由一个 agent harness 决定如何把 LLM 与既有推荐系统组合：先规划请求、跨系统执行、返回结果，并离线评估。文章称其建立在多年对会员偏好的理解以及近期把 LLM 用于推荐和生成式体验的工作之上。对他来说：这是一个把 harness 当作「LLM 与既有系统之间的调度层」并且带离线评估环节的实例；但材料只有引言，具体的挑战与取舍未展开。</p>
+<p class="src">→ <a href="https://netflixtechblog.com/engineering-ai-discover-e244944cdc38?source=rss----2615bd06b42e---4" target="_blank" rel="noopener noreferrer">https://netflixtechblog.com/engineering-ai-discover-e244944cdc38?source=rss----2615bd06b42e---4</a></p>
+<h3>Building the Agent Host Protocol for sessions that continue across devices</h3>
+<p class="tag">GitHub Engineering · 2026-11-17 · 周末整块</p>
+<p>这是 GitHub 工程博客的文章，介绍 Agent Host Protocol（AHP）这一开放标准，目的是让 agent 会话跨设备延续。问题背景：GitHub Copilot 最初是 VS Code 扩展，扩展捆绑自己的 harness，导致 agent 生命周期绑定到单个窗口——关窗则 agent 消失，更新 VS Code 会重启并停掉所有 agent，连远程机器会得到一个锁定在特定 VS Code 版本的扩展宿主。同时 Copilot 独立应用和 iOS/Android 移动端各自与云端 agent 做不同的集成，每个集成只解决一个产品的问题。AHP 先在 VS Code 中构建、后被 GitHub 全线采用，使在 Copilot 里一处启动的 agent 会话可在另一处接着用。对他来说：这正面回答了「agent harness 该放在客户端还是独立宿主」的问题，会话状态与编辑器生命周期解耦是可迁移到自研 agent 的架构选择。</p>
+<p class="src">→ <a href="https://github.blog/engineering/engineering-principles/building-the-agent-host-protocol-for-sessions-that-continue-across-devices/" target="_blank" rel="noopener noreferrer">https://github.blog/engineering/engineering-principles/building-the-agent-host-protocol-for-sessions-that-continue-across-devices/</a></p>
+<h3>Context rot in AI agents: why long tasks lose accuracy and how to prevent it</h3>
+<p class="tag">Perplexity Blog · 2026-11-18 · 周末整块</p>
+<p>这是 Perplexity 官方博客发布的一篇科普式指南，解释 agent 的「上下文腐化」（context rot）。它把 context rot 定义为长任务中随上下文填充而逐渐发生的准确率下降，上下文包含指令、历史消息、搜索结果、网页和文件文本，随任务推进不断累积。文中举例：任务是找两周内交货的供应商，中途上下文塞入几十个网站正文、几页搜索结果和已查清单后，agent 会开始把六周交货的供应商也算进去。它指出上下文窗口以 token 计量，腐化在步骤多的长任务里最容易发生，表现为偏离原始指令、漏细节、混淆相似信息。对他来说：这直接对应上下文管理和 token 预算的设计取舍，压缩与重置策略需要按任务长度而非固定阈值来定；但文中未给出具体缓解措施或量化数据。</p>
+<p class="src">→ <a href="https://www.perplexity.ai/hub/blog/context-rot" target="_blank" rel="noopener noreferrer">https://www.perplexity.ai/hub/blog/context-rot</a></p>
+<h3>How Meta Uses AI Agents to Scale ML Innovations Across Ads Ranking Models</h3>
+<p class="tag">Engineering at Meta · 2026-11-18 · 周末整块</p>
+<p>这是 Meta 工程博客系列文章的第二篇，讲如何用 AI agent 把 ML 改进（架构升级、训练优化等技术）推广到庞大的广告排序模型群，作者称这一过程为「technique propagation」。关键数字：自 2026 年 3 月 agent 开始驱动执行以来，估计 AI agent 承担了全部技术推广工作的 60% 以上；与 agent 介入前相比，早期结果显示工程效率提升 3 倍，部分组合的训练算力中位数下降 4 倍，预计到年底节省 4500 万美元以上算力。技术背景是 Meta 的广告推荐由大量形态各异的排序模型组成，每个有各自的架构、训练数据和 serving 约束。前一篇介绍的 Ranking Engineer Agent（REA）负责生成假设、设计实验和验证新技术。对他来说：这是多 agent 承担重复性工程推广的量化案例，但数字全部来自 Meta 自述，应按宣传口径打折看。</p>
+<p class="src">→ <a href="https://engineering.fb.com/2026/11/18/ml-applications/ai-agents-to-scale-ml-innovations-across-ads-ranking-models/" target="_blank" rel="noopener noreferrer">https://engineering.fb.com/2026/11/18/ml-applications/ai-agents-to-scale-ml-innovations-across-ads-ranking-models/</a></p>
+<h3>The War Against Slop and an Emerging Weapon to Fight it: Formal Verification</h3>
+<p class="tag">Latent Space · 2026-11-20 · 周末整块</p>
+<p>这是 Latent Space 发布的文章，主题是形式化验证可能成为对抗 AI 生成低质代码（slop）的武器。文中称 2026 年 AI 业界的年度词是 slop，即大模型产出的低质量内容，随着 AI 生成代码增多，避免 slop 成为工程师的日常问题。文章列举做形式化验证的几家公司：Harmonic、Theorem、Axiom Math 以及新入场的 &amp;Truth，并采访了 &amp;Truth 联合创始人兼联席 CEO Clark Barrett——他是斯坦福研究教授，也是自动推理引擎 cvc5 的共同创造者，cvc5 是 SMT 求解器，被 Amazon 使用，例如在 Amazon 的 agentic 开发环境 Kiro 中做规格分析和测试生成。文中称 cvc5 现在一年被调用数十亿次。对他来说：如果给 agent 的产出接上可机器判定的验证器，就等于给 harness 加了一层不靠 LLM 判卷的硬门；但材料只给了厂商和人物背景，没有各方案的技术对比细节。</p>
+<p class="src">→ <a href="https://latent.space/p/formal-verification/" target="_blank" rel="noopener noreferrer">https://latent.space/p/formal-verification/</a></p>
+<h3>8 ways to reduce the cost of evals</h3>
+<p class="tag">Arize AI · 2026-11-21 · 周末整块</p>
+<p>这是 Arize AI 发布的博客，作者从一次线下活动上反复听到的「eval 太贵」抱怨出发，给出 8 条降低评测成本的方法。核心论点是 eval 成本主要来自默认设置——用最大的 judge 模型、把整条 trace 当输入、开着 reasoning、对每条 trace 都打分——而这些默认通常有更便宜的替代且精度不掉，所以成本是设计选择而非固定税。第一条建议是能用代码就用代码：判断标准是两个人在同一 rubric 下看同一 span 是否会给出不同结论，不会分歧的就用代码评测器，比如 schema 检查、格式检查和对照已知答案的比较。文中其余建议仅列出标题，材料未展开细节。对他来说：这提供了在评测预算受限时逐项拆解成本的结构，其中「两人是否会分歧」是一个可立刻套用的代码/LLM judge 分界线。</p>
+<p class="src">→ <a href="https://arize.com/blog/reduce-the-cost-of-evals/" target="_blank" rel="noopener noreferrer">https://arize.com/blog/reduce-the-cost-of-evals/</a></p>
 <h2 id="section-2">值得读的 · 系统设计</h2>
-<h3>Cuttlefish on Mac: Running Android’s Virtual Device Framework Natively on Apple Silicon</h3>
-<p class="tag">Engineering at Meta · 2026-11-13 · 周末整块</p>
-<p>这是 Meta 工程博客，讲 Reality Labs 把 AOSP 的虚拟设备框架 Cuttlefish 原生移植到 Apple Silicon Mac 上的工程经历。背景是 Cuttlefish 能启动与真机相同的系统镜像、跑更真实的软件栈，保真度高于轻量模拟器 Goldfish，但官方只支持 Linux，而开发者用的是 Apple Silicon Mac，导致两套模拟器并行、占用计算资源并增加运维负担。文中还提到 Goldfish 与真机的差异会把 bug 藏到开发后期，并削弱对模拟器的信任、增加对稀缺真机的依赖。移植过程的具体技术方案在摘要中被截断，材料不足。</p>
-<p class="src">→ <a href="https://engineering.fb.com/2026/11/13/android/cuttlefish-on-mac/" target="_blank" rel="noopener noreferrer">https://engineering.fb.com/2026/11/13/android/cuttlefish-on-mac/</a></p>
-<h3>EP233: Kubernetes Explained for Busy Engineers</h3>
-<p class="tag">ByteByteGo · 2026-11-14 · 周末整块</p>
-<p>这是 ByteByteGo 的系统设计周报 EP233 摘要，主体是赞助方 Sentry 与 Anthropic 的线上工作坊预告。工作坊里 Anthropic 的 CJ Avilla 把 Claude Platform 的 OpenTelemetry 数据接到 Sentry，据此发现一个仍在消耗 token 的老项目，并指出重试的成因可能是慢 API 或数据库而非模型本身。正文部分还包括 Kubernetes 教程的片段：在 deployment.yaml 描述期望状态，API server 校验后写入 etcd，controller manager 负责把实际状态拉向期望状态。Kubernetes 部分只给出了开头，编排细节没有展开。对他意味着：agent 排查要能把工具调用失败、重试和最终成功放进同一条 trace，并判断修在 prompt、工具还是后端服务。</p>
-<p class="src">→ <a href="https://blog.bytebytego.com/p/ep233-kubernetes-explained-for-busy" target="_blank" rel="noopener noreferrer">https://blog.bytebytego.com/p/ep233-kubernetes-explained-for-busy</a></p>
+<h3>Using a &quot;chaos loop&quot; to harden the Claude Docs launch: 60 server errors across billions of requests</h3>
+<p class="tag">claude.dev Blog · 2026-11-17 · 周末整块</p>
+<p>这是 Anthropic 的 claude.dev 博客发布的自家事迹复盘，作者 Vivek Nair，讲 Claude Docs 上线前如何用一个「chaos loop」压测底层服务。事实：上线三周前它还只是单节点的概念验证，只有 Anthropic 内部几千人在用；2026 年 9 月 16 日公开发布，到 9 月 22 日用户已创建超过 460 万份文档。团队称在 20 亿次请求中只出现 60 个服务器错误，且从未回滚，整个 Docs 服务跑在约 50 个内存优化型 pod 上。文章还提到让服务对 Claude 变得「可读」，以及 chaos loop 的具体做法和成本。对他来说：先小范围内部用、再据自估容量压测、最后以错误数而非可用性口号验收，是可直接借用的发布前流程；但这是官方自述自家客户/产品的成功案例，数字应按宣传打折看。</p>
+<p class="src">→ <a href="https://claude.dev/blog/chaos-loop-claude-docs-launch/" target="_blank" rel="noopener noreferrer">https://claude.dev/blog/chaos-loop-claude-docs-launch/</a></p>
+<h3>Design Once, Deploy at Scale: Building a Template-Driven ML Ecosystem</h3>
+<p class="tag">Engineering at Meta · 2026-11-18 · 周末整块</p>
+<p>这是 Meta 工程博客的文章，介绍其模板驱动的 ML 生态，相关论文题为《Design Once, Deploy at Scale: Template-Driven ML Development for Large Model Ecosystems》。核心问题：Meta 广告排序系统每天处理数十亿请求、服务大量生产模型，瓶颈已从发明新技术变成把技术推广到每个适用的模型，逐个模型适配无法随规模扩展，碎片化会迅速累积。做法是把模型设计标准化为少量可复用、可组合的积木，把逐模型的迭代变成共享的系统问题。两年成效：每模型工程时间减少 92%，交付 5000 多个技术-模型组合，在同等服务容量下离线模型质量平均提升 0.63%，覆盖 70% 模型（按数量）带来 0.86% 的累计线上提升。对他来说：把「技术传播」当作独立系统问题并量化其收益，是规模化 ML 平台里少见的可迁移经验。</p>
+<p class="src">→ <a href="https://engineering.fb.com/2026/11/18/ml-applications/design-once-deploy-at-scale-template-driven-ml-ecosystem/" target="_blank" rel="noopener noreferrer">https://engineering.fb.com/2026/11/18/ml-applications/design-once-deploy-at-scale-template-driven-ml-ecosystem/</a></p>
+<h3>How LinkedIn Runs Compute: Self-Managed Kubernetes on 500,000+...</h3>
+<p class="tag">LinkedIn Engineering · 2026-11-19 · 周末整块</p>
+<p>这是 LinkedIn 工程博客的文章，作者 Ronak Nathani，讲 LinkedIn 如何在 50 万台以上裸金属服务器上自管理 Kubernetes。背景事实：十多年前 LinkedIn 自建了容器运行时和调度器，当时 Docker 尚新、K8s 尚未成熟，自研栈多年可用但越来越难演进，加新能力常需重写大块代码，AI/ML 负载又带来原平台不支持的诉求。他们几年前开始转向 Kubernetes，如今大部分负载（无状态服务、有状态系统、批处理、AI 负载）都跑在 K8s 上，并把 fleet 管理和 workload 管理设计成一个系统：负载方只声明容量和可用性要求，平台负责放置、供给、维护和基础设施生命周期。这种集成让全机群补丁可以自动推送，维护只在受影响负载能满足可用性要求时才推进。对他来说：这是「抽象出负载可用性声明、让平台统一协调扰动」的迁移范式，不依赖 AI 也该读。</p>
+<p class="src">→ <a href="https://www.linkedin.com/blog/engineering/infrastructure/how-linkedin-runs-compute-self-managed-kubernetes-on-500000-bare-metal-servers" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/blog/engineering/infrastructure/how-linkedin-runs-compute-self-managed-kubernetes-on-500000-bare-metal-servers</a></p>
 <h2 id="section-3">论文</h2>
-<blockquote><p>70 篇候选中选出 6 篇（预算 6 篇）。arXiv 无投票机制，取舍由语义判断，不是按热度。</p></blockquote>
-<h3>When Routine Operations Break Architectural Pattern Relationships in LLM Agent Harnesses</h3>
-<p>研究五个已发布 agent harness 和 14 个独立插件，用 PatternOps 追踪 Guardrail Enforcement Point、Autonomy Controller、Blackboard 等模式关系。发现重载插件、保存 allow rule 等日常操作会在不修改代码的情况下<b class="hl">静默破坏模式关系</b>，导致策略停止评估编辑、禁止编辑被执行。结论是模式关系属于运行系统及其历史，需按部署的决策路径、状态生命周期与操作序列来评估。</p>
-<p><b class="kicker">为什么值得读</b>：直接揭示 agent harness 中 guardrail/状态关系会被日常配置操作悄然破坏，正是编排与可靠性要处理的问题。</p>
-<p><b class="kicker">局限</b>：小样本（5 个 harness、14 个插件）且无量化失败率，部分结论依赖特定实现路径。</p>
-<p class="src">→ <a href="https://arxiv.org/abs/2611.09088" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2611.09088</a></p>
-<h3>When Instruction Files Go Stale: Documentation Debt and Hidden Cost in Coding Agents</h3>
-<p>在三个真实开源仓库的 stale instructions（AGENTS.md/CLAUDE.md）上，让两个模型执行 22 个维护任务，分析 732 条轨迹。发现 agent 在相关信息存在时仍会跟随过期指引；以 stale test command 为例，Claude Sonnet 5.5 每次约多出<b class="hl">两次工具调用</b>，成本比修正后高三分之一。所有 agent 都能从即时失败中恢复，但无一修复底层的 instruction file。</p>
-<p><b class="kicker">为什么值得读</b>：说明上下文/instruction file 的技术债如何转化为每个 agent session 的隐藏成本，贴合上下文管理。</p>
-<p><b class="kicker">局限</b>：仅深入 3 条真实指令、两个模型，且另两个案例未检测到显著差异。</p>
-<p class="src">→ <a href="https://arxiv.org/abs/2611.09802" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2611.09802</a></p>
-<h3>Aegis OS: A Transactional Multi-Tenant Operating System Runtime for Eliminating Authorization Fatigue in Autonomous Coding Agents</h3>
-<p>Aegis OS 把授权边界从单次工具调用移到事务性工作区边界，用内核强制沙箱、CoW 影子工作区、身份固定 HTTP egress 代理和 A2A IPC/CAS 实现。在 1,500 次受控调用与 28,087 次真实调用（52 个 session）中，将确认提示减少 <b class="hl">90.7–97.9%</b>，真实 session 中断率仅 1.12%，同时降低 80 次攻击的成功率，并解决多 agent 共写工作树与内联大 artifact 的高 token 开销。</p>
-<p><b class="kicker">为什么值得读</b>：同时覆盖授权疲劳、多租户工作区隔离和大 artifact token 开销，且有真实 session 规模数字。</p>
-<p><b class="kicker">局限</b>：主要基于 52 个 coding sessions/80 次攻击，未体现更大规模生产集群；依赖 macOS/Linux 内核机制。</p>
-<p class="src">→ <a href="https://arxiv.org/abs/2611.08516" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2611.08516</a></p>
-<h3>FlowPlan: Reducing the Token Cost of Coding Agents with Abstraction-Guided Planning and Verification</h3>
-<p>FlowPlan 让 agent 在 per-function 控制流/数据流图上做定位、规划和验证，先给出 graph deltas 再改源码，并在完成后比较结构化变化。六个 benchmark-model 组合中，解析率与 vanilla agent 无显著变化，但每个设定的 token 消耗都下降；Claude Haiku 4.5 在 SWE-bench Verified 上仅用 baseline 的 <b class="hl">0.32–0.35x</b> tokens。</p>
-<p><b class="kicker">为什么值得读</b>：证明可通过抽象层面的规划/验证直接削减编码 agent 的 token 预算，而不牺牲成功率。</p>
-<p><b class="kicker">局限</b>：分辨率没有提升，且只在 SWE-bench Pro/Verified、SecBench 上验证了 2 个模型。</p>
-<p class="src">→ <a href="https://arxiv.org/abs/2611.13241" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2611.13241</a></p>
-<h3>Comparative Analysis of Agent Evaluation Frameworks: Stability, Detection, and Discovery in Enterprise Analytics Agents</h3>
-<p>在企业分析 agent 的冻结执行轨迹上比较三类评估框架：基于 trace 的 LLM 评判、纯文本 LLM 评判+red-teaming、确定性启发式。97% 配置满足稳定性阈值；trace-based 框架达到最佳精确率-召回平衡 <b class="hl">F1=0.90</b>，纯文本 recall 相当但误报多 5 倍。第三阶段发现 24 个新失败，功能性测试与安全 red-teaming 零重叠。</p>
-<p><b class="kicker">为什么值得读</b>：给出可操作的 agent 评估框架选择策略：功能评估用 trace-based，安全用 red-teaming。</p>
-<p><b class="kicker">局限</b>：受控冻结 trace、两个 agent；未在实时工作流中验证。</p>
-<p class="src">→ <a href="https://arxiv.org/abs/2611.14493" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2611.14493</a></p>
-<h3>Measuring Tabular Data Formats Cold: A Replicated Cold-Cache Benchmark of Serialization, Scan, and Index Performance on Real Datasets</h3>
-<p>在 NYC taxi 与美国航空准点两个真实数据集上，以显式冷缓存、随机执行顺序、三独立 session 对 15 种格式/访问路径配置做基准。Parquet 过滤聚合比 CSV 快 <b class="hl">2.6–11 倍</b>，JSON Lines 慢 10–27 倍；随机序数据上二级索引使 SQLite 查询慢 2.6–4.8 倍，仅对有序低选择性有帮助。4GB 低内存主机会反转部分排序，提示内存环境影响格式选择。</p>
-<p><b class="kicker">为什么值得读</b>：非 AI 系统设计里很扎实的存储格式性能取舍，带冷缓存和统计校正方法论。</p>
-<p><b class="kicker">局限</b>：只覆盖单机笔记本/服务器环境与两个数据集，不涉及分布式/云存储。</p>
-<p class="src">→ <a href="https://arxiv.org/abs/2611.10398" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2611.10398</a></p>
+<blockquote><p>160 篇候选中选出 6 篇（预算 6 篇）。arXiv 无投票机制，取舍由语义判断，不是按热度。</p></blockquote>
+<h3>Does Your Agent Need to Know Its Budget? A Placebo-Controlled Experiment on LLM Coding Agents</h3>
+<p>通过安慰剂对照析因实验（5,835 runs）单独测量 token 预算执行与告知对编码 agent 的影响。强制预算上限使任务解决率下降 <b class="hl">20 个百分点</b>，但每个已解决任务的 token 用量降低约十二倍。告知 agent 预算没有任何帮助，唯一的“正效应”来自一句无关句子（安慰剂）。结论是预算治理应成为执行设计问题，而不是沟通问题。</p>
+<p><b class="kicker">为什么值得读</b>：用随机对照实验直接回答 token 预算“执行还是告知”的问题，落在 token 预算与任务成本的核心痛点上。</p>
+<p><b class="kicker">局限</b>：只在两个开源模型和两个程序修复基准上验证，未覆盖闭源 frontier 模型。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2611.21614" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2611.21614</a></p>
+<h3>Revision-Consistent Code Context for Agents That Edit Their Environment</h3>
+<p>提出“混合 revision 代码上下文”问题：编辑型 agent 在查询时同时修改仓库，可能把不同 revision 的事实组合成不安全结果。方案是 agent 可见的 complete-revision 发布契约，要求同一响应内所有视图共享版本标识与发布边界，并在 Codetrip 中实现。对照实验中 live-source 组合在 150 次更新出现 2 次不安全响应，Codetrip 为 0；恢复试验 300/300 返回完整新上下文。Rename 探针中 Codetrip 混合上下文 <b class="hl">0/30 vs 30/30</b>。</p>
+<p><b class="kicker">为什么值得读</b>：上下文管理在 agent 边编辑边查询时的一致性契约，是 agent 应用侧一个具体且可迁移的问题。</p>
+<p><b class="kicker">局限</b>：只在 frozen Gin/Cobra 等仓库上验证，仓库范围和编辑场景有限。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2611.21616" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2611.21616</a></p>
+<h3>Readie: Low-Latency Code Sandboxes for AI Agents</h3>
+<p>针对 AI 代理代码沙箱启动慢的问题，提出学习式启动快照，把单快照的紧凑与覆盖矛盾转化为一组快照的集合覆盖优化。在 15K 公共与 LLM 合成脚本上规划，Readie 在同一存储预算下把启动延迟降低 <b class="hl">3–22 倍</b>，端到端运行时间降低 1.3–3.3 倍。关键洞察是一组小快照可同时做到启动快和覆盖广。</p>
+<p><b class="kicker">为什么值得读</b>：系统设计层面的基础设施优化，低延迟代码沙箱直接决定 agent 执行循环的可行性和成本。</p>
+<p><b class="kicker">局限</b>：未详细说明跨语言、跨依赖生态的泛化边界。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2611.22171" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2611.22171</a></p>
+<h3>Higher-Scoring Coding Models Did Not Get More Work Done</h3>
+<p>利用一次为期 19 天的出口管制导致用户被迫从 Claude Fable 5 切到低 11 分模型的事件，构造自然实验研究模型分数提升是否转化为真实生产力。对 297 名受影响用户与 8,908 名未切换用户的 PR 数据做双重差分，发现访问高分模型仅让 7 天合并率提升 <b class="hl">1.4 个百分点</b>，不显著。五次模型升级的合并率提升也均为负且不显著，说明 benchmark 分数提升没有转化为可测量的工作产出。</p>
+<p><b class="kicker">为什么值得读</b>：用自然实验挑战基准分数与真实效能的关系，属于 agent 评测与可靠性中最需要的外部效度检验。</p>
+<p><b class="kicker">局限</b>：只测量 PR 合并率和数量，未覆盖代码质量、长期维护成本等产出维度。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2611.23216" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2611.23216</a></p>
+<h3>Idempotency Is Not Recovery: A Fault-Injection Study of Language-Model Agent Tool Actions</h3>
+<p>通过故障注入研究 LLM agent 工具调用中断后重试/幂等语义，区分“抑制重复副作用”和“恢复完成状态”。在 Windows/Linux 上 7,513 次试验中，完整运行时记录到 <b class="hl">0/200 vs 117/200</b> 次重复副作用；去掉 action ledger 后孤儿副作用 170/170。禁用 reconciliation 后 100/100 已知故障结果不明确；代价是吞吐约为 fail-open 的七分之一。</p>
+<p><b class="kicker">为什么值得读</b>：工具调用幂等与恢复是 agent 可靠性的核心，故障注入数据清晰区分了“不重复”和“真正恢复”。</p>
+<p><b class="kicker">局限</b>：在受控运行时和构造案例上验证，不完全代表生产环境中的故障复杂性。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2611.23353" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2611.23353</a></p>
+<h3>SWE-CoWork: Benchmarking Coding Agents as Digital Employees in Organizations</h3>
+<p>在模拟软件组织中评估编码 agent：101 个任务、101 个真实仓库、11 种语言、12 个领域，包含 26 个有界知识同事。两个领先模型通过约 63% fail-to-pass 测试，但完整交付任务不足 <b class="hl">8%</b>。即使前置提供完整需求也只提升 F2P 测试约 16 个百分点，完整任务成功率不变；31% 自称完成的需求仍测试失败。</p>
+<p><b class="kicker">为什么值得读</b>：多 agent 协作与组织级 agent 评测中，需求跟踪和跨同事信息获取是比局部实现更关键的瓶颈。</p>
+<p><b class="kicker">局限</b>：模拟组织中的同事行为和知识边界是受控的，未必代表真实协作中的复杂度。</p>
+<p class="src">→ <a href="https://arxiv.org/abs/2611.20218" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2611.20218</a></p>
 <h2 id="section-4">社区在聊什么</h2>
-<h4>Agent 应用侧：企业正在拉闸，代码质量与安全成为争论焦点</h4>
-<p>本周社区对 coding agent 的信任出现明显分裂。高盛被曝正在禁止银行家和交易员使用 Claude Code，热度高达 <b class="hl">905分/497评论</b> <a href="https://www.thestateofai.com/news/goldman-sachs-claude-code-traders-bankers" target="_blank" rel="noopener noreferrer">↗</a>；联合航空也禁止 AI agent 代客订票<sup class="score" tabindex="0" data-tip="热度 680 · 707 条评论" aria-label="热度 680 · 707 条评论">↑680</sup><a href="https://www.cbsnews.com/news/united-airlines-bans-ai-agents-booking-flights/" target="_blank" rel="noopener noreferrer">↗</a>。与此同时，“AI 生成代码导致脆弱代码库”的帖子获得大量共鸣<sup class="score" tabindex="0" data-tip="热度 643 · 626 条评论" aria-label="热度 643 · 626 条评论">↑643</sup><a href="https://evanxmerz.com/post/ai-usage-generates-a-fragile-codebase/" target="_blank" rel="noopener noreferrer">↗</a>，还有人复盘“执行 100% AI 编码要求一年后，没人看得懂我们的代码”<sup class="score" tabindex="0" data-tip="热度 162 · 200 条评论" aria-label="热度 162 · 200 条评论">↑162</sup><a href="https://www.reddit.com/r/ClaudeCode/comments/1xq2n3t/a_year_after_the_100_ai_mandate_nobody/" target="_blank" rel="noopener noreferrer">↗</a>，以及开发者的个人声明“为什么我不再用 LLM 写代码”<sup class="score" tabindex="0" data-tip="热度 119 · 244 条评论" aria-label="热度 119 · 244 条评论">↑119</sup><a href="https://www.polso.info/why-i-will-not-be-using-llms-coding" target="_blank" rel="noopener noreferrer">↗</a>。安全层面的担忧也被放大：ChatGPT 桌面版会把 SSH agent 转发到远程机器<sup class="score" tabindex="0" data-tip="热度 221 · 79 条评论" aria-label="热度 221 · 79 条评论">↑221</sup><a href="https://news.ycombinator.com/item?id=50422628" target="_blank" rel="noopener noreferrer">↗</a>，Anthropic 披露的漏洞追踪也吸引大量关注<sup class="score" tabindex="0" data-tip="热度 460 · 221 条评论" aria-label="热度 460 · 221 条评论">↑460</sup><a href="https://www.vulncheck.com/blog/anthropic-glasswing-november-update" target="_blank" rel="noopener noreferrer">↗</a>。社区争论的核心不是“能不能用”，而是企业环境里 agent 的可靠性和安全边界。</p>
-<h4>Agent 编排与上下文：从并行 workers 到考古“多 agent”</h4>
-<p>上下文管理是本周最直接的提问：“如何跨客户端和项目管理 AI agent 的上下文？”<sup class="score" tabindex="0" data-tip="热度 100 · 63 条评论" aria-label="热度 100 · 63 条评论">↑100</sup><a href="https://news.ycombinator.com/item?id=50403153" target="_blank" rel="noopener noreferrer">↗</a>。Anthropic 升级 Claude Code Projects 支持并行 AI workers<sup class="score" tabindex="0" data-tip="热度 98 · 91 条评论" aria-label="热度 98 · 91 条评论">↑98</sup><a href="https://claude.com/resources/articles/projects-redesigned" target="_blank" rel="noopener noreferrer">↗</a>，把多 agent 协作推到更实际的场景。开源侧也有动作：AgentRun 声称是自我改进的托管 agent<sup class="score" tabindex="0" data-tip="热度 137 · 39 条评论" aria-label="热度 137 · 39 条评论">↑137</sup><a href="https://github.com/Parcha-ai/agentrun/blob/main/README.md" target="_blank" rel="noopener noreferrer">↗</a>，Klad 是一个可以让编码 agent 驱动的绘图应用<sup class="score" tabindex="0" data-tip="热度 83 · 34 条评论" aria-label="热度 83 · 34 条评论">↑83</sup><a href="https://github.com/klad-app/klad" target="_blank" rel="noopener noreferrer">↗</a>；还有帖子呼吁把 coding agent 从 2019 年的 JavaScript 环境搬到现代 Web 原语上<sup class="score" tabindex="0" data-tip="热度 444 · 146 条评论" aria-label="热度 444 · 146 条评论">↑444</sup><a href="https://github.com/GoogleChrome/modern-web-guidance" target="_blank" rel="noopener noreferrer">↗</a>。更有趣的是，有用户称其 AI agents 发现了一处未标注的玛雅遗址，热度高达 <b class="hl">1035分/392评论</b> <a href="https://pietromiotti.com/latest/maya-site" target="_blank" rel="noopener noreferrer">↗</a>，把“多 agent 协作”从演示拉到了现实发现。Claude 的 Whiteboards/Sheets/Data 新功能<sup class="score" tabindex="0" data-tip="热度 297 · 218 条评论" aria-label="热度 297 · 218 条评论">↑297</sup><a href="https://claude.com/resources/articles/sheets-whiteboards-data" target="_blank" rel="noopener noreferrer">↗</a> 也引发对 agent 工作区与上下文管理工具的讨论。这里社区分歧在于：并行 workers 和工具驱动环境能否真正降低上下文切换的成本，还是只是新的编排复杂度。</p>
-<h4>系统设计：计费陷阱、数据中心事故与推理容量</h4>
-<p>系统方向本周有大量与 AI 无关的工程讨论。AWS Lambda Web Functions 被指出在最后一次请求后仍持续计费约 7 分钟内存<sup class="score" tabindex="0" data-tip="热度 82 · 31 条评论" aria-label="热度 82 · 31 条评论">↑82</sup><a href="https://www.easel.sh/blog/lambda-web-functions-idle-memory" target="_blank" rel="noopener noreferrer">↗</a>，戳中 serverless 成本与计费可见性痛点。Jane Street 纽约唯一数据中心差点因误报烟雾警报被水淹，热度 <b class="hl">587分/276评论</b> <a href="https://michael.bacarella.com/2026/11/10/false-smoke-alarm-jane-street-datacenter/" target="_blank" rel="noopener noreferrer">↗</a>，是一篇典型的事故复盘。可观测性与环境模拟也有工具出现：AWS emulator<sup class="score" tabindex="0" data-tip="热度 988 · 266 条评论" aria-label="热度 988 · 266 条评论">↑988</sup><a href="https://github.com/aws/aws-emulator" target="_blank" rel="noopener noreferrer">↗</a> 试图在本地复现云环境。推理容量方面，Llama-modchip 在 64GB 内存、无 GPU 条件下运行 284B DeepSeek<sup class="score" tabindex="0" data-tip="热度 486 · 210 条评论" aria-label="热度 486 · 210 条评论">↑486</sup><a href="https://github.com/synchopate/llama-modchip" target="_blank" rel="noopener noreferrer">↗</a>；有人专门让 LLM 在旧设备上跑<sup class="score" tabindex="0" data-tip="热度 478 · 180 条评论" aria-label="热度 478 · 180 条评论">↑478</sup><a href="https://github.com/hyperionaidev/smolmaxxing/" target="_blank" rel="noopener noreferrer">↗</a>；Serving GLM-5.3 达到 607.8 tok/s<sup class="score" tabindex="0" data-tip="热度 135 · 65 条评论" aria-label="热度 135 · 65 条评论">↑135</sup><a href="https://developer.nvidia.com/blog/when-one-gpu-isnt-enough-serving-glm-5-3-across-two-nvidia-dgx-stations-with-vllm/" target="_blank" rel="noopener noreferrer">↗</a>。此外，Claude 服务中断讨论集中<sup class="score" tabindex="0" data-tip="热度 493 · 389 条评论" aria-label="热度 493 · 389 条评论">↑493</sup><a href="https://status.claude.com/incidents/nn11wk485zfn" target="_blank" rel="noopener noreferrer">↗</a>。这些讨论反映出对容量、成本、可用性的持续敏感，尤其是计费与事故复盘。</p>
-<h4>借助 AI 学习：本周几乎没有直接方法讨论</h4>
-<p>你关注的“用 AI 学东西的工作流”在本周条目里几乎缺席。唯一靠近的是 Ask HN 询问“最有用的、具体的 AI 技能该独立学什么”<sup class="score" tabindex="0" data-tip="热度 82 · 51 条评论" aria-label="热度 82 · 51 条评论">↑82</sup><a href="https://news.ycombinator.com/item?id=50494696" target="_blank" rel="noopener noreferrer">↗</a>，但这是关于学习 AI 技能本身，不是主动回忆、间隔复习或让 AI 出题等学习法。社区没有展开具体方法论，也缺乏学习类产品设计的讨论。这一方向本周可视为 <b class="hl">哑火</b>，需要从别处补足。</p>
-<hr>
-<p>本周共 64 条，其中约 40 条与上述方向无关（FAA 全国停飞系列、Jensen Huang 辞职、Anthropic IPO、OpenAI 融资、AI 医疗宣传、游戏、像素地图、摄像技术、机器人等）。</p>
+<h4>Agent harness 与工具调用：选型竞争和逆向工程</h4>
+<p>本周“What is the best harness for each model?”<a href="https://runta.com/blog/introducing-frontierharness-eval-v1-1/" target="_blank" rel="noopener noreferrer">↗</a><sup class="score" tabindex="0" data-tip="热度 421 · 135 条评论" aria-label="热度 421 · 135 条评论">↑421</sup>直接把 harness 适配问题摆上社区议程。Hugging Face 的 harness adapters <a href="https://huggingface.co/blog/harness-adapters-at-scale" target="_blank" rel="noopener noreferrer">↗</a> 想用适配层改善性能与成本；开源侧 Mastra Factory <a href="https://news.ycombinator.com/item?id=50548660" target="_blank" rel="noopener noreferrer">↗</a><sup class="score" tabindex="0" data-tip="热度 156 · 44 条评论" aria-label="热度 156 · 44 条评论">↑156</sup>和 OpenComputer <a href="https://github.com/diggerhq/opencomputer" target="_blank" rel="noopener noreferrer">↗</a><sup class="score" tabindex="0" data-tip="热度 119 · 36 条评论" aria-label="热度 119 · 36 条评论">↑119</sup>都在争夺自主 agent 开发入口。工具调用上，Claude Code 和 Codex 靠 <b class="hl">$3 Arduino</b> 逆向 1994 年 Jeep ECU <a href="https://www.youtube.com/watch?v=WPj3aQ-xxpI" target="_blank" rel="noopener noreferrer">↗</a><sup class="score" tabindex="0" data-tip="热度 455 · 241 条评论" aria-label="热度 455 · 241 条评论">↑455</sup>，LLM assisted reverse engineering <a href="https://www.slowchronicle.com/posts/llm-assisted-reverse-engineering" target="_blank" rel="noopener noreferrer">↗</a><sup class="score" tabindex="0" data-tip="热度 316 · 82 条评论" aria-label="热度 316 · 82 条评论">↑316</sup>和逐字节读写可执行文件 <a href="https://sgiannopoulos.github.io/blog/machine-code-programming/" target="_blank" rel="noopener noreferrer">↗</a><sup class="score" tabindex="0" data-tip="热度 229 · 148 条评论" aria-label="热度 229 · 148 条评论">↑229</sup>继续证明 LLM 与真实设备交互的边界在扩张；ClawDOS <a href="http://ricapar.net/ClawDOS/" target="_blank" rel="noopener noreferrer">↗</a><sup class="score" tabindex="0" data-tip="热度 162 · 51 条评论" aria-label="热度 162 · 51 条评论">↑162</sup>则把 coding agent 带到 DOS。同时 Not Everything Needs an LLM <a href="https://newsletter.posthog.com/p/decision-models" target="_blank" rel="noopener noreferrer">↗</a><sup class="score" tabindex="0" data-tip="热度 188 · 75 条评论" aria-label="热度 188 · 75 条评论">↑188</sup>提醒工具选择需要成本判断。</p>
+<h4>Agent 评测与可靠性：瓶颈后移到审查与提问质量</h4>
+<p>Harvard 研究发现 AI coding agents 把瓶颈转移到 code review <a href="https://complexdiscovery.com/harvard-researchers-find-ai-coding-agents-shifted-the-bottleneck-to-code-review/" target="_blank" rel="noopener noreferrer">↗</a><sup class="score" tabindex="0" data-tip="热度 328 · 465 条评论" aria-label="热度 328 · 465 条评论">↑328</sup>，<b class="hl">代码审查</b>成为新瓶颈。审计试验里 AI agents 比 KPMG 会计师更会提问 <a href="https://europeanbusinessmagazine.com/ai-agents-better-questions-kpmg/" target="_blank" rel="noopener noreferrer">↗</a><sup class="score" tabindex="0" data-tip="热度 499 · 264 条评论" aria-label="热度 499 · 264 条评论">↑499</sup>，说明评测重点从生成结果转向交互质量。StarSling 针对 agent-volume repos 做自改进 CI <a href="https://news.ycombinator.com/item?id=50536468" target="_blank" rel="noopener noreferrer">↗</a><sup class="score" tabindex="0" data-tip="热度 89 · 53 条评论" aria-label="热度 89 · 53 条评论">↑89</sup>，企业软件实施</p>
 <h2 id="section-5">在涨什么</h2>
-<h4>Agent 应用侧 · 模型与榜单更新 / GitHub Trending</h4>
+<h4>模型与 Agent 应用更新</h4>
 <ul class="cols2">
-<li><b class="item">ChatGPT or Claude for coding, by score and by cost</b> — 模型编码选择对比，按评分与成本。 <a href="https://benchlm.ai/blog/posts/chatgpt-or-claude-for-coding" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">How to evaluate an LLM before you pick one</b> — 如何评估 LLM。 <a href="https://benchlm.ai/blog/posts/how-to-evaluate-an-llm" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Cowork and chat merged, so choose Claude or Claude Code</b> — 并行工作与聊天合并，选择 Claude 或 Claude Code。 <a href="https://benchlm.ai/blog/posts/claude-cowork-vs-claude-code-vs-chat" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">vercel-labs/agent-desktop</b> — agent 桌面，来自 Vercel Labs。 <a href="https://github.com/vercel-labs/agent-desktop" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">What a system prompt does, and where extra rules pay off</b> — 分析 system prompt 的作用及额外规则何时有效。 <a href="https://benchlm.ai/blog/posts/what-is-a-system-prompt" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Claude Cowork has no price of its own. You pay for usage</b> — Claude Cowork 无独立定价，按使用量付费。 <a href="https://benchlm.ai/blog/posts/claude-cowork-pricing" target="_blank" rel="noopener noreferrer">↗</a></li>
 </ul>
-<h4>笔记、阅读与知识管理（Product Hunt）</h4>
+<h4>笔记与知识管理</h4>
 <ul class="cols2">
-<li><b class="item">Opal Reader</b> — 阅读器。 <a href="https://www.producthunt.com/products/opal-reader" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">inread.app</b> — 阅读应用。 <a href="https://www.producthunt.com/products/inread-app" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">WizardNote</b> — 笔记工具。 <a href="https://www.producthunt.com/products/wizardnote" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">VB Notes</b> — 笔记工具。 <a href="https://www.producthunt.com/products/vb-notes" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Jot 2.0</b> — 笔记工具。 <a href="https://www.producthunt.com/products/jot-2-0" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">FreeFlow Dictation</b> — 语音转文字输入。 <a href="https://www.producthunt.com/products/freeflow-dictation" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">If You Read This</b> — 阅读相关工具。 <a href="https://www.producthunt.com/products/if-you-read-this" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Reddit Reviews</b> — 阅读评论汇总。 <a href="https://www.producthunt.com/products/reddit" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Notebook to Notes</b> — 笔记本转笔记工具。 <a href="https://www.producthunt.com/products/notebook-to-notes" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Wispr Flow Notetaker for iPhone</b> — iPhone 上的语音记事器。 <a href="https://www.producthunt.com/products/wisprflow" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Noteshell</b> — 笔记管理壳工具。 <a href="https://www.producthunt.com/products/noteshell" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Tabstack by Mozilla</b> — Mozilla 的标签页管理工具。 <a href="https://www.producthunt.com/products/tabstack" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">tinytldr</b> — 摘要工具。 <a href="https://www.producthunt.com/products/tinytldr" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Bookella</b> — 书籍管理工具。 <a href="https://www.producthunt.com/products/bookella" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">UndoGuard</b> — 撤销保护工具。 <a href="https://www.producthunt.com/products/undoguard" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">AI Canvas</b> — AI 画布，用于组织内容。 <a href="https://www.producthunt.com/products/ai-canvas-2" target="_blank" rel="noopener noreferrer">↗</a></li>
 </ul>
-<h4>自动化、工作流与协作（Product Hunt）</h4>
+<h4>日程、任务与专注</h4>
 <ul class="cols2">
-<li><b class="item">Watchflows</b> — 工作流自动化。 <a href="https://www.producthunt.com/products/watchflows" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Nod by n8n</b> — n8n 的自动化节点。 <a href="https://www.producthunt.com/products/n8n-io" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Relay</b> — 自动化工作流。 <a href="https://www.producthunt.com/products/relaytoai" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Default Tamer</b> — 默认应用管理。 <a href="https://www.producthunt.com/products/default-tamer" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Customer.io Fall Release</b> — 客户沟通自动化。 <a href="https://www.producthunt.com/products/customer-io" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">HitPay Agentic Discovery</b> — 支付发现的自动化。 <a href="https://www.producthunt.com/products/hitpay-agentic-discovery" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">CollaboTokyo</b> — 协作工具。 <a href="https://www.producthunt.com/products/collabotokyo" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Co-Review</b> — 协作评审。 <a href="https://www.producthunt.com/products/co-review" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Remindly</b> — 提醒工具。 <a href="https://www.producthunt.com/products/remindly-6" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Cal.com v7</b> — 日程安排平台。 <a href="https://www.producthunt.com/products/cal" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Baby&#x27;s Day In</b> — 婴儿日程记录工具。 <a href="https://www.producthunt.com/products/baby-s-day-in" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Megumi Planner</b> — 计划器。 <a href="https://www.producthunt.com/products/megumi-planner" target="_blank" rel="noopener noreferrer">↗</a></li>
 </ul>
-<p>另有 158 条未逐条列出，主要为 AI 模型/安全、开发工具、设计/视频、电商/支付、社交及其他非效率类产品。</p>
-<details class="fold" id="section-6"><summary>还没细看的（聚合稿）</summary><blockquote><p>81 条主题匹配但未进精选，这里给出核心观点供你判断是否值得回头细读。取正文最全的 40 条。</p></blockquote>
-<h4>AI 编程与代码评审</h4>
-<ul>
-<li><b class="item">How Stanford Teaches AI-Native Engineering</b> — AI Engineer YouTube 频道订阅破百万；Mihail Eric 在斯坦福教《The Modern Software Developer》，同时在 Monaco 用编码代理发货和排查故障。 <a href="https://latent.space/p/cs146s/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Hide your slop PR descriptions behind</b> — Simon Willison 认为代理写的 PR 描述准确全面但读起来像 slop，容易让人跳过。 <a href="https://simonwillison.net/2026/Nov/9/details-summary/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Keeping code moving with clearer review expectations</b> — Sourcegraph 构建 bot 减少审批催促，将评审期望显式化；此前有小型 PR 的 stamp group 机制。 <a href="https://sourcegraph.com/blog/what-we-learned-building-a-pr-approval-bot" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Sunsetting Sourcegraph Cody</b> — Sourcegraph Cody 将于 2027 年 1 月 31 日 EOL，公告转型方向与迁移安排。 <a href="https://sourcegraph.com/blog/sunsetting-cody-future-of-code-intelligence" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Locating the source of a mysterious beep with Claude</b> — Simon Willison 用 Claude Code 构建 Beep Locator：Python web 服务器 + QR 码接入多设备，通过发声估计位置来定位间歇蜂鸣源。 <a href="https://simonwillison.net/2026/Nov/9/mysterious-beeps/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">How LinkedIn Uses AI to Review 40,000 Pull Requests a Week</b> — LinkedIn 有超过 10,000 个活跃代码库，每周数万 PR；编码代理增多后瓶颈从写代码转向代码评审。 <a href="https://blog.bytebytego.com/p/how-linkedin-uses-ai-to-review-40000" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">AI Engineer Code Summit: OpenAI on New Ways of Working With Codex</b> — OpenAI 开发者体验工程师 Dominik Kundel、Charlie Guo 工作坊讨论云迁移、个人代理 dots 与语音模式等 Codex 新工作方式。 <a href="https://latent.space/p/codex-work/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">How GitHub Used AI to Port Copilot From TypeScript to Rust in Record Time</b> — GitHub 用 Copilot 将驱动多个 Copilot 产品的引擎约 80 万行代码从 TypeScript 移植到 Rust。 <a href="https://blog.bytebytego.com/p/how-github-used-ai-to-port-copilot" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">The Roundup by ByteByteGo</b> — 据 GitHub 数据，9 月超过 40% 的 PR 由代理发起；Anthropic 在 S1 文件中披露 AI 编码价值，并提到 Anthropic 已用替代 Git 的方式跟上持续变更。 <a href="https://blog.bytebytego.com/p/the-roundup-by-bytebytego" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">AWS Emulator and the engineer&#x27;s job when agents write the code</b> — Werner Vogels 回顾 2004 年让 Swami 深入分析 Amazon 数据库使用，70% 数据库操作是简单操作；讨论代理写代码后工程师职责变化。 <a href="https://www.allthingsdistributed.com/2026/11/aws-emulator-and-the-engineers-job-when-agents-write-the-code.html?utm_campaign=inbound&amp;utm_source=rss" target="_blank" rel="noopener noreferrer">原文</a></li>
+<h4>协作与沟通</h4>
+<ul class="cols2">
+<li><b class="item">Zoom Slides</b> — Zoom 幻灯片工具。 <a href="https://www.producthunt.com/products/zoom" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Inbox Hero</b> — 收件箱管理工具。 <a href="https://www.producthunt.com/products/inbox-hero-2" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Bluedot Phone Calls</b> — Bluedot 电话通话工具。 <a href="https://www.producthunt.com/products/bluedot-2" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Ody Ai Business Phone</b> — AI 商务电话工具。 <a href="https://www.producthunt.com/products/ody-ai-business-phone" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Mailpipe</b> — 邮件管道工具。 <a href="https://www.producthunt.com/products/mailpipe-2" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">AI Call</b> — AI 通话工具。 <a href="https://www.producthunt.com/products/ai-call" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Glassmail</b> — 邮件工具。 <a href="https://www.producthunt.com/products/glassmail" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">SuperMailbox</b> — 超级邮箱工具。 <a href="https://www.producthunt.com/products/supermailbox" target="_blank" rel="noopener noreferrer">↗</a></li>
 </ul>
-<h4>模型评测与推理性能</h4>
-<ul>
-<li><b class="item">NaiveAI Promises 2,100 Tokens per Second. How Well Does It Code?</b> — Naive-N0.5-Flash 开源权重编码模型，基于小米 MiMo-V2.5 310B 继续训练，搭配 NaiveRT 推理引擎，目标 2100 tokens/s；关注递归自我改进。 <a href="https://latent.space/p/naiveai/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Best OCR Model for Scanned Documents, Measured</b> — OpenRouter 制作 8 个测试页，跑 15 个视觉模型路线；经典 Tesseract 在褪色打印、手写和传真上失败，视觉模型可读但偶发编造页面不存在值。 <a href="https://openrouter.ai/blog/insights/best-ocr-model/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">How to Benchmark LLMs</b> — OpenRouter 用 60 个合成任务比较模型，GPT-6.1 Sol 在三次重复、180/180 试验通过；DeepSeek 响应时间最低。 <a href="https://openrouter.ai/blog/tutorials/how-to-benchmark-llms/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">High Performance LLM Inference</b> — 指出 LLM 推理优化并非只靠更强 GPU，batching 等策略可降低硬件闲置与等待；n8n 发布可控 AI agent 作赞助内容。 <a href="https://newsletter.systemdesign.one/p/how-to-optimize-llm-inference" target="_blank" rel="noopener noreferrer">原文</a></li>
+<h4>自动化与工作流</h4>
+<ul class="cols2">
+<li><b class="item">Boost.space AgentOS</b> — 自动化代理操作系统。 <a href="https://www.producthunt.com/products/boost-space" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">ByteAsk Cloud Agents</b> — 云代理工具。 <a href="https://www.producthunt.com/products/byteask-cloud-agents" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">GatherHQ Agent Research</b> — 代理研究工具。 <a href="https://www.producthunt.com/products/gatherhq-agent-research" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Mermaid Flow</b> — 流程图工具。 <a href="https://www.producthunt.com/products/mermaid-chart" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">AgentWatch</b> — 代理监控工具。 <a href="https://www.producthunt.com/products/agentwatch-ai-traffic-tracker" target="_blank" rel="noopener noreferrer">↗</a></li>
 </ul>
-<h4>决策模型与市场趋势</h4>
+<p>其余 186 条未逐条列出：开发工具/平台、设计/创意、硬件/IoT、社区/市场、营销/广告、金融/健康，以及标题不足以判断的产品。</p>
+<details class="fold" id="section-6"><summary>还没细看的（聚合稿）</summary><blockquote><p>62 条主题匹配但未进精选，这里给出核心观点供你判断是否值得回头细读。取正文最全的 40 条。</p></blockquote>
+<h4>AI 模型发布与基准</h4>
 <ul>
-<li><b class="item">Decision models take 26% of requests; Anthropic now wins new teams 2:1</b> — Vercel AI Gateway 11 月生产指数：决策模型六周内占请求 1/4、占支出 0.5 美分/每美元；10 月约 31% 付费团队使用决策模型，月 100 亿 token 以上团队 70% 使用；语音模型采用从 7 月 4% 升至 10 月 11%；新团队选择 Anthropic 近 2:1。 <a href="https://vercel.com/blog/ai-gateway-production-index-november-2026" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">What Frontier Labs Buy: A Data Deep Dive with Handshake AI</b> — Handshake AI 训练业务约一年从启动到年化收入 10 亿美元；联合播客涵盖金融等 demo，展示前沿实验室购买的数据/RL 环境。 <a href="https://latent.space/p/handshake/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Designing for Agents — Zeno Rocha, Resend</b> — AEO 研究：Claude Code 在 102 次邮件推荐中 64 次首选 Resend，SendGrid 仅 7 次首选但 55 次作为备选；讨论 Agent Experience 优化。 <a href="https://latent.space/p/resend/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">[AINews] D-Day (Decision Models Day)</b> — 谷歌抢先 Anthropic 发布 Gemini Decision 1：校准多模态决策模型，最多 1000 个问题，$0.10/百万输入 token，端到端约 200ms；Cloudflare 展示 Clef/Clairic。 <a href="https://latent.space/p/ainews-d-day-decision-models-day/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">The Jev Revolution: What Engineers Are Already Building with System One Models</b> — AIE Code Summit 主题为 system one 模型；TypeSafe AI CEO Diogo Almeida 称 Jev 是“可靠智能”，用于自动化。 <a href="https://latent.space/p/jev-revolution/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">[AINews] Mercor $750m Series D at $20B valuation, $3B run rate</b> — Mercor 年化收入达 30 亿美元，D 轮 7.5 亿美元、估值 200 亿美元；报告 500 万专家，TAM 称美国有 800+ 职业；推理支出已是员工薪酬 3 倍。 <a href="https://latent.space/p/ainews-mercor-750m-series-d-at-20b-valuation-3b-run-rate/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">GPT-6.2 Astra 与 Sol 发布</b> — OpenAI 同时发布 GPT-6.2 Astra 和 Sol；Sol 以约 15% 的成本达到 9 月 Astra 水平，新 Astra 智力指数 62，仅次于 Fable 5.2 的 65；发布后出现强烈负面评测，OpenAI 做出回应。 <a href="https://latent.space/p/ainews-gpt-6-2-astra-the-2-frontier-model-is-better-and-20-600-cheaper-but-has-mixed-reviews-6-2-sol/" target="_blank" rel="noopener noreferrer">原文</a></li>
 </ul>
-<h4>LLM API 工程：限流、上下文与结构化输出</h4>
 <ul>
-<li><b class="item">LLM API Rate Limits: How to Fix OpenAI and Claude 429 Errors</b> — OpenRouter 解析 429 错误；60 个并发请求测试说明默认重试往往不够，按错误给出的 reset 时间重试、溢出到备用模型等步骤。 <a href="https://openrouter.ai/blog/tutorials/llm-api-rate-limits/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">MCP vs CLI vs Skills: What Each Costs in Context</b> — 每个工具定义都作为输入 token 发送；MCP 服务器可为上下文增加数万 token，OpenRouter 在 Claude Haiku/Sonnet 上测量 GitHub MCP、gh CLI 与 gh skill 成本。 <a href="https://openrouter.ai/blog/insights/mcp-vs-cli-vs-skills/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">How to Get Structured Output from Any LLM: JSON Schema, Tool Calls, or a Decision Model</b> — 介绍写 schema、强制 tool call、Response Healing 处理语法错误；输出为标签时用 decision model。 <a href="https://openrouter.ai/blog/tutorials/structured-output-llm/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">How to Stop an AI Agent Stuck in an Infinite Loop</b> — OpenRouter 提供四道护栏：doom-loop 检测、定义相同调用、步数/成本上限、API key 信用额度；在 6 个模型上测试。 <a href="https://openrouter.ai/blog/tutorials/ai-agent-infinite-loop/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Self-Hosted LLM vs API: When Does Self-Hosting Pay Off</b> — 2026 年 10 月 8 日价格下，27B 模型在租用 RTX 3090 上约 12% 负载达到盈亏平衡；大 MoE 模型需更高利用率。 <a href="https://openrouter.ai/blog/insights/self-hosted-llm-vs-api/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Introducing the Extractions API</b> — OpenRouter 推出 Extractions API alpha，用字段描述从文本、图片、PDF 中提取类型化值；首发 Cloudflare、Inception、ScaleDown 三个模型。 <a href="https://openrouter.ai/blog/announcements/extractions-api/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Gemini 4 Neon 发布</b> — Google DeepMind 推出七周内第四款 Gemini 4 模型 Neon，部分指标超过更大的 Carbon；旧 Argon 退役；同日 Anthropic IPO 定价每股 $83，Palo Alto Networks 以 45 亿美元全股票收购 Applied Compute。 <a href="https://latent.space/p/ainews-gemini-4-neon-gdm-s-opus-sol-contender/" target="_blank" rel="noopener noreferrer">原文</a></li>
 </ul>
-<h4>语音、多模态与 AI 应用</h4>
 <ul>
-<li><b class="item">How to Build a Voice AI Agent</b> — OpenRouter 教程构建餐厅预订语音代理，覆盖转写、工具调用、TTS 全回路；使用 LiveKit Agents，需在尴尬停顿前开始说话。 <a href="https://openrouter.ai/blog/tutorials/build-voice-ai-agent/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Fact-Checking at Scale: Building a More Accurate and Efficient Synopsis Factuality System</b> — Netflix 构建 synopsis 事实性系统，对系列/单集简介做事实核查，平衡信息量与吸引观众的留白。 <a href="https://netflixtechblog.com/fact-checking-at-scale-building-a-more-accurate-and-efficient-synopsis-factuality-system-d7d85859d808?source=rss----2615bd06b42e---4" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Your Algorithm: Giving People More Ways to Personalize Facebook Recommendations</b> — Meta 推出 Your algorithm 工具套件，用户可用自然语言编辑影响 Feed/Reels 的兴趣，推荐系统可即时调整。 <a href="https://engineering.fb.com/2026/11/10/ml-applications/your-algorithm-giving-people-more-ways-to-personalize-facebook-recommendations/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Cloudflare 开放权重模型 Clairic 更新版与 Clairic-flash</b> — Cloudflare 推出更新版 Clairic，改进图像/PDF 等复杂文档提取，增强表格、列表、日期处理；Clairic-flash 为 90 亿参数轻量版，两者均托管 Workers AI 并在 Hugging Face 开放权重。 <a href="https://blog.cloudflare.com/open-clairic/" target="_blank" rel="noopener noreferrer">原文</a></li>
 </ul>
-<h4>安全、记忆与 MCP 架构</h4>
 <ul>
-<li><b class="item">AI memory: what it is, how it works, and what it stores</b> — Perplexity 指南：AI memory 将用户偏好与上下文单独存储，模型本身不保留；可查看、编辑或关闭。 <a href="https://www.perplexity.ai/hub/blog/ai-memory" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">MCP Architecture: Full Technical Breakdown With Diagrams</b> — MCP 架构由 host/client/server 组成，JSON-RPC 2.0 格式，Streaming HTTP 传输，含多租户、安全风险与 8 步请求流程图。 <a href="https://www.perplexity.ai/hub/blog/mcp-architecture" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Escaping SPACE: Part II</b> — Perplexity SPACE 沙盒红队实验，威胁模型为 agent 可完全控制 guest VM；9 个模型测试 VM-host 隔离与网络出口绕过；第二部分报告结果。 <a href="https://www.perplexity.ai/hub/blog/escaping-space-part-ii" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Qwen4-Max 上架 Vercel AI Gateway</b> — Alibaba 的 Qwen4 系列首款推理模型 Qwen4-Max 提供原生视觉和 1M token 上下文，可在 Blender 构建 3D 场景、在 Unity/Unreal/Godot 生成可玩游戏，支持多 MCP 工具调用和带引用的输出。 <a href="https://vercel.com/changelog/qwen4-max-now-available-on-ai-gateway" target="_blank" rel="noopener noreferrer">原文</a></li>
 </ul>
-<h4>基础设施与系统</h4>
 <ul>
-<li><b class="item">Extending LLDB to Debug Applications That Span CPUs and GPUs</b> — Meta 在 lldb-server 构建厂商中立加速器插件架构，CPU/GPU 作为独立调试进程但呈现在同一调试会话中。 <a href="https://engineering.fb.com/2026/11/09/developer-tools/extending-lldb-to-debug-applications-that-span-cpus-and-gpus/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">How We Built TLX: A Hardware-Native GPU Compiler for Production ML at Scale</b> — TLX 是 Triton 扩展，引入显式 warp-group 与 cluster 级编排；在 RecSys 训练/推理和 LLM 预训练中证明性能提升。 <a href="https://engineering.fb.com/2026/11/10/open-source/tlx-a-hardware-native-gpu-compiler-for-production-ml/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Choosing QuePaxa, an unusual consensus algorithm</b> — Cloudflare Meerkat 使用 QuePaxa（2023）共识算法，针对广域网易变网络，避免常见 Raft/Paxos 在 leader 故障或延迟升高时整体变慢的问题。 <a href="https://blog.cloudflare.com/choosing-quepaxa/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Intelligent Delivery: Making Every Unit of Compute Serve Better Ads</b> — Meta 构建 ML 驱动分配系统，预测计算边际效用，跨服务栈移动资源；自 2017 年以来带来约 10% 增量排序性能，并引入 agentic AI 检测系统变化。 <a href="https://engineering.fb.com/2026/11/11/ml-applications/intelligent-delivery-serve-better-ads/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">FrontierML 基准发布</b> — FrontierML 衡量 AI agent 如何将资金转化为模型性能，包含 21 个长程任务、6 个类别，每个任务提供 12 小时 CPU 沙箱和 $10/$50/$200 三种预算。 <a href="https://importai.substack.com/p/import-ai-481-ai-sub-contractors" target="_blank" rel="noopener noreferrer">原文</a></li>
 </ul>
-<h4>产品发布与工具</h4>
+<h4>AI 平台与产品更新</h4>
 <ul>
-<li><b class="item">PI v1.5.1</b> — 新增 shell 登录/登出、最长 30 分钟空闲 prompt 缓存预热、Anthropic 消息线程、更丰富 Mermaid 图、GitHub Copilot classifiers 等。 <a href="https://github.com/earendil-works/pi/releases/tag/v1.5.1" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Manage Braintrust with Terraform</b> — Braintrust Terraform provider 可用代码定义项目、组、角色、服务账户，方便平台团队在多团队/环境中复用配置。 <a href="https://www.braintrust.dev/blog/terraform" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Run your job search from one chat</b> — Firecrawl 发布 Alexandria，结合职位数据与人脉数据，可从单 chat 运行求职搜索；同时宣布 $75M Series B。 <a href="https://www.firecrawl.dev/blog/job-search-tools-chatgpt-claude" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">How We Built a Self-Correcting Localization System for OpenRouter</b> — OpenRouter 本地化上线 beta，支持 7 种语言；翻译存于 Git，16,918 个英文字符串，通过自校正流水线保持更新。 <a href="https://openrouter.ai/blog/announcements/openrouter-in-8-languages/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Perplexity Monitor API</b> — 可定时监测全网主题动态或特定页面变化，并通过 webhook 发送相关更新，替代自建定时搜索与去重。 <a href="https://www.perplexity.ai/hub/blog/introducing-perplexitys-monitor-api" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">Perplexity Context API</b> — 一次读取最多 10 个 URL，返回干净的 Markdown、HTML、链接和基于查询的片段，来自 Perplexity 网络索引或实时抓取，支持指定新鲜度。 <a href="https://www.perplexity.ai/hub/blog/context-api-extracts-full-context-from-any-web-page" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">Perplexity Computer Multiagent 模式</b> — 在 Ultra 之上新增 Multiagent 努力级别，由主 agent 协调多个不同前沿模型的 agent 并行工作、共享发现并交叉检查。 <a href="https://www.perplexity.ai/hub/blog/introducing-computer-multiagent" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">Perplexity Orchestrator</b> — 一个 API 统一接入开放权重和专有模型，统一计费，按可用性、容量、延迟自动路由，并提供同模型故障转移；兼容 OpenAI 和 Anthropic 请求格式。 <a href="https://www.perplexity.ai/hub/blog/orchestrator-one-api-for-reliable-inference" target="_blank" rel="noopener noreferrer">原文</a> <a href="https://www.perplexity.ai/hub/blog/introducing-orchestrator" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">Perplexity Brain 自改进技能</b> — Brain 新增从经验中学习重复流程的 self-improving skills，由后台 agent 更新知识 wiki，使 Computer 适应用户偏好和程序。 <a href="https://www.perplexity.ai/hub/blog/self-improving-skills" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">Perplexity 移动端语音模式</b> — Perplexity Max 订阅者可在 iOS/Android 上呼叫 teammates，通过语音分配任务、获取项目更新或调整优先级。 <a href="https://www.perplexity.ai/hub/blog/work-with-teammates-on-mobile-with-voice-mode" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">Perplexity RAG 指南</b> — 发布 RAG 定义、主要类型及从网络搜索到企业知识库的实际用例，说明所有主流 agent 工具均使用 RAG。 <a href="https://www.perplexity.ai/hub/blog/rag" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">Vercel Board</b> — 为多 agent 协作提供共享消息板原语，用于 Vercel 安全 agent 群和 v0 软件工厂（自动合并超过 50% PR），支持访问授权与双相同步。 <a href="https://vercel.com/blog/introducing-vercel-board" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">Vercel Priority Projects 公测</b> — 为 Pro/Enterprise 项目提供可选升级：增加 bot 与流量来源信号、用于监控客户端脚本和连接的 Page Integrity，以及额外防火墙控制与告警。 <a href="https://vercel.com/changelog/priority-projects-now-in-public-beta" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h4>开发者工具与自动化</h4>
+<ul>
+<li><b class="item">Vercel eve 1.0 发布</b> — 开源生产 agent 框架正式 GA；自 6 月预览以来发布 230+ 版本并合并数千 PR，提供安全审批控制、可观测性和可替换的模型/工具/指令 harness。 <a href="https://vercel.com/blog/eve-is-now-generally-available" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">Firecrawl 集成 Docker Sandboxes</b> — Docker Sandboxes 中的 agent 可通过 Firecrawl 搜索、抓取和爬取实时网络数据，同时沙箱只允许访问事先设定的主机，凭据不离开沙箱；Firecrawl 是 Docker Sandboxes 的启动合作伙伴。 <a href="https://www.firecrawl.dev/blog/firecrawl-docker-sandboxes-kit" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">PI v1.6.0 发布</b> — GPT-6.2 Astra 和 Sol 加入 openai、azure、openai-codex provider，Sol 设为默认；扩展组件 render() 返回 readonly string[] 为破坏性变更；新增 qwen4-max-preview 与 deepseek-v4 等模型。 <a href="https://github.com/earendil-works/pi/releases/tag/v1.6.0" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">Linear Mobile Diffs</b> — 将代码审查搬到手机：Guided Reviews 显示变更内容，可在同一处回复线程、评论或将修复发回 agent，审查与关联 issue 并列，整个循环可在手机上完成。 <a href="https://linear.app/now/mobile-diffs" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">Arize AI 扩展 Alyx 能力</b> — Arize AX 内的 AI 工程 agent Alyx 现在可调查 Signal 发现的生产问题、配置/暂停/恢复 Managed Agents，并可视化性能，无需切换工具。 <a href="https://arize.com/blog/alyx-gets-better-at-doing-thingss/" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">Sourcegraph 降低额度成本</b> — 自 11 月 19 日起，Deep Search 降至 50 credits，Code Finder via MCP 降至 3 credits，Smart Hovers 免费；同等额度可多用 40% Deep Search 或 3.5 倍 Code Finder 调用。 <a href="https://sourcegraph.com/blog/credit-pricing-update" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h4>AI 工程与评估</h4>
+<ul>
+<li><b class="item">Vercel：Agents 是用户，软件需要 evals</b> — 提出将 agent 视为产品用户，通过 evals 衡量 agent 在发现、选择、访问、成功四个漏斗阶段的完成情况，重点检查是否完成用户任务。 <a href="https://vercel.com/blog/agent-evals" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">Sourcegraph 2026 Big Code 报告</b> — 调查 1,028 名软件开发者，79% 的 AI 采用组织感到中等/相当/强烈 ROI 压力；报告关注 AI 写更多代码时团队如何理解、审查和变更大型代码库。 <a href="https://sourcegraph.com/blog/big-code-report-2026" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">Sourcegraph：大型 monorepo 为何需要代码搜索</b> — local 工具、稀疏检出和 AI coding agent 只能看到部分代码，monorepo 本身不消除代码搜索需求，需代码搜索与精确导航。 <a href="https://sourcegraph.com/blog/monorepo-code-search-ai-coding-agents" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">Instacart 用 LLM 改善搜索与购买</b> — 用户搜索常使用非目录表达（如“bread no gluten”），Instacart 用 LLM 将这些短语映射到实际产品，提升匹配。 <a href="https://blog.bytebytego.com/p/how-instacart-uses-llms-to-make-people" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">ByteByteGo：思考更多为何会让 LLM 变笨</b> — 讨论推理过度可能让模型把正确答案改错，与人类复查时可能引入错误类似。 <a href="https://blog.bytebytego.com/p/why-thinking-more-can-make-an-llm" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">ByteByteGo：AI 工程师的 Evals 指南</b> — 与 OpenAI 工程师 Hamel Husain 对话，提供 AI evals 的实用入门，涵盖构建 AI 产品中的评估难点和方法。 <a href="https://blog.bytebytego.com/p/evals-for-ai-engineers" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">GraphRAG 深入解析</b> — 系统设计通讯发布 GraphRAG 工作原理深度解析（材料仅有标题，未提供详细机制）。 <a href="https://newsletter.systemdesign.one/p/graph-retrieval-augmented-generation" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h4>安全漏洞与威胁</h4>
+<ul>
+<li><b class="item">Java4Shell (CVE-2026-114938)</b> — OpenJDK Base64 解码器内存破坏漏洞，CVSS 9.2，远程未认证可导致内存泄漏或 RCE；已证影响 Keycloak、Jira、Confluence 等；Cloudflare WAF 提供防护，Sourcegraph 提供定位脆弱 JDK 的方法，漏洞仅影响 AVX-512 x86 CPU 上的 Java 17+。 <a href="https://blog.cloudflare.com/java4shell-waf-protection/" target="_blank" rel="noopener noreferrer">原文</a> <a href="https://sourcegraph.com/blog/java4shell-cve-2026-114938-find-vulnerable-jdk" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">nginx2root：10 个 nginx 漏洞</b> — 其中 5 个内存破坏漏洞可被未认证攻击者用于崩溃或远程执行；Xint 还发现了可从 Docker 容器提权到宿主机 root 的内核漏洞。 <a href="https://blog.cloudflare.com/nginx2root/" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">ruby2shell (CVE-2026-132825)</b> — Ruby 字符串大小写转换的堆缓冲区溢出，Ruby 评级 Critical，修复于 Ruby 3.3.14/3.4.13/4.0.10；默认 Rails 和经典 Sinatra 应用未认证即可触发；Cloudflare WAF 已为所有客户阻断。 <a href="https://blog.cloudflare.com/ruby2shell-waf-protection/" target="_blank" rel="noopener noreferrer">原文</a> <a href="https://sourcegraph.com/blog/ruby2shell-cve-2026-132825-find-vulnerable-ruby" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">phpAfterShell (CVE-2026-126714)</b> — PHP 默认基于文件的会话处理器远程代码执行漏洞，CVSS 9.2，修复于 PHP 8.2.36/8.3.37/8.4.28/8.5.13/8.6.0；Cloudflare WAF 更新规则阻止已知攻击模式，含免费计划。 <a href="https://blog.cloudflare.com/phpaftershell-waf-protection/" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">OpenRouter 推理提供商数据事件</b> — 安全研究人员报告部分推理提供商数据被破坏或未遵守数据政策；OpenRouter 自身未遭未授权访问，并发布提供商安全公告列表。 <a href="https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">Cloudflare 2026 美国中期选举流量与攻击</b> — 11 月 3 日政府选举网站访问量激增 363%；攻击重心从 DDoS 转向内部系统访问，漏洞利用尝试约为 DDoS 的 180 倍，峰值在 10 月下旬。 <a href="https://blog.cloudflare.com/internet-traffic-2026-us-election/" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h4>系统设计与数据基础设施</h4>
+<ul>
+<li><b class="item">LinkedIn 重建数据血缘系统</b> — 从存储到计算重建数据血缘，处理数万数据处理工作流、数百万数据集，每日生成数千万 lineage 事件。 <a href="https://www.linkedin.com/blog/engineering/infrastructure/rebuilding-data-lineage-at-linkedin-from-storage-to-compute" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">LinkedIn Composable Torch Dataloader</b> — 为 PyTorch 提供高性能、模块化数据加载器，服务于推荐模型的大规模训练数据。 <a href="https://www.linkedin.com/blog/engineering/infrastructure/composable-torch-dataloader-a-high-performance-modular-dataloader-for-pytorch" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">ByteByteGo EP234：Docker vs Kubernetes</b> — 本期系统设计图解释 Docker 与 Kubernetes，并涵盖 Redis 工作原理、开放权重与闭源模型权衡、Claude 文本水印及 9 个分布式系统模式。 <a href="https://blog.bytebytego.com/p/ep234-docker-vs-kubernetes" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<ul>
+<li><b class="item">13 个微服务面试题解答</b> — 系统设计通讯发布微服务常见面试题及解答（材料仅有标题，未提供具体问题清单）。 <a href="https://newsletter.systemdesign.one/p/microservices-interview-questions" target="_blank" rel="noopener noreferrer">原文</a></li>
 </ul></details><h2 id="section-7">往期</h2>
-<ul class="index"><li><span class="wk">2026-W45</span><a href="2026-W45.html">第 45 周</a><span class="n">462 条</span><a class="alt" href="2026-W45.candidates.html">候选</a></li>
+<ul class="index"><li><span class="wk">2026-W46</span><a href="2026-W46.html">第 46 周</a><span class="n">427 条</span><a class="alt" href="2026-W46.candidates.html">候选</a></li>
+<li><span class="wk">2026-W45</span><a href="2026-W45.html">第 45 周</a><span class="n">462 条</span><a class="alt" href="2026-W45.candidates.html">候选</a></li>
 <li><span class="wk">2026-W44</span><a href="2026-W44.html">第 44 周</a><span class="n">554 条</span><a class="alt" href="2026-W44.candidates.html">候选</a></li>
 <li><span class="wk">2026-W43</span><a href="2026-W43.html">第 43 周</a><span class="n">537 条</span><a class="alt" href="2026-W43.candidates.html">候选</a></li>
 <li><span class="wk">2026-W42</span><a href="2026-W42.html">第 42 周</a><span class="n">556 条</span><a class="alt" href="2026-W42.candidates.html">候选</a></li>
 <li><span class="wk">2026-W41</span><a href="2026-W41.html">第 41 周</a><span class="n">585 条</span><a class="alt" href="2026-W41.candidates.html">候选</a></li>
 <li><span class="wk">2026-W40</span><a href="2026-W40.html">第 40 周</a><span class="n">675 条</span><a class="alt" href="2026-W40.candidates.html">候选</a></li>
 <li><span class="wk">2026-W39</span><a href="2026-W39.html">第 39 周</a><span class="n">417 条</span><a class="alt" href="2026-W39.candidates.html">候选</a></li>
-<li><span class="wk">2026-W38</span><a href="2026-W38.html">第 38 周</a><span class="n">515 条</span><a class="alt" href="2026-W38.candidates.html">候选</a></li></ul><div class="foot">自动生成 · 不含个人语境 &nbsp;·&nbsp; <a href="./sources.html">资讯源</a><br><span class="health">本周抓取 10 次，最近一次 2026-11-15 07:30 · <b>3 个源失败</b>：anthropic-engineering×7、anthropic-news×7、yc-youtube×7</span></div>
+<li><span class="wk">2026-W38</span><a href="2026-W38.html">第 38 周</a><span class="n">515 条</span><a class="alt" href="2026-W38.candidates.html">候选</a></li></ul><div class="foot">自动生成 · 不含个人语境 &nbsp;·&nbsp; <a href="./sources.html">资讯源</a><br><span class="health">本周抓取 8 次，最近一次 2026-11-22 07:30 · <b>3 个源失败</b>：anthropic-engineering×7、anthropic-news×7、yc-youtube</span></div>
 </main></div></body></html>

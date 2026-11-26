@@ -82,60 +82,95 @@ p{margin:0 0 .6rem;color:var(--ink-soft)}
 .mode.is-read{color:var(--dim);background:var(--surface)}
 .mode.is-chapter{color:var(--signal);border-color:color-mix(in srgb,var(--signal) 35%,var(--rule));
  background:color-mix(in srgb,var(--signal) 6%,var(--surface))}
-.mode.is-multi{color:var(--heat);border-color:color-mix(in srgb,var(--heat) 48%,var(--rule));
+.mode.is-topic{color:var(--ink-soft);border-color:var(--rule);background:var(--surface-2)}
+.mode.is-new{color:var(--signal);border-color:color-mix(in srgb,var(--signal) 42%,var(--rule));
+ background:color-mix(in srgb,var(--signal) 8%,var(--surface));font-weight:600}
+.mode.is-streak{color:var(--heat);border-color:color-mix(in srgb,var(--heat) 45%,var(--rule));
  background:color-mix(in srgb,var(--heat) 10%,var(--surface));font-weight:600}
-.mode.is-metric{color:var(--ink);border-color:color-mix(in srgb,var(--signal) 32%,var(--rule));
- background:color-mix(in srgb,var(--signal) 10%,var(--surface));font-weight:500}
 .pick{padding:.1rem 0 .2rem}
-.story-card{padding:0;margin:0 0 .55rem;border:1px solid var(--rule);border-radius:4px;background:var(--surface)}
-.story-card[data-multi="1"]{border-left:3px solid var(--heat)}
-.card-fold>summary{list-style:none;cursor:pointer;padding:.7rem .95rem .62rem;display:block}
+.picks-list{border-top:1px solid var(--rule)}
+.story-row{padding:0;margin:0;border-bottom:1px solid var(--rule)}
+.card-fold>summary{list-style:none;cursor:pointer;padding:.62rem .35rem .58rem .2rem;display:grid;
+ grid-template-columns:1rem minmax(0,1fr);gap:.15rem .5rem;align-items:start;border-radius:3px;
+ transition:background-color .12s ease}
 .card-fold>summary::-webkit-details-marker{display:none}
-.card-fold>summary:hover{background:color-mix(in srgb,var(--signal) 4%,var(--surface))}
-.card-top{display:flex;align-items:baseline;justify-content:space-between;gap:.45rem .8rem;flex-wrap:wrap}
-.card-top h3{margin:0;font-size:1.06rem;line-height:1.38;flex:1 1 20rem}
-.card-badges{display:flex;flex-wrap:wrap;gap:.28rem;align-items:center}
-.card-brief{margin:.35rem 0 .35rem;font-size:.93rem;color:var(--ink);line-height:1.52;font-weight:450}
-.card-fold>summary .tag{margin:0}
-.card-cue{margin-left:auto;color:var(--signal);font-size:.67rem;white-space:nowrap}
-.card-fold[open]>summary .card-cue::before{content:"收起 ▾"}
-.card-fold:not([open])>summary .card-cue::before{content:"展开 ▸"}
-.card-body{padding:.65rem .95rem .8rem;border-top:1px solid var(--rule);background:var(--paper)}
-.card-why{margin:0 0 .65rem;padding:.42rem .65rem;border-left:2px solid var(--signal);
- background:color-mix(in srgb,var(--signal) 6%,var(--surface));font-size:.88rem;color:var(--ink)}
+.card-fold>summary:hover{background:color-mix(in srgb,var(--signal) 5%,transparent)}
+.card-fold[open]>summary{background:color-mix(in srgb,var(--signal) 4%,var(--surface))}
+.chev{display:inline-flex;align-items:center;justify-content:center;width:1rem;height:1.45rem;
+ font-family:var(--mono);font-size:1rem;line-height:1;color:var(--faint);
+ transition:transform .14s ease,color .14s ease;user-select:none}
+.card-fold>summary:hover .chev,.paper-fold>summary:hover .chev{color:var(--signal)}
+.card-fold[open]>summary .chev,.paper-fold[open]>summary .chev{transform:rotate(90deg);color:var(--signal)}
+.card-main{min-width:0}
+.row-headline{margin:0 0 .24rem;font-size:.98rem;line-height:1.48;color:var(--ink);font-weight:500}
+.row-sub{display:flex;flex-wrap:wrap;align-items:baseline;gap:.18rem .42rem;font-family:var(--mono);
+ font-size:.71rem;color:var(--dim);font-variant-numeric:tabular-nums}
+.row-sub h3{margin:0;font-family:var(--sans);font-size:.78rem;font-weight:400;line-height:1.4;color:var(--dim)}
+.row-sub h3 a.title-link{color:var(--dim);border-bottom:1px dotted color-mix(in srgb,var(--dim) 40%,transparent)}
+.row-sub h3 a.title-link:hover{color:var(--signal);border-bottom-color:var(--signal)}
+.rel-hint{color:var(--faint);font-size:.68rem}
+.card-body{padding:.6rem .95rem .8rem 1.7rem;border-top:1px dashed var(--rule);background:var(--surface)}
+.card-why{margin:0 0 .6rem;padding:.38rem .65rem;border-left:2px solid var(--signal);
+ background:color-mix(in srgb,var(--signal) 5%,var(--paper));font-size:.87rem;color:var(--ink)}
 .card-body .src{margin:.4rem 0 0}
-.related-list{list-style:none;margin:.6rem 0 0;padding:.55rem 0 0;border-top:1px dashed var(--rule)}
-.related-list li{display:flex;flex-wrap:wrap;gap:.2rem .5rem;align-items:baseline;font-size:.82rem;margin:.28rem 0;color:var(--dim)}
-.rel-src{font-family:var(--mono);font-size:.68rem;color:var(--faint);white-space:nowrap}
-.rel-heat{font-family:var(--mono);font-size:.66rem;color:var(--faint);margin-left:auto}
-.matrix{border:1px solid var(--rule);border-radius:4px;background:var(--surface);overflow:hidden;margin:.6rem 0 1.2rem}
-.matrix-head{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1.15fr) minmax(0,1.35fr) minmax(0,.85fr);
- gap:.65rem;padding:.48rem .85rem;border-bottom:2px solid var(--rule);background:var(--surface-2);
- font-family:var(--mono);font-size:.68rem;color:var(--dim);letter-spacing:.02em}
-.matrix-item{padding:0;border-bottom:1px solid var(--rule)}
-.matrix-item:last-child{border-bottom:0}
-.matrix-fold>summary{list-style:none;cursor:pointer;display:grid;
- grid-template-columns:minmax(0,1.45fr) minmax(0,1.15fr) minmax(0,1.35fr) minmax(0,.85fr);
- gap:.65rem;align-items:start;padding:.58rem .85rem;font-size:.86rem;line-height:1.45}
-.matrix-fold>summary::-webkit-details-marker{display:none}
-.matrix-fold>summary:hover{background:color-mix(in srgb,var(--signal) 4%,var(--surface))}
-.matrix-fold>summary h3{margin:0;font-family:var(--sans);font-size:.88rem;font-weight:600;line-height:1.4}
-.m-title{display:flex;flex-direction:column;gap:.24rem;min-width:0}
-.m-prob,.m-mech{color:var(--ink-soft);font-size:.82rem;min-width:0}
-.m-stat{display:flex;flex-direction:column;align-items:flex-end;gap:.22rem;font-family:var(--mono);font-size:.74rem;
- color:var(--signal);text-align:right;font-variant-numeric:tabular-nums;min-width:0}
-.m-cue{color:var(--faint);font-size:.66rem}
-.matrix-fold[open]>summary .m-cue::before{content:"收起 ▾"}
-.matrix-fold:not([open])>summary .m-cue::before{content:"详情 ▸"}
-.matrix-body{padding:.7rem .9rem .8rem;border-top:1px solid var(--rule);background:var(--paper);font-size:.9rem}
-.matrix-body .src{margin:.35rem 0 0}
-.trend-table{list-style:none;padding:0;margin:.35rem 0 1.2rem;border:1px solid var(--rule);border-radius:4px;background:var(--surface)}
-.trend-table li{display:grid;grid-template-columns:minmax(8rem,13rem) minmax(0,1fr);gap:.3rem .85rem;
- align-items:baseline;padding:.45rem .8rem;margin:0;border-bottom:1px solid var(--rule);font-size:.86rem;line-height:1.5}
-.trend-table li:last-child{border-bottom:0}
-.trend-table .t-name{font-weight:600;color:var(--ink);min-width:0}
+.related-list{list-style:none;margin:.6rem 0 0;padding:.5rem 0 0;border-top:1px dashed var(--rule)}
+.related-list li{display:flex;flex-wrap:wrap;gap:.2rem .5rem;align-items:baseline;font-size:.81rem;margin:.25rem 0;color:var(--dim)}
+.rel-src{font-family:var(--mono);font-size:.67rem;color:var(--faint);white-space:nowrap}
+.rel-heat{font-family:var(--mono);font-size:.65rem;color:var(--faint);margin-left:auto}
+.paper-list{border-top:1px solid var(--rule);margin:.5rem 0 1.2rem}
+.paper-row{padding:0;margin:0;border-bottom:1px solid var(--rule)}
+.paper-fold>summary{list-style:none;cursor:pointer;padding:.58rem .3rem .54rem .2rem;display:grid;
+ grid-template-columns:1rem minmax(0,1fr);gap:.15rem .5rem;align-items:start;border-radius:3px}
+.paper-fold>summary::-webkit-details-marker{display:none}
+.paper-fold>summary:hover{background:color-mix(in srgb,var(--signal) 5%,transparent)}
+.paper-fold[open]>summary{background:color-mix(in srgb,var(--signal) 4%,var(--surface))}
+.paper-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:.25rem .5rem;margin-bottom:.2rem}
+.paper-top h3{margin:0;font-family:var(--sans);font-size:.91rem;font-weight:600;line-height:1.4}
+.paper-takeaway{margin:0;font-size:.86rem;line-height:1.5;color:var(--ink-soft)}
+.brief-list{list-style:none;padding:0;margin:.4rem 0 1.2rem;border-top:1px solid var(--rule)}
+.brief-list li{display:flex;flex-wrap:wrap;gap:.2rem .6rem;align-items:baseline;padding:.44rem .15rem;
+ margin:0;border-bottom:1px solid var(--rule);font-size:.87rem;line-height:1.5}
+.brief-src{font-family:var(--mono);font-size:.7rem;color:var(--faint);white-space:nowrap}
+.brief-text{flex:1 1 20rem;color:var(--ink-soft);min-width:0}
+.brief-date{font-family:var(--mono);font-size:.67rem;color:var(--faint);margin-left:auto;white-space:nowrap}
+.repo-list{list-style:none;padding:0;margin:.4rem 0 1.2rem;border-top:1px solid var(--rule)}
+.repo-list li{padding:.55rem .2rem;margin:0;border-bottom:1px solid var(--rule);font-size:.88rem;line-height:1.5}
+.repo-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.28rem .5rem;margin-bottom:.15rem}
+.repo-name{font-family:var(--mono);font-size:.9rem;font-weight:600;color:var(--ink)}
+.repo-what{color:var(--ink-soft)}
+.repo-hl{margin:.15rem 0 0;font-size:.82rem;color:var(--dim)}
+.prod-track{margin:1rem 0 .35rem;display:flex;align-items:baseline;gap:.55rem}
+.track-stat{font-family:var(--mono);font-size:.68rem;font-weight:400;color:var(--faint)}
+.trend-table{list-style:none;padding:0;margin:.25rem 0 1.1rem;border-top:1px solid var(--rule)}
+.trend-table li{display:grid;grid-template-columns:minmax(9rem,13.5rem) minmax(0,1fr);gap:.25rem .85rem;
+ align-items:baseline;padding:.44rem .2rem;margin:0;border-bottom:1px solid var(--rule);font-size:.86rem;line-height:1.5}
+.trend-table .t-name{font-weight:600;color:var(--ink);min-width:0;display:flex;flex-wrap:wrap;gap:.25rem .35rem;align-items:baseline}
 .trend-table .t-desc{color:var(--ink-soft);min-width:0}
-.filter-bar{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem .42rem;margin:.2rem 0 1.1rem;
+.omitted-note{font-family:var(--mono);font-size:.76rem;color:var(--dim);margin:.5rem 0 1rem}
+.talk-sec{padding-bottom:.4rem}
+.week-menu{position:relative;display:inline-block}
+.week-menu>summary{list-style:none;cursor:pointer;padding:.3rem 0;color:var(--signal);
+ border-bottom:1px solid color-mix(in srgb,var(--signal) 30%,transparent);user-select:none}
+.week-menu>summary::-webkit-details-marker{display:none}
+.week-menu>summary:hover{border-bottom-color:var(--signal)}
+.week-menu-pop{position:absolute;top:calc(100% + .35rem);left:0;z-index:40;min-width:14.5rem;
+ max-height:20rem;overflow:auto;list-style:none;margin:0;padding:.35rem 0;
+ background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+ box-shadow:0 8px 24px color-mix(in srgb,var(--ink) 14%,transparent)}
+.week-menu-pop li{display:flex;align-items:baseline;gap:.55rem;padding:.36rem .75rem;margin:0;
+ border-bottom:1px solid color-mix(in srgb,var(--rule) 55%,transparent);font-size:.74rem}
+.week-menu-pop li:last-child{border-bottom:0}
+.week-menu-pop li:hover{background:color-mix(in srgb,var(--signal) 6%,var(--surface))}
+.week-menu-pop a{border:0;padding:0}
+.week-menu-pop .wk{color:var(--ink);font-weight:500}
+.week-menu-pop .n{margin-left:auto;color:var(--faint);font-size:.66rem}
+.week-menu-pop .alt{color:var(--dim);font-size:.66rem}
+.runs-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:.78rem;margin:1rem 0 2rem;display:table}
+.runs-table th,.runs-table td{text-align:left;padding:.52rem .6rem;border-bottom:1px solid var(--rule);vertical-align:top}
+.runs-table th{color:var(--dim);font-weight:500;border-bottom:2px solid var(--rule)}
+.runs-table .bad{color:var(--heat)}
+.runs-table .ok{color:var(--signal)}
+.filter-bar{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem .42rem;margin:.2rem 0 .95rem;
  font-family:var(--mono);font-size:.72rem}
 .filter-bar input{position:absolute;opacity:0;pointer-events:none}
 .filter-bar .filter-k{color:var(--faint);font-size:.68rem;margin-right:.1rem}
@@ -155,7 +190,7 @@ p{margin:0 0 .6rem;color:var(--ink-soft)}
 .filter-reset:hover{color:var(--heat);border-bottom-color:var(--heat)}
 .filter-bar:has(input:checked) .filter-reset{display:inline-block}
 .page:has(.f-ch:checked) .picks-list .pick,
-.page:has(.f-ch:checked) .papers-sec .matrix-item{display:none}
+.page:has(.f-ch:checked) .papers-sec .paper-row{display:none}
 .page:has(#f-ch-0:checked) .picks-list .pick[data-ch="0"],
 .page:has(#f-ch-1:checked) .picks-list .pick[data-ch="1"],
 .page:has(#f-ch-2:checked) .picks-list .pick[data-ch="2"],
@@ -164,19 +199,24 @@ p{margin:0 0 .6rem;color:var(--ink-soft)}
 .page:has(#f-ch-5:checked) .picks-list .pick[data-ch="5"],
 .page:has(#f-ch-6:checked) .picks-list .pick[data-ch="6"],
 .page:has(#f-ch-7:checked) .picks-list .pick[data-ch="7"],
-.page:has(#f-ch-0:checked) .papers-sec .matrix-item[data-ch="0"],
-.page:has(#f-ch-1:checked) .papers-sec .matrix-item[data-ch="1"],
-.page:has(#f-ch-2:checked) .papers-sec .matrix-item[data-ch="2"],
-.page:has(#f-ch-3:checked) .papers-sec .matrix-item[data-ch="3"],
-.page:has(#f-ch-4:checked) .papers-sec .matrix-item[data-ch="4"],
-.page:has(#f-ch-5:checked) .papers-sec .matrix-item[data-ch="5"],
-.page:has(#f-ch-6:checked) .papers-sec .matrix-item[data-ch="6"],
-.page:has(#f-ch-7:checked) .papers-sec .matrix-item[data-ch="7"]{display:block}
+.page:has(#f-ch-0:checked) .papers-sec .paper-row[data-ch="0"],
+.page:has(#f-ch-1:checked) .papers-sec .paper-row[data-ch="1"],
+.page:has(#f-ch-2:checked) .papers-sec .paper-row[data-ch="2"],
+.page:has(#f-ch-3:checked) .papers-sec .paper-row[data-ch="3"],
+.page:has(#f-ch-4:checked) .papers-sec .paper-row[data-ch="4"],
+.page:has(#f-ch-5:checked) .papers-sec .paper-row[data-ch="5"],
+.page:has(#f-ch-6:checked) .papers-sec .paper-row[data-ch="6"],
+.page:has(#f-ch-7:checked) .papers-sec .paper-row[data-ch="7"]{display:block}
 .page:has(#f-multi:checked) .picks-list .pick:not([data-multi="1"]){display:none}
 .page:has(#f-consume-listen:checked):not(:has(#f-consume-read:checked)) .pick:not([data-consume="listen"]),
 .page:has(#f-consume-read:checked):not(:has(#f-consume-listen:checked)) .pick:not([data-consume="read"]){display:none}
 .page:has(#f-consume-listen:checked):not(:has(#f-consume-read:checked)) .papers-sec:not(:has(.pick[data-consume="listen"])),
 .page:has(#f-consume-read:checked):not(:has(#f-consume-listen:checked)) .papers-sec:not(:has(.pick[data-consume="read"])){display:none}
+.page:has(.f-cand-kind:checked) .cand-sec{display:none}
+.page:has(#cand-kind-direct:checked) .cand-sec[data-kind="direct"],
+.page:has(#cand-kind-digest:checked) .cand-sec[data-kind="digest"],
+.page:has(#cand-kind-papers:checked) .cand-sec[data-kind="papers"],
+.page:has(#cand-kind-capture:checked) .cand-sec[data-kind="capture"]{display:block}
 .page:has(.f-cand-ch:checked) .cand li{display:none}
 .page:has(#cand-ch-0:checked) .cand li[data-ch="0"],
 .page:has(#cand-ch-1:checked) .cand li[data-ch="1"],
@@ -273,7 +313,8 @@ details.fold[open]>summary{margin-bottom:1rem}
 .chip{font-family:var(--mono);font-size:.64rem;white-space:nowrap;
  padding:.1rem .38rem;border:1px solid var(--rule);border-radius:2px;
  color:var(--ink-soft);background:var(--paper)}
-.chip.dim{color:var(--faint)}
+.chip.dim,.kind-tag{color:var(--faint)}
+.kind-tag{font-family:var(--mono);font-size:.64rem;white-space:nowrap;padding:.06rem .32rem;border:1px solid var(--rule);border-radius:2px;background:var(--surface)}
 .chip.off{color:var(--heat);border-color:var(--heat)}
 .sid{font-family:var(--mono);font-size:.68rem;color:var(--faint);
  margin:.15rem 0 .5rem}
@@ -311,9 +352,7 @@ h2 .n{font-family:var(--mono);font-size:.7rem;color:var(--faint);
   .cand .meta{max-width:100%;flex-wrap:wrap;gap:.25rem .55rem;margin-left:0}
   .cand .who{max-width:100%;white-space:normal;overflow-wrap:anywhere}
   .nav a{min-height:36px;display:inline-flex;align-items:center}
-  .matrix-head{display:none}
-  .matrix-fold>summary{grid-template-columns:1fr;gap:.3rem;padding:.65rem .8rem}
-  .m-stat{align-items:flex-start;text-align:left;flex-direction:row;flex-wrap:wrap}
+  .card-body{padding:.55rem .65rem .7rem 1rem}
   .trend-table li{grid-template-columns:1fr;gap:.15rem}
   sup.score:hover::after,sup.score:focus::after{
     position:fixed;left:1.05rem;right:1.05rem;bottom:1rem;
@@ -328,7 +367,7 @@ img{max-width:100%;height:auto}
 </style></head><body><div class="layout">
 <header class="mast"><h1 class="wordmark"><a href="./">资讯周报</a> <em>资讯源</em></h1><div class="sweep">47 个源，其中 1 个已停用</div></header>
 <p class="tagline">这份清单由 sources.yaml 生成，和抓取用的是同一份配置。覆盖主题仅描述来源，不决定每篇文章的阅读章节。</p>
-<nav class="nav"><a href="./">本期 / 往期</a><a href="./candidates.html">本期候选</a><a href="./sources.html" aria-current="page">资讯源</a></nav><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">进正文 · 35</a><a href="#section-2">进综述 · 9</a><a href="#section-3">论文 · 2</a><a href="#section-4">稍后读 · 1</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
+<nav class="nav"><a href="./">本期</a><a href="./candidates.html">本期候选</a><a href="./sources.html" aria-current="page">资讯源</a></nav><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">进正文 · 35</a><a href="#section-2">进综述 · 9</a><a href="#section-3">论文 · 2</a><a href="#section-4">稍后读 · 1</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
 <h2 id="section-1">进正文<span class="n">35</span></h2>
 <p class="tagline">逐篇压缩后进「值得读的」</p>
 <ul class="srcs"><li class="srcbox"><div class="srchead"><h3>OpenAI News</h3><div class="chips"></div></div><div class="sid">openai-news</div><div class="row"><span class="k">站点</span><a href="https://openai.com/news" target="_blank" rel="noopener noreferrer">https://openai.com/news</a></div><div class="row"><span class="k">订阅</span><a href="https://openai.com/news/rss.xml" target="_blank" rel="noopener noreferrer">https://openai.com/news/rss.xml</a></div></li><li class="srcbox"><div class="srchead"><h3>Anthropic News</h3><div class="chips"></div></div><div class="sid">anthropic-news</div><div class="row"><span class="k">站点</span><a href="https://www.anthropic.com/news" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/news</a></div><div class="row"><span class="k">抓取</span><code>https://www.anthropic.com/news</code><span class="chip dim">解析页面 · 无 RSS</span></div></li><li class="srcbox"><div class="srchead"><h3>Anthropic Engineering</h3><div class="chips"></div></div><div class="sid">anthropic-engineering</div><div class="row"><span class="k">站点</span><a href="https://www.anthropic.com/engineering" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/engineering</a></div><div class="row"><span class="k">抓取</span><code>https://www.anthropic.com/engineering</code><span class="chip dim">解析页面 · 无 RSS</span></div></li><li class="srcbox"><div class="srchead"><h3>claude.dev Blog</h3><div class="chips"></div></div><div class="sid">claude-dev</div><div class="row"><span class="k">站点</span><a href="https://claude.dev/" target="_blank" rel="noopener noreferrer">https://claude.dev/</a></div><div class="row"><span class="k">订阅</span><a href="https://claude.dev/rss.xml" target="_blank" rel="noopener noreferrer">https://claude.dev/rss.xml</a></div></li><li class="srcbox"><div class="srchead"><h3>DeepSeek News</h3><div class="chips"></div></div><div class="sid">deepseek-news</div><div class="row"><span class="k">站点</span><a href="https://www.deepseek.com/en/news/" target="_blank" rel="noopener noreferrer">https://www.deepseek.com/en/news/</a></div><div class="row"><span class="k">抓取</span><code>https://www.deepseek.com/en/news</code><span class="chip dim">解析页面 · 无 RSS</span></div></li><li class="srcbox"><div class="srchead"><h3>Cursor Changelog</h3><div class="chips"></div></div><div class="sid">cursor-changelog</div><div class="row"><span class="k">站点</span><a href="https://cursor.com/changelog" target="_blank" rel="noopener noreferrer">https://cursor.com/changelog</a></div><div class="row"><span class="k">订阅</span><a href="https://cursor.com/changelog/rss.xml" target="_blank" rel="noopener noreferrer">https://cursor.com/changelog/rss.xml</a></div></li><li class="srcbox"><div class="srchead"><h3>PI 发布</h3><div class="chips"></div></div><div class="sid">pi-releases</div><div class="row"><span class="k">站点</span><a href="https://github.com/earendil-works/pi/releases" target="_blank" rel="noopener noreferrer">https://github.com/earendil-works/pi/releases</a></div><div class="row"><span class="k">订阅</span><a href="https://github.com/earendil-works/pi/releases.atom" target="_blank" rel="noopener noreferrer">https://github.com/earendil-works/pi/releases.atom</a></div></li><li class="srcbox"><div class="srchead"><h3>Vercel</h3><div class="chips"></div></div><div class="sid">vercel</div><div class="row"><span class="k">站点</span><a href="https://vercel.com/blog" target="_blank" rel="noopener noreferrer">https://vercel.com/blog</a></div><div class="row"><span class="k">订阅</span><a href="https://vercel.com/atom" target="_blank" rel="noopener noreferrer">https://vercel.com/atom</a></div></li><li class="srcbox"><div class="srchead"><h3>Cloudflare Blog</h3><div class="chips"></div></div><div class="sid">cloudflare-blog</div><div class="row"><span class="k">站点</span><a href="https://blog.cloudflare.com" target="_blank" rel="noopener noreferrer">https://blog.cloudflare.com</a></div><div class="row"><span class="k">订阅</span><a href="https://blog.cloudflare.com/rss/" target="_blank" rel="noopener noreferrer">https://blog.cloudflare.com/rss/</a></div></li><li class="srcbox"><div class="srchead"><h3>OpenRouter</h3><div class="chips"></div></div><div class="sid">openrouter</div><div class="row"><span class="k">站点</span><a href="https://openrouter.ai/blog" target="_blank" rel="noopener noreferrer">https://openrouter.ai/blog</a></div><div class="row"><span class="k">订阅</span><a href="https://openrouter.ai/blog/feed.xml" target="_blank" rel="noopener noreferrer">https://openrouter.ai/blog/feed.xml</a></div></li><li class="srcbox"><div class="srchead"><h3>Bun</h3><div class="chips"></div></div><div class="sid">bun</div><div class="row"><span class="k">站点</span><a href="https://bun.com/blog" target="_blank" rel="noopener noreferrer">https://bun.com/blog</a></div><div class="row"><span class="k">订阅</span><a href="https://bun.sh/rss.xml" target="_blank" rel="noopener noreferrer">https://bun.sh/rss.xml</a></div></li><li class="srcbox"><div class="srchead"><h3>Moonshot / Kimi</h3><div class="chips"></div></div><div class="sid">moonshot-kimi</div><div class="row"><span class="k">站点</span><a href="https://www.kimi.ai/blog/" target="_blank" rel="noopener noreferrer">https://www.kimi.ai/blog/</a></div><div class="row"><span class="k">抓取</span><code>https://www.kimi.ai/blog/</code><span class="chip dim">解析页面 · 无 RSS</span></div></li><li class="srcbox"><div class="srchead"><h3>Sourcegraph</h3><div class="chips"></div></div><div class="sid">sourcegraph</div><div class="row"><span class="k">站点</span><a href="https://sourcegraph.com/blog" target="_blank" rel="noopener noreferrer">https://sourcegraph.com/blog</a></div><div class="row"><span class="k">订阅</span><a href="https://sourcegraph.com/blog/rss.xml" target="_blank" rel="noopener noreferrer">https://sourcegraph.com/blog/rss.xml</a></div></li><li class="srcbox"><div class="srchead"><h3>Engineering at Slack</h3><div class="chips"></div></div><div class="sid">slack-engineering</div><div class="row"><span class="k">站点</span><a href="https://slack.engineering" target="_blank" rel="noopener noreferrer">https://slack.engineering</a></div><div class="row"><span class="k">订阅</span><a href="https://slack.engineering/feed/" target="_blank" rel="noopener noreferrer">https://slack.engineering/feed/</a></div></li><li class="srcbox"><div class="srchead"><h3>Braintrust</h3><div class="chips"></div></div><div class="sid">braintrust</div><div class="row"><span class="k">站点</span><a href="https://www.braintrust.dev/blog" target="_blank" rel="noopener noreferrer">https://www.braintrust.dev/blog</a></div><div class="row"><span class="k">订阅</span><a href="https://www.braintrust.dev/blog/atom" target="_blank" rel="noopener noreferrer">https://www.braintrust.dev/blog/atom</a></div></li><li class="srcbox"><div class="srchead"><h3>Arize AI</h3><div class="chips"></div></div><div class="sid">arize</div><div class="row"><span class="k">站点</span><a href="https://arize.com/blog" target="_blank" rel="noopener noreferrer">https://arize.com/blog</a></div><div class="row"><span class="k">订阅</span><a href="https://arize.com/blog/feed/" target="_blank" rel="noopener noreferrer">https://arize.com/blog/feed/</a></div></li><li class="srcbox"><div class="srchead"><h3>Firecrawl</h3><div class="chips"></div></div><div class="sid">firecrawl</div><div class="row"><span class="k">站点</span><a href="https://www.firecrawl.dev/blog" target="_blank" rel="noopener noreferrer">https://www.firecrawl.dev/blog</a></div><div class="row"><span class="k">抓取</span><code>https://www.firecrawl.dev/blog</code><span class="chip dim">解析页面 · 无 RSS</span></div></li><li class="srcbox"><div class="srchead"><h3>Composio</h3><div class="chips"></div></div><div class="sid">composio</div><div class="row"><span class="k">站点</span><a href="https://composio.dev/blog" target="_blank" rel="noopener noreferrer">https://composio.dev/blog</a></div><div class="row"><span class="k">抓取</span><code>https://composio.dev/blog</code><span class="chip dim">解析页面 · 无 RSS</span></div></li><li class="srcbox"><div class="srchead"><h3>Perplexity Blog</h3><div class="chips"></div></div><div class="sid">perplexity-blog</div><div class="row"><span class="k">站点</span><a href="https://www.perplexity.ai/hub/blog" target="_blank" rel="noopener noreferrer">https://www.perplexity.ai/hub/blog</a></div><div class="row"><span class="k">抓取</span><span class="chip dim">CMS 内容 API · 无 RSS</span></div></li><li class="srcbox"><div class="srchead"><h3>Interconnects</h3><div class="chips"></div></div><div class="sid">interconnects</div><div class="row"><span class="k">站点</span><a href="https://www.interconnects.ai" target="_blank" rel="noopener noreferrer">https://www.interconnects.ai</a></div><div class="row"><span class="k">订阅</span><a href="https://www.interconnects.ai/feed" target="_blank" rel="noopener noreferrer">https://www.interconnects.ai/feed</a></div></li><li class="srcbox"><div class="srchead"><h3>Latent Space</h3><div class="chips"></div></div><div class="sid">latent-space</div><div class="row"><span class="k">站点</span><a href="https://www.latent.space" target="_blank" rel="noopener noreferrer">https://www.latent.space</a></div><div class="row"><span class="k">订阅</span><a href="https://www.latent.space/feed" target="_blank" rel="noopener noreferrer">https://www.latent.space/feed</a></div></li><li class="srcbox"><div class="srchead"><h3>Import AI</h3><div class="chips"></div></div><div class="sid">import-ai</div><div class="row"><span class="k">站点</span><a href="https://importai.substack.com" target="_blank" rel="noopener noreferrer">https://importai.substack.com</a></div><div class="row"><span class="k">订阅</span><a href="https://importai.substack.com/feed" target="_blank" rel="noopener noreferrer">https://importai.substack.com/feed</a></div></li><li class="srcbox"><div class="srchead"><h3>Lil&#x27;Log (Lilian Weng)</h3><div class="chips"></div></div><div class="sid">lilian-weng</div><div class="row"><span class="k">站点</span><a href="https://lilianweng.github.io" target="_blank" rel="noopener noreferrer">https://lilianweng.github.io</a></div><div class="row"><span class="k">订阅</span><a href="https://lilianweng.github.io/index.xml" target="_blank" rel="noopener noreferrer">https://lilianweng.github.io/index.xml</a></div></li><li class="srcbox"><div class="srchead"><h3>Addy Osmani</h3><div class="chips"></div></div><div class="sid">addy-osmani</div><div class="row"><span class="k">站点</span><a href="https://addyosmani.com/blog/" target="_blank" rel="noopener noreferrer">https://addyosmani.com/blog/</a></div><div class="row"><span class="k">订阅</span><a href="https://addyosmani.com/rss.xml" target="_blank" rel="noopener noreferrer">https://addyosmani.com/rss.xml</a></div></li><li class="srcbox"><div class="srchead"><h3>Simon Willison</h3><div class="chips"></div></div><div class="sid">simon-willison</div><div class="row"><span class="k">站点</span><a href="https://simonwillison.net/" target="_blank" rel="noopener noreferrer">https://simonwillison.net/</a></div><div class="row"><span class="k">订阅</span><a href="https://simonwillison.net/atom/entries/" target="_blank" rel="noopener noreferrer">https://simonwillison.net/atom/entries/</a></div></li><li class="srcbox"><div class="srchead"><h3>ByteByteGo</h3><div class="chips"><span class="chip">AI 工程</span><span class="chip">系统设计</span></div></div><div class="sid">bytebytego</div><div class="row"><span class="k">站点</span><a href="https://blog.bytebytego.com" target="_blank" rel="noopener noreferrer">https://blog.bytebytego.com</a></div><div class="row"><span class="k">订阅</span><a href="https://blog.bytebytego.com/feed" target="_blank" rel="noopener noreferrer">https://blog.bytebytego.com/feed</a></div></li><li class="srcbox"><div class="srchead"><h3>System Design Newsletter</h3><div class="chips"></div></div><div class="sid">systemdesign-one</div><div class="row"><span class="k">站点</span><a href="https://newsletter.systemdesign.one" target="_blank" rel="noopener noreferrer">https://newsletter.systemdesign.one</a></div><div class="row"><span class="k">订阅</span><a href="https://newsletter.systemdesign.one/feed" target="_blank" rel="noopener noreferrer">https://newsletter.systemdesign.one/feed</a></div></li><li class="srcbox"><div class="srchead"><h3>All Things Distributed (Werner Vogels)</h3><div class="chips"></div></div><div class="sid">werner-vogels</div><div class="row"><span class="k">站点</span><a href="https://www.allthingsdistributed.com" target="_blank" rel="noopener noreferrer">https://www.allthingsdistributed.com</a></div><div class="row"><span class="k">订阅</span><a href="https://www.allthingsdistributed.com/atom.xml" target="_blank" rel="noopener noreferrer">https://www.allthingsdistributed.com/atom.xml</a></div></li><li class="srcbox"><div class="srchead"><h3>Engineering at Meta</h3><div class="chips"><span class="chip dim" title="只收关注方向的条目">按方向过滤</span></div></div><div class="sid">meta-engineering</div><div class="row"><span class="k">站点</span><a href="https://engineering.fb.com" target="_blank" rel="noopener noreferrer">https://engineering.fb.com</a></div><div class="row"><span class="k">订阅</span><a href="https://engineering.fb.com/feed/" target="_blank" rel="noopener noreferrer">https://engineering.fb.com/feed/</a></div></li><li class="srcbox"><div class="srchead"><h3>Netflix TechBlog</h3><div class="chips"><span class="chip dim" title="只收关注方向的条目">按方向过滤</span></div></div><div class="sid">netflix-tech</div><div class="row"><span class="k">站点</span><a href="https://netflixtechblog.com" target="_blank" rel="noopener noreferrer">https://netflixtechblog.com</a></div><div class="row"><span class="k">订阅</span><a href="https://netflixtechblog.com/feed" target="_blank" rel="noopener noreferrer">https://netflixtechblog.com/feed</a></div></li><li class="srcbox"><div class="srchead"><h3>GitHub Engineering</h3><div class="chips"><span class="chip dim" title="只收关注方向的条目">按方向过滤</span></div></div><div class="sid">github-engineering</div><div class="row"><span class="k">站点</span><a href="https://github.blog/engineering" target="_blank" rel="noopener noreferrer">https://github.blog/engineering</a></div><div class="row"><span class="k">订阅</span><a href="https://github.blog/engineering/feed/" target="_blank" rel="noopener noreferrer">https://github.blog/engineering/feed/</a></div></li><li class="srcbox"><div class="srchead"><h3>Linear Blog</h3><div class="chips"><span class="chip">AI 工程</span><span class="chip">系统设计</span></div></div><div class="sid">linear-blog</div><div class="row"><span class="k">站点</span><a href="https://linear.app/now" target="_blank" rel="noopener noreferrer">https://linear.app/now</a></div><div class="row"><span class="k">订阅</span><a href="https://linear.app/rss/now.xml" target="_blank" rel="noopener noreferrer">https://linear.app/rss/now.xml</a></div></li><li class="srcbox"><div class="srchead"><h3>LinkedIn Engineering</h3><div class="chips"><span class="chip">AI 工程</span><span class="chip">系统设计</span></div></div><div class="sid">linkedin-engineering</div><div class="row"><span class="k">站点</span><a href="https://www.linkedin.com/blog/engineering" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/blog/engineering</a></div><div class="row"><span class="k">抓取</span><code>https://www.linkedin.com/blog/engineering</code><span class="chip dim">解析页面 · 无 RSS</span></div></li><li class="srcbox"><div class="srchead"><h3>X · 技术与产品构建者（radar-build）</h3><div class="chips"></div></div><div class="sid">x-radar-build</div><div class="row"><span class="k">抓取</span><span class="chip dim">RSS</span></div></li><li class="srcbox"><div class="srchead"><h3>X · 精力学习与商业人本（radar-mind-biz）</h3><div class="chips"></div></div><div class="sid">x-radar-mind-biz</div><div class="row"><span class="k">抓取</span><span class="chip dim">RSS</span></div></li></ul>

@@ -1,0 +1,487 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22none%22 stroke=%22%230A6273%22 stroke-width=%221.5%22/%3E%3Ccircle cx=%228%22 cy=%228%22 r=%222.5%22 fill=%22%230A6273%22/%3E%3C/svg%3E">
+<title>资讯周报 · 2026-W42 兜底聚合</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F1F4F7; --surface:#FBFCFD; --surface-2:#E9EEF3;
+  --ink:#131B25; --ink-soft:#33414F; --dim:#5C6B7A; --faint:#5F6E7C;
+  --rule:#D7DEE6; --signal:#0A6273; --heat:#9C4426; --on-heat:#fff;
+  --serif:"Newsreader",ui-serif,Georgia,"Songti SC",serif;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"PingFang SC",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+:root:not([data-theme="light"]){@media (prefers-color-scheme:dark){
+  --paper:#111721; --surface:#19212C; --surface-2:#212A36;
+  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#7C8A97;
+  --rule:#2B3542; --signal:#54B4C6; --heat:#D98A6A; --on-heat:#111721;
+}}
+:root[data-theme="dark"]{
+  --paper:#111721; --surface:#19212C; --surface-2:#212A36;
+  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#7C8A97;
+  --rule:#2B3542; --signal:#54B4C6; --heat:#D98A6A; --on-heat:#111721;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+ font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+.layout{max-width:74rem;margin:0 auto;padding:2rem 2rem 3rem;
+ display:grid;grid-template-columns:minmax(0,52rem) minmax(0,14rem);
+ grid-auto-flow:row dense;column-gap:4rem;align-items:start}
+.layout>:not(.outline):not(.page){grid-column:1/-1}
+.outline{grid-column:2}
+.page{min-width:0;grid-column:1}
+.outline{position:sticky;top:2rem;min-width:0;max-height:calc(100dvh - 4rem);
+ overflow:auto;padding-top:.3rem;font-size:.8rem}
+.outline-label{font: .7rem var(--mono);color:var(--dim);letter-spacing:.1em;
+ padding-bottom:.8rem;border-bottom:2px solid var(--ink)}
+.outline a{display:block;padding:.65rem 0;border-bottom:1px solid var(--rule);
+ overflow-wrap:anywhere;color:var(--ink-soft)}
+.outline a:hover{color:var(--signal);background:var(--surface)}
+h2[id],details.fold[id]{scroll-margin-top:1.5rem}
+h2:target{color:var(--signal)}
+@media (max-width:1100px){
+ .layout{display:block;max-width:54rem}
+ .outline{position:static;max-height:none;margin:0 0 1.25rem;
+   padding-bottom:.75rem;border-bottom:1px solid var(--rule)}
+ .outline-label{display:none}
+ .outline nav{display:flex;flex-wrap:wrap;gap:.2rem 1.1rem}
+ .outline a{display:inline-block;padding:.25rem 0;border-bottom:0}
+ .outline a[href="#top"]{display:none}
+}
+a{color:var(--signal);text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb,var(--signal) 30%,transparent)}
+a:hover{border-bottom-color:var(--signal)}
+a:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+h3 a.title-link{color:var(--ink);border-bottom:1px solid transparent}
+h3 a.title-link:hover{color:var(--signal);border-bottom-color:color-mix(in srgb,var(--signal) 45%,transparent)}
+.mast{display:flex;flex-wrap:wrap;align-items:flex-end;gap:1rem 2rem;
+ padding-bottom:1.1rem;border-bottom:2px solid var(--ink);margin-bottom:1.1rem}
+.wordmark{font-family:var(--serif);font-weight:600;font-size:2.4rem;
+ line-height:1;letter-spacing:-.02em;margin:0;flex:1 1 16rem}
+.wordmark a{border:0;color:var(--ink)}
+.wordmark em{font-style:italic;font-weight:400;color:var(--signal)}
+.tagline{font-family:var(--mono);font-size:.74rem;color:var(--dim);margin:.5rem 0 0}
+.sweep{font-family:var(--mono);font-size:.74rem;color:var(--dim);
+ font-variant-numeric:tabular-nums;text-align:right}
+h2{font-family:var(--serif);font-size:1.5rem;font-weight:600;
+ margin:1.8rem 0 .7rem;padding-bottom:.35rem;border-bottom:1px solid var(--rule);
+ text-wrap:balance}
+h3{font-family:var(--serif);font-size:1.18rem;font-weight:500;line-height:1.42;
+ margin:1.25rem 0 .3rem;text-wrap:balance}
+h4{font-family:var(--sans);font-size:.95rem;font-weight:600;margin:1rem 0 .3rem}
+p{margin:0 0 .6rem;color:var(--ink-soft)}
+.tag{font-family:var(--mono);font-size:.72rem;color:var(--dim);
+ margin:0 0 .55rem;font-variant-numeric:tabular-nums;display:flex;flex-wrap:wrap;
+ gap:.2rem .42rem;align-items:center}
+.mode{display:inline-flex;align-items:center;padding:.04rem .38rem;border-radius:2px;
+ border:1px solid var(--rule);background:var(--surface);font-size:.67rem;line-height:1.45;color:var(--ink-soft)}
+.mode.is-listen{color:var(--heat);border-color:color-mix(in srgb,var(--heat) 42%,var(--rule));
+ background:color-mix(in srgb,var(--heat) 8%,var(--surface))}
+.mode.is-read{color:var(--dim);background:var(--surface)}
+.mode.is-chapter{color:var(--signal);border-color:color-mix(in srgb,var(--signal) 35%,var(--rule));
+ background:color-mix(in srgb,var(--signal) 6%,var(--surface))}
+.mode.is-topic{color:var(--ink-soft);border-color:var(--rule);background:var(--surface-2)}
+.mode.is-new{color:var(--signal);border-color:color-mix(in srgb,var(--signal) 42%,var(--rule));
+ background:color-mix(in srgb,var(--signal) 8%,var(--surface));font-weight:600}
+.mode.is-streak{color:var(--heat);border-color:color-mix(in srgb,var(--heat) 45%,var(--rule));
+ background:color-mix(in srgb,var(--heat) 10%,var(--surface));font-weight:600}
+.pick{padding:.1rem 0 .2rem}
+.picks-list{border-top:1px solid var(--rule)}
+.story-row{padding:0;margin:0;border-bottom:1px solid var(--rule)}
+.card-fold>summary{list-style:none;cursor:pointer;padding:.62rem .35rem .58rem .2rem;display:grid;
+ grid-template-columns:1rem minmax(0,1fr);gap:.15rem .5rem;align-items:start;border-radius:3px;
+ transition:background-color .12s ease}
+.card-fold>summary::-webkit-details-marker{display:none}
+.card-fold>summary:hover{background:color-mix(in srgb,var(--signal) 5%,transparent)}
+.card-fold[open]>summary{background:color-mix(in srgb,var(--signal) 4%,var(--surface))}
+.chev{display:inline-flex;align-items:center;justify-content:center;width:1rem;height:1.45rem;
+ font-family:var(--mono);font-size:1rem;line-height:1;color:var(--faint);
+ transition:transform .14s ease,color .14s ease;user-select:none}
+.card-fold>summary:hover .chev,.paper-fold>summary:hover .chev{color:var(--signal)}
+.card-fold[open]>summary .chev,.paper-fold[open]>summary .chev{transform:rotate(90deg);color:var(--signal)}
+.card-main{min-width:0}
+.row-headline{margin:0 0 .24rem;font-size:.98rem;line-height:1.48;color:var(--ink);font-weight:500}
+.row-sub{display:flex;flex-wrap:wrap;align-items:baseline;gap:.18rem .42rem;font-family:var(--mono);
+ font-size:.71rem;color:var(--dim);font-variant-numeric:tabular-nums}
+.row-sub h3{margin:0;font-family:var(--sans);font-size:.78rem;font-weight:400;line-height:1.4;color:var(--dim)}
+.row-sub h3 a.title-link{color:var(--dim);border-bottom:1px dotted color-mix(in srgb,var(--dim) 40%,transparent)}
+.row-sub h3 a.title-link:hover{color:var(--signal);border-bottom-color:var(--signal)}
+.rel-hint{color:var(--faint);font-size:.68rem}
+.card-body{padding:.6rem .95rem .8rem 1.7rem;border-top:1px dashed var(--rule);background:var(--surface)}
+.card-why{margin:0 0 .6rem;padding:.38rem .65rem;border-left:2px solid var(--signal);
+ background:color-mix(in srgb,var(--signal) 5%,var(--paper));font-size:.87rem;color:var(--ink)}
+.card-body .src{margin:.4rem 0 0}
+.related-list{list-style:none;margin:.6rem 0 0;padding:.5rem 0 0;border-top:1px dashed var(--rule)}
+.related-list li{display:flex;flex-wrap:wrap;gap:.2rem .5rem;align-items:baseline;font-size:.81rem;margin:.25rem 0;color:var(--dim)}
+.rel-src{font-family:var(--mono);font-size:.67rem;color:var(--faint);white-space:nowrap}
+.rel-heat{font-family:var(--mono);font-size:.65rem;color:var(--faint);margin-left:auto}
+.paper-list{border-top:1px solid var(--rule);margin:.5rem 0 1.2rem}
+.paper-row{padding:0;margin:0;border-bottom:1px solid var(--rule)}
+.paper-fold>summary{list-style:none;cursor:pointer;padding:.58rem .3rem .54rem .2rem;display:grid;
+ grid-template-columns:1rem minmax(0,1fr);gap:.15rem .5rem;align-items:start;border-radius:3px}
+.paper-fold>summary::-webkit-details-marker{display:none}
+.paper-fold>summary:hover{background:color-mix(in srgb,var(--signal) 5%,transparent)}
+.paper-fold[open]>summary{background:color-mix(in srgb,var(--signal) 4%,var(--surface))}
+.paper-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:.25rem .5rem;margin-bottom:.2rem}
+.paper-top h3{margin:0;font-family:var(--sans);font-size:.91rem;font-weight:600;line-height:1.4}
+.paper-takeaway{margin:0;font-size:.86rem;line-height:1.5;color:var(--ink-soft)}
+.brief-list{list-style:none;padding:0;margin:.4rem 0 1.2rem;border-top:1px solid var(--rule)}
+.brief-list li{display:flex;flex-wrap:wrap;gap:.2rem .6rem;align-items:baseline;padding:.44rem .15rem;
+ margin:0;border-bottom:1px solid var(--rule);font-size:.87rem;line-height:1.5}
+.brief-src{font-family:var(--mono);font-size:.7rem;color:var(--faint);white-space:nowrap}
+.brief-text{flex:1 1 20rem;color:var(--ink-soft);min-width:0}
+.brief-date{font-family:var(--mono);font-size:.67rem;color:var(--faint);margin-left:auto;white-space:nowrap}
+.repo-list{list-style:none;padding:0;margin:.4rem 0 1.2rem;border-top:1px solid var(--rule)}
+.repo-list li{padding:.55rem .2rem;margin:0;border-bottom:1px solid var(--rule);font-size:.88rem;line-height:1.5}
+.repo-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.28rem .5rem;margin-bottom:.15rem}
+.repo-name{font-family:var(--mono);font-size:.9rem;font-weight:600;color:var(--ink)}
+.repo-what{color:var(--ink-soft)}
+.repo-hl{margin:.15rem 0 0;font-size:.82rem;color:var(--dim)}
+.prod-track{margin:1rem 0 .35rem;display:flex;align-items:baseline;gap:.55rem}
+.track-stat{font-family:var(--mono);font-size:.68rem;font-weight:400;color:var(--faint)}
+.trend-table{list-style:none;padding:0;margin:.25rem 0 1.1rem;border-top:1px solid var(--rule)}
+.trend-table li{display:grid;grid-template-columns:minmax(9rem,13.5rem) minmax(0,1fr);gap:.25rem .85rem;
+ align-items:baseline;padding:.44rem .2rem;margin:0;border-bottom:1px solid var(--rule);font-size:.86rem;line-height:1.5}
+.trend-table .t-name{font-weight:600;color:var(--ink);min-width:0;display:flex;flex-wrap:wrap;gap:.25rem .35rem;align-items:baseline}
+.trend-table .t-desc{color:var(--ink-soft);min-width:0}
+.omitted-note{font-family:var(--mono);font-size:.76rem;color:var(--dim);margin:.5rem 0 1rem}
+.talk-sec{padding-bottom:.4rem}
+.week-menu{position:relative;display:inline-block}
+.week-menu>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:.32rem;
+ padding:.24rem .55rem;margin:-.06rem 0;border-radius:3px;color:var(--signal);
+ border:1px solid color-mix(in srgb,var(--signal) 28%,var(--rule));background:transparent;
+ user-select:none;transition:background-color .12s ease,border-color .12s ease,color .12s ease}
+.week-menu>summary::-webkit-details-marker{display:none}
+.week-menu>summary::after{content:"▾";font-size:.68rem;line-height:1;transition:transform .16s ease}
+.week-menu>summary:hover{background:color-mix(in srgb,var(--signal) 8%,var(--surface));border-color:var(--signal)}
+.week-menu>summary:active{background:color-mix(in srgb,var(--signal) 15%,var(--surface))}
+.week-menu[open]>summary{background:color-mix(in srgb,var(--signal) 12%,var(--surface));border-color:var(--signal);color:var(--ink)}
+.week-menu[open]>summary::after{transform:rotate(180deg)}
+.week-menu-pop{position:absolute;top:calc(100% + .38rem);left:0;z-index:40;min-width:15.5rem;
+ max-height:26rem;overflow:auto;list-style:none;margin:0;padding:.3rem 0;
+ background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+ box-shadow:0 8px 24px color-mix(in srgb,var(--ink) 14%,transparent)}
+.week-menu-pop li{display:flex;align-items:stretch;padding:0;margin:0;
+ border-bottom:1px solid color-mix(in srgb,var(--rule) 55%,transparent);font-size:.74rem}
+.week-menu-pop li:last-child{border-bottom:0}
+.week-menu-pop a{border:0;text-decoration:none}
+.week-menu-pop .wk-main{flex:1;display:flex;align-items:baseline;justify-content:space-between;gap:.65rem;
+ padding:.48rem .75rem;color:var(--ink);transition:background-color .1s ease,color .1s ease}
+.week-menu-pop .wk-main:hover{background:color-mix(in srgb,var(--signal) 9%,var(--surface));color:var(--signal)}
+.week-menu-pop .wk-main:active{background:color-mix(in srgb,var(--signal) 16%,var(--surface))}
+.week-menu-pop .wk{font-weight:500}
+.week-menu-pop .n{color:var(--faint);font-size:.66rem;font-variant-numeric:tabular-nums}
+.week-menu-pop .alt{display:flex;align-items:center;padding:.48rem .68rem;color:var(--dim);font-size:.68rem;
+ border-left:1px solid color-mix(in srgb,var(--rule) 55%,transparent);transition:background-color .1s ease,color .1s ease}
+.week-menu-pop .alt:hover{background:color-mix(in srgb,var(--signal) 9%,var(--surface));color:var(--signal)}
+.week-menu-pop .alt:active{background:color-mix(in srgb,var(--signal) 16%,var(--surface))}
+.tab-radio{position:absolute;opacity:0;pointer-events:none}
+.tab-bar{display:flex;flex-wrap:wrap;gap:.25rem 1.4rem;margin:.1rem 0 1.25rem;
+ border-bottom:1px solid var(--rule);font-family:var(--sans);font-size:.9rem}
+.tab-btn{cursor:pointer;display:inline-flex;align-items:baseline;gap:.35rem;
+ padding:.5rem .1rem .58rem;margin-bottom:-1px;color:var(--dim);font-weight:500;
+ border-bottom:2px solid transparent;user-select:none;transition:color .12s ease,border-color .12s ease}
+.tab-btn:hover{color:var(--ink)}
+.tab-btn .cnt{font-family:var(--mono);font-size:.68rem;color:var(--faint);font-variant-numeric:tabular-nums}
+.tab-panel{display:none}
+#tab-front:checked ~ .tab-bar label[for="tab-front"],
+#tab-radar:checked ~ .tab-bar label[for="tab-radar"],
+#tab-papers:checked ~ .tab-bar label[for="tab-papers"]{color:var(--ink);border-bottom-color:var(--signal);font-weight:600}
+#tab-front:checked ~ .tab-bar label[for="tab-front"] .cnt,
+#tab-radar:checked ~ .tab-bar label[for="tab-radar"] .cnt,
+#tab-papers:checked ~ .tab-bar label[for="tab-papers"] .cnt{color:var(--signal)}
+#tab-front:checked ~ .tab-panel[data-tab="front"],
+#tab-radar:checked ~ .tab-panel[data-tab="radar"],
+#tab-papers:checked ~ .tab-panel[data-tab="papers"]{display:block}
+.layout:has(#tab-front:checked) .outline a[data-tab]:not([data-tab="front"]),
+.layout:has(#tab-radar:checked) .outline a[data-tab]:not([data-tab="radar"]),
+.layout:has(#tab-papers:checked) .outline a[data-tab]:not([data-tab="papers"]){display:none}
+.tier-note{font-family:var(--mono);font-size:.76rem;color:var(--dim);margin:1.6rem 0 .4rem;
+ padding-top:.85rem;border-top:1px dashed var(--rule)}
+.papers-sec:has(.f-p-ch:checked) .paper-row{display:none}
+.papers-sec:has(#p-ch-0:checked) .paper-row[data-pch="0"],
+.papers-sec:has(#p-ch-1:checked) .paper-row[data-pch="1"],
+.papers-sec:has(#p-ch-2:checked) .paper-row[data-pch="2"],
+.papers-sec:has(#p-ch-3:checked) .paper-row[data-pch="3"]{display:block}
+.papers-sec:has(.f-p-tag:checked) .paper-row{display:none}
+.papers-sec:has(#p-tag-0:checked) .paper-row[data-ptag="0"],
+.papers-sec:has(#p-tag-1:checked) .paper-row[data-ptag="1"],
+.papers-sec:has(#p-tag-2:checked) .paper-row[data-ptag="2"],
+.papers-sec:has(#p-tag-3:checked) .paper-row[data-ptag="3"],
+.papers-sec:has(#p-tag-4:checked) .paper-row[data-ptag="4"],
+.papers-sec:has(#p-tag-5:checked) .paper-row[data-ptag="5"],
+.papers-sec:has(#p-tag-6:checked) .paper-row[data-ptag="6"],
+.papers-sec:has(#p-tag-7:checked) .paper-row[data-ptag="7"]{display:block}
+.runs-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:.78rem;margin:1rem 0 2rem;display:table}
+.runs-table th,.runs-table td{text-align:left;padding:.52rem .6rem;border-bottom:1px solid var(--rule);vertical-align:top}
+.runs-table th{color:var(--dim);font-weight:500;border-bottom:2px solid var(--rule)}
+.runs-table .bad{color:var(--heat)}
+.runs-table .ok{color:var(--signal)}
+.filter-bar{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem .42rem;margin:.2rem 0 .95rem;
+ font-family:var(--mono);font-size:.72rem}
+.filter-bar input{position:absolute;opacity:0;pointer-events:none}
+.filter-bar .filter-k{color:var(--faint);font-size:.68rem;margin-right:.1rem}
+.filter-bar .filter-sep{color:var(--rule);margin:0 .15rem}
+.filter-bar label{cursor:pointer;display:inline-flex;align-items:center;gap:.24rem;
+ padding:.14rem .48rem;border:1px solid var(--rule);border-radius:3px;
+ color:var(--dim);background:transparent;user-select:none}
+.filter-bar label:hover{border-color:var(--signal);color:var(--ink)}
+.filter-bar .cnt{color:var(--faint);font-size:.65rem;font-variant-numeric:tabular-nums}
+.filter-bar input:checked+label{border-color:var(--signal);color:var(--signal);
+ background:color-mix(in srgb,var(--signal) 10%,var(--surface));font-weight:500}
+.filter-bar input:checked+label .cnt{color:var(--signal)}
+.filter-bar input:focus-visible+label{outline:2px solid var(--signal);outline-offset:2px}
+.filter-reset{display:none;appearance:none;border:0;background:none;padding:.14rem .3rem;
+ font:inherit;font-size:.68rem;color:var(--faint);cursor:pointer;
+ border-bottom:1px dotted var(--rule)}
+.filter-reset:hover{color:var(--heat);border-bottom-color:var(--heat)}
+.filter-bar:has(input:checked) .filter-reset{display:inline-block}
+.page:has(.f-ch:checked) .picks-list .pick,
+.page:has(.f-ch:checked) .papers-sec .paper-row{display:none}
+.page:has(#f-ch-0:checked) .picks-list .pick[data-ch="0"],
+.page:has(#f-ch-1:checked) .picks-list .pick[data-ch="1"],
+.page:has(#f-ch-2:checked) .picks-list .pick[data-ch="2"],
+.page:has(#f-ch-3:checked) .picks-list .pick[data-ch="3"],
+.page:has(#f-ch-4:checked) .picks-list .pick[data-ch="4"],
+.page:has(#f-ch-5:checked) .picks-list .pick[data-ch="5"],
+.page:has(#f-ch-6:checked) .picks-list .pick[data-ch="6"],
+.page:has(#f-ch-7:checked) .picks-list .pick[data-ch="7"],
+.page:has(#f-ch-0:checked) .papers-sec .paper-row[data-ch="0"],
+.page:has(#f-ch-1:checked) .papers-sec .paper-row[data-ch="1"],
+.page:has(#f-ch-2:checked) .papers-sec .paper-row[data-ch="2"],
+.page:has(#f-ch-3:checked) .papers-sec .paper-row[data-ch="3"],
+.page:has(#f-ch-4:checked) .papers-sec .paper-row[data-ch="4"],
+.page:has(#f-ch-5:checked) .papers-sec .paper-row[data-ch="5"],
+.page:has(#f-ch-6:checked) .papers-sec .paper-row[data-ch="6"],
+.page:has(#f-ch-7:checked) .papers-sec .paper-row[data-ch="7"]{display:block}
+.page:has(#f-multi:checked) .picks-list .pick:not([data-multi="1"]){display:none}
+.page:has(#f-consume-listen:checked):not(:has(#f-consume-read:checked)) .pick:not([data-consume="listen"]),
+.page:has(#f-consume-read:checked):not(:has(#f-consume-listen:checked)) .pick:not([data-consume="read"]){display:none}
+.page:has(#f-consume-listen:checked):not(:has(#f-consume-read:checked)) .papers-sec:not(:has(.pick[data-consume="listen"])),
+.page:has(#f-consume-read:checked):not(:has(#f-consume-listen:checked)) .papers-sec:not(:has(.pick[data-consume="read"])){display:none}
+.page:has(.f-cand-kind:checked) .cand-sec{display:none}
+.page:has(#cand-kind-direct:checked) .cand-sec[data-kind="direct"],
+.page:has(#cand-kind-digest:checked) .cand-sec[data-kind="digest"],
+.page:has(#cand-kind-papers:checked) .cand-sec[data-kind="papers"],
+.page:has(#cand-kind-capture:checked) .cand-sec[data-kind="capture"]{display:block}
+.page:has(.f-cand-ch:checked) .cand li{display:none}
+.page:has(#cand-ch-0:checked) .cand li[data-ch="0"],
+.page:has(#cand-ch-1:checked) .cand li[data-ch="1"],
+.page:has(#cand-ch-2:checked) .cand li[data-ch="2"],
+.page:has(#cand-ch-3:checked) .cand li[data-ch="3"],
+.page:has(#cand-ch-4:checked) .cand li[data-ch="4"],
+.page:has(#cand-ch-5:checked) .cand li[data-ch="5"]{display:flex}
+.page:has(.f-cand-st:checked):not(:has(#cand-picked:checked)) .cand li[data-status="picked"],
+.page:has(.f-cand-st:checked):not(:has(#cand-roundup:checked)) .cand li[data-status="roundup"],
+.page:has(.f-cand-st:checked):not(:has(#cand-rest:checked)) .cand li[data-status="rest"]{display:none}
+.page:has(.f-cand-st:checked,.f-cand-ch:checked) .cand-sec:not(:has(li:not([style]))){/* structural fallback */}
+blockquote{margin:0 0 .75rem;padding:.35rem 0;
+ border-top:1px solid var(--rule);color:var(--dim);font-size:.9rem}
+blockquote p{margin:0;color:inherit}
+ul{padding-left:1.1rem;margin:0 0 1rem}
+li{margin:.3rem 0;color:var(--ink-soft)}
+.src{font-family:var(--mono);font-size:.78rem;word-break:break-all;margin:0 0 .85rem;color:var(--dim)}
+.index{list-style:none;padding:0;margin:1.5rem 0 0}
+.index li{display:flex;gap:1rem;align-items:baseline;padding:.7rem 0;
+ border-bottom:1px solid var(--rule)}
+.index .wk{font-family:var(--mono);font-size:.82rem;color:var(--dim);
+ white-space:nowrap;font-variant-numeric:tabular-nums}
+.index .n{font-family:var(--mono);font-size:.74rem;color:var(--faint);
+ margin-left:auto;white-space:nowrap}
+.index .alt{font-family:var(--mono);font-size:.7rem;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--rule);margin:2rem 0}
+.health b{color:var(--heat);font-weight:600}
+.foot{margin-top:3.5rem;padding-top:1.1rem;border-top:2px solid var(--ink);
+ font-family:var(--mono);font-size:.72rem;color:var(--faint);line-height:1.8}
+b.item{font-weight:600;color:var(--ink)}
+sup.score{font-family:var(--mono);font-size:.62rem;color:var(--faint);
+ vertical-align:super;line-height:0;margin-left:.15em;cursor:help;
+ border-bottom:1px dotted var(--rule);font-variant-numeric:tabular-nums;
+ position:relative}
+sup.score:hover,sup.score:focus{color:var(--signal);border-bottom-color:var(--signal)}
+sup.score:hover::after,sup.score:focus::after{
+ content:attr(data-tip);position:absolute;bottom:1.7em;left:50%;
+ transform:translateX(-50%);background:var(--ink);color:var(--paper);
+ padding:.3rem .55rem;border-radius:3px;font-size:.7rem;line-height:1.3;
+ white-space:nowrap;z-index:20;pointer-events:none;font-weight:400;
+ box-shadow:0 2px 8px color-mix(in srgb,var(--ink) 18%,transparent)}
+b.kicker{font-family:var(--mono);font-size:.74rem;font-weight:500;
+ color:var(--dim);letter-spacing:.02em}
+b.hl{font-weight:600;color:var(--ink);
+ background:linear-gradient(to top,
+   color-mix(in srgb,var(--signal) 22%,transparent) 0,
+   color-mix(in srgb,var(--signal) 22%,transparent) .42em,
+   transparent .42em);
+ padding:0 .1em}
+.preview-flag{grid-column:1/-1;
+ background:var(--heat);color:var(--on-heat);font-family:var(--mono);
+ font-size:.72rem;padding:.5rem .9rem;margin:0 0 1.5rem;border-radius:3px}
+.preview-flag a{color:var(--on-heat);border-bottom-color:color-mix(in srgb,var(--on-heat) 50%,transparent)}
+.nav{display:flex;flex-wrap:wrap;gap:.2rem 1.4rem;margin:0 0 1rem;
+ font-family:var(--mono);font-size:.76rem}
+.nav a{padding:.3rem 0}
+.nav [aria-current="page"]{color:var(--ink);border-bottom-color:var(--ink)}
+@media (min-width:1101px){
+  .cols2{column-count:2;column-gap:2.2rem}
+  .cols2>li{break-inside:avoid}
+}
+details.fold{margin:0 0 1.5rem}
+details.fold>summary{cursor:pointer;list-style:none;padding:.55rem .8rem;
+ border:1px solid var(--rule);border-radius:3px;background:var(--surface);
+ font-family:var(--mono);font-size:.78rem;color:var(--ink-soft)}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::before{content:"▸ ";color:var(--faint)}
+details.fold[open]>summary::before{content:"▾ "}
+details.fold>summary:hover{border-color:var(--signal);color:var(--signal)}
+details.fold[open]>summary{margin-bottom:1rem}
+.cand{list-style:none;padding:0;margin:.8rem 0 2.2rem}
+.cand li{display:flex;gap:.4rem 1rem;align-items:baseline;flex-wrap:wrap;
+ padding:.55rem 0;border-bottom:1px solid var(--rule)}
+.cand li>a{flex:1 1 20rem;min-width:0;border-bottom:0;text-decoration:underline;
+ text-decoration-color:color-mix(in srgb,var(--signal) 30%,transparent);text-underline-offset:3px}
+.cand li>a:hover{text-decoration-color:var(--signal)}
+.cand .meta{display:flex;gap:.7rem;align-items:baseline;margin-left:auto;
+ font-family:var(--mono);font-size:.68rem;color:var(--faint);
+ white-space:nowrap;font-variant-numeric:tabular-nums}
+.cand .who{color:var(--dim);max-width:11rem;overflow:hidden;
+ text-overflow:ellipsis}
+.cand .got{color:var(--signal);border:1px solid var(--signal);
+ border-radius:2px;padding:0 .3rem;font-size:.62rem}
+.cand .got.rough{color:var(--dim);border-color:var(--rule)}
+.srcs{list-style:none;padding:0;margin:1rem 0 2.4rem;display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:.75rem}
+.srcbox{border:1px solid var(--rule);border-radius:3px;padding:.9rem 1rem;
+ background:var(--surface)}
+.srcbox.is-off{opacity:.62}
+.srchead{display:flex;gap:.5rem;align-items:baseline;flex-wrap:wrap}
+.srcbox h3{font-family:var(--sans);font-size:.98rem;font-weight:600;
+ margin:0;line-height:1.4}
+.chips{display:flex;gap:.3rem;flex-wrap:wrap;margin-left:auto}
+.chip{font-family:var(--mono);font-size:.64rem;white-space:nowrap;
+ padding:.1rem .38rem;border:1px solid var(--rule);border-radius:2px;
+ color:var(--ink-soft);background:var(--paper)}
+.chip.dim,.kind-tag{color:var(--faint)}
+.kind-tag{font-family:var(--mono);font-size:.64rem;white-space:nowrap;padding:.06rem .32rem;border:1px solid var(--rule);border-radius:2px;background:var(--surface)}
+.chip.off{color:var(--heat);border-color:var(--heat)}
+.sid{font-family:var(--mono);font-size:.68rem;color:var(--faint);
+ margin:.15rem 0 .5rem}
+.srcbox .row{display:flex;gap:.5rem;align-items:baseline;
+ font-size:.76rem;line-height:1.6;margin-top:.15rem}
+.srcbox .row>.chip{flex-shrink:0}
+.srcbox .k{font-family:var(--mono);font-size:.66rem;color:var(--faint);
+ flex:0 0 2.2rem;white-space:nowrap}
+.srcbox .row a,.srcbox code{font-family:var(--mono);font-size:.72rem;
+ overflow-wrap:anywhere;min-width:0}
+.srcbox code{color:var(--ink-soft)}
+.srcbox .why{color:var(--dim);font-size:.74rem}
+h2 .n{font-family:var(--mono);font-size:.7rem;color:var(--faint);
+ margin-left:.55rem;font-weight:400}
+@media (max-width:760px){
+  .layout{padding:1.15rem 1.05rem 2.5rem}
+  .wordmark{font-size:1.85rem}
+  .mast{gap:.45rem 1rem;align-items:flex-start;padding-bottom:.9rem;margin-bottom:.9rem}
+  .sweep{text-align:left}
+  .nav{margin:0 0 .65rem}
+  h2{font-size:1.28rem;margin:1.55rem 0 .6rem}
+  h3{font-size:1.08rem;margin:1.05rem 0 .25rem}
+  body{font-size:16px;line-height:1.7}
+  .filter-bar{gap:.32rem .38rem;margin-bottom:.95rem}
+  .filter-bar label{min-height:30px;padding:.18rem .5rem}
+  .index li{flex-wrap:wrap;gap:.2rem .7rem;padding:.6rem 0}
+  .index .n{margin-left:0}
+  .index a{padding:.15rem 0}
+  .src{display:flex;gap:.4em;align-items:baseline;font-size:.82rem;margin-bottom:.85rem}
+  .src a{display:inline-block;min-height:34px;padding:.35rem 0;flex:1;min-width:0;overflow-wrap:anywhere}
+  .srcbox .row a{display:block;flex:1;padding:.55rem 0}
+  .srcs{gap:.7rem}
+  .cand li{gap:.22rem .6rem;padding:.48rem 0}
+  .cand li>a{flex-basis:100%;display:block;min-height:34px;padding:.2rem 0;line-height:1.45}
+  .cand .meta{max-width:100%;flex-wrap:wrap;gap:.25rem .55rem;margin-left:0}
+  .cand .who{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+  .nav a{min-height:36px;display:inline-flex;align-items:center}
+  .card-body{padding:.55rem .65rem .7rem 1rem}
+  .trend-table li{grid-template-columns:1fr;gap:.15rem}
+  sup.score:hover::after,sup.score:focus::after{
+    position:fixed;left:1.05rem;right:1.05rem;bottom:1rem;
+    transform:none;white-space:normal;width:auto}
+}
+h1,h2,h3,h4,p,li,blockquote,.sweep,.tagline,.sid{overflow-wrap:anywhere;word-break:normal}
+.src{overflow-wrap:anywhere}
+pre,table{max-width:100%;overflow-x:auto;display:block}
+img{max-width:100%;height:auto}
+.mast>*,.srcbox,.srcbox .row>*{min-width:0}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body><div class="layout">
+<header class="mast"><h1 class="wordmark"><a href="./">资讯周报</a> <em>兜底聚合</em></h1><div class="sweep">2026-W42<br>556 条抓取 · 精选 97 候选 · 讨论 72 · 论文 207 候选</div></header>
+<p class="tagline">本周主题匹配但未进本期精选的兜底聚合稿；如需浏览全部原始抓取，请看 <a href="./2026-W42.candidates.html">本期候选</a>。</p>
+<nav class="nav"><a href="./">本期</a><a href="./2026-W42.roundup.html" aria-current="page">本期兜底</a><a href="./2026-W42.candidates.html">本期候选</a><a href="./sources.html">资讯源</a><details class="week-menu"><summary>往期 (9)</summary><ul class="week-menu-pop"><li><a class="wk-main" href="./2026-W47.html"><span class="wk">2026-W47</span><span class="n">661 条</span></a><a class="alt" href="./2026-W47.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W46.html"><span class="wk">2026-W46</span><span class="n">427 条</span></a><a class="alt" href="./2026-W46.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W45.html"><span class="wk">2026-W45</span><span class="n">462 条</span></a><a class="alt" href="./2026-W45.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W44.html"><span class="wk">2026-W44</span><span class="n">554 条</span></a><a class="alt" href="./2026-W44.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W43.html"><span class="wk">2026-W43</span><span class="n">537 条</span></a><a class="alt" href="./2026-W43.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W41.html"><span class="wk">2026-W41</span><span class="n">585 条</span></a><a class="alt" href="./2026-W41.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W40.html"><span class="wk">2026-W40</span><span class="n">675 条</span></a><a class="alt" href="./2026-W40.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W39.html"><span class="wk">2026-W39</span><span class="n">417 条</span></a><a class="alt" href="./2026-W39.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W38.html"><span class="wk">2026-W38</span><span class="n">515 条</span></a><a class="alt" href="./2026-W38.candidates.html">候选</a></li></ul></details></nav><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">前沿模型与实验室动态</a><a href="#section-2">Anthropic 的治理与区域布局</a><a href="#section-3">开发工具与编码代理</a><a href="#section-4">Vercel Ship 2026</a><a href="#section-5">Cloudflare：网络、数据与平台</a><a href="#section-6">Agent 评估、合规与权限（Arize）</a><a href="#section-7">AI 基础设施与规模化</a><a href="#section-8">原理科普与系统设计</a><a href="#section-9">具身智能、科学 AI 与金融 agent</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
+<section class="sec"><blockquote><p>87 条主题匹配但未进精选，这里给出核心观点供你判断是否值得回头细读。取正文最全的 40 条。</p></blockquote>
+<h2 id="section-1">前沿模型与实验室动态</h2>
+<ul>
+<li><b class="item">[AINews] AI Engineer NYC：Gemini 4 Argon GA、Vals AI 基准</b> — Gemini 4 Argon 今日正式 GA，CursorBench 等第三方基准基本印证官方宣称；AIE NYC 当日约 2 万人参与，含 Anthropic 的 AI 金融服务栈、Vals AI CEO 的基准方法论、Coatue AI 负责人把新闻转化为投资决策的演讲，全部有转录。 <a href="https://www.latent.space/p/ainews-ai-engineer-nyc-gemini-4-argon" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">[AINews] Meta Muse Wonder / Wonder Full 发布</b> — MSL 历时 14 个月补齐前沿模型阵列（对应 OpenAI 的 Sol/Terra/Luna、Anthropic 的 Opus/Sonnet/Haiku）；Muse 未公布参数规模，Wonder Full 在部分基准上超过 Fable 与 Astra，Artificial Analysis 已给出 Intelligence Index v4 成绩。 <a href="https://www.latent.space/p/ainews-meta-muse-wonder-and-wonder" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">[AINews] Agents 推翻多义性（polysemanticity）假设</b> — Nick Cammarata 提出的可解释性/对齐主张为当日头条；同日 Muse Spark Open 权重版本发布，但能力弱于 Spark 1.3。 <a href="https://www.latent.space/p/ainews-agents-disprove-polysemanticity" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">[Import AI 476] 直觉视觉推理基准 Humanity&#x27;s Sixth Sense</b> — Elorian 与 Scale AI 发布，测量模型对视觉场景中&quot;未明示但可推断&quot;信息的理解，例如看书架图片判断能否放下某物；本期另涉创造力与 RSI、开放权重模型落后中国、AI 上太空。 <a href="https://importai.substack.com/p/import-ai-476-creativity-and-rsi" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-2">Anthropic 的治理与区域布局</h2>
+<ul>
+<li><b class="item">备战 2026 美国中期选举</b> — 用 Anthropic Insights 分析了一周内 25 万条对话；涉及政治、公共政策或社会议题的对话约占 Claude.ai 美国消费端全部对话的 5.75%。 <a href="https://www.anthropic.com/news/2026-us-midterms" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">开设新加坡办公室并与新加坡数字发展与新闻部签署 MOU</b> — 亚太第五个办公室；GovTech Singapore、Grab、DBS 均为本地客户，由 ASEAN 总经理 Dale Finlay 牵头。 <a href="https://www.anthropic.com/news/singapore-office-opening" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">独立评估方的最新进展</b> — 已向 METR 团队开放&quot;类员工权限&quot;，METR 将公开其风险评估结果；另与 SecureBio、Accenture 合作，并与 Hugging Face 等机构早期洽谈；此前已签署白宫超级智能协议。 <a href="https://www.anthropic.com/news/an-update-on-independent-evaluators" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-3">开发工具与编码代理</h2>
+<ul>
+<li><b class="item">Pi v1.2.0</b> — 按 key 列出 OpenRouter 可用模型（含上下文、最大输出、价格与 models.json 中的区域端点）；为 settings.json、models.json、keybindings、themes 发布 <code>$schema</code>；<code>PI_CLIPBOARD_OSC52=1</code> 支持远程会话剪贴板；Codemode 工具声明显示 integer/min/max/default 等输入约束并展示耗时。 <a href="https://github.com/earendil-works/pi/releases/tag/v1.2.0" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Pi v1.3.0</b> — 新增 <code>sessionShareDestination</code>（auto/gist/radius）；OpenAI GPT-6 在会话中切换 thinking 级别不再失效 prompt cache（#10853）；Kimi Code 走 Chat Completions 时中途加工具不再废缓存；models.json 的 base URL 覆盖现在必须含 <code>/v1</code>；切换模型时丢弃上一模型的 thinking。 <a href="https://github.com/earendil-works/pi/releases/tag/v1.3.0" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Claude Mods 是什么、如何用 TypeScript 写一个</b> — mod 即 <code>hooks/hooks.json</code> 指向 TS/JS 文件的普通 Claude Code 插件，函数在 Claude Code 自身进程内运行；settings hooks 要启动独立进程并等待退出，function hooks 则是可改写事件、可在界面绘制的中间件；早期的 <code>CLAUDE_CODE_ENABLE_FUNCTION_HOOKS</code> 标志已移除，默认开启。 <a href="https://www.firecrawl.dev/blog/claude-mods" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">用 ChatGPT + 实时商业数据做线索生成</b> — Firecrawl 插件接 Google Maps、网站抓取、Apollo、FullEnrich；演示以英国 Brighton 的会计与理财顾问为目标，Maps 搜索 43 秒返回 40 条；Maps 工具无半径参数，需由 ChatGPT 逐条计算距离。 <a href="https://www.firecrawl.dev/blog/use-chatgpt-for-lead-generation" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">OpenRouter 推出 Private Endpoints</b> — 可把自有微调模型、公共模型的专属部署或预留容量接入 OpenRouter，与公共目录共用同一 API、model slug 与路由偏好；端点仅组织内可见，为 Enterprise 计划的付费附加项。 <a href="https://openrouter.ai/blog/announcements/private-endpoints/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Python 3.15 发布，告别 3.10</b> — Simon Willison 最期待 PEP 810 的显式惰性导入（<code>lazy import json</code>）：其 LLM CLI 的插件此前因 sentence_transformers 等重依赖导致每次调用多耗数秒，只能在文档里建议手动惰性导入；3.10 停止支持后他可开始用 3.11 特性。 <a href="https://simonwillison.net/2026/Oct/12/python-3-15/" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-4">Vercel Ship 2026</h2>
+<ul>
+<li><b class="item">Ship 2026 总览</b> — 在伦敦、柏林、纽约、悉尼、旧金山五地举办；Guillermo Rauch 提出&quot;agentic infrastructure&quot;三部分，强调 Vercel 是编码 agent 的部署目标，提供 200+ 个 CLI 命令供 agent 操作平台。 <a href="https://vercel.com/blog/vercel-ship-2026-recap" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">后端能力扩展：Python GA、容器、Daemons</b> — Python 正式 GA，FastAPI/Flask/Django 跑在标准 CPython 上并由 Fluid compute 处理并发；Vercel Functions 支持容器以自定义运行时和系统库；新增 Public Beta 的 Vercel Daemons，用于常驻拉取任务的后台 worker；提供面向存储、队列、持久化工作流和 AI 模型的 Python SDK。 <a href="https://vercel.com/blog/backends-on-vercel-python-containers-and-daemons" target="_blank" rel="noopener noreferrer">原文</a> <a href="https://vercel.com/blog/python-on-vercel-is-now-generally-available" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Vercel for Enterprise 与&quot;公民开发者&quot;治理</b> — 近三个月企业客户在 AI Gateway 的 token 用量翻了四倍；OpenAI 称 2025 年 8 月至 2026 年 6 月非开发者 Codex 用户增长 189 倍，文章聚焦在放开全员构建的同时保留安全与管控。 <a href="https://vercel.com/blog/vercel-for-enterprise" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">100 万美元 Vercel Sandbox 逃逸挑战结果</b> — 两周收到 1285 份报告，支付 24.2 万美元赏金；最严重的是 HackerOne 研究者 Paulos Yibelo 在第三天发现的 Linux 内核网络栈 0day，可从 microVM 内发特制包泄露宿主内存等三类攻击；无任何报告触及客户数据，Trail of Bits 同步做了源码与架构审计。 <a href="https://vercel.com/blog/findings-from-the-1-million-dollar-vercel-sandbox-challenge" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-5">Cloudflare：网络、数据与平台</h2>
+<ul>
+<li><b class="item">Logpush Transformers：导出前过滤、重塑、脱敏日志</b> — 生日周期间 Logpush 向所有自助套餐开放、Transformers 正式 GA（八项可观测性更新之一）；本文拆解 Transformers 在导出管线中如何剔除健康检查、删敏感字段、按仪表盘需要重塑记录。 <a href="https://blog.cloudflare.com/transformers-on-logpush/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">对抗指数增长：数据管线如何压住硬件用量</b> — 今年 5 月该管线的投递量约为每秒 20 亿事件，支撑 Logs、SQL API、可观测性与内部分析；团队每年都要用流量指数增长对冲硬件线性增长。 <a href="https://blog.cloudflare.com/rewinding-the-exponential/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Hyperdrive MySQL 支持 GA，以及一个罕见缓存 bug</b> — 自去年 beta 以来按 99.99% 可用性目标打磨，作者称 beta 到 GA 的差距就是&quot;20 个 bug 修复&quot;，文中复盘其中一例 MySQL 缓存缺陷的定位过程。 <a href="https://blog.cloudflare.com/hyperdrive-mysql/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">可完全编程的安全 Web 网关</b> — 指出近 30 年 SWG 都是&quot;条件匹配 → 终结动作（Allow/Block/Isolate/Log）&quot;模型；Cloudflare 主张真正的可编程是把用户自写的任意逻辑内联运行在流量路径上，而非只提供 API、Terraform provider、webhook。 <a href="https://blog.cloudflare.com/programmable-gateway-dlp/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Deploy with Void</b> — 与 VoidZero（Vite、Vitest、Oxc、Rolldown，即 Vite+）合作开源三件套：Void Platform（团队在 Cloudflare 上托管 Void 应用）、Void SDK（构建全栈应用的组合式 JS SDK）、Void CLI（资源置备与部署），合并在单一仓库开源。 <a href="https://blog.cloudflare.com/deploy-with-void/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Cloudflare 与 OpenAI 的 AI 发现试点</b> — 2026 年 7 月启动的研究试点，测试 Cloudflare 网络信号能否帮助 ChatGPT 用户更高效发现新内容；文章公布早期结果，称已为站点带来流量。 <a href="https://blog.cloudflare.com/cloudflare-openai-discovery-agentic-web/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Yandex 断网后，恶意 bot 没有消失而是转移</b> — 区分两个 ASN：AS13238（搜索）流量下跌几乎全部来自已验证的搜索爬虫，AS200350（云服务）受影响方式不同；驳斥&quot;俄罗斯 bot 农场被打掉&quot;的聚合流量误读。 <a href="https://blog.cloudflare.com/yandex-outage/" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-6">Agent 评估、合规与权限（Arize）</h2>
+<ul>
+<li><b class="item">接入 Together AI 评估开放模型</b> — 在 Arize AX 中用 Together AI 跑 LLM-as-a-Judge，比较模型表现并寻找比前沿模型更便宜的替代，以压低评估成本。 <a href="https://arize.com/blog/together-ai-integration-arize-ax/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">EU AI Act 对 AI agent 的工程化合规指南</b> — 高风险义务截止日为 2027 年 12 月 2 日（已推迟过一次），透明度义务当前已生效；多数义务落在工程侧：自动日志、六个月留存、人工监督与生产环境评估。 <a href="https://arize.com/blog/eu-ai-act-compliance-ai-agents/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">对 AI 粗鲁有用吗？实测 6 个模型</b> — 把&quot;语气&quot;与&quot;要求简短&quot;两个变量拆开做对照，考察粗鲁提示是否真能提升答案质量或降低成本；背景是 Anthropic 修改了关于虐待模型的规则。 <a href="https://arize.com/blog/does-being-rude-to-ai-work/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">AI agent 权限：agent 并不知道你被允许做什么</b> — 模型无法仅凭用户声称就验证权限，会出现拒绝已授权操作或接受伪造授权两类错误；主张把校验下沉到工具层并配合 tracing。 <a href="https://arize.com/blog/ai-agent-permissions/" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-7">AI 基础设施与规模化</h2>
+<ul>
+<li><b class="item">Meta 在 OCP Summit 2026 的开放网络</b> — 首个液冷网络机架 IcePack 与 102.4T 交换平台 IceCube；Flattened Planar Fabric（FPF）多平面后端 scale-out 组网；开源 AI 传输协议 MetaRoCE；在 OCP 内发起 Open Switch Platform Architecture（OSPA）倡议。 <a href="https://engineering.fb.com/2026/10/12/open-source/ocp-summit-2026-powering-ai-with-open-innovations-in-scale-up-scale-out-and-scale-across-networks/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Meta 用机会性推理算力改进广告推荐</b> — 针对&quot;全局算力紧张但局部存在闲置&quot;的悖论，系统聚合闲置推理容量，并用两个弹性杠杆让广告推荐任务在不影响基线性能的前提下扩张。 <a href="https://engineering.fb.com/2026/10/12/ml-applications/turning-opportunistic-ai-inference-capacity-into-better-ads-recommendations/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">[AINews] Modal 年化收入 10 亿美元、16 亿…16B 估值 D 轮</b> — 5 个月内用量与估值各增 3 倍、一年 15 倍，成为纽约新的 AI 基础设施 decacorn；CTO Akshat 谈 agent 需要的能力：数百万并发 sandbox、安全弹性拉起 RDMA 训练集群、训练推理投机模型、全新 sandbox runtime。 <a href="https://www.latent.space/p/ainews-modals-1b-arr-16b-series-d" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">把 AI 应用扩到 100 万用户（生成式 AI 系列第 7 部分）</b> — 核心论点：API 调用按 token 计价，单位成本不随规模下降；自托管能让 GPU 成本在用户间摊薄，但带来容量规划、硬件管理和首位用户之前就得承担的最低支出。 <a href="https://newsletter.systemdesign.one/p/llm-inference-cost-optimization" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-8">原理科普与系统设计</h2>
+<ul>
+<li><b class="item">19 世纪热物理的数学如何帮 LLM 理解句子</b> — 从傅里叶分析讲到 LLM 中的位置/频域表示。（正文被赞助内容截断，细节有限） <a href="https://blog.bytebytego.com/p/how-the-math-used-in-19th-century" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">不靠语言构建模型：Logical Intelligence</b> — 以今年初一场公开数独实验为切口，一组前沿 LLM 在其中表现异常，引出非语言建模路线。 <a href="https://blog.bytebytego.com/p/how-to-build-models-without-language" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">&quot;终结者问题&quot;：教会 LLM 一个坏习惯会改变它的整体行为</b> — 讨论窄域微调引入的不良行为向其他行为泛化扩散。（材料正文被赞助内容占据，细节有限） <a href="https://blog.bytebytego.com/p/the-terminator-problem-how-teaching" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">HTTP/1 vs HTTP/2 vs HTTP/3</b> — 23 个工程概念系列第 1 篇，解释为何服务端毫秒级响应、页面仍要数秒：连接建立、请求发送、响应接收各环节的机制差异。 <a href="https://newsletter.systemdesign.one/p/http-concepts-explained" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-9">具身智能、科学 AI 与金融 agent</h2>
+<ul>
+<li><b class="item">Dyna-2：小时级自主的通用物理 agent（Jason Ma, Dyna Robotics）</b> — 世界-动作模型（world-action model），在 100 万小时人类视频上预训练，宣称可小时级连续自主作业；播客含 Taku 机器人现场演示，时长约 1 小时 12 分。 <a href="https://www.latent.space/p/dyna" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Lab-in-the-Loop at Compute Speed（Ian Quigley, Leash Bio）</b> — 围绕 DEL（DNA 编码化合物库）数据：其 Kaggle 竞赛显示蛋白-配体结合远未解决，另有&quot;知道分子的作者就能预测它有多好&quot;的发现，并用这批数据抓出作弊的模型；时长约 1 小时 50 分。 <a href="https://www.latent.space/p/lab-in-the-loop-at-compute-speed" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">OpenAI 与 Anthropic 如何处理金融 agent 的自主性与安全</b> — AIE New York 现场报道，OpenAI 的 Joseph Kim 讲&quot;阈值现象&quot;；共识是安全自主取决于把控制点和人类判断放在哪里，而非限制数量多少。 <a href="https://www.latent.space/p/crossing-the-threshold" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul></section><div class="foot"><a href="./2026-W42.html">← 回本期正文</a> &nbsp;·&nbsp; <a href="./2026-W42.candidates.html">查看全部候选</a> &nbsp;·&nbsp; <a href="./sources.html">资讯源</a></div>
+</main></div></body></html>

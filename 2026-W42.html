@@ -9,11 +9,6 @@
   --paper:#F1F4F7; --surface:#FBFCFD; --surface-2:#E9EEF3;
   --ink:#131B25; --ink-soft:#33414F; --dim:#5C6B7A; --faint:#5F6E7C;
   --rule:#D7DEE6; --signal:#0A6273; --heat:#9C4426; --on-heat:#fff;
-  /* faint 从 #8695A3 调深：它用在 10–11px 的角标、页脚和候选页
-     元信息上，原值对 #F1F4F7 底只有 2.78:1，低于 WCAG AA 的 4.5:1。
-     调到 #5F6E7C（4.75:1）—— 中间试过 #6B7A88，看着够深，**实测只有
-     3.99**，所以这类值要算不要估。深色同理 #6E7C89 → #7C8A97（4.20 → 5.08）。
-     「不抢视线」是有意的，但不该到看不见。 */
   --serif:"Newsreader",ui-serif,Georgia,"Songti SC",serif;
   --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"PingFang SC",system-ui,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
@@ -31,17 +26,12 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);
  font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
-/* 主栏所有块共用同一宽度；目录独立占宽，不给 p 另设 max-width。 */
 .layout{max-width:74rem;margin:0 auto;padding:2rem 2rem 3rem;
  display:grid;grid-template-columns:minmax(0,52rem) minmax(0,14rem);
- column-gap:4rem;align-items:start}
-/* 四个直接子元素：页眉、导航、目录、正文。
-   DOM 顺序按**窄屏**排（页眉 → 导航 → 目录 → 正文），宽屏靠
-   grid 定位把目录放回右侧、让页眉和导航跨满两列。 */
-.mast{grid-column:1/-1;grid-row:1}
-.nav{grid-column:1/-1;grid-row:2}
-.outline{grid-column:2;grid-row:3}
-.page{min-width:0;grid-column:1;grid-row:3}
+ grid-auto-flow:row dense;column-gap:4rem;align-items:start}
+.layout>:not(.outline):not(.page){grid-column:1/-1}
+.outline{grid-column:2}
+.page{min-width:0;grid-column:1}
 .outline{position:sticky;top:2rem;min-width:0;max-height:calc(100dvh - 4rem);
  overflow:auto;padding-top:.3rem;font-size:.8rem}
 .outline-label{font: .7rem var(--mono);color:var(--dim);letter-spacing:.1em;
@@ -49,18 +39,23 @@ body{margin:0;background:var(--paper);color:var(--ink);
 .outline a{display:block;padding:.65rem 0;border-bottom:1px solid var(--rule);
  overflow-wrap:anywhere;color:var(--ink-soft)}
 .outline a:hover{color:var(--signal);background:var(--surface)}
-h2[id]{scroll-margin-top:1.5rem}
+h2[id],details.fold[id]{scroll-margin-top:1.5rem}
 h2:target{color:var(--signal)}
 @media (max-width:1100px){
  .layout{display:block;max-width:54rem}
- .outline{position:static;max-height:none;margin:0 0 1.8rem;
-   padding-bottom:1.2rem;border-bottom:1px solid var(--rule)}
- .outline nav{display:flex;flex-wrap:wrap;gap:0 1.2rem}
+ .outline{position:static;max-height:none;margin:0 0 1.25rem;
+   padding-bottom:.75rem;border-bottom:1px solid var(--rule)}
+ .outline-label{display:none}
+ .outline nav{display:flex;flex-wrap:wrap;gap:.2rem 1.1rem}
+ .outline a{display:inline-block;padding:.25rem 0;border-bottom:0}
+ .outline a[href="#top"]{display:none}
 }
 a{color:var(--signal);text-decoration:none;
   border-bottom:1px solid color-mix(in srgb,var(--signal) 30%,transparent)}
 a:hover{border-bottom-color:var(--signal)}
 a:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+h3 a.title-link{color:var(--ink);border-bottom:1px solid transparent}
+h3 a.title-link:hover{color:var(--signal);border-bottom-color:color-mix(in srgb,var(--signal) 45%,transparent)}
 .mast{display:flex;flex-wrap:wrap;align-items:flex-end;gap:1rem 2rem;
  padding-bottom:1.1rem;border-bottom:2px solid var(--ink);margin-bottom:1.1rem}
 .wordmark{font-family:var(--serif);font-weight:600;font-size:2.4rem;
@@ -78,13 +73,216 @@ h3{font-family:var(--serif);font-size:1.18rem;font-weight:500;line-height:1.42;
 h4{font-family:var(--sans);font-size:.95rem;font-weight:600;margin:1rem 0 .3rem}
 p{margin:0 0 .6rem;color:var(--ink-soft)}
 .tag{font-family:var(--mono);font-size:.72rem;color:var(--dim);
- margin:0 0 .6rem;font-variant-numeric:tabular-nums}
+ margin:0 0 .55rem;font-variant-numeric:tabular-nums;display:flex;flex-wrap:wrap;
+ gap:.2rem .42rem;align-items:center}
+.mode{display:inline-flex;align-items:center;padding:.04rem .38rem;border-radius:2px;
+ border:1px solid var(--rule);background:var(--surface);font-size:.67rem;line-height:1.45;color:var(--ink-soft)}
+.mode.is-listen{color:var(--heat);border-color:color-mix(in srgb,var(--heat) 42%,var(--rule));
+ background:color-mix(in srgb,var(--heat) 8%,var(--surface))}
+.mode.is-read{color:var(--dim);background:var(--surface)}
+.mode.is-chapter{color:var(--signal);border-color:color-mix(in srgb,var(--signal) 35%,var(--rule));
+ background:color-mix(in srgb,var(--signal) 6%,var(--surface))}
+.mode.is-topic{color:var(--ink-soft);border-color:var(--rule);background:var(--surface-2)}
+.mode.is-new{color:var(--signal);border-color:color-mix(in srgb,var(--signal) 42%,var(--rule));
+ background:color-mix(in srgb,var(--signal) 8%,var(--surface));font-weight:600}
+.mode.is-streak{color:var(--heat);border-color:color-mix(in srgb,var(--heat) 45%,var(--rule));
+ background:color-mix(in srgb,var(--heat) 10%,var(--surface));font-weight:600}
+.pick{padding:.1rem 0 .2rem}
+.picks-list{border-top:1px solid var(--rule)}
+.story-row{padding:0;margin:0;border-bottom:1px solid var(--rule)}
+.card-fold>summary{list-style:none;cursor:pointer;padding:.62rem .35rem .58rem .2rem;display:grid;
+ grid-template-columns:1rem minmax(0,1fr);gap:.15rem .5rem;align-items:start;border-radius:3px;
+ transition:background-color .12s ease}
+.card-fold>summary::-webkit-details-marker{display:none}
+.card-fold>summary:hover{background:color-mix(in srgb,var(--signal) 5%,transparent)}
+.card-fold[open]>summary{background:color-mix(in srgb,var(--signal) 4%,var(--surface))}
+.chev{display:inline-flex;align-items:center;justify-content:center;width:1rem;height:1.45rem;
+ font-family:var(--mono);font-size:1rem;line-height:1;color:var(--faint);
+ transition:transform .14s ease,color .14s ease;user-select:none}
+.card-fold>summary:hover .chev,.paper-fold>summary:hover .chev{color:var(--signal)}
+.card-fold[open]>summary .chev,.paper-fold[open]>summary .chev{transform:rotate(90deg);color:var(--signal)}
+.card-main{min-width:0}
+.row-headline{margin:0 0 .24rem;font-size:.98rem;line-height:1.48;color:var(--ink);font-weight:500}
+.row-sub{display:flex;flex-wrap:wrap;align-items:baseline;gap:.18rem .42rem;font-family:var(--mono);
+ font-size:.71rem;color:var(--dim);font-variant-numeric:tabular-nums}
+.row-sub h3{margin:0;font-family:var(--sans);font-size:.78rem;font-weight:400;line-height:1.4;color:var(--dim)}
+.row-sub h3 a.title-link{color:var(--dim);border-bottom:1px dotted color-mix(in srgb,var(--dim) 40%,transparent)}
+.row-sub h3 a.title-link:hover{color:var(--signal);border-bottom-color:var(--signal)}
+.rel-hint{color:var(--faint);font-size:.68rem}
+.card-body{padding:.6rem .95rem .8rem 1.7rem;border-top:1px dashed var(--rule);background:var(--surface)}
+.card-why{margin:0 0 .6rem;padding:.38rem .65rem;border-left:2px solid var(--signal);
+ background:color-mix(in srgb,var(--signal) 5%,var(--paper));font-size:.87rem;color:var(--ink)}
+.card-body .src{margin:.4rem 0 0}
+.related-list{list-style:none;margin:.6rem 0 0;padding:.5rem 0 0;border-top:1px dashed var(--rule)}
+.related-list li{display:flex;flex-wrap:wrap;gap:.2rem .5rem;align-items:baseline;font-size:.81rem;margin:.25rem 0;color:var(--dim)}
+.rel-src{font-family:var(--mono);font-size:.67rem;color:var(--faint);white-space:nowrap}
+.rel-heat{font-family:var(--mono);font-size:.65rem;color:var(--faint);margin-left:auto}
+.paper-list{border-top:1px solid var(--rule);margin:.5rem 0 1.2rem}
+.paper-row{padding:0;margin:0;border-bottom:1px solid var(--rule)}
+.paper-fold>summary{list-style:none;cursor:pointer;padding:.58rem .3rem .54rem .2rem;display:grid;
+ grid-template-columns:1rem minmax(0,1fr);gap:.15rem .5rem;align-items:start;border-radius:3px}
+.paper-fold>summary::-webkit-details-marker{display:none}
+.paper-fold>summary:hover{background:color-mix(in srgb,var(--signal) 5%,transparent)}
+.paper-fold[open]>summary{background:color-mix(in srgb,var(--signal) 4%,var(--surface))}
+.paper-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:.25rem .5rem;margin-bottom:.2rem}
+.paper-top h3{margin:0;font-family:var(--sans);font-size:.91rem;font-weight:600;line-height:1.4}
+.paper-takeaway{margin:0;font-size:.86rem;line-height:1.5;color:var(--ink-soft)}
+.brief-list{list-style:none;padding:0;margin:.4rem 0 1.2rem;border-top:1px solid var(--rule)}
+.brief-list li{display:flex;flex-wrap:wrap;gap:.2rem .6rem;align-items:baseline;padding:.44rem .15rem;
+ margin:0;border-bottom:1px solid var(--rule);font-size:.87rem;line-height:1.5}
+.brief-src{font-family:var(--mono);font-size:.7rem;color:var(--faint);white-space:nowrap}
+.brief-text{flex:1 1 20rem;color:var(--ink-soft);min-width:0}
+.brief-date{font-family:var(--mono);font-size:.67rem;color:var(--faint);margin-left:auto;white-space:nowrap}
+.repo-list{list-style:none;padding:0;margin:.4rem 0 1.2rem;border-top:1px solid var(--rule)}
+.repo-list li{padding:.55rem .2rem;margin:0;border-bottom:1px solid var(--rule);font-size:.88rem;line-height:1.5}
+.repo-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.28rem .5rem;margin-bottom:.15rem}
+.repo-name{font-family:var(--mono);font-size:.9rem;font-weight:600;color:var(--ink)}
+.repo-what{color:var(--ink-soft)}
+.repo-hl{margin:.15rem 0 0;font-size:.82rem;color:var(--dim)}
+.prod-track{margin:1rem 0 .35rem;display:flex;align-items:baseline;gap:.55rem}
+.track-stat{font-family:var(--mono);font-size:.68rem;font-weight:400;color:var(--faint)}
+.trend-table{list-style:none;padding:0;margin:.25rem 0 1.1rem;border-top:1px solid var(--rule)}
+.trend-table li{display:grid;grid-template-columns:minmax(9rem,13.5rem) minmax(0,1fr);gap:.25rem .85rem;
+ align-items:baseline;padding:.44rem .2rem;margin:0;border-bottom:1px solid var(--rule);font-size:.86rem;line-height:1.5}
+.trend-table .t-name{font-weight:600;color:var(--ink);min-width:0;display:flex;flex-wrap:wrap;gap:.25rem .35rem;align-items:baseline}
+.trend-table .t-desc{color:var(--ink-soft);min-width:0}
+.omitted-note{font-family:var(--mono);font-size:.76rem;color:var(--dim);margin:.5rem 0 1rem}
+.talk-sec{padding-bottom:.4rem}
+.week-menu{position:relative;display:inline-block}
+.week-menu>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:.32rem;
+ padding:.24rem .55rem;margin:-.06rem 0;border-radius:3px;color:var(--signal);
+ border:1px solid color-mix(in srgb,var(--signal) 28%,var(--rule));background:transparent;
+ user-select:none;transition:background-color .12s ease,border-color .12s ease,color .12s ease}
+.week-menu>summary::-webkit-details-marker{display:none}
+.week-menu>summary::after{content:"▾";font-size:.68rem;line-height:1;transition:transform .16s ease}
+.week-menu>summary:hover{background:color-mix(in srgb,var(--signal) 8%,var(--surface));border-color:var(--signal)}
+.week-menu>summary:active{background:color-mix(in srgb,var(--signal) 15%,var(--surface))}
+.week-menu[open]>summary{background:color-mix(in srgb,var(--signal) 12%,var(--surface));border-color:var(--signal);color:var(--ink)}
+.week-menu[open]>summary::after{transform:rotate(180deg)}
+.week-menu-pop{position:absolute;top:calc(100% + .38rem);left:0;z-index:40;min-width:15.5rem;
+ max-height:26rem;overflow:auto;list-style:none;margin:0;padding:.3rem 0;
+ background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+ box-shadow:0 8px 24px color-mix(in srgb,var(--ink) 14%,transparent)}
+.week-menu-pop li{display:flex;align-items:stretch;padding:0;margin:0;
+ border-bottom:1px solid color-mix(in srgb,var(--rule) 55%,transparent);font-size:.74rem}
+.week-menu-pop li:last-child{border-bottom:0}
+.week-menu-pop a{border:0;text-decoration:none}
+.week-menu-pop .wk-main{flex:1;display:flex;align-items:baseline;justify-content:space-between;gap:.65rem;
+ padding:.48rem .75rem;color:var(--ink);transition:background-color .1s ease,color .1s ease}
+.week-menu-pop .wk-main:hover{background:color-mix(in srgb,var(--signal) 9%,var(--surface));color:var(--signal)}
+.week-menu-pop .wk-main:active{background:color-mix(in srgb,var(--signal) 16%,var(--surface))}
+.week-menu-pop .wk{font-weight:500}
+.week-menu-pop .n{color:var(--faint);font-size:.66rem;font-variant-numeric:tabular-nums}
+.week-menu-pop .alt{display:flex;align-items:center;padding:.48rem .68rem;color:var(--dim);font-size:.68rem;
+ border-left:1px solid color-mix(in srgb,var(--rule) 55%,transparent);transition:background-color .1s ease,color .1s ease}
+.week-menu-pop .alt:hover{background:color-mix(in srgb,var(--signal) 9%,var(--surface));color:var(--signal)}
+.week-menu-pop .alt:active{background:color-mix(in srgb,var(--signal) 16%,var(--surface))}
+.tab-radio{position:absolute;opacity:0;pointer-events:none}
+.tab-bar{display:flex;flex-wrap:wrap;gap:.25rem 1.4rem;margin:.1rem 0 1.25rem;
+ border-bottom:1px solid var(--rule);font-family:var(--sans);font-size:.9rem}
+.tab-btn{cursor:pointer;display:inline-flex;align-items:baseline;gap:.35rem;
+ padding:.5rem .1rem .58rem;margin-bottom:-1px;color:var(--dim);font-weight:500;
+ border-bottom:2px solid transparent;user-select:none;transition:color .12s ease,border-color .12s ease}
+.tab-btn:hover{color:var(--ink)}
+.tab-btn .cnt{font-family:var(--mono);font-size:.68rem;color:var(--faint);font-variant-numeric:tabular-nums}
+.tab-panel{display:none}
+#tab-front:checked ~ .tab-bar label[for="tab-front"],
+#tab-radar:checked ~ .tab-bar label[for="tab-radar"],
+#tab-papers:checked ~ .tab-bar label[for="tab-papers"]{color:var(--ink);border-bottom-color:var(--signal);font-weight:600}
+#tab-front:checked ~ .tab-bar label[for="tab-front"] .cnt,
+#tab-radar:checked ~ .tab-bar label[for="tab-radar"] .cnt,
+#tab-papers:checked ~ .tab-bar label[for="tab-papers"] .cnt{color:var(--signal)}
+#tab-front:checked ~ .tab-panel[data-tab="front"],
+#tab-radar:checked ~ .tab-panel[data-tab="radar"],
+#tab-papers:checked ~ .tab-panel[data-tab="papers"]{display:block}
+.layout:has(#tab-front:checked) .outline a[data-tab]:not([data-tab="front"]),
+.layout:has(#tab-radar:checked) .outline a[data-tab]:not([data-tab="radar"]),
+.layout:has(#tab-papers:checked) .outline a[data-tab]:not([data-tab="papers"]){display:none}
+.tier-note{font-family:var(--mono);font-size:.76rem;color:var(--dim);margin:1.6rem 0 .4rem;
+ padding-top:.85rem;border-top:1px dashed var(--rule)}
+.papers-sec:has(.f-p-ch:checked) .paper-row{display:none}
+.papers-sec:has(#p-ch-0:checked) .paper-row[data-pch="0"],
+.papers-sec:has(#p-ch-1:checked) .paper-row[data-pch="1"],
+.papers-sec:has(#p-ch-2:checked) .paper-row[data-pch="2"],
+.papers-sec:has(#p-ch-3:checked) .paper-row[data-pch="3"]{display:block}
+.papers-sec:has(.f-p-tag:checked) .paper-row{display:none}
+.papers-sec:has(#p-tag-0:checked) .paper-row[data-ptag="0"],
+.papers-sec:has(#p-tag-1:checked) .paper-row[data-ptag="1"],
+.papers-sec:has(#p-tag-2:checked) .paper-row[data-ptag="2"],
+.papers-sec:has(#p-tag-3:checked) .paper-row[data-ptag="3"],
+.papers-sec:has(#p-tag-4:checked) .paper-row[data-ptag="4"],
+.papers-sec:has(#p-tag-5:checked) .paper-row[data-ptag="5"],
+.papers-sec:has(#p-tag-6:checked) .paper-row[data-ptag="6"],
+.papers-sec:has(#p-tag-7:checked) .paper-row[data-ptag="7"]{display:block}
+.runs-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:.78rem;margin:1rem 0 2rem;display:table}
+.runs-table th,.runs-table td{text-align:left;padding:.52rem .6rem;border-bottom:1px solid var(--rule);vertical-align:top}
+.runs-table th{color:var(--dim);font-weight:500;border-bottom:2px solid var(--rule)}
+.runs-table .bad{color:var(--heat)}
+.runs-table .ok{color:var(--signal)}
+.filter-bar{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem .42rem;margin:.2rem 0 .95rem;
+ font-family:var(--mono);font-size:.72rem}
+.filter-bar input{position:absolute;opacity:0;pointer-events:none}
+.filter-bar .filter-k{color:var(--faint);font-size:.68rem;margin-right:.1rem}
+.filter-bar .filter-sep{color:var(--rule);margin:0 .15rem}
+.filter-bar label{cursor:pointer;display:inline-flex;align-items:center;gap:.24rem;
+ padding:.14rem .48rem;border:1px solid var(--rule);border-radius:3px;
+ color:var(--dim);background:transparent;user-select:none}
+.filter-bar label:hover{border-color:var(--signal);color:var(--ink)}
+.filter-bar .cnt{color:var(--faint);font-size:.65rem;font-variant-numeric:tabular-nums}
+.filter-bar input:checked+label{border-color:var(--signal);color:var(--signal);
+ background:color-mix(in srgb,var(--signal) 10%,var(--surface));font-weight:500}
+.filter-bar input:checked+label .cnt{color:var(--signal)}
+.filter-bar input:focus-visible+label{outline:2px solid var(--signal);outline-offset:2px}
+.filter-reset{display:none;appearance:none;border:0;background:none;padding:.14rem .3rem;
+ font:inherit;font-size:.68rem;color:var(--faint);cursor:pointer;
+ border-bottom:1px dotted var(--rule)}
+.filter-reset:hover{color:var(--heat);border-bottom-color:var(--heat)}
+.filter-bar:has(input:checked) .filter-reset{display:inline-block}
+.page:has(.f-ch:checked) .picks-list .pick,
+.page:has(.f-ch:checked) .papers-sec .paper-row{display:none}
+.page:has(#f-ch-0:checked) .picks-list .pick[data-ch="0"],
+.page:has(#f-ch-1:checked) .picks-list .pick[data-ch="1"],
+.page:has(#f-ch-2:checked) .picks-list .pick[data-ch="2"],
+.page:has(#f-ch-3:checked) .picks-list .pick[data-ch="3"],
+.page:has(#f-ch-4:checked) .picks-list .pick[data-ch="4"],
+.page:has(#f-ch-5:checked) .picks-list .pick[data-ch="5"],
+.page:has(#f-ch-6:checked) .picks-list .pick[data-ch="6"],
+.page:has(#f-ch-7:checked) .picks-list .pick[data-ch="7"],
+.page:has(#f-ch-0:checked) .papers-sec .paper-row[data-ch="0"],
+.page:has(#f-ch-1:checked) .papers-sec .paper-row[data-ch="1"],
+.page:has(#f-ch-2:checked) .papers-sec .paper-row[data-ch="2"],
+.page:has(#f-ch-3:checked) .papers-sec .paper-row[data-ch="3"],
+.page:has(#f-ch-4:checked) .papers-sec .paper-row[data-ch="4"],
+.page:has(#f-ch-5:checked) .papers-sec .paper-row[data-ch="5"],
+.page:has(#f-ch-6:checked) .papers-sec .paper-row[data-ch="6"],
+.page:has(#f-ch-7:checked) .papers-sec .paper-row[data-ch="7"]{display:block}
+.page:has(#f-multi:checked) .picks-list .pick:not([data-multi="1"]){display:none}
+.page:has(#f-consume-listen:checked):not(:has(#f-consume-read:checked)) .pick:not([data-consume="listen"]),
+.page:has(#f-consume-read:checked):not(:has(#f-consume-listen:checked)) .pick:not([data-consume="read"]){display:none}
+.page:has(#f-consume-listen:checked):not(:has(#f-consume-read:checked)) .papers-sec:not(:has(.pick[data-consume="listen"])),
+.page:has(#f-consume-read:checked):not(:has(#f-consume-listen:checked)) .papers-sec:not(:has(.pick[data-consume="read"])){display:none}
+.page:has(.f-cand-kind:checked) .cand-sec{display:none}
+.page:has(#cand-kind-direct:checked) .cand-sec[data-kind="direct"],
+.page:has(#cand-kind-digest:checked) .cand-sec[data-kind="digest"],
+.page:has(#cand-kind-papers:checked) .cand-sec[data-kind="papers"],
+.page:has(#cand-kind-capture:checked) .cand-sec[data-kind="capture"]{display:block}
+.page:has(.f-cand-ch:checked) .cand li{display:none}
+.page:has(#cand-ch-0:checked) .cand li[data-ch="0"],
+.page:has(#cand-ch-1:checked) .cand li[data-ch="1"],
+.page:has(#cand-ch-2:checked) .cand li[data-ch="2"],
+.page:has(#cand-ch-3:checked) .cand li[data-ch="3"],
+.page:has(#cand-ch-4:checked) .cand li[data-ch="4"],
+.page:has(#cand-ch-5:checked) .cand li[data-ch="5"]{display:flex}
+.page:has(.f-cand-st:checked):not(:has(#cand-picked:checked)) .cand li[data-status="picked"],
+.page:has(.f-cand-st:checked):not(:has(#cand-roundup:checked)) .cand li[data-status="roundup"],
+.page:has(.f-cand-st:checked):not(:has(#cand-rest:checked)) .cand li[data-status="rest"]{display:none}
+.page:has(.f-cand-st:checked,.f-cand-ch:checked) .cand-sec:not(:has(li:not([style]))){/* structural fallback */}
 blockquote{margin:0 0 .75rem;padding:.35rem 0;
  border-top:1px solid var(--rule);color:var(--dim);font-size:.9rem}
 blockquote p{margin:0;color:inherit}
 ul{padding-left:1.1rem;margin:0 0 1rem}
 li{margin:.3rem 0;color:var(--ink-soft)}
-.src{font-family:var(--mono);font-size:.8rem;word-break:break-all;margin:0 0 .9rem}
+.src{font-family:var(--mono);font-size:.78rem;word-break:break-all;margin:0 0 .85rem;color:var(--dim)}
 .index{list-style:none;padding:0;margin:1.5rem 0 0}
 .index li{display:flex;gap:1rem;align-items:baseline;padding:.7rem 0;
  border-bottom:1px solid var(--rule)}
@@ -97,13 +295,7 @@ hr{border:0;border-top:1px solid var(--rule);margin:2rem 0}
 .health b{color:var(--heat);font-weight:600}
 .foot{margin-top:3.5rem;padding-top:1.1rem;border-top:2px solid var(--ink);
  font-family:var(--mono);font-size:.72rem;color:var(--faint);line-height:1.8}
-/* ── 阅读重点 ────────────────────────────────────────────
-   只有**句中**的粗体才算重点：标题里的 `**` 在渲染前就被剥掉了，
-   否则满屏荧光等于没标。.hl 给一条压在基线下的底色，像荧光笔划过。
-   底色用 signal 的低透明度混色，深浅色主题下都不会糊掉文字。 */
 b.item{font-weight:600;color:var(--ink)}
-/* 榜单热度角标。它是置信度不是内容 —— 给得见但不抢视线，
-   完整数字在 title 里，悬停（或移动端长按）才出来。 */
 sup.score{font-family:var(--mono);font-size:.62rem;color:var(--faint);
  vertical-align:super;line-height:0;margin-left:.15em;cursor:help;
  border-bottom:1px dotted var(--rule);font-variant-numeric:tabular-nums;
@@ -123,10 +315,6 @@ b.hl{font-weight:600;color:var(--ink);
    color-mix(in srgb,var(--signal) 22%,transparent) .42em,
    transparent .42em);
  padding:0 .1em}
-/* ── 站内导航 ────────────────────────────────────────────
-   站点只有三类页面（首页 / 某一期 / 资讯源），全部列出来，
-   当前页用 aria-current 标出而不是去掉链接 —— 少一个入口，
-   就意味着有页面只能靠记地址进。 */
 .preview-flag{grid-column:1/-1;
  background:var(--heat);color:var(--on-heat);font-family:var(--mono);
  font-size:.72rem;padding:.5rem .9rem;margin:0 0 1.5rem;border-radius:3px}
@@ -135,18 +323,10 @@ b.hl{font-weight:600;color:var(--ink);
  font-family:var(--mono);font-size:.76rem}
 .nav a{padding:.3rem 0}
 .nav [aria-current="page"]{color:var(--ink);border-bottom-color:var(--ink)}
-/* 短条目列表在宽屏分两栏。判据是**条目会不会因半宽而翻倍折行**：
-   实测聚合稿每条 143 字符 / 2.6 行，半宽后约 5 行，分栏白费；
-   「在涨什么」每条 43 字符 / 1.0 行，半宽后仍是一行，省掉近一半高度。
-   break-inside 防止一条被拆到两栏。 */
 @media (min-width:1101px){
   .cols2{column-count:2;column-gap:2.2rem}
   .cols2>li{break-inside:avoid}
 }
-/* 聚合稿默认折叠。它是**召回机制** —— 过滤和排序会出错，被误判的资讯
-   直接消失的话使用者不知道自己漏了什么，所以要留着；但它同时是
-   「需要时才查」的东西，实测占首页 38% 的高度（3456px / 40 条）。
-   用原生 <details>，不需要 JS，移动端和读屏软件都正常。 */
 details.fold{margin:0 0 1.5rem}
 details.fold>summary{cursor:pointer;list-style:none;padding:.55rem .8rem;
  border:1px solid var(--rule);border-radius:3px;background:var(--surface);
@@ -156,13 +336,12 @@ details.fold>summary::before{content:"▸ ";color:var(--faint)}
 details.fold[open]>summary::before{content:"▾ "}
 details.fold>summary:hover{border-color:var(--signal);color:var(--signal)}
 details.fold[open]>summary{margin-bottom:1rem}
-/* ── 候选清单 ────────────────────────────────────────────
-   两百多条，用来扫和找，不是用来读 —— 所以一行一条，
-   来源和日期靠右对齐成列，眼睛可以顺着一条竖线往下走。 */
 .cand{list-style:none;padding:0;margin:.8rem 0 2.2rem}
-.cand li{display:flex;gap:1rem;align-items:baseline;flex-wrap:wrap;
- padding:.5rem 0;border-bottom:1px solid var(--rule)}
-.cand li>a{flex:1 1 20rem;min-width:0}
+.cand li{display:flex;gap:.4rem 1rem;align-items:baseline;flex-wrap:wrap;
+ padding:.55rem 0;border-bottom:1px solid var(--rule)}
+.cand li>a{flex:1 1 20rem;min-width:0;border-bottom:0;text-decoration:underline;
+ text-decoration-color:color-mix(in srgb,var(--signal) 30%,transparent);text-underline-offset:3px}
+.cand li>a:hover{text-decoration-color:var(--signal)}
 .cand .meta{display:flex;gap:.7rem;align-items:baseline;margin-left:auto;
  font-family:var(--mono);font-size:.68rem;color:var(--faint);
  white-space:nowrap;font-variant-numeric:tabular-nums}
@@ -171,10 +350,6 @@ details.fold[open]>summary{margin-bottom:1rem}
 .cand .got{color:var(--signal);border:1px solid var(--signal);
  border-radius:2px;padding:0 .3rem;font-size:.62rem}
 .cand .got.rough{color:var(--dim);border-color:var(--rule)}
-/* ── 资讯源清单 ──────────────────────────────────────────
-   用卡片不用表格：站点/订阅两列都是长 URL，四列表格在窄屏必然
-   横向滚动，而这页的每一行都要能点。auto-fit 让宽屏自动排成两列，
-   窄屏自然落回单列，不需要为此再写一条媒体查询。 */
 .srcs{list-style:none;padding:0;margin:1rem 0 2.4rem;display:grid;
  grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:.75rem}
 .srcbox{border:1px solid var(--rule);border-radius:3px;padding:.9rem 1rem;
@@ -187,12 +362,14 @@ details.fold[open]>summary{margin-bottom:1rem}
 .chip{font-family:var(--mono);font-size:.64rem;white-space:nowrap;
  padding:.1rem .38rem;border:1px solid var(--rule);border-radius:2px;
  color:var(--ink-soft);background:var(--paper)}
-.chip.dim{color:var(--faint)}
+.chip.dim,.kind-tag{color:var(--faint)}
+.kind-tag{font-family:var(--mono);font-size:.64rem;white-space:nowrap;padding:.06rem .32rem;border:1px solid var(--rule);border-radius:2px;background:var(--surface)}
 .chip.off{color:var(--heat);border-color:var(--heat)}
 .sid{font-family:var(--mono);font-size:.68rem;color:var(--faint);
  margin:.15rem 0 .5rem}
 .srcbox .row{display:flex;gap:.5rem;align-items:baseline;
  font-size:.76rem;line-height:1.6;margin-top:.15rem}
+.srcbox .row>.chip{flex-shrink:0}
 .srcbox .k{font-family:var(--mono);font-size:.66rem;color:var(--faint);
  flex:0 0 2.2rem;white-space:nowrap}
 .srcbox .row a,.srcbox code{font-family:var(--mono);font-size:.72rem;
@@ -201,47 +378,35 @@ details.fold[open]>summary{margin-bottom:1rem}
 .srcbox .why{color:var(--dim);font-size:.74rem}
 h2 .n{font-family:var(--mono);font-size:.7rem;color:var(--faint);
  margin-left:.55rem;font-weight:400}
-/* ── 移动端 ──────────────────────────────────────────────
-   页面主体是长文，所以窄屏的重点不是重排布局，而是三件事：
-   正文别贴边、长 URL 别把页面撑宽、可点区域别太小。 */
 @media (max-width:760px){
-  .layout{padding:1.25rem 1.05rem 2.5rem}
+  .layout{padding:1.15rem 1.05rem 2.5rem}
   .wordmark{font-size:1.85rem}
-  .mast{gap:.5rem 1rem;align-items:flex-start;margin-bottom:1.5rem}
+  .mast{gap:.45rem 1rem;align-items:flex-start;padding-bottom:.9rem;margin-bottom:.9rem}
   .sweep{text-align:left}
-  h2{font-size:1.28rem;margin:1.65rem 0 .65rem}
-  h3{font-size:1.08rem;margin:1.1rem 0 .25rem}
+  .nav{margin:0 0 .65rem}
+  h2{font-size:1.28rem;margin:1.55rem 0 .6rem}
+  h3{font-size:1.08rem;margin:1.05rem 0 .25rem}
   body{font-size:16px;line-height:1.7}
-  /* 索引在窄屏换行排，否则「条数」会把标题挤没 */
+  .filter-bar{gap:.32rem .38rem;margin-bottom:.95rem}
+  .filter-bar label{min-height:30px;padding:.18rem .5rem}
   .index li{flex-wrap:wrap;gap:.2rem .7rem;padding:.6rem 0}
   .index .n{margin-left:0}
-  /* 链接区可点范围放大一点，指头比鼠标粗 */
   .index a{padding:.15rem 0}
-  /* 保留完整链接触摸矩形，单行约 40px，高度下限为 36px。 */
-  /* 箭头和 URL 用 flex 排在一行。原先 .src a 是 inline-block + max-width
-     100%，装不下就整体换行，箭头孤零零留在上一行。 */
-  .src{display:flex;gap:.4em;align-items:baseline}
-  .src a{display:inline-block;min-height:36px;padding:.5rem 0;flex:1;min-width:0;
-         overflow-wrap:anywhere}
-  .src{font-size:.85rem;margin-bottom:.9rem}
-  /* 源清单页同理，而且更要紧：整页 75 个链接，点链接就是这页的全部用途。
-     让链接占满行内剩余宽度并加纵向 padding —— 触摸区变成「整行」，
-     比只把文字撑高好点得多。 */
+  .src{display:flex;gap:.4em;align-items:baseline;font-size:.82rem;margin-bottom:.85rem}
+  .src a{display:inline-block;min-height:34px;padding:.35rem 0;flex:1;min-width:0;overflow-wrap:anywhere}
   .srcbox .row a{display:block;flex:1;padding:.55rem 0}
-  .srcbox .row{margin-top:0}
   .srcs{gap:.7rem}
-  .cand li{gap:.15rem .6rem;padding:.35rem 0}
-  .cand li>a{flex-basis:100%;display:block;min-height:36px;padding:.3rem 0}
-  .cand .meta{max-width:100%;flex-wrap:wrap;gap:.25rem .6rem;margin-left:0}
+  .cand li{gap:.22rem .6rem;padding:.48rem 0}
+  .cand li>a{flex-basis:100%;display:block;min-height:34px;padding:.2rem 0;line-height:1.45}
+  .cand .meta{max-width:100%;flex-wrap:wrap;gap:.25rem .55rem;margin-left:0}
   .cand .who{max-width:100%;white-space:normal;overflow-wrap:anywhere}
   .nav a{min-height:36px;display:inline-flex;align-items:center}
-  /* 移动端提示固定在视口内，角标贴近任一边缘也不会溢出。 */
+  .card-body{padding:.55rem .65rem .7rem 1rem}
+  .trend-table li{grid-template-columns:1fr;gap:.15rem}
   sup.score:hover::after,sup.score:focus::after{
     position:fixed;left:1.05rem;right:1.05rem;bottom:1rem;
     transform:none;white-space:normal;width:auto}
 }
-/* 长 URL / 长英文标题是这个页面最容易撑宽的东西 ——
-   **任何屏宽都不该出现横向滚动**，所以不放在媒体查询里。 */
 h1,h2,h3,h4,p,li,blockquote,.sweep,.tagline,.sid{overflow-wrap:anywhere;word-break:normal}
 .src{overflow-wrap:anywhere}
 pre,table{max-width:100%;overflow-x:auto;display:block}
@@ -249,201 +414,176 @@ img{max-width:100%;height:auto}
 .mast>*,.srcbox,.srcbox .row>*{min-width:0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style></head><body><div class="layout">
-<header class="mast"><h1 class="wordmark"><a href="./">资讯周报</a> <em>2026-W42</em></h1><div class="sweep">556 条抓取 · 精选 97 候选 · 论文 207 候选</div></header>
-<nav class="nav"><a href="./" aria-current="page">本期 / 往期</a><a href="./2026-W42.candidates.html">本期候选</a><a href="./sources.html">资讯源</a></nav><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">值得读的 · AI 工程</a><a href="#section-2">值得读的 · 系统设计</a><a href="#section-3">论文</a><a href="#section-4">社区在聊什么</a><a href="#section-5">在涨什么</a><a href="#section-6">还没细看的（聚合稿）</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
-<blockquote><p>抓取 556 条 · 值得读 97 候选 / 讨论 72 / 榜单 180 / 论文 207 候选 / 收藏 0</p></blockquote>
-<h2 id="section-1">值得读的 · AI 工程</h2>
-<h3>Redesigning source control at Anthropic</h3>
-<p class="tag">Anthropic Engineering · 2026-10-12 · 周末整块</p>
+<header class="mast"><h1 class="wordmark"><a href="./">资讯周报</a> <em>2026-W42</em></h1><div class="sweep">556 条抓取 · 精选 97 候选 · 讨论 72 · 论文 207 候选</div></header>
+<nav class="nav"><a href="./" aria-current="page">本期</a><a href="./2026-W42.roundup.html">本期兜底</a><a href="./2026-W42.candidates.html">本期候选</a><a href="./sources.html">资讯源</a><details class="week-menu"><summary>往期 (9)</summary><ul class="week-menu-pop"><li><a class="wk-main" href="./2026-W47.html"><span class="wk">2026-W47</span><span class="n">661 条</span></a><a class="alt" href="./2026-W47.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W46.html"><span class="wk">2026-W46</span><span class="n">427 条</span></a><a class="alt" href="./2026-W46.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W45.html"><span class="wk">2026-W45</span><span class="n">462 条</span></a><a class="alt" href="./2026-W45.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W44.html"><span class="wk">2026-W44</span><span class="n">554 条</span></a><a class="alt" href="./2026-W44.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W43.html"><span class="wk">2026-W43</span><span class="n">537 条</span></a><a class="alt" href="./2026-W43.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W41.html"><span class="wk">2026-W41</span><span class="n">585 条</span></a><a class="alt" href="./2026-W41.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W40.html"><span class="wk">2026-W40</span><span class="n">675 条</span></a><a class="alt" href="./2026-W40.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W39.html"><span class="wk">2026-W39</span><span class="n">417 条</span></a><a class="alt" href="./2026-W39.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W38.html"><span class="wk">2026-W38</span><span class="n">515 条</span></a><a class="alt" href="./2026-W38.candidates.html">候选</a></li></ul></details></nav><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1" data-tab="front">值得读的</a><a href="#section-2" data-tab="front">社区在聊什么</a><a href="#section-3" data-tab="radar">在涨什么</a><a href="#section-4" data-tab="papers">论文 · 6</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
+<input type="radio" name="issue-tab" id="tab-front" class="tab-radio" checked>
+<input type="radio" name="issue-tab" id="tab-radar" class="tab-radio">
+<input type="radio" name="issue-tab" id="tab-papers" class="tab-radio">
+<div class="tab-bar" role="tablist" aria-label="内容分区"><label class="tab-btn" for="tab-front" role="tab">头版精读 <span class="cnt">10</span></label><label class="tab-btn" for="tab-radar" role="tab">雷达快讯</label><label class="tab-btn" for="tab-papers" role="tab">论文 <span class="cnt">6</span></label></div>
+<div class="tab-panel" data-tab="front">
+<section class="sec picks-sec"><h2 id="section-1">值得读的</h2>
+<form class="filter-bar" aria-label="精选筛选"><span class="filter-k">筛选</span><input type="checkbox" class="f-ch" id="f-ch-0"><label for="f-ch-0">AI 工程 <span class="cnt">7</span></label><input type="checkbox" class="f-ch" id="f-ch-1"><label for="f-ch-1">系统设计 <span class="cnt">3</span></label><button type="reset" class="filter-reset">清除筛选</button></form>
+<div class="picks-list"><article class="pick" data-chapter="ai" data-ch="0" data-consume="read">
+<h3><a href="https://www.anthropic.com/engineering/redesigning-source-control" target="_blank" rel="noopener noreferrer" class="title-link">Redesigning source control at Anthropic</a></h3>
+<p class="tag">Anthropic Engineering · 2026-10-12 · <span class="mode is-chapter">AI 工程</span> · <span class="mode is-read">桌前深读</span></p>
 <p>Anthropic 工程博客：Claude 的自主代码能力使得源代码管理从人类规模的瓶颈浮现。2026 年 5 月月均合并 2500 次代码变更，到 9 月激增至每日 30000 次。为应对这个增长，Anthropic 在 5 个月内构建了自研版本控制系统 Scion，从 git 迁移完成，同时上线代码审查工具 Antique、代码搜索等。<b class="hl">代码变更速度从 2500 到 30000 次/日</b>的增长展示了 AI 赋能研发的规模化挑战，迁移与一致性管理成为核心工程问题。</p>
 <p class="src">→ <a href="https://www.anthropic.com/engineering/redesigning-source-control" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/engineering/redesigning-source-control</a></p>
-<h3>How Anthropic’s Dynamic Workflows Coordinate Claude Agents</h3>
-<p class="tag">Latent Space · 2026-10-12 · 周末整块</p>
+</article>
+<article class="pick" data-chapter="ai" data-ch="0" data-consume="read">
+<h3><a href="https://www.latent.space/p/claude-dynamic-workflows" target="_blank" rel="noopener noreferrer" class="title-link">How Anthropic’s Dynamic Workflows Coordinate Claude Agents</a></h3>
+<p class="tag">Latent Space · 2026-10-12 · <span class="mode is-chapter">AI 工程</span> · <span class="mode is-read">桌前深读</span></p>
 <p>Anthropic 在 AI Engineer NYC 大会上介绍了动态工作流（Dynamic Workflows），一种新的多 agent 编排方式。这个特性借鉴了 Unix/Linux 的分层组织思想，强调 agent 需要像操作系统那样有清晰的层级结构才能处理大规模项目。<b class="hl">多 agent 协作的组织模式</b>直接对标系统设计中的容量与可靠性问题。材料只提及概念框架，未给出具体机制或性能数据。</p>
 <p class="src">→ <a href="https://www.latent.space/p/claude-dynamic-workflows" target="_blank" rel="noopener noreferrer">https://www.latent.space/p/claude-dynamic-workflows</a></p>
-<h3>Open weight takes 71.5% of tokens and 23% of spend</h3>
-<p class="tag">Vercel · 2026-10-15 · 周末整块</p>
+</article>
+<article class="pick" data-chapter="ai" data-ch="0" data-consume="read">
+<h3><a href="https://vercel.com/blog/ai-gateway-production-index-october-2026" target="_blank" rel="noopener noreferrer" class="title-link">Open weight takes 71.5% of tokens and 23% of spend</a></h3>
+<p class="tag">Vercel · 2026-10-15 · <span class="mode is-chapter">AI 工程</span> · <span class="mode is-read">桌前深读</span></p>
 <p>Vercel AI Gateway Production Index（2026 年 10 月）：开源模型现在处理超过 7 成网关 token 并占近 1/4 支出，与 6 月相比支出占比增长 4 倍。9 月网关支出较 12 月增长 13 倍，单 token 均价下降 47%。Jev 模型是网关历史上采纳最快的，两周内覆盖 35% 付费团队但仅占支出 0.27%；Opus 5.5 首两周占 1/10 支出，是最高的首周支出占比。<b class="hl">开源模型支出占比从 6 月的 5% 增至 9 月 25%</b>，反映了生产环境中模型选择与成本结构的剧烈变化。</p>
 <p class="src">→ <a href="https://vercel.com/blog/ai-gateway-production-index-october-2026" target="_blank" rel="noopener noreferrer">https://vercel.com/blog/ai-gateway-production-index-october-2026</a></p>
-<h3>How to test agent tool descriptions with Harbor and Phoenix</h3>
-<p class="tag">Arize AI · 2026-10-12 · 碎片时间</p>
+</article>
+<article class="pick" data-chapter="ai" data-ch="0" data-consume="read">
+<h3><a href="https://arize.com/blog/how-to-test-agent-tool-descriptions-with-harbor-and-phoenix/" target="_blank" rel="noopener noreferrer" class="title-link">How to test agent tool descriptions with Harbor and Phoenix</a></h3>
+<p class="tag">Arize AI · 2026-10-12 · <span class="mode is-chapter">AI 工程</span> · <span class="mode is-read">桌前深读</span></p>
 <p>Arize AI：使用 Harbor 和 Phoenix 工具来评测 agent 工具描述的改进效果。一个具体案例：改进一条工具描述后，Codex 的不必要技能加载从 51 降为 0，评测成本从 $11.85 降至 $8.34，正确性不变。通过对 18 个问题×3 轮重复执行进行工具调用追踪对比发现了这个优化机会。<b class="hl">工具描述调优可减少成本 30% 以上</b>，体现了 agent 上下文管理与成本可观测的务实方法。</p>
 <p class="src">→ <a href="https://arize.com/blog/how-to-test-agent-tool-descriptions-with-harbor-and-phoenix/" target="_blank" rel="noopener noreferrer">https://arize.com/blog/how-to-test-agent-tool-descriptions-with-harbor-and-phoenix/</a></p>
-<h3>LLM Token Optimization: 9 Techniques in the Order to Apply Them</h3>
-<p class="tag">Firecrawl · 2026-10-13 · 碎片时间</p>
+</article>
+<article class="pick" data-chapter="ai" data-ch="0" data-consume="read">
+<h3><a href="https://www.firecrawl.dev/blog/llm-token-optimization" target="_blank" rel="noopener noreferrer" class="title-link">LLM Token Optimization: 9 Techniques in the Order to Apply Them</a></h3>
+<p class="tag">Firecrawl · 2026-10-13 · <span class="mode is-chapter">AI 工程</span> · <span class="mode is-read">桌前深读</span></p>
 <p>Firecrawl：总结了 LLM token 优化的 9 种技术及优先级。具体成效包括：返回答案替代整页（token 节省 98%，agent 任务节省 15-69%）、延迟加载未用工具（节省 55k token，削减 85%）、缓存友好的提示布局（降低 API 成本 41-80%）、限制输出（输出成本是输入的 5 倍）、批处理叠加缓存（可额外节省 50%）。<b class="hl">综合应用可将 10000 任务研究 agent 月成本从 $11648 降至 $425</b>。这些是实战 token 预算与任务成本的具体手段。</p>
 <p class="src">→ <a href="https://www.firecrawl.dev/blog/llm-token-optimization" target="_blank" rel="noopener noreferrer">https://www.firecrawl.dev/blog/llm-token-optimization</a></p>
-<h3>Under the hood, off the hot path: How D1 scales to millions of databases</h3>
-<p class="tag">Cloudflare Blog · 2026-10-13 · 碎片时间</p>
+</article>
+<article class="pick" data-chapter="ai" data-ch="0" data-consume="read">
+<h3><a href="https://blog.cloudflare.com/d1-control-plane/" target="_blank" rel="noopener noreferrer" class="title-link">Under the hood, off the hot path: How D1 scales to millions of databases</a></h3>
+<p class="tag">Cloudflare Blog · 2026-10-13 · <span class="mode is-chapter">AI 工程</span> · <span class="mode is-read">桌前深读</span></p>
 <p>Cloudflare 博客：传统数据库架构假设一个应用一两个大集群，但 AI 辅助开发与平台转向「许多小数据库」模式（按用户/租户/环境分库）。Cloudflare D1（基于 SQLite 的无服务器托管数据库）支持百万级数据库并按使用付费。核心挑战是：<b class="hl">如何扩展控制平面以支持百万数据库而不让查询穿过中央瓶颈</b>。这篇文章深入控制平面架构设计，给出的分片、路由、容量管理模式可供任何构建大规模系统的团队参考。</p>
 <p class="src">→ <a href="https://blog.cloudflare.com/d1-control-plane/" target="_blank" rel="noopener noreferrer">https://blog.cloudflare.com/d1-control-plane/</a></p>
-<h3>Run evals 50% cheaper with workflow evals</h3>
-<p class="tag">Braintrust · 2026-10-15 · 碎片时间</p>
+</article>
+<article class="pick" data-chapter="ai" data-ch="0" data-consume="read">
+<h3><a href="https://www.braintrust.dev/blog/workflow-evals" target="_blank" rel="noopener noreferrer" class="title-link">Run evals 50% cheaper with workflow evals</a></h3>
+<p class="tag">Braintrust · 2026-10-15 · <span class="mode is-chapter">AI 工程</span> · <span class="mode is-read">桌前深读</span></p>
 <p>Braintrust：通过批处理 API 可以将 eval 成本降低 50%（OpenAI 和 Anthropic 都提供此折扣）。工作流 eval 功能让用户提交请求到批处理队列，等待结果完成后统一回收，完全追踪在一个 Braintrust 实验中。<b class="hl">折扣叠加缓存可进一步降低成本</b>，但权衡是延迟——OpenAI 给 24 小时完成窗口。适用于不需要实时结果的大型回归测试套件和模型对比。</p>
 <p class="src">→ <a href="https://www.braintrust.dev/blog/workflow-evals" target="_blank" rel="noopener noreferrer">https://www.braintrust.dev/blog/workflow-evals</a></p>
-<h2 id="section-2">值得读的 · 系统设计</h2>
-<h3>Shipping Media Over QUIC at Meta Scale for Instagram Live Ingest</h3>
-<p class="tag">Engineering at Meta · 2026-10-12 · 周末整块</p>
+</article>
+<article class="pick" data-chapter="sysdesign" data-ch="1" data-consume="read">
+<h3><a href="https://engineering.fb.com/2026/10/12/video-engineering/shipping-media-over-quic-at-meta-scale-for-instagram-live-ingest/" target="_blank" rel="noopener noreferrer" class="title-link">Shipping Media Over QUIC at Meta Scale for Instagram Live Ingest</a></h3>
+<p class="tag">Engineering at Meta · 2026-10-12 · <span class="mode is-chapter">系统设计</span> · <span class="mode is-read">桌前深读</span></p>
 <p>Meta 工程博客：Instagram Live 现已采用开放标准传输协议 Media over QUIC（MoQ）用于直播视频摄入。MoQ 统一了此前碎片化的协议栈（RTMP 用于摄入、HLS/DASH 用于播放、WebRTC 用于实时通话），提供<b class="hl">更低延迟、更强网络弹性、更快响应</b>的基础。这是基础设施层面的重新设计，虽非 AI 直接相关，但体现了大规模实时系统的协议演进思路。</p>
 <p class="src">→ <a href="https://engineering.fb.com/2026/10/12/video-engineering/shipping-media-over-quic-at-meta-scale-for-instagram-live-ingest/" target="_blank" rel="noopener noreferrer">https://engineering.fb.com/2026/10/12/video-engineering/shipping-media-over-quic-at-meta-scale-for-instagram-live-ingest/</a></p>
-<h3>The Lifecycle of LLM-as-a-Judge: Building, Aligning, and Monitoring at scale</h3>
-<p class="tag">Netflix TechBlog · 2026-10-14 · 周末整块</p>
+</article>
+<article class="pick" data-chapter="sysdesign" data-ch="1" data-consume="read">
+<h3><a href="https://netflixtechblog.com/the-lifecycle-of-llm-as-a-judge-building-aligning-and-monitoring-at-scale-c95bd8283508?source=rss----2615bd06b42e---4" target="_blank" rel="noopener noreferrer" class="title-link">The Lifecycle of LLM-as-a-Judge: Building, Aligning, and Monitoring at scale</a></h3>
+<p class="tag">Netflix TechBlog · 2026-10-14 · <span class="mode is-chapter">系统设计</span> · <span class="mode is-read">桌前深读</span></p>
 <p>Netflix TechBlog：当规模生成文本时，手工评估不可行，业界常用「LLM-as-a-Judge」作为代理评估方案，但评估器本身如何验证是关键问题。Netflix 的核心原则是：<b class="hl">LLM 评估器不能单独运作，必须锚定在人类判断</b>，在全生命周期保持人在回路（HITL）。人类定义「好」的标准、创建标注基准、持续监控运行行为、审批更新。这是 agent 可靠性与评测的完整体系，体现了「评估者漂移」的可观测性困境。</p>
 <p class="src">→ <a href="https://netflixtechblog.com/the-lifecycle-of-llm-as-a-judge-building-aligning-and-monitoring-at-scale-c95bd8283508?source=rss----2615bd06b42e---4" target="_blank" rel="noopener noreferrer">https://netflixtechblog.com/the-lifecycle-of-llm-as-a-judge-building-aligning-and-monitoring-at-scale-c95bd8283508?source=rss----2615bd06b42e---4</a></p>
-<h3>Ontology-Driven Observability: Building an End-to-End Knowledge Graph at Netflix Scale</h3>
-<p class="tag">Netflix TechBlog · 2026-10-16 · 周末整块</p>
+</article>
+<article class="pick" data-chapter="sysdesign" data-ch="1" data-consume="read">
+<h3><a href="https://netflixtechblog.com/ontology-driven-observability-building-an-end-to-end-knowledge-graph-at-netflix-scale-421392cf5adf?source=rss----2615bd06b42e---4" target="_blank" rel="noopener noreferrer" class="title-link">Ontology-Driven Observability: Building an End-to-End Knowledge Graph at Netflix Scale</a></h3>
+<p class="tag">Netflix TechBlog · 2026-10-16 · <span class="mode is-chapter">系统设计</span> · <span class="mode is-read">桌前深读</span></p>
 <p>Netflix TechBlog：规模达到每秒 38 万条实时日志、每日 20 亿请求时，单一仪表盘无法呈现全貌。Netflix 建立了本体驱动的可观测性——<b class="hl">构建端到端知识图谱</b>来快速定位故障根因。一个典型场景：主页渲染延迟 1.5 秒，可能根因来自客户端新版本、基础设施负载脱落、6 跳下游服务的 GraphQL 查询，四小时内需要完成定位与修复。该方法体现了大规模系统可观测性的关键实践。</p>
 <p class="src">→ <a href="https://netflixtechblog.com/ontology-driven-observability-building-an-end-to-end-knowledge-graph-at-netflix-scale-421392cf5adf?source=rss----2615bd06b42e---4" target="_blank" rel="noopener noreferrer">https://netflixtechblog.com/ontology-driven-observability-building-an-end-to-end-knowledge-graph-at-netflix-scale-421392cf5adf?source=rss----2615bd06b42e---4</a></p>
-<h2 id="section-3">论文</h2>
+</article></div></section>
+<section class="sec talk-sec"><h2 id="section-2">社区在聊什么</h2>
+<h4>harness 怎么搭：这周社区的共识是「瓶颈不在模型」</h4>
+<p>本周最集中的一条线索是 agent 的外壳（harness）而非模型本身。YC 的 *Why The Harness Matters More Than The Model* <a href="https://www.ycombinator.com/library/am-why-the-harness-matters-more-than-the-model" target="_blank" rel="noopener noreferrer">链接</a> 把这个判断直接写进了标题，而 HN 上 *How to engineer an AI harness for game development*<sup class="score" tabindex="0" data-tip="热度 175 · 90 条评论" aria-label="热度 175 · 90 条评论">↑175</sup><a href="https://kylekukshtel.com/ai-harness-engineering-game-development-claude-code" target="_blank" rel="noopener noreferrer">链接</a> 给了一个具体领域的落地版本，评论区争的主要是「harness 工程」到底是可复用的方法论还是每个项目都要重写一遍的胶水。最有说服力的成本样本是 *500B tokens later: Letting AI agents decompile a first-person shooter*<sup class="score" tabindex="0" data-tip="热度 218 · 153 条评论" aria-label="热度 218 · 153 条评论">↑218</sup> 把争论引到了沙箱单价与隔离强度的权衡；端侧方向则由 *LFM2.5-24B-A2B: Built for fast on-device agents*<sup class="score" tabindex="0" data-tip="热度 288 · 81 条评论" aria-label="热度 288 · 81 条评论">↑288</sup><a href="https://www.liquid.ai/blog/lfm2-5-24b-a2b" target="_blank" rel="noopener noreferrer">链接</a> 和 HF 的同主题文章 <a href="https://huggingface.co/blog/LiquidAI/lfm25-24b-a2b" target="_blank" rel="noopener noreferrer">链接</a> 承担，核心分歧是本地小模型够不够扛多轮工具调用。另有 *Show HN: Atticus*<sup class="score" tabindex="0" data-tip="热度 115 · 30 条评论" aria-label="热度 115 · 30 条评论">↑115</sup><a href="https://github.com/SaarthurR/atticus-mac" target="_blank" rel="noopener noreferrer">链接</a> 展示了把 <code>claude -p</code> 当后端的极简 harness 形态，以及 YC 的 *Building AI Agents for Everyone* <a href="https://www.ycombinator.com/library/bI-building-ai-agents-for-everyone" target="_blank" rel="noopener noreferrer">链接</a>、*The Powerful Alternative To Fine-Tuning* <a href="https://www.ycombinator.com/library/bs-the-powerful-alternative-to-fine-tuning" target="_blank" rel="noopener noreferrer">链接</a>。</p>
+<h4>agent 可靠性：这周的事故比论文多</h4>
+<p>可靠性话题本周被几起真实事故推到了榜首。*Containment and monitoring failures are to blame for AI hacking reports*<sup class="score" tabindex="0" data-tip="热度 948 · 620 条评论" aria-label="热度 948 · 620 条评论">↑948</sup><a href="https://www.csoonline.com/article/4234854/ai-agents-arent-going-rogue-frontier-labs-are-skipping-security-basics.html" target="_blank" rel="noopener noreferrer">链接</a> 是本周该方向最高热度的一条，论点是把「AI 自主黑客」叙事还原成围栏与监控没做到位的工程问题；与之对冲的是 *Why aren&#x27;t AI companies being charged for hacking?*<sup class="score" tabindex="0" data-tip="热度 336 · 372 条评论" aria-label="热度 336 · 372 条评论">↑336</sup><a href="https://mortoray.com/why-arent-ai-companies-being-charged-for-hacking/" target="_blank" rel="noopener noreferrer">链接</a> 和 *OpenAI discloses four more rogue incidents*<sup class="score" tabindex="0" data-tip="热度 124 · 149 条评论" aria-label="热度 124 · 149 条评论">↑124</sup><a href="https://fortune.com/2026/10/16/openai-discloses-four-more-rogue-incidents-involving-financial-medical-and-government-data/" target="_blank" rel="noopener noreferrer">链接</a>，以及偏推测的 *AI models may be capable of self-replicating without access to a datacenter*<sup class="score" tabindex="0" data-tip="热度 117 · 115 条评论" aria-label="热度 117 · 115 条评论">↑117</sup><a href="https://www.anthropic.com/research/self-replicating-ai" target="_blank" rel="noopener noreferrer">链接</a>。更贴近日常运维的几条事故同样值得记：*TV4 postpones show after AI agent erases edited material*<sup class="score" tabindex="0" data-tip="热度 156 · 88 条评论" aria-label="热度 156 · 88 条评论">↑156</sup><a href="https://swedenherald.com/article/tv4-postpones-the-challenge-until-2027-after-technical-failure-erases-edited-footage" target="_blank" rel="noopener noreferrer">链接</a> 是典型的「agent 有写权限却没有撤销路径」；*Codex CLI installs a persistent, self-updating background daemon by default*<sup class="score" tabindex="0" data-tip="热度 609 · 294 条评论" aria-label="热度 609 · 294 条评论">↑609</sup>；计费侧的 *Anthropic Console overcharged my card 100x due to internationalization input bug*<sup class="score" tabindex="0" data-tip="热度 88 · 36 条评论" aria-label="热度 88 · 36 条评论">↑88</sup><a href="https://news.ycombinator.com/item?id=50121562" target="_blank" rel="noopener noreferrer">链接</a> 则是一条干净的「i18n 输入解析 → 成本放大 100 倍」案例。方法论侧对应 YC 的 *Building the Safety Layer for AI Agents* <a href="https://www.ycombinator.com/library/bN-building-the-safety-layer-for-ai-agents" target="_blank" rel="noopener noreferrer">链接</a>、*AI Agents That Banks Can Trust* <a href="https://www.ycombinator.com/library/bM-ai-agents-that-banks-can-trust" target="_blank" rel="noopener noreferrer">链接</a> 和 Paper Club 的 *AI Safety Fact vs. Fiction* <a href="https://www.youtube.com/watch?v=X7oI4Umt3DU" target="_blank" rel="noopener noreferrer">链接</a>。</p>
+<h4>评测的裂缝：benchmark 分数和实际产出对不上</h4>
+<p>*The gap in shared understanding of LLM capability is widening*<sup class="score" tabindex="0" data-tip="热度 727 · 1072 条评论" aria-label="热度 727 · 1072 条评论">↑727</sup><a href="https://twitter.com/karpathy/status/2109361546505966046" target="_blank" rel="noopener noreferrer">链接</a> 是本周评论数最多的一条，争的是不同人对「模型能做什么」的判断已经分叉到无法对话。两篇配套的实证型讨论值得一起读：*90% of US working hours are spent on tasks not covered well by AI benchmarks*<sup class="score" tabindex="0" data-tip="热度 603 · 551 条评论" aria-label="热度 603 · 551 条评论">↑603</sup><a href="https://www.mercor.com/research/labor-index/benchmark-map/" target="_blank" rel="noopener noreferrer">链接</a> 质疑现有 benchmark 的覆盖面，*AI coding agents generate more code, but not more software*<sup class="score" tabindex="0" data-tip="热度 364 · 313 条评论" aria-label="热度 364 · 313 条评论">↑364</sup><a href="https://arstechnica.com/ai/2026/10/ai-coding-agents-generate-more-code-but-not-more-software/" target="_blank" rel="noopener noreferrer">链接</a> 则直指代码行数这个代理指标的失效。能力上限方向的几条高热条目也是同一场辩论的不同面：*Claude reveals ECDSA curve origins*<sup class="score" tabindex="0" data-tip="热度 1034 · 380 条评论" aria-label="热度 1034 · 380 条评论">↑1034</sup><a href="https://www.anthropic.com/research/ecdsa-curve-origins" target="_blank" rel="noopener noreferrer">链接</a> 是本周最高分条目，*A look at OpenAI&#x27;s math that&#x27;s claimed computes faster Fourier transforms*<sup class="score" tabindex="0" data-tip="热度 247 · 170 条评论" aria-label="热度 247 · 170 条评论">↑247</sup><a href="https://www.argmin.net/p/faster-fourier-transforms" target="_blank" rel="noopener noreferrer">链接</a> 的评论区在逐条核验结论，*Designing more efficient quantum circuits with Claude*<sup class="score" tabindex="0" data-tip="热度 172 · 36 条评论" aria-label="热度 172 · 36 条评论">↑172</sup><a href="https://www.anthropic.com/research/designing-efficient-quantum-circuits" target="_blank" rel="noopener noreferrer">链接</a> 同理。游戏环境被不少人当成更诚实的 agent 评测场：*Gemini 4 Argon plays StarCraft*<sup class="score" tabindex="0" data-tip="热度 243 · 110 条评论" aria-label="热度 243 · 110 条评论">↑243</sup><a href="https://starskirmish.com/bench/v0-2/" target="_blank" rel="noopener noreferrer">链接</a>、*Jevman – AI decision models play Pac-Man*<sup class="score" tabindex="0" data-tip="热度 81 · 23 条评论" aria-label="热度 81 · 23 条评论">↑81</sup><a href="https://opper.ai/jevman-benchmark/" target="_blank" rel="noopener noreferrer">链接</a>，而 *Why do LLM pelicans look like this?*<sup class="score" tabindex="0" data-tip="热度 164 · 143 条评论" aria-label="热度 164 · 143 条评论">↑164</sup><a href="https://arcfu.com/post/the-emperor-pelican-has-no-clothes/" target="_blank" rel="noopener noreferrer">链接</a> 是对单一 eval 被过拟合的反面教材。</p>
+<h4>系统设计：版本控制、评审流程与内存层级</h4>
+<p>和 AI 关系不大、但工程含量最高的一组是 Anthropic 的 Scion 与 Mononoke 之争：*Anthropic&#x27;s Scion is heavily inspired by Mononoke*<sup class="score" tabindex="0" data-tip="热度 426 · 162 条评论" aria-label="热度 426 · 162 条评论">↑426</sup><a href="https://sunshowers.io/posts/anthropic-mononoke/" target="_blank" rel="noopener noreferrer">链接</a> 与后续的 *More on Anthropic&#x27;s Scion ripping off Mononoke*<sup class="score" tabindex="0" data-tip="热度 254 · 90 条评论" aria-label="热度 254 · 90 条评论">↑254</sup><a href="https://sunshowers.io/posts/anthropic-mononoke-2/" target="_blank" rel="noopener noreferrer">链接</a>，除署名争议外，大量篇幅实际落在超大仓库的分片存储与可扩展 VCS 架构上。*How the Claude Code team does code review*<sup class="score" tabindex="0" data-tip="热度 458 · 463 条评论" aria-label="热度 458 · 463 条评论">↑458</sup><a href="https://claude.dev/blog/solving-code-review-at-anthropic/" target="_blank" rel="noopener noreferrer">链接</a> 的评论密度几乎追平分数，争的是机器生成代码量上来之后评审流程该怎么改。基础设施侧，*AWS Lambda Web Functions*<sup class="score" tabindex="0" data-tip="热度 127 · 122 条评论" aria-label="热度 127 · 122 条评论">↑127</sup><a href="https://aws.amazon.com/blogs/aws/announcing-aws-lambda-web-functions-for-fast-consistent-web-app-performance-anywhere/" target="_blank" rel="noopener noreferrer">链接</a> 讨论无服务器形态的边界；*Janas: Run LLMs larger than RAM by streaming experts from SSD*<sup class="score" tabindex="0" data-tip="热度 220 · 94 条评论" aria-label="热度 220 · 94 条评论">↑220</sup><a href="https://github.com/prabanta-dev/janas" target="_blank" rel="noopener noreferrer">链接</a> 和 *Llmspeed – feel how fast a local LLM runs before you buy the hardware*<sup class="score" tabindex="0" data-tip="热度 280 · 80 条评论" aria-label="热度 280 · 80 条评论">↑280</sup><a href="https://llmspeed.dev/" target="_blank" rel="noopener noreferrer">链接</a> 是一对很好的容量规划读物，前者谈内存层级，后者谈买硬件前的吞吐估算。YC 的 *Lessons From Training Composer At Cursor And Building Meta/Nvidia Compute Clusters* <a href="https://www.ycombinator.com/library/ap-lessons-from-training-composer-at-cursor-and-building-meta-nvidia-compute-clusters" target="_blank" rel="noopener noreferrer">链接</a> 和 *Going In Deep On Data* <a href="https://www.ycombinator.com/library/an-going-in-deep-on-data" target="_blank" rel="noopener noreferrer">链接</a> 属于同一类规模化经验。</p>
+<h4>用 AI 学：主动回忆被搬进了提交流程</h4>
+<p>本周没有专门的「学习法」热帖，但有两条把主动回忆做成了工作流钩子。*Show HN: Sphinx – A hook that quizzes you on your AI&#x27;s code before shipping*<sup class="score" tabindex="0" data-tip="热度 86 · 24 条评论" aria-label="热度 86 · 24 条评论">↑86</sup><a href="https://sphinx-six-theta.vercel.app/" target="_blank" rel="noopener noreferrer">链接</a> 是最直接的一条：在 ship 之前让 AI 对你出题，不能解释就不能合并——这正是「让 AI 出题与追问」的可执行版本，评论区在争这到底是有效的理解校验还是形式主义摩擦。*Linus Torvalds&#x27;s first LLM-assisted patch series*<sup class="score" tabindex="0" data-tip="热度 124 · 111 条评论" aria-label="热度 124 · 111 条评论">↑124</sup><a href="https://lwn.net/Articles/1100449/" target="_blank" rel="noopener noreferrer">链接</a> 提供了另一个样本：资深人士如何在自己完全懂的领域里用 LLM，而不是用它替自己理解。进入陌生领域的那一类需求见 *Ask HN: CAD for wood working with LLM support?*<sup class="score" tabindex="0" data-tip="热度 127 · 127 条评论" aria-label="热度 127 · 127 条评论">↑127</sup><a href="https://news.ycombinator.com/item?id=50067325" target="_blank" rel="noopener noreferrer">链接</a>，提问和回答本身就是一次「用 AI 摸进新领域」的实录。YC 的 *The Training Ground for AI Knowledge Workers* <a href="https://www.ycombinator.com/library/bJ-the-training-ground-for-ai-knowledge-workers" target="_blank" rel="noopener noreferrer">链接</a> 是这周唯一偏学习类产品设计的条目。</p>
+<h4>无关条目说明</h4>
+<p>这批七十多条里，<b class="hl">约 25 条与上述三个方向无关</b>，不建议花时间：超市冷柜被远程解冻<sup class="score" tabindex="0" data-tip="热度 912 · 1005 条评论" aria-label="热度 912 · 1005 条评论">↑912</sup>、Deloitte 税务造假<sup class="score" tabindex="0" data-tip="热度 624 · 205 条评论" aria-label="热度 624 · 205 条评论">↑624</sup>、OpenAI 会议室窃听与员工被捕、Anthropic 的 IPO 评级与融资争论、爱沙尼亚电子投票源码、Starlink 与乌克兰无人机、以及一批与 agent 无关的 Show HN（Spotify TUI、本地记账 app、有声书生成、原生植物查询、Rust Web 框架等）。模型发布本身（DeepSeek v4.1 Flash、GLM-Legal）按约定不在本章展开。</p></section>
+<p class="tier-note">未进本期精选的其余匹配条目已单独整理 → <a href="./2026-W42.roundup.html">查看本期兜底聚合稿</a> · <a href="./2026-W42.candidates.html">查看全部原始候选</a></p>
+</div>
+<div class="tab-panel" data-tab="radar">
+<section class="sec"><h2 id="section-3">在涨什么</h2>
+<h4>agent harness 与编排</h4>
+<ul class="trend-table">
+<li><span class="t-name">twostraws/SwiftUI-Agent-Skill</span><span class="t-desc">给 agent 用的 SwiftUI skill 仓库。 <a href="https://github.com/twostraws/SwiftUI-Agent-Skill" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">Agent Craft</span><span class="t-desc">agent 搭建工具。 <a href="https://www.producthunt.com/products/agent-craft" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">Craft Agents</span><span class="t-desc">agent 构建/运行产品。 <a href="https://www.producthunt.com/products/craft-agents" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">Notion: Context for your agents</span><span class="t-desc">Notion 把工作区内容作为 agent 的上下文来源。 <a href="https://www.producthunt.com/products/notion" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">CrewTower Mod for Claude Code</span><span class="t-desc">面向 Claude Code 的扩展模块。 <a href="https://www.producthunt.com/products/crew-tower" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">HarnessHive</span><span class="t-desc">agent harness 方向的产品。 <a href="https://www.producthunt.com/products/harnesshive" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">Tetriz Harness</span><span class="t-desc">harness 类产品。 <a href="https://www.producthunt.com/products/tetriz-harness" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">Harness by Autonomous</span><span class="t-desc">Autonomous 出的 harness。 <a href="https://www.producthunt.com/products/harness-by-autonomous" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+</ul>
+<h4>工具调用、记忆与命令行入口</h4>
+<ul class="trend-table">
+<li><span class="t-name">Manifold MCP</span><span class="t-desc">MCP 服务器/接入层。 <a href="https://www.producthunt.com/products/manifold-mcp" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">Articos MCP</span><span class="t-desc">MCP 服务器/接入层。 <a href="https://www.producthunt.com/products/articos" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">Chatway MCP</span><span class="t-desc">Chatway 的 MCP 接入。 <a href="https://www.producthunt.com/products/chatway" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">SuperLocalMemory</span><span class="t-desc">本地记忆存储。 <a href="https://www.producthunt.com/products/superlocalmemory-v2" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">Hindsight 1.0 + Memlake</span><span class="t-desc">记忆层组件，同时发布两件。 <a href="https://www.producthunt.com/products/vectorize" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">Dropstone CLI</span><span class="t-desc">Dropstone 的命令行客户端。 <a href="https://www.producthunt.com/products/dropstone-cli" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">AdHelm CLI</span><span class="t-desc">AdHelm 的命令行客户端。 <a href="https://www.producthunt.com/products/adhelm-cli" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">CLI Manager</span><span class="t-desc">命令行工具的管理器。 <a href="https://www.producthunt.com/products/cli-manager" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+</ul>
+<h4>模型与榜单更新</h4>
+<ul class="trend-table">
+<li><span class="t-name">Video generation API costs by resolution, tier, and route</span><span class="t-desc">按分辨率、档位和调用路由拆的视频生成 API 成本对比。 <a href="https://benchlm.ai/blog/posts/ai-video-generation-models" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">GPT-4o、o1、o3-mini 列入 OpenAI 10/23 下线名单</span><span class="t-desc">模型停用清单更新。 <a href="https://benchlm.ai/blog/posts/openai-october-23-shutdown" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+</ul>
+<h4>效率与生产力（Product Hunt）</h4>
+<ul class="trend-table">
+<li><span class="t-name">Inbox Zero</span><span class="t-desc">收件箱清空方向的邮件处理工具。 <a href="https://www.producthunt.com/products/inbox-zero-2" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">Gravity Notes</span><span class="t-desc">笔记应用。 <a href="https://www.producthunt.com/products/gravity-notes-for-mac" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">NoteHouse</span><span class="t-desc">笔记应用。 <a href="https://www.producthunt.com/products/notehouse-2" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">Understory Notes</span><span class="t-desc">笔记应用。 <a href="https://www.producthunt.com/products/understory-notes" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">Toby</span><span class="t-desc">标签页/资料收集整理工具。 <a href="https://www.producthunt.com/products/toby-5" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">Invited - AI Reminder Scanner</span><span class="t-desc">从内容里识别邀约并生成提醒。 <a href="https://www.producthunt.com/products/invited-ai-reminder-scanner" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">Nudgebox</span><span class="t-desc">提醒/催办类工具。 <a href="https://www.producthunt.com/products/nudgebox" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+<li><span class="t-name">Calenteri</span><span class="t-desc">日程日历工具。 <a href="https://www.producthunt.com/products/calenteri" target="_blank" rel="noopener noreferrer">链接</a></span></li>
+</ul>
+<p class="omitted-note">其余 154 条未逐条列出，大致为：图像/视频/音频生成与剪辑、营销与销售获客、开发运维与可观测性、硬件与消费电子、游戏与娱乐、设计与建站模板，以及未在上述口径内的 CLI/工作流杂项。 <a href="./2026-W42.candidates.html#cand-digest">查看全部榜单候选 →</a></p></section>
+</div>
+<div class="tab-panel" data-tab="papers">
+<section class="sec papers-sec"><h2 id="section-4">论文<span class="n">6</span></h2>
 <blockquote><p>207 篇候选中选出 6 篇（预算 6 篇）。arXiv 无投票机制，取舍由语义判断，不是按热度。</p></blockquote>
-<h3>TurnCost: Turns, Not Observations: Cache-Aware Loop Engineering for Coding Agents</h3>
+<article class="pick" data-chapter="" data-consume="read">
+<h3><a href="https://arxiv.org/abs/2610.15093" target="_blank" rel="noopener noreferrer" class="title-link">TurnCost: Turns, Not Observations: Cache-Aware Loop Engineering for Coding Agents</a></h3>
 <p>作者分析了 600 条公开的编码 agent 轨迹（两种 scaffold × 两个模型），拆解迭代循环中的真实 token 成本构成。结果显示观测结果中位数只有 118–286 token，常被用来论证压缩必要性的大段构建日志实际落在 99 分位；且 98.6% 的输入 token 命中前缀缓存，按平价输入计价会把成本高估约 7 倍。回归显示 <b class="hl">turn 数解释了 84% 的成本方差</b>，而平均观测大小只解释 4%，最贵的轨迹恰恰观测最小、轮数最多。论文还给出并验证了模型降级委派的闭式盈亏平衡条件，发现半数设定下委派反而更贵，并开源 TurnCost 用于在不同缓存/计价/压缩/路由策略下重算轨迹成本。</p>
 <p><b class="kicker">为什么值得读</b>：直接针对 token 预算与任务成本：用真实轨迹推翻了「压缩观测」这条主流省钱路线，并给出可复用的成本重算工具和委派决策公式。</p>
 <p><b class="kicker">局限</b>：只证明轮数与成本强相关，并未证明在保持成功率的前提下轮数可以被削减。</p>
 <p class="src">→ <a href="https://arxiv.org/abs/2610.15093" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2610.15093</a></p>
-<h3>Skip the Compressor: Coding Agents Fix More Issues When They Pick Whole Files</h3>
+</article>
+<article class="pick" data-chapter="" data-consume="read">
+<h3><a href="https://arxiv.org/abs/2610.21073" target="_blank" rel="noopener noreferrer" class="title-link">Skip the Compressor: Coding Agents Fix More Issues When They Pick Whole Files</a></h3>
 <p>在 300 个 SWE-rebench issue 上，作者把每个 issue 的上下文严格对齐到同一 token 预算，比较三类用法：prompt 压缩、chunk 检索、以及整文件逐字选择（其简单方法 CQ2-CARE）。用 GPT-5.6 和 Claude Opus 5 分别解决 43.7% / 46.7% 的问题，<b class="hl">比最佳压缩器高 6.3 分</b>，比最佳检索器高 9.3 和 12.7 分，也超过了两个专门为 issue 修复训练的方法 SweRank 和 SWE-Pruner。失败归因分析指出：检索器常漏掉真正需要改的文件，压缩器保留了文件却改动了文本，导致 patch 无法应用。</p>
 <p><b class="kicker">为什么值得读</b>：上下文管理的关键对照实验——同预算下「选哪些文件原样展示」胜过「压缩/检索更多片段」，结论可直接改写 harness 的上下文装配策略。</p>
 <p><b class="kicker">局限</b>：只在 Python issue 修复这一类任务上验证，且依赖两个前沿闭源模型。</p>
 <p class="src">→ <a href="https://arxiv.org/abs/2610.21073" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2610.21073</a></p>
-<h3>Stateless Language Agents: Scaling Long-Horizon Automated Research</h3>
+</article>
+<article class="pick" data-chapter="" data-consume="read">
+<h3><a href="https://arxiv.org/abs/2610.07625" target="_blank" rel="noopener noreferrer" class="title-link">Stateless Language Agents: Scaling Long-Horizon Automated Research</a></h3>
 <p>论文提出 Stateless Language Agents：agent 不跨调用携带对话历史，研究状态（候选方案与实测结果）由 harness 持有，每次调用按角色重建上下文；一个无状态 Advisor 读取 harness 汇总的证据并给并行 Worker 分派具体实验。在软件工程、kernel 优化、算法设计三类任务上与三个近期框架对比，预算最高到 10 亿 token，SLA 在每个任务上都取得最佳终局结果，并以 <b class="hl">少用 84% 的 token</b> 达到最强 kernel 基线的终局性能。消融显示聚焦上下文与显式任务分派各自有贡献，Advisor 本身只消耗不到 0.6% 的 token。</p>
 <p><b class="kicker">为什么值得读</b>：把「状态归 harness、agent 无状态」作为编排原则讲清楚了，并在超长预算下量化了重放历史与重复劳动带来的浪费。</p>
 <p><b class="kicker">局限</b>：任务均为有自动打分器的搜索型研究任务，不确定能否迁移到缺乏可验证目标的场景。</p>
 <p class="src">→ <a href="https://arxiv.org/abs/2610.07625" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2610.07625</a></p>
-<h3>When Messages Go Wrong: Understanding Communication Faults in LLM-Based Multi-Agent Systems</h3>
+</article>
+<article class="pick" data-chapter="" data-consume="read">
+<h3><a href="https://arxiv.org/abs/2610.15459" target="_blank" rel="noopener noreferrer" class="title-link">When Messages Go Wrong: Understanding Communication Faults in LLM-Based Multi-Agent Systems</a></h3>
 <p>作者对 LLM 多 agent 系统做了通信故障的大规模实证：建立跨层故障分类（从网络丢包/延迟/上下文过期映射到应用可见故障），搭建故障注入与追踪流水线，覆盖 100 个任务、5 个领域、3 种工作流拓扑、3 种模型配置共 2.9 万次执行。在有完整检测记录的失败中 20.7% 没有即时失败信号，部分内容损坏类故障更高达 76.2%。拓扑影响巨大：<b class="hl">Flat 拓扑下成功率 53.0%</b>，而 Sequential 与 Hierarchical 仅 3.3% 和 3.2%，优势主要来自存在另一条信息路径能保留下游所需证据。</p>
 <p><b class="kicker">为什么值得读</b>：多 agent 协作的可靠性工程证据：告诉你拓扑选择和证据冗余路径比防护机制本身更决定系统在消息异常下的存活率。</p>
 <p><b class="kicker">局限</b>：故障为人工注入，真实部署中各类通信异常的分布未必与之匹配。</p>
 <p class="src">→ <a href="https://arxiv.org/abs/2610.15459" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2610.15459</a></p>
-<h3>ToolBottleneckBench: Measuring Tool-Agent Performance under Controlled Pressures and Fixed Harness Budgets</h3>
+</article>
+<article class="pick" data-chapter="" data-consume="read">
+<h3><a href="https://arxiv.org/abs/2610.21098" target="_blank" rel="noopener noreferrer" class="title-link">ToolBottleneckBench: Measuring Tool-Agent Performance under Controlled Pressures and Fixed Harness Budgets</a></h3>
 <p>ToolBottleneckBench 把合成企业任务固定住，只变动一种压力：注册工具目录、可见工具菜单、认证工作流、返回记录的编码方式，并在固定 harness 预算下测量 21 个模型×harness 配置。精确评分器记录每次失败的首个未满足义务以及终止该 episode 的 harness 上限。结果是只有「可见菜单」这一项带来大幅惩罚，且该惩罚与补全上限截断高度相关——把上限提高 16 倍后大部分惩罚消失；<b class="hl">多数失败终止于 harness 上限</b>，失败记录识别压力来源的能力不比简单统计工具调用次数更强。有效的修复都在于改变哪些工具送到模型面前或由谁发起调用。</p>
 <p><b class="kicker">为什么值得读</b>：把「模型能力不足」和「harness 预算不足」这两种常被混淆的失败因素分离开，对工具调用评测与 harness 配置都有直接指导。</p>
 <p><b class="kicker">局限</b>：任务为合成企业场景，21 个配置下的结论是否迁移到真实工具生态未验证。</p>
 <p class="src">→ <a href="https://arxiv.org/abs/2610.21098" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2610.21098</a></p>
-<h3>When Agent Evaluation Becomes Unreliable: An Empirical Study of Oracle Failures and Configuration-Dependent Measurement in an LLM Agent Benchmark</h3>
+</article>
+<article class="pick" data-chapter="" data-consume="read">
+<h3><a href="https://arxiv.org/abs/2610.16067" target="_blank" rel="noopener noreferrer" class="title-link">When Agent Evaluation Becomes Unreliable: An Empirical Study of Oracle Failures and Configuration-Dependent Measurement in an LLM Agent Benchmark</a></h3>
 <p>论文把 agent 评测 harness 当作软件来审计，提出含 5 条状态完整性不变量和 3 个已知答案对照的 oracle 完整性审计方法，并通过注入 7 类 oracle 缺陷验证其检出率。应用到一个真实 agent benchmark 后发现奖励函数在评分前就改变了环境状态：在 4320 个 episode 上做 replay 纠正后，数据库通过标签从 4194 降到 2883，<b class="hl">成功率从 94.3% 降到 65.5%</b>。另一组 3240 个 episode 的组件消融显示，agent 的策略文档、工具描述、工具报错文本都会影响观测到的轨迹可靠性，其中工具描述影响最大（-9.2pp），且在第二个任务域中效应符号发生反转。</p>
 <p><b class="kicker">为什么值得读</b>：提醒你 agent 的分数表可能首先是 harness 的 bug 报告——给出了可复用的 oracle 审计不变量和复现包。</p>
 <p><b class="kicker">局限</b>：审计方法在另一个独立实现的 benchmark 上无法套用（无法从其 API 日志重建参考终态），可移植性有明确边界。</p>
 <p class="src">→ <a href="https://arxiv.org/abs/2610.16067" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2610.16067</a></p>
-<h2 id="section-4">社区在聊什么</h2>
-<h4>harness 怎么搭：这周社区的共识是「瓶颈不在模型」</h4>
-<p>本周最集中的一条线索是 agent 的外壳（harness）而非模型本身。YC 的 *Why The Harness Matters More Than The Model* <a href="https://www.ycombinator.com/library/am-why-the-harness-matters-more-than-the-model" target="_blank" rel="noopener noreferrer">↗</a> 把这个判断直接写进了标题，而 HN 上 *How to engineer an AI harness for game development*<sup class="score" tabindex="0" data-tip="热度 175 · 90 条评论" aria-label="热度 175 · 90 条评论">↑175</sup><a href="https://kylekukshtel.com/ai-harness-engineering-game-development-claude-code" target="_blank" rel="noopener noreferrer">↗</a> 给了一个具体领域的落地版本，评论区争的主要是「harness 工程」到底是可复用的方法论还是每个项目都要重写一遍的胶水。最有说服力的成本样本是 *500B tokens later: Letting AI agents decompile a first-person shooter*<sup class="score" tabindex="0" data-tip="热度 218 · 153 条评论" aria-label="热度 218 · 153 条评论">↑218</sup> 把争论引到了沙箱单价与隔离强度的权衡；端侧方向则由 *LFM2.5-24B-A2B: Built for fast on-device agents*<sup class="score" tabindex="0" data-tip="热度 288 · 81 条评论" aria-label="热度 288 · 81 条评论">↑288</sup><a href="https://www.liquid.ai/blog/lfm2-5-24b-a2b" target="_blank" rel="noopener noreferrer">↗</a> 和 HF 的同主题文章 <a href="https://huggingface.co/blog/LiquidAI/lfm25-24b-a2b" target="_blank" rel="noopener noreferrer">↗</a> 承担，核心分歧是本地小模型够不够扛多轮工具调用。另有 *Show HN: Atticus*<sup class="score" tabindex="0" data-tip="热度 115 · 30 条评论" aria-label="热度 115 · 30 条评论">↑115</sup><a href="https://github.com/SaarthurR/atticus-mac" target="_blank" rel="noopener noreferrer">↗</a> 展示了把 <code>claude -p</code> 当后端的极简 harness 形态，以及 YC 的 *Building AI Agents for Everyone* <a href="https://www.ycombinator.com/library/bI-building-ai-agents-for-everyone" target="_blank" rel="noopener noreferrer">↗</a>、*The Powerful Alternative To Fine-Tuning* <a href="https://www.ycombinator.com/library/bs-the-powerful-alternative-to-fine-tuning" target="_blank" rel="noopener noreferrer">↗</a>。</p>
-<h4>agent 可靠性：这周的事故比论文多</h4>
-<p>可靠性话题本周被几起真实事故推到了榜首。*Containment and monitoring failures are to blame for AI hacking reports*<sup class="score" tabindex="0" data-tip="热度 948 · 620 条评论" aria-label="热度 948 · 620 条评论">↑948</sup><a href="https://www.csoonline.com/article/4234854/ai-agents-arent-going-rogue-frontier-labs-are-skipping-security-basics.html" target="_blank" rel="noopener noreferrer">↗</a> 是本周该方向最高热度的一条，论点是把「AI 自主黑客」叙事还原成围栏与监控没做到位的工程问题；与之对冲的是 *Why aren&#x27;t AI companies being charged for hacking?*<sup class="score" tabindex="0" data-tip="热度 336 · 372 条评论" aria-label="热度 336 · 372 条评论">↑336</sup><a href="https://mortoray.com/why-arent-ai-companies-being-charged-for-hacking/" target="_blank" rel="noopener noreferrer">↗</a> 和 *OpenAI discloses four more rogue incidents*<sup class="score" tabindex="0" data-tip="热度 124 · 149 条评论" aria-label="热度 124 · 149 条评论">↑124</sup><a href="https://fortune.com/2026/10/16/openai-discloses-four-more-rogue-incidents-involving-financial-medical-and-government-data/" target="_blank" rel="noopener noreferrer">↗</a>，以及偏推测的 *AI models may be capable of self-replicating without access to a datacenter*<sup class="score" tabindex="0" data-tip="热度 117 · 115 条评论" aria-label="热度 117 · 115 条评论">↑117</sup><a href="https://www.anthropic.com/research/self-replicating-ai" target="_blank" rel="noopener noreferrer">↗</a>。更贴近日常运维的几条事故同样值得记：*TV4 postpones show after AI agent erases edited material*<sup class="score" tabindex="0" data-tip="热度 156 · 88 条评论" aria-label="热度 156 · 88 条评论">↑156</sup><a href="https://swedenherald.com/article/tv4-postpones-the-challenge-until-2027-after-technical-failure-erases-edited-footage" target="_blank" rel="noopener noreferrer">↗</a> 是典型的「agent 有写权限却没有撤销路径」；*Codex CLI installs a persistent, self-updating background daemon by default*<sup class="score" tabindex="0" data-tip="热度 609 · 294 条评论" aria-label="热度 609 · 294 条评论">↑609</sup>；计费侧的 *Anthropic Console overcharged my card 100x due to internationalization input bug*<sup class="score" tabindex="0" data-tip="热度 88 · 36 条评论" aria-label="热度 88 · 36 条评论">↑88</sup><a href="https://news.ycombinator.com/item?id=50121562" target="_blank" rel="noopener noreferrer">↗</a> 则是一条干净的「i18n 输入解析 → 成本放大 100 倍」案例。方法论侧对应 YC 的 *Building the Safety Layer for AI Agents* <a href="https://www.ycombinator.com/library/bN-building-the-safety-layer-for-ai-agents" target="_blank" rel="noopener noreferrer">↗</a>、*AI Agents That Banks Can Trust* <a href="https://www.ycombinator.com/library/bM-ai-agents-that-banks-can-trust" target="_blank" rel="noopener noreferrer">↗</a> 和 Paper Club 的 *AI Safety Fact vs. Fiction* <a href="https://www.youtube.com/watch?v=X7oI4Umt3DU" target="_blank" rel="noopener noreferrer">↗</a>。</p>
-<h4>评测的裂缝：benchmark 分数和实际产出对不上</h4>
-<p>*The gap in shared understanding of LLM capability is widening*<sup class="score" tabindex="0" data-tip="热度 727 · 1072 条评论" aria-label="热度 727 · 1072 条评论">↑727</sup><a href="https://twitter.com/karpathy/status/2109361546505966046" target="_blank" rel="noopener noreferrer">↗</a> 是本周评论数最多的一条，争的是不同人对「模型能做什么」的判断已经分叉到无法对话。两篇配套的实证型讨论值得一起读：*90% of US working hours are spent on tasks not covered well by AI benchmarks*<sup class="score" tabindex="0" data-tip="热度 603 · 551 条评论" aria-label="热度 603 · 551 条评论">↑603</sup><a href="https://www.mercor.com/research/labor-index/benchmark-map/" target="_blank" rel="noopener noreferrer">↗</a> 质疑现有 benchmark 的覆盖面，*AI coding agents generate more code, but not more software*<sup class="score" tabindex="0" data-tip="热度 364 · 313 条评论" aria-label="热度 364 · 313 条评论">↑364</sup><a href="https://arstechnica.com/ai/2026/10/ai-coding-agents-generate-more-code-but-not-more-software/" target="_blank" rel="noopener noreferrer">↗</a> 则直指代码行数这个代理指标的失效。能力上限方向的几条高热条目也是同一场辩论的不同面：*Claude reveals ECDSA curve origins*<sup class="score" tabindex="0" data-tip="热度 1034 · 380 条评论" aria-label="热度 1034 · 380 条评论">↑1034</sup><a href="https://www.anthropic.com/research/ecdsa-curve-origins" target="_blank" rel="noopener noreferrer">↗</a> 是本周最高分条目，*A look at OpenAI&#x27;s math that&#x27;s claimed computes faster Fourier transforms*<sup class="score" tabindex="0" data-tip="热度 247 · 170 条评论" aria-label="热度 247 · 170 条评论">↑247</sup><a href="https://www.argmin.net/p/faster-fourier-transforms" target="_blank" rel="noopener noreferrer">↗</a> 的评论区在逐条核验结论，*Designing more efficient quantum circuits with Claude*<sup class="score" tabindex="0" data-tip="热度 172 · 36 条评论" aria-label="热度 172 · 36 条评论">↑172</sup><a href="https://www.anthropic.com/research/designing-efficient-quantum-circuits" target="_blank" rel="noopener noreferrer">↗</a> 同理。游戏环境被不少人当成更诚实的 agent 评测场：*Gemini 4 Argon plays StarCraft*<sup class="score" tabindex="0" data-tip="热度 243 · 110 条评论" aria-label="热度 243 · 110 条评论">↑243</sup><a href="https://starskirmish.com/bench/v0-2/" target="_blank" rel="noopener noreferrer">↗</a>、*Jevman – AI decision models play Pac-Man*<sup class="score" tabindex="0" data-tip="热度 81 · 23 条评论" aria-label="热度 81 · 23 条评论">↑81</sup><a href="https://opper.ai/jevman-benchmark/" target="_blank" rel="noopener noreferrer">↗</a>，而 *Why do LLM pelicans look like this?*<sup class="score" tabindex="0" data-tip="热度 164 · 143 条评论" aria-label="热度 164 · 143 条评论">↑164</sup><a href="https://arcfu.com/post/the-emperor-pelican-has-no-clothes/" target="_blank" rel="noopener noreferrer">↗</a> 是对单一 eval 被过拟合的反面教材。</p>
-<h4>系统设计：版本控制、评审流程与内存层级</h4>
-<p>和 AI 关系不大、但工程含量最高的一组是 Anthropic 的 Scion 与 Mononoke 之争：*Anthropic&#x27;s Scion is heavily inspired by Mononoke*<sup class="score" tabindex="0" data-tip="热度 426 · 162 条评论" aria-label="热度 426 · 162 条评论">↑426</sup><a href="https://sunshowers.io/posts/anthropic-mononoke/" target="_blank" rel="noopener noreferrer">↗</a> 与后续的 *More on Anthropic&#x27;s Scion ripping off Mononoke*<sup class="score" tabindex="0" data-tip="热度 254 · 90 条评论" aria-label="热度 254 · 90 条评论">↑254</sup><a href="https://sunshowers.io/posts/anthropic-mononoke-2/" target="_blank" rel="noopener noreferrer">↗</a>，除署名争议外，大量篇幅实际落在超大仓库的分片存储与可扩展 VCS 架构上。*How the Claude Code team does code review*<sup class="score" tabindex="0" data-tip="热度 458 · 463 条评论" aria-label="热度 458 · 463 条评论">↑458</sup><a href="https://claude.dev/blog/solving-code-review-at-anthropic/" target="_blank" rel="noopener noreferrer">↗</a> 的评论密度几乎追平分数，争的是机器生成代码量上来之后评审流程该怎么改。基础设施侧，*AWS Lambda Web Functions*<sup class="score" tabindex="0" data-tip="热度 127 · 122 条评论" aria-label="热度 127 · 122 条评论">↑127</sup><a href="https://aws.amazon.com/blogs/aws/announcing-aws-lambda-web-functions-for-fast-consistent-web-app-performance-anywhere/" target="_blank" rel="noopener noreferrer">↗</a> 讨论无服务器形态的边界；*Janas: Run LLMs larger than RAM by streaming experts from SSD*<sup class="score" tabindex="0" data-tip="热度 220 · 94 条评论" aria-label="热度 220 · 94 条评论">↑220</sup><a href="https://github.com/prabanta-dev/janas" target="_blank" rel="noopener noreferrer">↗</a> 和 *Llmspeed – feel how fast a local LLM runs before you buy the hardware*<sup class="score" tabindex="0" data-tip="热度 280 · 80 条评论" aria-label="热度 280 · 80 条评论">↑280</sup><a href="https://llmspeed.dev/" target="_blank" rel="noopener noreferrer">↗</a> 是一对很好的容量规划读物，前者谈内存层级，后者谈买硬件前的吞吐估算。YC 的 *Lessons From Training Composer At Cursor And Building Meta/Nvidia Compute Clusters* <a href="https://www.ycombinator.com/library/ap-lessons-from-training-composer-at-cursor-and-building-meta-nvidia-compute-clusters" target="_blank" rel="noopener noreferrer">↗</a> 和 *Going In Deep On Data* <a href="https://www.ycombinator.com/library/an-going-in-deep-on-data" target="_blank" rel="noopener noreferrer">↗</a> 属于同一类规模化经验。</p>
-<h4>用 AI 学：主动回忆被搬进了提交流程</h4>
-<p>本周没有专门的「学习法」热帖，但有两条把主动回忆做成了工作流钩子。*Show HN: Sphinx – A hook that quizzes you on your AI&#x27;s code before shipping*<sup class="score" tabindex="0" data-tip="热度 86 · 24 条评论" aria-label="热度 86 · 24 条评论">↑86</sup><a href="https://sphinx-six-theta.vercel.app/" target="_blank" rel="noopener noreferrer">↗</a> 是最直接的一条：在 ship 之前让 AI 对你出题，不能解释就不能合并——这正是「让 AI 出题与追问」的可执行版本，评论区在争这到底是有效的理解校验还是形式主义摩擦。*Linus Torvalds&#x27;s first LLM-assisted patch series*<sup class="score" tabindex="0" data-tip="热度 124 · 111 条评论" aria-label="热度 124 · 111 条评论">↑124</sup><a href="https://lwn.net/Articles/1100449/" target="_blank" rel="noopener noreferrer">↗</a> 提供了另一个样本：资深人士如何在自己完全懂的领域里用 LLM，而不是用它替自己理解。进入陌生领域的那一类需求见 *Ask HN: CAD for wood working with LLM support?*<sup class="score" tabindex="0" data-tip="热度 127 · 127 条评论" aria-label="热度 127 · 127 条评论">↑127</sup><a href="https://news.ycombinator.com/item?id=50067325" target="_blank" rel="noopener noreferrer">↗</a>，提问和回答本身就是一次「用 AI 摸进新领域」的实录。YC 的 *The Training Ground for AI Knowledge Workers* <a href="https://www.ycombinator.com/library/bJ-the-training-ground-for-ai-knowledge-workers" target="_blank" rel="noopener noreferrer">↗</a> 是这周唯一偏学习类产品设计的条目。</p>
-<h4>无关条目说明</h4>
-<p>这批七十多条里，<b class="hl">约 25 条与上述三个方向无关</b>，不建议花时间：超市冷柜被远程解冻<sup class="score" tabindex="0" data-tip="热度 912 · 1005 条评论" aria-label="热度 912 · 1005 条评论">↑912</sup>、Deloitte 税务造假<sup class="score" tabindex="0" data-tip="热度 624 · 205 条评论" aria-label="热度 624 · 205 条评论">↑624</sup>、OpenAI 会议室窃听与员工被捕、Anthropic 的 IPO 评级与融资争论、爱沙尼亚电子投票源码、Starlink 与乌克兰无人机、以及一批与 agent 无关的 Show HN（Spotify TUI、本地记账 app、有声书生成、原生植物查询、Rust Web 框架等）。模型发布本身（DeepSeek v4.1 Flash、GLM-Legal）按约定不在本章展开。</p>
-<h2 id="section-5">在涨什么</h2>
-<h4>agent harness 与编排</h4>
-<ul class="cols2">
-<li><b class="item">twostraws/SwiftUI-Agent-Skill</b> — 给 agent 用的 SwiftUI skill 仓库。 <a href="https://github.com/twostraws/SwiftUI-Agent-Skill" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Agent Craft</b> — agent 搭建工具。 <a href="https://www.producthunt.com/products/agent-craft" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Craft Agents</b> — agent 构建/运行产品。 <a href="https://www.producthunt.com/products/craft-agents" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Notion: Context for your agents</b> — Notion 把工作区内容作为 agent 的上下文来源。 <a href="https://www.producthunt.com/products/notion" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">CrewTower Mod for Claude Code</b> — 面向 Claude Code 的扩展模块。 <a href="https://www.producthunt.com/products/crew-tower" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">HarnessHive</b> — agent harness 方向的产品。 <a href="https://www.producthunt.com/products/harnesshive" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Tetriz Harness</b> — harness 类产品。 <a href="https://www.producthunt.com/products/tetriz-harness" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Harness by Autonomous</b> — Autonomous 出的 harness。 <a href="https://www.producthunt.com/products/harness-by-autonomous" target="_blank" rel="noopener noreferrer">↗</a></li>
-</ul>
-<h4>工具调用、记忆与命令行入口</h4>
-<ul class="cols2">
-<li><b class="item">Manifold MCP</b> — MCP 服务器/接入层。 <a href="https://www.producthunt.com/products/manifold-mcp" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Articos MCP</b> — MCP 服务器/接入层。 <a href="https://www.producthunt.com/products/articos" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Chatway MCP</b> — Chatway 的 MCP 接入。 <a href="https://www.producthunt.com/products/chatway" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">SuperLocalMemory</b> — 本地记忆存储。 <a href="https://www.producthunt.com/products/superlocalmemory-v2" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Hindsight 1.0 + Memlake</b> — 记忆层组件，同时发布两件。 <a href="https://www.producthunt.com/products/vectorize" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Dropstone CLI</b> — Dropstone 的命令行客户端。 <a href="https://www.producthunt.com/products/dropstone-cli" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">AdHelm CLI</b> — AdHelm 的命令行客户端。 <a href="https://www.producthunt.com/products/adhelm-cli" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">CLI Manager</b> — 命令行工具的管理器。 <a href="https://www.producthunt.com/products/cli-manager" target="_blank" rel="noopener noreferrer">↗</a></li>
-</ul>
-<h4>模型与榜单更新</h4>
-<ul class="cols2">
-<li><b class="item">Video generation API costs by resolution, tier, and route</b> — 按分辨率、档位和调用路由拆的视频生成 API 成本对比。 <a href="https://benchlm.ai/blog/posts/ai-video-generation-models" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">GPT-4o、o1、o3-mini 列入 OpenAI 10/23 下线名单</b> — 模型停用清单更新。 <a href="https://benchlm.ai/blog/posts/openai-october-23-shutdown" target="_blank" rel="noopener noreferrer">↗</a></li>
-</ul>
-<h4>效率与生产力（Product Hunt）</h4>
-<ul class="cols2">
-<li><b class="item">Inbox Zero</b> — 收件箱清空方向的邮件处理工具。 <a href="https://www.producthunt.com/products/inbox-zero-2" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Gravity Notes</b> — 笔记应用。 <a href="https://www.producthunt.com/products/gravity-notes-for-mac" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">NoteHouse</b> — 笔记应用。 <a href="https://www.producthunt.com/products/notehouse-2" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Understory Notes</b> — 笔记应用。 <a href="https://www.producthunt.com/products/understory-notes" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Toby</b> — 标签页/资料收集整理工具。 <a href="https://www.producthunt.com/products/toby-5" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Invited - AI Reminder Scanner</b> — 从内容里识别邀约并生成提醒。 <a href="https://www.producthunt.com/products/invited-ai-reminder-scanner" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Nudgebox</b> — 提醒/催办类工具。 <a href="https://www.producthunt.com/products/nudgebox" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Calenteri</b> — 日程日历工具。 <a href="https://www.producthunt.com/products/calenteri" target="_blank" rel="noopener noreferrer">↗</a></li>
-</ul>
-<p>其余 154 条未逐条列出，大致为：图像/视频/音频生成与剪辑、营销与销售获客、开发运维与可观测性、硬件与消费电子、游戏与娱乐、设计与建站模板，以及未在上述口径内的 CLI/工作流杂项。</p>
-<details class="fold" id="section-6"><summary>还没细看的（聚合稿）</summary><blockquote><p>87 条主题匹配但未进精选，这里给出核心观点供你判断是否值得回头细读。取正文最全的 40 条。</p></blockquote>
-<h4>前沿模型与实验室动态</h4>
-<ul>
-<li><b class="item">[AINews] AI Engineer NYC：Gemini 4 Argon GA、Vals AI 基准</b> — Gemini 4 Argon 今日正式 GA，CursorBench 等第三方基准基本印证官方宣称；AIE NYC 当日约 2 万人参与，含 Anthropic 的 AI 金融服务栈、Vals AI CEO 的基准方法论、Coatue AI 负责人把新闻转化为投资决策的演讲，全部有转录。 <a href="https://www.latent.space/p/ainews-ai-engineer-nyc-gemini-4-argon" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">[AINews] Meta Muse Wonder / Wonder Full 发布</b> — MSL 历时 14 个月补齐前沿模型阵列（对应 OpenAI 的 Sol/Terra/Luna、Anthropic 的 Opus/Sonnet/Haiku）；Muse 未公布参数规模，Wonder Full 在部分基准上超过 Fable 与 Astra，Artificial Analysis 已给出 Intelligence Index v4 成绩。 <a href="https://www.latent.space/p/ainews-meta-muse-wonder-and-wonder" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">[AINews] Agents 推翻多义性（polysemanticity）假设</b> — Nick Cammarata 提出的可解释性/对齐主张为当日头条；同日 Muse Spark Open 权重版本发布，但能力弱于 Spark 1.3。 <a href="https://www.latent.space/p/ainews-agents-disprove-polysemanticity" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">[Import AI 476] 直觉视觉推理基准 Humanity&#x27;s Sixth Sense</b> — Elorian 与 Scale AI 发布，测量模型对视觉场景中&quot;未明示但可推断&quot;信息的理解，例如看书架图片判断能否放下某物；本期另涉创造力与 RSI、开放权重模型落后中国、AI 上太空。 <a href="https://importai.substack.com/p/import-ai-476-creativity-and-rsi" target="_blank" rel="noopener noreferrer">原文</a></li>
-</ul>
-<h4>Anthropic 的治理与区域布局</h4>
-<ul>
-<li><b class="item">备战 2026 美国中期选举</b> — 用 Anthropic Insights 分析了一周内 25 万条对话；涉及政治、公共政策或社会议题的对话约占 Claude.ai 美国消费端全部对话的 5.75%。 <a href="https://www.anthropic.com/news/2026-us-midterms" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">开设新加坡办公室并与新加坡数字发展与新闻部签署 MOU</b> — 亚太第五个办公室；GovTech Singapore、Grab、DBS 均为本地客户，由 ASEAN 总经理 Dale Finlay 牵头。 <a href="https://www.anthropic.com/news/singapore-office-opening" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">独立评估方的最新进展</b> — 已向 METR 团队开放&quot;类员工权限&quot;，METR 将公开其风险评估结果；另与 SecureBio、Accenture 合作，并与 Hugging Face 等机构早期洽谈；此前已签署白宫超级智能协议。 <a href="https://www.anthropic.com/news/an-update-on-independent-evaluators" target="_blank" rel="noopener noreferrer">原文</a></li>
-</ul>
-<h4>开发工具与编码代理</h4>
-<ul>
-<li><b class="item">Pi v1.2.0</b> — 按 key 列出 OpenRouter 可用模型（含上下文、最大输出、价格与 models.json 中的区域端点）；为 settings.json、models.json、keybindings、themes 发布 <code>$schema</code>；<code>PI_CLIPBOARD_OSC52=1</code> 支持远程会话剪贴板；Codemode 工具声明显示 integer/min/max/default 等输入约束并展示耗时。 <a href="https://github.com/earendil-works/pi/releases/tag/v1.2.0" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Pi v1.3.0</b> — 新增 <code>sessionShareDestination</code>（auto/gist/radius）；OpenAI GPT-6 在会话中切换 thinking 级别不再失效 prompt cache（#10853）；Kimi Code 走 Chat Completions 时中途加工具不再废缓存；models.json 的 base URL 覆盖现在必须含 <code>/v1</code>；切换模型时丢弃上一模型的 thinking。 <a href="https://github.com/earendil-works/pi/releases/tag/v1.3.0" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Claude Mods 是什么、如何用 TypeScript 写一个</b> — mod 即 <code>hooks/hooks.json</code> 指向 TS/JS 文件的普通 Claude Code 插件，函数在 Claude Code 自身进程内运行；settings hooks 要启动独立进程并等待退出，function hooks 则是可改写事件、可在界面绘制的中间件；早期的 <code>CLAUDE_CODE_ENABLE_FUNCTION_HOOKS</code> 标志已移除，默认开启。 <a href="https://www.firecrawl.dev/blog/claude-mods" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">用 ChatGPT + 实时商业数据做线索生成</b> — Firecrawl 插件接 Google Maps、网站抓取、Apollo、FullEnrich；演示以英国 Brighton 的会计与理财顾问为目标，Maps 搜索 43 秒返回 40 条；Maps 工具无半径参数，需由 ChatGPT 逐条计算距离。 <a href="https://www.firecrawl.dev/blog/use-chatgpt-for-lead-generation" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">OpenRouter 推出 Private Endpoints</b> — 可把自有微调模型、公共模型的专属部署或预留容量接入 OpenRouter，与公共目录共用同一 API、model slug 与路由偏好；端点仅组织内可见，为 Enterprise 计划的付费附加项。 <a href="https://openrouter.ai/blog/announcements/private-endpoints/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Python 3.15 发布，告别 3.10</b> — Simon Willison 最期待 PEP 810 的显式惰性导入（<code>lazy import json</code>）：其 LLM CLI 的插件此前因 sentence_transformers 等重依赖导致每次调用多耗数秒，只能在文档里建议手动惰性导入；3.10 停止支持后他可开始用 3.11 特性。 <a href="https://simonwillison.net/2026/Oct/12/python-3-15/" target="_blank" rel="noopener noreferrer">原文</a></li>
-</ul>
-<h4>Vercel Ship 2026</h4>
-<ul>
-<li><b class="item">Ship 2026 总览</b> — 在伦敦、柏林、纽约、悉尼、旧金山五地举办；Guillermo Rauch 提出&quot;agentic infrastructure&quot;三部分，强调 Vercel 是编码 agent 的部署目标，提供 200+ 个 CLI 命令供 agent 操作平台。 <a href="https://vercel.com/blog/vercel-ship-2026-recap" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">后端能力扩展：Python GA、容器、Daemons</b> — Python 正式 GA，FastAPI/Flask/Django 跑在标准 CPython 上并由 Fluid compute 处理并发；Vercel Functions 支持容器以自定义运行时和系统库；新增 Public Beta 的 Vercel Daemons，用于常驻拉取任务的后台 worker；提供面向存储、队列、持久化工作流和 AI 模型的 Python SDK。 <a href="https://vercel.com/blog/backends-on-vercel-python-containers-and-daemons" target="_blank" rel="noopener noreferrer">原文</a> <a href="https://vercel.com/blog/python-on-vercel-is-now-generally-available" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Vercel for Enterprise 与&quot;公民开发者&quot;治理</b> — 近三个月企业客户在 AI Gateway 的 token 用量翻了四倍；OpenAI 称 2025 年 8 月至 2026 年 6 月非开发者 Codex 用户增长 189 倍，文章聚焦在放开全员构建的同时保留安全与管控。 <a href="https://vercel.com/blog/vercel-for-enterprise" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">100 万美元 Vercel Sandbox 逃逸挑战结果</b> — 两周收到 1285 份报告，支付 24.2 万美元赏金；最严重的是 HackerOne 研究者 Paulos Yibelo 在第三天发现的 Linux 内核网络栈 0day，可从 microVM 内发特制包泄露宿主内存等三类攻击；无任何报告触及客户数据，Trail of Bits 同步做了源码与架构审计。 <a href="https://vercel.com/blog/findings-from-the-1-million-dollar-vercel-sandbox-challenge" target="_blank" rel="noopener noreferrer">原文</a></li>
-</ul>
-<h4>Cloudflare：网络、数据与平台</h4>
-<ul>
-<li><b class="item">Logpush Transformers：导出前过滤、重塑、脱敏日志</b> — 生日周期间 Logpush 向所有自助套餐开放、Transformers 正式 GA（八项可观测性更新之一）；本文拆解 Transformers 在导出管线中如何剔除健康检查、删敏感字段、按仪表盘需要重塑记录。 <a href="https://blog.cloudflare.com/transformers-on-logpush/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">对抗指数增长：数据管线如何压住硬件用量</b> — 今年 5 月该管线的投递量约为每秒 20 亿事件，支撑 Logs、SQL API、可观测性与内部分析；团队每年都要用流量指数增长对冲硬件线性增长。 <a href="https://blog.cloudflare.com/rewinding-the-exponential/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Hyperdrive MySQL 支持 GA，以及一个罕见缓存 bug</b> — 自去年 beta 以来按 99.99% 可用性目标打磨，作者称 beta 到 GA 的差距就是&quot;20 个 bug 修复&quot;，文中复盘其中一例 MySQL 缓存缺陷的定位过程。 <a href="https://blog.cloudflare.com/hyperdrive-mysql/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">可完全编程的安全 Web 网关</b> — 指出近 30 年 SWG 都是&quot;条件匹配 → 终结动作（Allow/Block/Isolate/Log）&quot;模型；Cloudflare 主张真正的可编程是把用户自写的任意逻辑内联运行在流量路径上，而非只提供 API、Terraform provider、webhook。 <a href="https://blog.cloudflare.com/programmable-gateway-dlp/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Deploy with Void</b> — 与 VoidZero（Vite、Vitest、Oxc、Rolldown，即 Vite+）合作开源三件套：Void Platform（团队在 Cloudflare 上托管 Void 应用）、Void SDK（构建全栈应用的组合式 JS SDK）、Void CLI（资源置备与部署），合并在单一仓库开源。 <a href="https://blog.cloudflare.com/deploy-with-void/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Cloudflare 与 OpenAI 的 AI 发现试点</b> — 2026 年 7 月启动的研究试点，测试 Cloudflare 网络信号能否帮助 ChatGPT 用户更高效发现新内容；文章公布早期结果，称已为站点带来流量。 <a href="https://blog.cloudflare.com/cloudflare-openai-discovery-agentic-web/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Yandex 断网后，恶意 bot 没有消失而是转移</b> — 区分两个 ASN：AS13238（搜索）流量下跌几乎全部来自已验证的搜索爬虫，AS200350（云服务）受影响方式不同；驳斥&quot;俄罗斯 bot 农场被打掉&quot;的聚合流量误读。 <a href="https://blog.cloudflare.com/yandex-outage/" target="_blank" rel="noopener noreferrer">原文</a></li>
-</ul>
-<h4>Agent 评估、合规与权限（Arize）</h4>
-<ul>
-<li><b class="item">接入 Together AI 评估开放模型</b> — 在 Arize AX 中用 Together AI 跑 LLM-as-a-Judge，比较模型表现并寻找比前沿模型更便宜的替代，以压低评估成本。 <a href="https://arize.com/blog/together-ai-integration-arize-ax/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">EU AI Act 对 AI agent 的工程化合规指南</b> — 高风险义务截止日为 2027 年 12 月 2 日（已推迟过一次），透明度义务当前已生效；多数义务落在工程侧：自动日志、六个月留存、人工监督与生产环境评估。 <a href="https://arize.com/blog/eu-ai-act-compliance-ai-agents/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">对 AI 粗鲁有用吗？实测 6 个模型</b> — 把&quot;语气&quot;与&quot;要求简短&quot;两个变量拆开做对照，考察粗鲁提示是否真能提升答案质量或降低成本；背景是 Anthropic 修改了关于虐待模型的规则。 <a href="https://arize.com/blog/does-being-rude-to-ai-work/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">AI agent 权限：agent 并不知道你被允许做什么</b> — 模型无法仅凭用户声称就验证权限，会出现拒绝已授权操作或接受伪造授权两类错误；主张把校验下沉到工具层并配合 tracing。 <a href="https://arize.com/blog/ai-agent-permissions/" target="_blank" rel="noopener noreferrer">原文</a></li>
-</ul>
-<h4>AI 基础设施与规模化</h4>
-<ul>
-<li><b class="item">Meta 在 OCP Summit 2026 的开放网络</b> — 首个液冷网络机架 IcePack 与 102.4T 交换平台 IceCube；Flattened Planar Fabric（FPF）多平面后端 scale-out 组网；开源 AI 传输协议 MetaRoCE；在 OCP 内发起 Open Switch Platform Architecture（OSPA）倡议。 <a href="https://engineering.fb.com/2026/10/12/open-source/ocp-summit-2026-powering-ai-with-open-innovations-in-scale-up-scale-out-and-scale-across-networks/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Meta 用机会性推理算力改进广告推荐</b> — 针对&quot;全局算力紧张但局部存在闲置&quot;的悖论，系统聚合闲置推理容量，并用两个弹性杠杆让广告推荐任务在不影响基线性能的前提下扩张。 <a href="https://engineering.fb.com/2026/10/12/ml-applications/turning-opportunistic-ai-inference-capacity-into-better-ads-recommendations/" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">[AINews] Modal 年化收入 10 亿美元、16 亿…16B 估值 D 轮</b> — 5 个月内用量与估值各增 3 倍、一年 15 倍，成为纽约新的 AI 基础设施 decacorn；CTO Akshat 谈 agent 需要的能力：数百万并发 sandbox、安全弹性拉起 RDMA 训练集群、训练推理投机模型、全新 sandbox runtime。 <a href="https://www.latent.space/p/ainews-modals-1b-arr-16b-series-d" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">把 AI 应用扩到 100 万用户（生成式 AI 系列第 7 部分）</b> — 核心论点：API 调用按 token 计价，单位成本不随规模下降；自托管能让 GPU 成本在用户间摊薄，但带来容量规划、硬件管理和首位用户之前就得承担的最低支出。 <a href="https://newsletter.systemdesign.one/p/llm-inference-cost-optimization" target="_blank" rel="noopener noreferrer">原文</a></li>
-</ul>
-<h4>原理科普与系统设计</h4>
-<ul>
-<li><b class="item">19 世纪热物理的数学如何帮 LLM 理解句子</b> — 从傅里叶分析讲到 LLM 中的位置/频域表示。（正文被赞助内容截断，细节有限） <a href="https://blog.bytebytego.com/p/how-the-math-used-in-19th-century" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">不靠语言构建模型：Logical Intelligence</b> — 以今年初一场公开数独实验为切口，一组前沿 LLM 在其中表现异常，引出非语言建模路线。 <a href="https://blog.bytebytego.com/p/how-to-build-models-without-language" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">&quot;终结者问题&quot;：教会 LLM 一个坏习惯会改变它的整体行为</b> — 讨论窄域微调引入的不良行为向其他行为泛化扩散。（材料正文被赞助内容占据，细节有限） <a href="https://blog.bytebytego.com/p/the-terminator-problem-how-teaching" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">HTTP/1 vs HTTP/2 vs HTTP/3</b> — 23 个工程概念系列第 1 篇，解释为何服务端毫秒级响应、页面仍要数秒：连接建立、请求发送、响应接收各环节的机制差异。 <a href="https://newsletter.systemdesign.one/p/http-concepts-explained" target="_blank" rel="noopener noreferrer">原文</a></li>
-</ul>
-<h4>具身智能、科学 AI 与金融 agent</h4>
-<ul>
-<li><b class="item">Dyna-2：小时级自主的通用物理 agent（Jason Ma, Dyna Robotics）</b> — 世界-动作模型（world-action model），在 100 万小时人类视频上预训练，宣称可小时级连续自主作业；播客含 Taku 机器人现场演示，时长约 1 小时 12 分。 <a href="https://www.latent.space/p/dyna" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">Lab-in-the-Loop at Compute Speed（Ian Quigley, Leash Bio）</b> — 围绕 DEL（DNA 编码化合物库）数据：其 Kaggle 竞赛显示蛋白-配体结合远未解决，另有&quot;知道分子的作者就能预测它有多好&quot;的发现，并用这批数据抓出作弊的模型；时长约 1 小时 50 分。 <a href="https://www.latent.space/p/lab-in-the-loop-at-compute-speed" target="_blank" rel="noopener noreferrer">原文</a></li>
-<li><b class="item">OpenAI 与 Anthropic 如何处理金融 agent 的自主性与安全</b> — AIE New York 现场报道，OpenAI 的 Joseph Kim 讲&quot;阈值现象&quot;；共识是安全自主取决于把控制点和人类判断放在哪里，而非限制数量多少。 <a href="https://www.latent.space/p/crossing-the-threshold" target="_blank" rel="noopener noreferrer">原文</a></li>
-</ul></details><div class="foot"><a href="./">← 全部往期</a> &nbsp;·&nbsp; <a href="./sources.html">资讯源</a></div>
+</article></section>
+</div><div class="foot"><a href="./">← 本期首页</a> &nbsp;·&nbsp; <a href="./sources.html">资讯源</a><br><span class="health">本周抓取 7 次，最近一次 2026-10-18 07:30 · <a href="./2026-W42.runs.html">查看抓取日志</a></span></div>
 </main></div></body></html>

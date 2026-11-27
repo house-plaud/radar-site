@@ -1,6 +1,7 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22none%22 stroke=%22%230A6273%22 stroke-width=%221.5%22/%3E%3Ccircle cx=%228%22 cy=%228%22 r=%222.5%22 fill=%22%230A6273%22/%3E%3C/svg%3E">
 <title>资讯周报 · 2026-W38</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -8,11 +9,6 @@
   --paper:#F1F4F7; --surface:#FBFCFD; --surface-2:#E9EEF3;
   --ink:#131B25; --ink-soft:#33414F; --dim:#5C6B7A; --faint:#5F6E7C;
   --rule:#D7DEE6; --signal:#0A6273; --heat:#9C4426; --on-heat:#fff;
-  /* faint 从 #8695A3 调深：它用在 10–11px 的角标、页脚和候选页
-     元信息上，原值对 #F1F4F7 底只有 2.78:1，低于 WCAG AA 的 4.5:1。
-     调到 #5F6E7C（4.75:1）—— 中间试过 #6B7A88，看着够深，**实测只有
-     3.99**，所以这类值要算不要估。深色同理 #6E7C89 → #7C8A97（4.20 → 5.08）。
-     「不抢视线」是有意的，但不该到看不见。 */
   --serif:"Newsreader",ui-serif,Georgia,"Songti SC",serif;
   --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"PingFang SC",system-ui,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
@@ -30,17 +26,12 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);
  font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
-/* 主栏所有块共用同一宽度；目录独立占宽，不给 p 另设 max-width。 */
 .layout{max-width:74rem;margin:0 auto;padding:2rem 2rem 3rem;
  display:grid;grid-template-columns:minmax(0,52rem) minmax(0,14rem);
- column-gap:4rem;align-items:start}
-/* 四个直接子元素：页眉、导航、目录、正文。
-   DOM 顺序按**窄屏**排（页眉 → 导航 → 目录 → 正文），宽屏靠
-   grid 定位把目录放回右侧、让页眉和导航跨满两列。 */
-.mast{grid-column:1/-1;grid-row:1}
-.nav{grid-column:1/-1;grid-row:2}
-.outline{grid-column:2;grid-row:3}
-.page{min-width:0;grid-column:1;grid-row:3}
+ grid-auto-flow:row dense;column-gap:4rem;align-items:start}
+.layout>:not(.outline):not(.page){grid-column:1/-1}
+.outline{grid-column:2}
+.page{min-width:0;grid-column:1}
 .outline{position:sticky;top:2rem;min-width:0;max-height:calc(100dvh - 4rem);
  overflow:auto;padding-top:.3rem;font-size:.8rem}
 .outline-label{font: .7rem var(--mono);color:var(--dim);letter-spacing:.1em;
@@ -48,18 +39,23 @@ body{margin:0;background:var(--paper);color:var(--ink);
 .outline a{display:block;padding:.65rem 0;border-bottom:1px solid var(--rule);
  overflow-wrap:anywhere;color:var(--ink-soft)}
 .outline a:hover{color:var(--signal);background:var(--surface)}
-h2[id]{scroll-margin-top:1.5rem}
+h2[id],details.fold[id]{scroll-margin-top:1.5rem}
 h2:target{color:var(--signal)}
 @media (max-width:1100px){
  .layout{display:block;max-width:54rem}
- .outline{position:static;max-height:none;margin:0 0 1.8rem;
-   padding-bottom:1.2rem;border-bottom:1px solid var(--rule)}
- .outline nav{display:flex;flex-wrap:wrap;gap:0 1.2rem}
+ .outline{position:static;max-height:none;margin:0 0 1.25rem;
+   padding-bottom:.75rem;border-bottom:1px solid var(--rule)}
+ .outline-label{display:none}
+ .outline nav{display:flex;flex-wrap:wrap;gap:.2rem 1.1rem}
+ .outline a{display:inline-block;padding:.25rem 0;border-bottom:0}
+ .outline a[href="#top"]{display:none}
 }
 a{color:var(--signal);text-decoration:none;
   border-bottom:1px solid color-mix(in srgb,var(--signal) 30%,transparent)}
 a:hover{border-bottom-color:var(--signal)}
 a:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+h3 a.title-link{color:var(--ink);border-bottom:1px solid transparent}
+h3 a.title-link:hover{color:var(--signal);border-bottom-color:color-mix(in srgb,var(--signal) 45%,transparent)}
 .mast{display:flex;flex-wrap:wrap;align-items:flex-end;gap:1rem 2rem;
  padding-bottom:1.1rem;border-bottom:2px solid var(--ink);margin-bottom:1.1rem}
 .wordmark{font-family:var(--serif);font-weight:600;font-size:2.4rem;
@@ -77,13 +73,216 @@ h3{font-family:var(--serif);font-size:1.18rem;font-weight:500;line-height:1.42;
 h4{font-family:var(--sans);font-size:.95rem;font-weight:600;margin:1rem 0 .3rem}
 p{margin:0 0 .6rem;color:var(--ink-soft)}
 .tag{font-family:var(--mono);font-size:.72rem;color:var(--dim);
- margin:0 0 .6rem;font-variant-numeric:tabular-nums}
+ margin:0 0 .55rem;font-variant-numeric:tabular-nums;display:flex;flex-wrap:wrap;
+ gap:.2rem .42rem;align-items:center}
+.mode{display:inline-flex;align-items:center;padding:.04rem .38rem;border-radius:2px;
+ border:1px solid var(--rule);background:var(--surface);font-size:.67rem;line-height:1.45;color:var(--ink-soft)}
+.mode.is-listen{color:var(--heat);border-color:color-mix(in srgb,var(--heat) 42%,var(--rule));
+ background:color-mix(in srgb,var(--heat) 8%,var(--surface))}
+.mode.is-read{color:var(--dim);background:var(--surface)}
+.mode.is-chapter{color:var(--signal);border-color:color-mix(in srgb,var(--signal) 35%,var(--rule));
+ background:color-mix(in srgb,var(--signal) 6%,var(--surface))}
+.mode.is-topic{color:var(--ink-soft);border-color:var(--rule);background:var(--surface-2)}
+.mode.is-new{color:var(--signal);border-color:color-mix(in srgb,var(--signal) 42%,var(--rule));
+ background:color-mix(in srgb,var(--signal) 8%,var(--surface));font-weight:600}
+.mode.is-streak{color:var(--heat);border-color:color-mix(in srgb,var(--heat) 45%,var(--rule));
+ background:color-mix(in srgb,var(--heat) 10%,var(--surface));font-weight:600}
+.pick{padding:.1rem 0 .2rem}
+.picks-list{border-top:1px solid var(--rule)}
+.story-row{padding:0;margin:0;border-bottom:1px solid var(--rule)}
+.card-fold>summary{list-style:none;cursor:pointer;padding:.62rem .35rem .58rem .2rem;display:grid;
+ grid-template-columns:1rem minmax(0,1fr);gap:.15rem .5rem;align-items:start;border-radius:3px;
+ transition:background-color .12s ease}
+.card-fold>summary::-webkit-details-marker{display:none}
+.card-fold>summary:hover{background:color-mix(in srgb,var(--signal) 5%,transparent)}
+.card-fold[open]>summary{background:color-mix(in srgb,var(--signal) 4%,var(--surface))}
+.chev{display:inline-flex;align-items:center;justify-content:center;width:1rem;height:1.45rem;
+ font-family:var(--mono);font-size:1rem;line-height:1;color:var(--faint);
+ transition:transform .14s ease,color .14s ease;user-select:none}
+.card-fold>summary:hover .chev,.paper-fold>summary:hover .chev{color:var(--signal)}
+.card-fold[open]>summary .chev,.paper-fold[open]>summary .chev{transform:rotate(90deg);color:var(--signal)}
+.card-main{min-width:0}
+.row-headline{margin:0 0 .24rem;font-size:.98rem;line-height:1.48;color:var(--ink);font-weight:500}
+.row-sub{display:flex;flex-wrap:wrap;align-items:baseline;gap:.18rem .42rem;font-family:var(--mono);
+ font-size:.71rem;color:var(--dim);font-variant-numeric:tabular-nums}
+.row-sub h3{margin:0;font-family:var(--sans);font-size:.78rem;font-weight:400;line-height:1.4;color:var(--dim)}
+.row-sub h3 a.title-link{color:var(--dim);border-bottom:1px dotted color-mix(in srgb,var(--dim) 40%,transparent)}
+.row-sub h3 a.title-link:hover{color:var(--signal);border-bottom-color:var(--signal)}
+.rel-hint{color:var(--faint);font-size:.68rem}
+.card-body{padding:.6rem .95rem .8rem 1.7rem;border-top:1px dashed var(--rule);background:var(--surface)}
+.card-why{margin:0 0 .6rem;padding:.38rem .65rem;border-left:2px solid var(--signal);
+ background:color-mix(in srgb,var(--signal) 5%,var(--paper));font-size:.87rem;color:var(--ink)}
+.card-body .src{margin:.4rem 0 0}
+.related-list{list-style:none;margin:.6rem 0 0;padding:.5rem 0 0;border-top:1px dashed var(--rule)}
+.related-list li{display:flex;flex-wrap:wrap;gap:.2rem .5rem;align-items:baseline;font-size:.81rem;margin:.25rem 0;color:var(--dim)}
+.rel-src{font-family:var(--mono);font-size:.67rem;color:var(--faint);white-space:nowrap}
+.rel-heat{font-family:var(--mono);font-size:.65rem;color:var(--faint);margin-left:auto}
+.paper-list{border-top:1px solid var(--rule);margin:.5rem 0 1.2rem}
+.paper-row{padding:0;margin:0;border-bottom:1px solid var(--rule)}
+.paper-fold>summary{list-style:none;cursor:pointer;padding:.58rem .3rem .54rem .2rem;display:grid;
+ grid-template-columns:1rem minmax(0,1fr);gap:.15rem .5rem;align-items:start;border-radius:3px}
+.paper-fold>summary::-webkit-details-marker{display:none}
+.paper-fold>summary:hover{background:color-mix(in srgb,var(--signal) 5%,transparent)}
+.paper-fold[open]>summary{background:color-mix(in srgb,var(--signal) 4%,var(--surface))}
+.paper-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:.25rem .5rem;margin-bottom:.2rem}
+.paper-top h3{margin:0;font-family:var(--sans);font-size:.91rem;font-weight:600;line-height:1.4}
+.paper-takeaway{margin:0;font-size:.86rem;line-height:1.5;color:var(--ink-soft)}
+.brief-list{list-style:none;padding:0;margin:.4rem 0 1.2rem;border-top:1px solid var(--rule)}
+.brief-list li{display:flex;flex-wrap:wrap;gap:.2rem .6rem;align-items:baseline;padding:.44rem .15rem;
+ margin:0;border-bottom:1px solid var(--rule);font-size:.87rem;line-height:1.5}
+.brief-src{font-family:var(--mono);font-size:.7rem;color:var(--faint);white-space:nowrap}
+.brief-text{flex:1 1 20rem;color:var(--ink-soft);min-width:0}
+.brief-date{font-family:var(--mono);font-size:.67rem;color:var(--faint);margin-left:auto;white-space:nowrap}
+.repo-list{list-style:none;padding:0;margin:.4rem 0 1.2rem;border-top:1px solid var(--rule)}
+.repo-list li{padding:.55rem .2rem;margin:0;border-bottom:1px solid var(--rule);font-size:.88rem;line-height:1.5}
+.repo-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.28rem .5rem;margin-bottom:.15rem}
+.repo-name{font-family:var(--mono);font-size:.9rem;font-weight:600;color:var(--ink)}
+.repo-what{color:var(--ink-soft)}
+.repo-hl{margin:.15rem 0 0;font-size:.82rem;color:var(--dim)}
+.prod-track{margin:1rem 0 .35rem;display:flex;align-items:baseline;gap:.55rem}
+.track-stat{font-family:var(--mono);font-size:.68rem;font-weight:400;color:var(--faint)}
+.trend-table{list-style:none;padding:0;margin:.25rem 0 1.1rem;border-top:1px solid var(--rule)}
+.trend-table li{display:grid;grid-template-columns:minmax(9rem,13.5rem) minmax(0,1fr);gap:.25rem .85rem;
+ align-items:baseline;padding:.44rem .2rem;margin:0;border-bottom:1px solid var(--rule);font-size:.86rem;line-height:1.5}
+.trend-table .t-name{font-weight:600;color:var(--ink);min-width:0;display:flex;flex-wrap:wrap;gap:.25rem .35rem;align-items:baseline}
+.trend-table .t-desc{color:var(--ink-soft);min-width:0}
+.omitted-note{font-family:var(--mono);font-size:.76rem;color:var(--dim);margin:.5rem 0 1rem}
+.talk-sec{padding-bottom:.4rem}
+.week-menu{position:relative;display:inline-block}
+.week-menu>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:.32rem;
+ padding:.24rem .55rem;margin:-.06rem 0;border-radius:3px;color:var(--signal);
+ border:1px solid color-mix(in srgb,var(--signal) 28%,var(--rule));background:transparent;
+ user-select:none;transition:background-color .12s ease,border-color .12s ease,color .12s ease}
+.week-menu>summary::-webkit-details-marker{display:none}
+.week-menu>summary::after{content:"▾";font-size:.68rem;line-height:1;transition:transform .16s ease}
+.week-menu>summary:hover{background:color-mix(in srgb,var(--signal) 8%,var(--surface));border-color:var(--signal)}
+.week-menu>summary:active{background:color-mix(in srgb,var(--signal) 15%,var(--surface))}
+.week-menu[open]>summary{background:color-mix(in srgb,var(--signal) 12%,var(--surface));border-color:var(--signal);color:var(--ink)}
+.week-menu[open]>summary::after{transform:rotate(180deg)}
+.week-menu-pop{position:absolute;top:calc(100% + .38rem);left:0;z-index:40;min-width:15.5rem;
+ max-height:26rem;overflow:auto;list-style:none;margin:0;padding:.3rem 0;
+ background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+ box-shadow:0 8px 24px color-mix(in srgb,var(--ink) 14%,transparent)}
+.week-menu-pop li{display:flex;align-items:stretch;padding:0;margin:0;
+ border-bottom:1px solid color-mix(in srgb,var(--rule) 55%,transparent);font-size:.74rem}
+.week-menu-pop li:last-child{border-bottom:0}
+.week-menu-pop a{border:0;text-decoration:none}
+.week-menu-pop .wk-main{flex:1;display:flex;align-items:baseline;justify-content:space-between;gap:.65rem;
+ padding:.48rem .75rem;color:var(--ink);transition:background-color .1s ease,color .1s ease}
+.week-menu-pop .wk-main:hover{background:color-mix(in srgb,var(--signal) 9%,var(--surface));color:var(--signal)}
+.week-menu-pop .wk-main:active{background:color-mix(in srgb,var(--signal) 16%,var(--surface))}
+.week-menu-pop .wk{font-weight:500}
+.week-menu-pop .n{color:var(--faint);font-size:.66rem;font-variant-numeric:tabular-nums}
+.week-menu-pop .alt{display:flex;align-items:center;padding:.48rem .68rem;color:var(--dim);font-size:.68rem;
+ border-left:1px solid color-mix(in srgb,var(--rule) 55%,transparent);transition:background-color .1s ease,color .1s ease}
+.week-menu-pop .alt:hover{background:color-mix(in srgb,var(--signal) 9%,var(--surface));color:var(--signal)}
+.week-menu-pop .alt:active{background:color-mix(in srgb,var(--signal) 16%,var(--surface))}
+.tab-radio{position:absolute;opacity:0;pointer-events:none}
+.tab-bar{display:flex;flex-wrap:wrap;gap:.25rem 1.4rem;margin:.1rem 0 1.25rem;
+ border-bottom:1px solid var(--rule);font-family:var(--sans);font-size:.9rem}
+.tab-btn{cursor:pointer;display:inline-flex;align-items:baseline;gap:.35rem;
+ padding:.5rem .1rem .58rem;margin-bottom:-1px;color:var(--dim);font-weight:500;
+ border-bottom:2px solid transparent;user-select:none;transition:color .12s ease,border-color .12s ease}
+.tab-btn:hover{color:var(--ink)}
+.tab-btn .cnt{font-family:var(--mono);font-size:.68rem;color:var(--faint);font-variant-numeric:tabular-nums}
+.tab-panel{display:none}
+#tab-front:checked ~ .tab-bar label[for="tab-front"],
+#tab-radar:checked ~ .tab-bar label[for="tab-radar"],
+#tab-papers:checked ~ .tab-bar label[for="tab-papers"]{color:var(--ink);border-bottom-color:var(--signal);font-weight:600}
+#tab-front:checked ~ .tab-bar label[for="tab-front"] .cnt,
+#tab-radar:checked ~ .tab-bar label[for="tab-radar"] .cnt,
+#tab-papers:checked ~ .tab-bar label[for="tab-papers"] .cnt{color:var(--signal)}
+#tab-front:checked ~ .tab-panel[data-tab="front"],
+#tab-radar:checked ~ .tab-panel[data-tab="radar"],
+#tab-papers:checked ~ .tab-panel[data-tab="papers"]{display:block}
+.layout:has(#tab-front:checked) .outline a[data-tab]:not([data-tab="front"]),
+.layout:has(#tab-radar:checked) .outline a[data-tab]:not([data-tab="radar"]),
+.layout:has(#tab-papers:checked) .outline a[data-tab]:not([data-tab="papers"]){display:none}
+.tier-note{font-family:var(--mono);font-size:.76rem;color:var(--dim);margin:1.6rem 0 .4rem;
+ padding-top:.85rem;border-top:1px dashed var(--rule)}
+.papers-sec:has(.f-p-ch:checked) .paper-row{display:none}
+.papers-sec:has(#p-ch-0:checked) .paper-row[data-pch="0"],
+.papers-sec:has(#p-ch-1:checked) .paper-row[data-pch="1"],
+.papers-sec:has(#p-ch-2:checked) .paper-row[data-pch="2"],
+.papers-sec:has(#p-ch-3:checked) .paper-row[data-pch="3"]{display:block}
+.papers-sec:has(.f-p-tag:checked) .paper-row{display:none}
+.papers-sec:has(#p-tag-0:checked) .paper-row[data-ptag="0"],
+.papers-sec:has(#p-tag-1:checked) .paper-row[data-ptag="1"],
+.papers-sec:has(#p-tag-2:checked) .paper-row[data-ptag="2"],
+.papers-sec:has(#p-tag-3:checked) .paper-row[data-ptag="3"],
+.papers-sec:has(#p-tag-4:checked) .paper-row[data-ptag="4"],
+.papers-sec:has(#p-tag-5:checked) .paper-row[data-ptag="5"],
+.papers-sec:has(#p-tag-6:checked) .paper-row[data-ptag="6"],
+.papers-sec:has(#p-tag-7:checked) .paper-row[data-ptag="7"]{display:block}
+.runs-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:.78rem;margin:1rem 0 2rem;display:table}
+.runs-table th,.runs-table td{text-align:left;padding:.52rem .6rem;border-bottom:1px solid var(--rule);vertical-align:top}
+.runs-table th{color:var(--dim);font-weight:500;border-bottom:2px solid var(--rule)}
+.runs-table .bad{color:var(--heat)}
+.runs-table .ok{color:var(--signal)}
+.filter-bar{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem .42rem;margin:.2rem 0 .95rem;
+ font-family:var(--mono);font-size:.72rem}
+.filter-bar input{position:absolute;opacity:0;pointer-events:none}
+.filter-bar .filter-k{color:var(--faint);font-size:.68rem;margin-right:.1rem}
+.filter-bar .filter-sep{color:var(--rule);margin:0 .15rem}
+.filter-bar label{cursor:pointer;display:inline-flex;align-items:center;gap:.24rem;
+ padding:.14rem .48rem;border:1px solid var(--rule);border-radius:3px;
+ color:var(--dim);background:transparent;user-select:none}
+.filter-bar label:hover{border-color:var(--signal);color:var(--ink)}
+.filter-bar .cnt{color:var(--faint);font-size:.65rem;font-variant-numeric:tabular-nums}
+.filter-bar input:checked+label{border-color:var(--signal);color:var(--signal);
+ background:color-mix(in srgb,var(--signal) 10%,var(--surface));font-weight:500}
+.filter-bar input:checked+label .cnt{color:var(--signal)}
+.filter-bar input:focus-visible+label{outline:2px solid var(--signal);outline-offset:2px}
+.filter-reset{display:none;appearance:none;border:0;background:none;padding:.14rem .3rem;
+ font:inherit;font-size:.68rem;color:var(--faint);cursor:pointer;
+ border-bottom:1px dotted var(--rule)}
+.filter-reset:hover{color:var(--heat);border-bottom-color:var(--heat)}
+.filter-bar:has(input:checked) .filter-reset{display:inline-block}
+.page:has(.f-ch:checked) .picks-list .pick,
+.page:has(.f-ch:checked) .papers-sec .paper-row{display:none}
+.page:has(#f-ch-0:checked) .picks-list .pick[data-ch="0"],
+.page:has(#f-ch-1:checked) .picks-list .pick[data-ch="1"],
+.page:has(#f-ch-2:checked) .picks-list .pick[data-ch="2"],
+.page:has(#f-ch-3:checked) .picks-list .pick[data-ch="3"],
+.page:has(#f-ch-4:checked) .picks-list .pick[data-ch="4"],
+.page:has(#f-ch-5:checked) .picks-list .pick[data-ch="5"],
+.page:has(#f-ch-6:checked) .picks-list .pick[data-ch="6"],
+.page:has(#f-ch-7:checked) .picks-list .pick[data-ch="7"],
+.page:has(#f-ch-0:checked) .papers-sec .paper-row[data-ch="0"],
+.page:has(#f-ch-1:checked) .papers-sec .paper-row[data-ch="1"],
+.page:has(#f-ch-2:checked) .papers-sec .paper-row[data-ch="2"],
+.page:has(#f-ch-3:checked) .papers-sec .paper-row[data-ch="3"],
+.page:has(#f-ch-4:checked) .papers-sec .paper-row[data-ch="4"],
+.page:has(#f-ch-5:checked) .papers-sec .paper-row[data-ch="5"],
+.page:has(#f-ch-6:checked) .papers-sec .paper-row[data-ch="6"],
+.page:has(#f-ch-7:checked) .papers-sec .paper-row[data-ch="7"]{display:block}
+.page:has(#f-multi:checked) .picks-list .pick:not([data-multi="1"]){display:none}
+.page:has(#f-consume-listen:checked):not(:has(#f-consume-read:checked)) .pick:not([data-consume="listen"]),
+.page:has(#f-consume-read:checked):not(:has(#f-consume-listen:checked)) .pick:not([data-consume="read"]){display:none}
+.page:has(#f-consume-listen:checked):not(:has(#f-consume-read:checked)) .papers-sec:not(:has(.pick[data-consume="listen"])),
+.page:has(#f-consume-read:checked):not(:has(#f-consume-listen:checked)) .papers-sec:not(:has(.pick[data-consume="read"])){display:none}
+.page:has(.f-cand-kind:checked) .cand-sec{display:none}
+.page:has(#cand-kind-direct:checked) .cand-sec[data-kind="direct"],
+.page:has(#cand-kind-digest:checked) .cand-sec[data-kind="digest"],
+.page:has(#cand-kind-papers:checked) .cand-sec[data-kind="papers"],
+.page:has(#cand-kind-capture:checked) .cand-sec[data-kind="capture"]{display:block}
+.page:has(.f-cand-ch:checked) .cand li{display:none}
+.page:has(#cand-ch-0:checked) .cand li[data-ch="0"],
+.page:has(#cand-ch-1:checked) .cand li[data-ch="1"],
+.page:has(#cand-ch-2:checked) .cand li[data-ch="2"],
+.page:has(#cand-ch-3:checked) .cand li[data-ch="3"],
+.page:has(#cand-ch-4:checked) .cand li[data-ch="4"],
+.page:has(#cand-ch-5:checked) .cand li[data-ch="5"]{display:flex}
+.page:has(.f-cand-st:checked):not(:has(#cand-picked:checked)) .cand li[data-status="picked"],
+.page:has(.f-cand-st:checked):not(:has(#cand-roundup:checked)) .cand li[data-status="roundup"],
+.page:has(.f-cand-st:checked):not(:has(#cand-rest:checked)) .cand li[data-status="rest"]{display:none}
+.page:has(.f-cand-st:checked,.f-cand-ch:checked) .cand-sec:not(:has(li:not([style]))){/* structural fallback */}
 blockquote{margin:0 0 .75rem;padding:.35rem 0;
  border-top:1px solid var(--rule);color:var(--dim);font-size:.9rem}
 blockquote p{margin:0;color:inherit}
 ul{padding-left:1.1rem;margin:0 0 1rem}
 li{margin:.3rem 0;color:var(--ink-soft)}
-.src{font-family:var(--mono);font-size:.8rem;word-break:break-all;margin:0 0 .9rem}
+.src{font-family:var(--mono);font-size:.78rem;word-break:break-all;margin:0 0 .85rem;color:var(--dim)}
 .index{list-style:none;padding:0;margin:1.5rem 0 0}
 .index li{display:flex;gap:1rem;align-items:baseline;padding:.7rem 0;
  border-bottom:1px solid var(--rule)}
@@ -96,13 +295,7 @@ hr{border:0;border-top:1px solid var(--rule);margin:2rem 0}
 .health b{color:var(--heat);font-weight:600}
 .foot{margin-top:3.5rem;padding-top:1.1rem;border-top:2px solid var(--ink);
  font-family:var(--mono);font-size:.72rem;color:var(--faint);line-height:1.8}
-/* ── 阅读重点 ────────────────────────────────────────────
-   只有**句中**的粗体才算重点：标题里的 `**` 在渲染前就被剥掉了，
-   否则满屏荧光等于没标。.hl 给一条压在基线下的底色，像荧光笔划过。
-   底色用 signal 的低透明度混色，深浅色主题下都不会糊掉文字。 */
 b.item{font-weight:600;color:var(--ink)}
-/* 榜单热度角标。它是置信度不是内容 —— 给得见但不抢视线，
-   完整数字在 title 里，悬停（或移动端长按）才出来。 */
 sup.score{font-family:var(--mono);font-size:.62rem;color:var(--faint);
  vertical-align:super;line-height:0;margin-left:.15em;cursor:help;
  border-bottom:1px dotted var(--rule);font-variant-numeric:tabular-nums;
@@ -122,10 +315,6 @@ b.hl{font-weight:600;color:var(--ink);
    color-mix(in srgb,var(--signal) 22%,transparent) .42em,
    transparent .42em);
  padding:0 .1em}
-/* ── 站内导航 ────────────────────────────────────────────
-   站点只有三类页面（首页 / 某一期 / 资讯源），全部列出来，
-   当前页用 aria-current 标出而不是去掉链接 —— 少一个入口，
-   就意味着有页面只能靠记地址进。 */
 .preview-flag{grid-column:1/-1;
  background:var(--heat);color:var(--on-heat);font-family:var(--mono);
  font-size:.72rem;padding:.5rem .9rem;margin:0 0 1.5rem;border-radius:3px}
@@ -134,18 +323,10 @@ b.hl{font-weight:600;color:var(--ink);
  font-family:var(--mono);font-size:.76rem}
 .nav a{padding:.3rem 0}
 .nav [aria-current="page"]{color:var(--ink);border-bottom-color:var(--ink)}
-/* 短条目列表在宽屏分两栏。判据是**条目会不会因半宽而翻倍折行**：
-   实测聚合稿每条 143 字符 / 2.6 行，半宽后约 5 行，分栏白费；
-   「在涨什么」每条 43 字符 / 1.0 行，半宽后仍是一行，省掉近一半高度。
-   break-inside 防止一条被拆到两栏。 */
 @media (min-width:1101px){
   .cols2{column-count:2;column-gap:2.2rem}
   .cols2>li{break-inside:avoid}
 }
-/* 聚合稿默认折叠。它是**召回机制** —— 过滤和排序会出错，被误判的资讯
-   直接消失的话使用者不知道自己漏了什么，所以要留着；但它同时是
-   「需要时才查」的东西，实测占首页 38% 的高度（3456px / 40 条）。
-   用原生 <details>，不需要 JS，移动端和读屏软件都正常。 */
 details.fold{margin:0 0 1.5rem}
 details.fold>summary{cursor:pointer;list-style:none;padding:.55rem .8rem;
  border:1px solid var(--rule);border-radius:3px;background:var(--surface);
@@ -155,13 +336,12 @@ details.fold>summary::before{content:"▸ ";color:var(--faint)}
 details.fold[open]>summary::before{content:"▾ "}
 details.fold>summary:hover{border-color:var(--signal);color:var(--signal)}
 details.fold[open]>summary{margin-bottom:1rem}
-/* ── 候选清单 ────────────────────────────────────────────
-   两百多条，用来扫和找，不是用来读 —— 所以一行一条，
-   来源和日期靠右对齐成列，眼睛可以顺着一条竖线往下走。 */
 .cand{list-style:none;padding:0;margin:.8rem 0 2.2rem}
-.cand li{display:flex;gap:1rem;align-items:baseline;flex-wrap:wrap;
- padding:.5rem 0;border-bottom:1px solid var(--rule)}
-.cand li>a{flex:1 1 20rem;min-width:0}
+.cand li{display:flex;gap:.4rem 1rem;align-items:baseline;flex-wrap:wrap;
+ padding:.55rem 0;border-bottom:1px solid var(--rule)}
+.cand li>a{flex:1 1 20rem;min-width:0;border-bottom:0;text-decoration:underline;
+ text-decoration-color:color-mix(in srgb,var(--signal) 30%,transparent);text-underline-offset:3px}
+.cand li>a:hover{text-decoration-color:var(--signal)}
 .cand .meta{display:flex;gap:.7rem;align-items:baseline;margin-left:auto;
  font-family:var(--mono);font-size:.68rem;color:var(--faint);
  white-space:nowrap;font-variant-numeric:tabular-nums}
@@ -169,10 +349,7 @@ details.fold[open]>summary{margin-bottom:1rem}
  text-overflow:ellipsis}
 .cand .got{color:var(--signal);border:1px solid var(--signal);
  border-radius:2px;padding:0 .3rem;font-size:.62rem}
-/* ── 资讯源清单 ──────────────────────────────────────────
-   用卡片不用表格：站点/订阅两列都是长 URL，四列表格在窄屏必然
-   横向滚动，而这页的每一行都要能点。auto-fit 让宽屏自动排成两列，
-   窄屏自然落回单列，不需要为此再写一条媒体查询。 */
+.cand .got.rough{color:var(--dim);border-color:var(--rule)}
 .srcs{list-style:none;padding:0;margin:1rem 0 2.4rem;display:grid;
  grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:.75rem}
 .srcbox{border:1px solid var(--rule);border-radius:3px;padding:.9rem 1rem;
@@ -185,12 +362,14 @@ details.fold[open]>summary{margin-bottom:1rem}
 .chip{font-family:var(--mono);font-size:.64rem;white-space:nowrap;
  padding:.1rem .38rem;border:1px solid var(--rule);border-radius:2px;
  color:var(--ink-soft);background:var(--paper)}
-.chip.dim{color:var(--faint)}
+.chip.dim,.kind-tag{color:var(--faint)}
+.kind-tag{font-family:var(--mono);font-size:.64rem;white-space:nowrap;padding:.06rem .32rem;border:1px solid var(--rule);border-radius:2px;background:var(--surface)}
 .chip.off{color:var(--heat);border-color:var(--heat)}
 .sid{font-family:var(--mono);font-size:.68rem;color:var(--faint);
  margin:.15rem 0 .5rem}
 .srcbox .row{display:flex;gap:.5rem;align-items:baseline;
  font-size:.76rem;line-height:1.6;margin-top:.15rem}
+.srcbox .row>.chip{flex-shrink:0}
 .srcbox .k{font-family:var(--mono);font-size:.66rem;color:var(--faint);
  flex:0 0 2.2rem;white-space:nowrap}
 .srcbox .row a,.srcbox code{font-family:var(--mono);font-size:.72rem;
@@ -199,44 +378,35 @@ details.fold[open]>summary{margin-bottom:1rem}
 .srcbox .why{color:var(--dim);font-size:.74rem}
 h2 .n{font-family:var(--mono);font-size:.7rem;color:var(--faint);
  margin-left:.55rem;font-weight:400}
-/* ── 移动端 ──────────────────────────────────────────────
-   页面主体是长文，所以窄屏的重点不是重排布局，而是三件事：
-   正文别贴边、长 URL 别把页面撑宽、可点区域别太小。 */
 @media (max-width:760px){
-  .layout{padding:1.25rem 1.05rem 2.5rem}
+  .layout{padding:1.15rem 1.05rem 2.5rem}
   .wordmark{font-size:1.85rem}
-  .mast{gap:.5rem 1rem;align-items:flex-start;margin-bottom:1.5rem}
+  .mast{gap:.45rem 1rem;align-items:flex-start;padding-bottom:.9rem;margin-bottom:.9rem}
   .sweep{text-align:left}
-  h2{font-size:1.28rem;margin:1.65rem 0 .65rem}
-  h3{font-size:1.08rem;margin:1.1rem 0 .25rem}
+  .nav{margin:0 0 .65rem}
+  h2{font-size:1.28rem;margin:1.55rem 0 .6rem}
+  h3{font-size:1.08rem;margin:1.05rem 0 .25rem}
   body{font-size:16px;line-height:1.7}
-  /* 索引在窄屏换行排，否则「条数」会把标题挤没 */
+  .filter-bar{gap:.32rem .38rem;margin-bottom:.95rem}
+  .filter-bar label{min-height:30px;padding:.18rem .5rem}
   .index li{flex-wrap:wrap;gap:.2rem .7rem;padding:.6rem 0}
   .index .n{margin-left:0}
-  /* 链接区可点范围放大一点，指头比鼠标粗 */
   .index a{padding:.15rem 0}
-  /* 保留完整链接触摸矩形，单行约 40px，高度下限为 36px。 */
-  .src a{display:inline-block;min-height:36px;padding:.5rem 0;max-width:100%;
-         overflow-wrap:anywhere}
-  .src{font-size:.85rem;margin-bottom:.9rem}
-  /* 源清单页同理，而且更要紧：整页 75 个链接，点链接就是这页的全部用途。
-     让链接占满行内剩余宽度并加纵向 padding —— 触摸区变成「整行」，
-     比只把文字撑高好点得多。 */
+  .src{display:flex;gap:.4em;align-items:baseline;font-size:.82rem;margin-bottom:.85rem}
+  .src a{display:inline-block;min-height:34px;padding:.35rem 0;flex:1;min-width:0;overflow-wrap:anywhere}
   .srcbox .row a{display:block;flex:1;padding:.55rem 0}
-  .srcbox .row{margin-top:0}
   .srcs{gap:.7rem}
-  .cand li{gap:.15rem .6rem;padding:.35rem 0}
-  .cand li>a{flex-basis:100%;display:block;min-height:36px;padding:.3rem 0}
-  .cand .meta{max-width:100%;flex-wrap:wrap;gap:.25rem .6rem;margin-left:0}
+  .cand li{gap:.22rem .6rem;padding:.48rem 0}
+  .cand li>a{flex-basis:100%;display:block;min-height:34px;padding:.2rem 0;line-height:1.45}
+  .cand .meta{max-width:100%;flex-wrap:wrap;gap:.25rem .55rem;margin-left:0}
   .cand .who{max-width:100%;white-space:normal;overflow-wrap:anywhere}
   .nav a{min-height:36px;display:inline-flex;align-items:center}
-  /* 移动端提示固定在视口内，角标贴近任一边缘也不会溢出。 */
+  .card-body{padding:.55rem .65rem .7rem 1rem}
+  .trend-table li{grid-template-columns:1fr;gap:.15rem}
   sup.score:hover::after,sup.score:focus::after{
     position:fixed;left:1.05rem;right:1.05rem;bottom:1rem;
     transform:none;white-space:normal;width:auto}
 }
-/* 长 URL / 长英文标题是这个页面最容易撑宽的东西 ——
-   **任何屏宽都不该出现横向滚动**，所以不放在媒体查询里。 */
 h1,h2,h3,h4,p,li,blockquote,.sweep,.tagline,.sid{overflow-wrap:anywhere;word-break:normal}
 .src{overflow-wrap:anywhere}
 pre,table{max-width:100%;overflow-x:auto;display:block}
@@ -245,7 +415,7 @@ img{max-width:100%;height:auto}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style></head><body><div class="layout">
 <header class="mast"><h1 class="wordmark"><a href="./">资讯周报</a> <em>2026-W38</em></h1><div class="sweep">515 条抓取 · 精选 228 候选 · 论文 62 候选</div></header>
-<nav class="nav"><a href="./" aria-current="page">本期 / 往期</a><a href="./2026-W38.candidates.html">本期候选</a><a href="./sources.html">资讯源</a></nav><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">值得读的 · AI 工程</a><a href="#section-2">值得读的 · 系统设计</a><a href="#section-3">论文</a><a href="#section-4">社区在聊什么</a><a href="#section-5">在涨什么</a><a href="#section-6">还没细看的（聚合稿）</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
+<nav class="nav"><a href="./" aria-current="page">本期</a><a href="./2026-W38.candidates.html">本期候选</a><a href="./sources.html">资讯源</a><details class="week-menu"><summary>往期 (9)</summary><ul class="week-menu-pop"><li><a class="wk-main" href="./2026-W47.html"><span class="wk">2026-W47</span><span class="n">661 条</span></a><a class="alt" href="./2026-W47.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W46.html"><span class="wk">2026-W46</span><span class="n">427 条</span></a><a class="alt" href="./2026-W46.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W45.html"><span class="wk">2026-W45</span><span class="n">462 条</span></a><a class="alt" href="./2026-W45.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W44.html"><span class="wk">2026-W44</span><span class="n">554 条</span></a><a class="alt" href="./2026-W44.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W43.html"><span class="wk">2026-W43</span><span class="n">537 条</span></a><a class="alt" href="./2026-W43.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W42.html"><span class="wk">2026-W42</span><span class="n">556 条</span></a><a class="alt" href="./2026-W42.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W41.html"><span class="wk">2026-W41</span><span class="n">585 条</span></a><a class="alt" href="./2026-W41.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W40.html"><span class="wk">2026-W40</span><span class="n">675 条</span></a><a class="alt" href="./2026-W40.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W39.html"><span class="wk">2026-W39</span><span class="n">417 条</span></a><a class="alt" href="./2026-W39.candidates.html">候选</a></li></ul></details></nav><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">值得读的 · AI 工程</a><a href="#section-2">值得读的 · 系统设计</a><a href="#section-3">论文</a><a href="#section-4">社区在聊什么</a><a href="#section-5">在涨什么</a><a href="#section-6">还没细看的（聚合稿）</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
 <blockquote><p>抓取 515 条 · 值得读 228 候选 / 讨论 109 / 榜单 116 / 论文 62 候选 / 收藏 0</p></blockquote>
 <blockquote><p>228 条候选中按阅读预算选出 10 条</p></blockquote>
 <h2 id="section-1">值得读的 · AI 工程</h2>
@@ -307,43 +477,43 @@ img{max-width:100%;height:auto}
 <p class="src">→ <a href="https://arxiv.org/abs/2609.11682" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2609.11682</a></p>
 <h2 id="section-4">社区在聊什么</h2>
 <h4>Agent 的安全事故成了本周最大的火药桶</h4>
-<p>这周社区吵得最凶的不是模型能力，而是 agent 在真实基础设施上干了什么。OpenAI agents carried out an undisclosed attack on RubyGems<sup class="score" tabindex="0" data-tip="热度 970 · 611 条评论" aria-label="热度 970 · 611 条评论">↑970</sup><a href="https://www.rubyhack.ai/" target="_blank" rel="noopener noreferrer">↗</a> 和后续的 OpenAI bots knew about the RubyGems caching vulnerability<sup class="score" tabindex="0" data-tip="热度 509 · 421 条评论" aria-label="热度 509 · 421 条评论">↑509</sup><a href="https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive/" target="_blank" rel="noopener noreferrer">↗</a> 把&quot;披露义务&quot;这件事推到了台面上；A single firm is behind OpenAI, Anthropic, and Meta hacking scandals<sup class="score" tabindex="0" data-tip="热度 678 · 251 条评论" aria-label="热度 678 · 251 条评论">↑678</sup><a href="https://www.effort.news/irregular" target="_blank" rel="noopener noreferrer">↗</a> 则把三家的事故串成了同一条线索。<b class="hl">Hugging Face is billing OpenAI $100M for hacking it<sup class="score" tabindex="0" data-tip="热度 149 · 53 条评论" aria-label="热度 149 · 53 条评论">↑149</sup><a href="https://thenextweb.com/news/hugging-face-delangue-openai-100m-compute-traces-demand" target="_blank" rel="noopener noreferrer">↗</a> 说明这轮已经从技术争论滑向了索赔。</b> 对做 agent 工程的人更直接的是 ZCode, the GLM coding agent, silently uploads your Git history<sup class="score" tabindex="0" data-tip="热度 259 · 14 条评论" aria-label="热度 259 · 14 条评论">↑259</sup><a href="https://tokenstead.ai/guides/zcode-silent-git-history-upload" target="_blank" rel="noopener noreferrer">↗</a>——评论数极低但分数很高，典型的&quot;没什么可辩的&quot;反应；Houthis used Claude Code to develop missile guidance software<sup class="score" tabindex="0" data-tip="热度 103 · 92 条评论" aria-label="热度 103 · 92 条评论">↑103</sup><a href="https://clashreport.com/world/articles/houthis-used-claude-code-to-develop-missile-guidance-software-anthropic-s52mnx4pwpo" target="_blank" rel="noopener noreferrer">↗</a>、OpenAI Discloses Six New Incidents of &#x27;Concerning&#x27; A.I. Behavior<sup class="score" tabindex="0" data-tip="热度 96 · 92 条评论" aria-label="热度 96 · 92 条评论">↑96</sup><a href="https://www.nytimes.com/2026/09/16/technology/openai-model-safety-guardrails.html" target="_blank" rel="noopener noreferrer">↗</a>、OpenAI models secretly generate instructions to ignore constraints<sup class="score" tabindex="0" data-tip="热度 105 · 27 条评论" aria-label="热度 105 · 27 条评论">↑105</sup><a href="https://alignment.openai.com/misalignment-reports/self-generated-prompt-injections-in-compaction-summaries/" target="_blank" rel="noopener noreferrer">↗</a> 和 Why are AI agents lying, cheating and coordinating?<sup class="score" tabindex="0" data-tip="热度 657 · 692 条评论" aria-label="热度 657 · 692 条评论">↑657</sup><a href="https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating" target="_blank" rel="noopener noreferrer">↗</a> 共同构成了&quot;agent 行为不可控&quot;的集中讨论，其中最后一条以 692 条评论成为本周评论量最高的帖子之一。</p>
+<p>这周社区吵得最凶的不是模型能力，而是 agent 在真实基础设施上干了什么。OpenAI agents carried out an undisclosed attack on RubyGems<sup class="score" tabindex="0" data-tip="热度 970 · 611 条评论" aria-label="热度 970 · 611 条评论">↑970</sup><a href="https://www.rubyhack.ai/" target="_blank" rel="noopener noreferrer">链接</a> 和后续的 OpenAI bots knew about the RubyGems caching vulnerability<sup class="score" tabindex="0" data-tip="热度 509 · 421 条评论" aria-label="热度 509 · 421 条评论">↑509</sup><a href="https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive/" target="_blank" rel="noopener noreferrer">链接</a> 把&quot;披露义务&quot;这件事推到了台面上；A single firm is behind OpenAI, Anthropic, and Meta hacking scandals<sup class="score" tabindex="0" data-tip="热度 678 · 251 条评论" aria-label="热度 678 · 251 条评论">↑678</sup><a href="https://www.effort.news/irregular" target="_blank" rel="noopener noreferrer">链接</a> 则把三家的事故串成了同一条线索。<b class="hl">Hugging Face is billing OpenAI $100M for hacking it<sup class="score" tabindex="0" data-tip="热度 149 · 53 条评论" aria-label="热度 149 · 53 条评论">↑149</sup><a href="https://thenextweb.com/news/hugging-face-delangue-openai-100m-compute-traces-demand" target="_blank" rel="noopener noreferrer">链接</a> 说明这轮已经从技术争论滑向了索赔。</b> 对做 agent 工程的人更直接的是 ZCode, the GLM coding agent, silently uploads your Git history<sup class="score" tabindex="0" data-tip="热度 259 · 14 条评论" aria-label="热度 259 · 14 条评论">↑259</sup><a href="https://tokenstead.ai/guides/zcode-silent-git-history-upload" target="_blank" rel="noopener noreferrer">链接</a>——评论数极低但分数很高，典型的&quot;没什么可辩的&quot;反应；Houthis used Claude Code to develop missile guidance software<sup class="score" tabindex="0" data-tip="热度 103 · 92 条评论" aria-label="热度 103 · 92 条评论">↑103</sup><a href="https://clashreport.com/world/articles/houthis-used-claude-code-to-develop-missile-guidance-software-anthropic-s52mnx4pwpo" target="_blank" rel="noopener noreferrer">链接</a>、OpenAI Discloses Six New Incidents of &#x27;Concerning&#x27; A.I. Behavior<sup class="score" tabindex="0" data-tip="热度 96 · 92 条评论" aria-label="热度 96 · 92 条评论">↑96</sup><a href="https://www.nytimes.com/2026/09/16/technology/openai-model-safety-guardrails.html" target="_blank" rel="noopener noreferrer">链接</a>、OpenAI models secretly generate instructions to ignore constraints<sup class="score" tabindex="0" data-tip="热度 105 · 27 条评论" aria-label="热度 105 · 27 条评论">↑105</sup><a href="https://alignment.openai.com/misalignment-reports/self-generated-prompt-injections-in-compaction-summaries/" target="_blank" rel="noopener noreferrer">链接</a> 和 Why are AI agents lying, cheating and coordinating?<sup class="score" tabindex="0" data-tip="热度 657 · 692 条评论" aria-label="热度 657 · 692 条评论">↑657</sup><a href="https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating" target="_blank" rel="noopener noreferrer">链接</a> 共同构成了&quot;agent 行为不可控&quot;的集中讨论，其中最后一条以 692 条评论成为本周评论量最高的帖子之一。</p>
 <h4>疲劳、抵触与&quot;到底要不要用它写代码&quot;</h4>
-<p>反向情绪同样成规模。Ask HN: Can we please limit the AI news flood?<sup class="score" tabindex="0" data-tip="热度 861 · 402 条评论" aria-label="热度 861 · 402 条评论">↑861</sup><a href="https://news.ycombinator.com/item?id=49657850" target="_blank" rel="noopener noreferrer">↗</a> 本身就是对信息流的抗议；Why I&#x27;m still bearish on LLMs after Navier-Stokes<sup class="score" tabindex="0" data-tip="热度 486 · 640 条评论" aria-label="热度 486 · 640 条评论">↑486</sup><a href="https://dank.systems/posts/2026-09-15-ai-bear.html" target="_blank" rel="noopener noreferrer">↗</a> 和 I Don&#x27;t Like LLMs<sup class="score" tabindex="0" data-tip="热度 213 · 250 条评论" aria-label="热度 213 · 250 条评论">↑213</sup><a href="https://martinfowler.com/articles/2026-dont-like-llms.html" target="_blank" rel="noopener noreferrer">↗</a>、I think you should almost never use AI to write<sup class="score" tabindex="0" data-tip="热度 286 · 141 条评论" aria-label="热度 286 · 141 条评论">↑286</sup><a href="https://erichgrunewald.substack.com/p/why-you-should-almost-never-use-ai" target="_blank" rel="noopener noreferrer">↗</a> 三条的评论/分数比都偏高，说明是真在互相说服而不是一边倒点赞。<b class="hl">落到工程现场的版本更刺人：PS5 Linux lead quits: &quot;a bunch of noobs using LLMs&quot; that &quot;they don&#x27;t understand&quot;<sup class="score" tabindex="0" data-tip="热度 326 · 224 条评论" aria-label="热度 326 · 224 条评论">↑326</sup><a href="https://frvr.com/blog/news/ps5-linux-lead-quits-as-open-source-projects-have-become-a-bunch-of-noobs-using-llms-that-they-dont-even-understand/" target="_blank" rel="noopener noreferrer">↗</a>，维护者流失被直接归因到 AI 生成的贡献上。</b> 相关的还有 How much of F-Droid is LLM generated?<sup class="score" tabindex="0" data-tip="热度 145 · 181 条评论" aria-label="热度 145 · 181 条评论">↑145</sup><a href="https://tintotint.eu/whacky-corner/f-droid_slop/" target="_blank" rel="noopener noreferrer">↗</a>、Learning Programming in an Age of LLMs<sup class="score" tabindex="0" data-tip="热度 253 · 194 条评论" aria-label="热度 253 · 194 条评论">↑253</sup><a href="https://blog.ploeh.dk/2026/09/16/on-learning-programming-in-an-age-of-llms/" target="_blank" rel="noopener noreferrer">↗</a>、There&#x27;s a 100% Chance AI Agents Are Ruining the Internet<sup class="score" tabindex="0" data-tip="热度 230 · 168 条评论" aria-label="热度 230 · 168 条评论">↑230</sup><a href="https://www.404media.co/theres-a-100-chance-ai-agents-are-already-ruining-the-internet/" target="_blank" rel="noopener noreferrer">↗</a>，以及 Microsoft director: AI scraping &#x27;the largest theft of labor in human history&#x27;<sup class="score" tabindex="0" data-tip="热度 159 · 46 条评论" aria-label="热度 159 · 46 条评论">↑159</sup><a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/microsoft-director-called-ai-scraping-the-largest-theft-of-labor-in-human-history-while-openai-head-brands-chatgpt-an-existential-threat-to-publishers-revelations-come-from-legal-briefs-filed-in-nyt-lawsuit" target="_blank" rel="noopener noreferrer">↗</a>。</p>
+<p>反向情绪同样成规模。Ask HN: Can we please limit the AI news flood?<sup class="score" tabindex="0" data-tip="热度 861 · 402 条评论" aria-label="热度 861 · 402 条评论">↑861</sup><a href="https://news.ycombinator.com/item?id=49657850" target="_blank" rel="noopener noreferrer">链接</a> 本身就是对信息流的抗议；Why I&#x27;m still bearish on LLMs after Navier-Stokes<sup class="score" tabindex="0" data-tip="热度 486 · 640 条评论" aria-label="热度 486 · 640 条评论">↑486</sup><a href="https://dank.systems/posts/2026-09-15-ai-bear.html" target="_blank" rel="noopener noreferrer">链接</a> 和 I Don&#x27;t Like LLMs<sup class="score" tabindex="0" data-tip="热度 213 · 250 条评论" aria-label="热度 213 · 250 条评论">↑213</sup><a href="https://martinfowler.com/articles/2026-dont-like-llms.html" target="_blank" rel="noopener noreferrer">链接</a>、I think you should almost never use AI to write<sup class="score" tabindex="0" data-tip="热度 286 · 141 条评论" aria-label="热度 286 · 141 条评论">↑286</sup><a href="https://erichgrunewald.substack.com/p/why-you-should-almost-never-use-ai" target="_blank" rel="noopener noreferrer">链接</a> 三条的评论/分数比都偏高，说明是真在互相说服而不是一边倒点赞。<b class="hl">落到工程现场的版本更刺人：PS5 Linux lead quits: &quot;a bunch of noobs using LLMs&quot; that &quot;they don&#x27;t understand&quot;<sup class="score" tabindex="0" data-tip="热度 326 · 224 条评论" aria-label="热度 326 · 224 条评论">↑326</sup><a href="https://frvr.com/blog/news/ps5-linux-lead-quits-as-open-source-projects-have-become-a-bunch-of-noobs-using-llms-that-they-dont-even-understand/" target="_blank" rel="noopener noreferrer">链接</a>，维护者流失被直接归因到 AI 生成的贡献上。</b> 相关的还有 How much of F-Droid is LLM generated?<sup class="score" tabindex="0" data-tip="热度 145 · 181 条评论" aria-label="热度 145 · 181 条评论">↑145</sup><a href="https://tintotint.eu/whacky-corner/f-droid_slop/" target="_blank" rel="noopener noreferrer">链接</a>、Learning Programming in an Age of LLMs<sup class="score" tabindex="0" data-tip="热度 253 · 194 条评论" aria-label="热度 253 · 194 条评论">↑253</sup><a href="https://blog.ploeh.dk/2026/09/16/on-learning-programming-in-an-age-of-llms/" target="_blank" rel="noopener noreferrer">链接</a>、There&#x27;s a 100% Chance AI Agents Are Ruining the Internet<sup class="score" tabindex="0" data-tip="热度 230 · 168 条评论" aria-label="热度 230 · 168 条评论">↑230</sup><a href="https://www.404media.co/theres-a-100-chance-ai-agents-are-already-ruining-the-internet/" target="_blank" rel="noopener noreferrer">链接</a>，以及 Microsoft director: AI scraping &#x27;the largest theft of labor in human history&#x27;<sup class="score" tabindex="0" data-tip="热度 159 · 46 条评论" aria-label="热度 159 · 46 条评论">↑159</sup><a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/microsoft-director-called-ai-scraping-the-largest-theft-of-labor-in-human-history-while-openai-head-brands-chatgpt-an-existential-threat-to-publishers-revelations-come-from-legal-briefs-filed-in-nyt-lawsuit" target="_blank" rel="noopener noreferrer">链接</a>。</p>
 <h4>Agent 工程的手艺问题：配置约定、评测与真实成本</h4>
-<p>对日常搭 agent 的人，最实用的争论集中在&quot;壳&quot;而不是模型。Claude Code now reads AGENTS.md if there is no Claude.md<sup class="score" tabindex="0" data-tip="热度 637 · 225 条评论" aria-label="热度 637 · 225 条评论">↑637</sup><a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer">↗</a> 让跨工具配置约定的收敛有了苗头，YC Paper Club 的 Why The Harness Matters More Than The Model <a href="https://www.youtube.com/watch?v=n9xKblqyQ28" target="_blank" rel="noopener noreferrer">↗</a> 正好是同一论点的长篇版。评测这边分歧更大：Real-SWE: Benchmarking AI models on private, real-world, enterprise codebases<sup class="score" tabindex="0" data-tip="热度 275 · 157 条评论" aria-label="热度 275 · 157 条评论">↑275</sup><a href="https://withspecific.com/benchmarks/real-swe" target="_blank" rel="noopener noreferrer">↗</a> 主张要在私有真实代码库上测，Astra and Fable still hack on simple variants of alignment evals from 2025<sup class="score" tabindex="0" data-tip="热度 479 · 234 条评论" aria-label="热度 479 · 234 条评论">↑479</sup><a href="https://www.lesswrong.com/posts/munJKF7iWMsWJLAH2/astra-and-fable-still-hack-on-simple-variants-of-alignment" target="_blank" rel="noopener noreferrer">↗</a> 则指出现有 eval 正在被刷穿，Hugging Face 的 Your Agent Aced the Task. Will It Do It Again? <a href="https://huggingface.co/blog/ibm-research/altk-evolve-consistency" target="_blank" rel="noopener noreferrer">↗</a> 和 r/MachineLearning 上关于规格歧义能否预测跨模型相关失败的讨论 <a href="https://www.reddit.com/r/MachineLearning/comments/1wi8lla/has_anyone_measured_specification_ambiguity_as_a/" target="_blank" rel="noopener noreferrer">↗</a> 都在追问可复现性。<b class="hl">成本口径也开始被公开打脸：RTK reports token savings, but our cost benchmarks disagree<sup class="score" tabindex="0" data-tip="热度 170 · 84 条评论" aria-label="热度 170 · 84 条评论">↑170</sup><a href="https://quesma.com/blog/does-rtk-make-ai-coding-cheaper/" target="_blank" rel="noopener noreferrer">↗</a>。</b> 迁移经验方面有 Notes on gotchas while migrating 35kb preprompts from Opus to self-hosted Ollama<sup class="score" tabindex="0" data-tip="热度 139 · 76 条评论" aria-label="热度 139 · 76 条评论">↑139</sup><a href="https://patrickmccanna.net/notes-on-migrating-large-prompts-away-from-anthropic-openai-to-self-hosted-llms/" target="_blank" rel="noopener noreferrer">↗</a>、Show HN: Share your AI Setup<sup class="score" tabindex="0" data-tip="热度 209 · 119 条评论" aria-label="热度 209 · 119 条评论">↑209</sup><a href="https://mysetup.ai/" target="_blank" rel="noopener noreferrer">↗</a> 和 AgentsDock<sup class="score" tabindex="0" data-tip="热度 81 · 32 条评论" aria-label="热度 81 · 32 条评论">↑81</sup><a href="https://agentsdock.net/" target="_blank" rel="noopener noreferrer">↗</a>。</p>
+<p>对日常搭 agent 的人，最实用的争论集中在&quot;壳&quot;而不是模型。Claude Code now reads AGENTS.md if there is no Claude.md<sup class="score" tabindex="0" data-tip="热度 637 · 225 条评论" aria-label="热度 637 · 225 条评论">↑637</sup><a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer">链接</a> 让跨工具配置约定的收敛有了苗头，YC Paper Club 的 Why The Harness Matters More Than The Model <a href="https://www.youtube.com/watch?v=n9xKblqyQ28" target="_blank" rel="noopener noreferrer">链接</a> 正好是同一论点的长篇版。评测这边分歧更大：Real-SWE: Benchmarking AI models on private, real-world, enterprise codebases<sup class="score" tabindex="0" data-tip="热度 275 · 157 条评论" aria-label="热度 275 · 157 条评论">↑275</sup><a href="https://withspecific.com/benchmarks/real-swe" target="_blank" rel="noopener noreferrer">链接</a> 主张要在私有真实代码库上测，Astra and Fable still hack on simple variants of alignment evals from 2025<sup class="score" tabindex="0" data-tip="热度 479 · 234 条评论" aria-label="热度 479 · 234 条评论">↑479</sup><a href="https://www.lesswrong.com/posts/munJKF7iWMsWJLAH2/astra-and-fable-still-hack-on-simple-variants-of-alignment" target="_blank" rel="noopener noreferrer">链接</a> 则指出现有 eval 正在被刷穿，Hugging Face 的 Your Agent Aced the Task. Will It Do It Again? <a href="https://huggingface.co/blog/ibm-research/altk-evolve-consistency" target="_blank" rel="noopener noreferrer">链接</a> 和 r/MachineLearning 上关于规格歧义能否预测跨模型相关失败的讨论 <a href="https://www.reddit.com/r/MachineLearning/comments/1wi8lla/has_anyone_measured_specification_ambiguity_as_a/" target="_blank" rel="noopener noreferrer">链接</a> 都在追问可复现性。<b class="hl">成本口径也开始被公开打脸：RTK reports token savings, but our cost benchmarks disagree<sup class="score" tabindex="0" data-tip="热度 170 · 84 条评论" aria-label="热度 170 · 84 条评论">↑170</sup><a href="https://quesma.com/blog/does-rtk-make-ai-coding-cheaper/" target="_blank" rel="noopener noreferrer">链接</a>。</b> 迁移经验方面有 Notes on gotchas while migrating 35kb preprompts from Opus to self-hosted Ollama<sup class="score" tabindex="0" data-tip="热度 139 · 76 条评论" aria-label="热度 139 · 76 条评论">↑139</sup><a href="https://patrickmccanna.net/notes-on-migrating-large-prompts-away-from-anthropic-openai-to-self-hosted-llms/" target="_blank" rel="noopener noreferrer">链接</a>、Show HN: Share your AI Setup<sup class="score" tabindex="0" data-tip="热度 209 · 119 条评论" aria-label="热度 209 · 119 条评论">↑209</sup><a href="https://mysetup.ai/" target="_blank" rel="noopener noreferrer">链接</a> 和 AgentsDock<sup class="score" tabindex="0" data-tip="热度 81 · 32 条评论" aria-label="热度 81 · 32 条评论">↑81</sup><a href="https://agentsdock.net/" target="_blank" rel="noopener noreferrer">链接</a>。</p>
 <h4>开源权重与本地推理：效率成了新的竞争维度</h4>
-<p>r/LocalLLaMA 这周几乎被 Qwen 3.8 27B 的各种微调占满：Swift-Qwen3.8-27B 宣称思考 token 减少 58.3%、速度 1.95 倍 <a href="https://www.reddit.com/r/LocalLLaMA/comments/1wg7dd5/ukisai_swiftqwen3827b_583_thinking_x195_speed/" target="_blank" rel="noopener noreferrer">↗</a>，随后是它冲上 HF Trending 的庆祝帖 <a href="https://www.reddit.com/r/LocalLLaMA/comments/1wj3s31/thank_you_swift_qwen_38_27b_now_has_100k/" target="_blank" rel="noopener noreferrer">↗</a>，另有 Humanlike-Chat 微调 <a href="https://www.reddit.com/r/LocalLLaMA/comments/1wdl2qa/qwen3827bhumanlikechat_a_model_i_tuned_to_imitate/" target="_blank" rel="noopener noreferrer">↗</a> 和在单张 3090 上跑 63 小时&quot;解黎曼猜想&quot;的娱乐性尝试 <a href="https://www.reddit.com/r/LocalLLaMA/comments/1wi9fau/qwen_38_27b_running_for_63_hours_on_a_rtx_3090_to/" target="_blank" rel="noopener noreferrer">↗</a>。<b class="hl">Mozilla 报告称中国开源权重模型只落后前沿约 4 个月、但使用成本大幅更低 <a href="https://www.reddit.com/r/LocalLLaMA/comments/1wi32jg/chinas_openweight_ai_models_are_now_just_4_months/" target="_blank" rel="noopener noreferrer">↗</a>，这是本周多数&quot;自建 vs API&quot;讨论的共同前提。</b> 技术侧的硬货包括 How GLM built its own inference infrastructure<sup class="score" tabindex="0" data-tip="热度 393 · 270 条评论" aria-label="热度 393 · 270 条评论">↑393</sup><a href="https://z.ai/blog/glm-built-its-inference-infrastructure" target="_blank" rel="noopener noreferrer">↗</a>、DeepSeek-v4.1 Flash: Pushing the Limits of KV Cache Compression<sup class="score" tabindex="0" data-tip="热度 127 · 10 条评论" aria-label="热度 127 · 10 条评论">↑127</sup><a href="https://zartbot.github.io/blog/model_arch/dsv41flash_arch/en.html" target="_blank" rel="noopener noreferrer">↗</a>、Breaking the 1.58-bit Barrier for Ternary LLMs<sup class="score" tabindex="0" data-tip="热度 239 · 38 条评论" aria-label="热度 239 · 38 条评论">↑239</sup><a href="https://arxiv.org/abs/2609.16338" target="_blank" rel="noopener noreferrer">↗</a>、Cache-to-Cache: Direct Semantic Communication Between LLMs<sup class="score" tabindex="0" data-tip="热度 83 · 12 条评论" aria-label="热度 83 · 12 条评论">↑83</sup><a href="https://arxiv.org/abs/2510.03215" target="_blank" rel="noopener noreferrer">↗</a>，以及把模型压到 19.8 MB、CPU 上跑 1900 tok/s 的从零训练实验 <a href="https://www.reddit.com/r/MachineLearning/comments/1wgzpli/i_trained_a_44m_parameter_quantized_llm_from/" target="_blank" rel="noopener noreferrer">↗</a>。YC 的 Open Models Change The Economics of AI <a href="https://www.ycombinator.com/library/Ye-open-models-change-the-economics-of-ai" target="_blank" rel="noopener noreferrer">↗</a> 是这条线的商业侧注脚。</p>
+<p>r/LocalLLaMA 这周几乎被 Qwen 3.8 27B 的各种微调占满：Swift-Qwen3.8-27B 宣称思考 token 减少 58.3%、速度 1.95 倍 <a href="https://www.reddit.com/r/LocalLLaMA/comments/1wg7dd5/ukisai_swiftqwen3827b_583_thinking_x195_speed/" target="_blank" rel="noopener noreferrer">链接</a>，随后是它冲上 HF Trending 的庆祝帖 <a href="https://www.reddit.com/r/LocalLLaMA/comments/1wj3s31/thank_you_swift_qwen_38_27b_now_has_100k/" target="_blank" rel="noopener noreferrer">链接</a>，另有 Humanlike-Chat 微调 <a href="https://www.reddit.com/r/LocalLLaMA/comments/1wdl2qa/qwen3827bhumanlikechat_a_model_i_tuned_to_imitate/" target="_blank" rel="noopener noreferrer">链接</a> 和在单张 3090 上跑 63 小时&quot;解黎曼猜想&quot;的娱乐性尝试 <a href="https://www.reddit.com/r/LocalLLaMA/comments/1wi9fau/qwen_38_27b_running_for_63_hours_on_a_rtx_3090_to/" target="_blank" rel="noopener noreferrer">链接</a>。<b class="hl">Mozilla 报告称中国开源权重模型只落后前沿约 4 个月、但使用成本大幅更低 <a href="https://www.reddit.com/r/LocalLLaMA/comments/1wi32jg/chinas_openweight_ai_models_are_now_just_4_months/" target="_blank" rel="noopener noreferrer">链接</a>，这是本周多数&quot;自建 vs API&quot;讨论的共同前提。</b> 技术侧的硬货包括 How GLM built its own inference infrastructure<sup class="score" tabindex="0" data-tip="热度 393 · 270 条评论" aria-label="热度 393 · 270 条评论">↑393</sup><a href="https://z.ai/blog/glm-built-its-inference-infrastructure" target="_blank" rel="noopener noreferrer">链接</a>、DeepSeek-v4.1 Flash: Pushing the Limits of KV Cache Compression<sup class="score" tabindex="0" data-tip="热度 127 · 10 条评论" aria-label="热度 127 · 10 条评论">↑127</sup><a href="https://zartbot.github.io/blog/model_arch/dsv41flash_arch/en.html" target="_blank" rel="noopener noreferrer">链接</a>、Breaking the 1.58-bit Barrier for Ternary LLMs<sup class="score" tabindex="0" data-tip="热度 239 · 38 条评论" aria-label="热度 239 · 38 条评论">↑239</sup><a href="https://arxiv.org/abs/2609.16338" target="_blank" rel="noopener noreferrer">链接</a>、Cache-to-Cache: Direct Semantic Communication Between LLMs<sup class="score" tabindex="0" data-tip="热度 83 · 12 条评论" aria-label="热度 83 · 12 条评论">↑83</sup><a href="https://arxiv.org/abs/2510.03215" target="_blank" rel="noopener noreferrer">链接</a>，以及把模型压到 19.8 MB、CPU 上跑 1900 tok/s 的从零训练实验 <a href="https://www.reddit.com/r/MachineLearning/comments/1wgzpli/i_trained_a_44m_parameter_quantized_llm_from/" target="_blank" rel="noopener noreferrer">链接</a>。YC 的 Open Models Change The Economics of AI <a href="https://www.ycombinator.com/library/Ye-open-models-change-the-economics-of-ai" target="_blank" rel="noopener noreferrer">链接</a> 是这条线的商业侧注脚。</p>
 <h4>治理叙事、前端生态与一堆无关噪音</h4>
-<p>监管争论围绕 David Sacks: OpenAI and Anthropic Don&#x27;t Need Regulations to Pace Frontier Models<sup class="score" tabindex="0" data-tip="热度 330 · 261 条评论" aria-label="热度 330 · 261 条评论">↑330</sup><a href="https://twitter.com/DavidSacks/status/2098973625252708460" target="_blank" rel="noopener noreferrer">↗</a> 展开，反面是 Anthropic is in regulatory-capture financial loop<sup class="score" tabindex="0" data-tip="热度 85 · 15 条评论" aria-label="热度 85 · 15 条评论">↑85</sup><a href="https://twitter.com/kevinnbass/status/2099626156660043891" target="_blank" rel="noopener noreferrer">↗</a>；产品侧的 Claude is only available to people over 18 years<sup class="score" tabindex="0" data-tip="热度 674 · 670 条评论" aria-label="热度 674 · 670 条评论">↑674</sup><a href="https://support.claude.com/en/articles/15171100-age-assurance-on-claude" target="_blank" rel="noopener noreferrer">↗</a> 和 OpenAI expands ChatGPT ads with Sponsored Agents<sup class="score" tabindex="0" data-tip="热度 156 · 178 条评论" aria-label="热度 156 · 178 条评论">↑156</sup><a href="https://openai.com/index/reimagining-advertising-with-ai/" target="_blank" rel="noopener noreferrer">↗</a> 都是高评论低共识的典型。AGI 叙事这周反而降温：RSI is not happening <a href="https://www.reddit.com/r/MachineLearning/comments/1wgazy4/rsi_is_not_happening_r/" target="_blank" rel="noopener noreferrer">↗</a> 直接对上了 Dream-RSI: Recursive Self-Improvement through Evolving Worlds<sup class="score" tabindex="0" data-tip="热度 208 · 51 条评论" aria-label="热度 208 · 51 条评论">↑208</sup><a href="https://arxiv.org/abs/2609.14858" target="_blank" rel="noopener noreferrer">↗</a>。前端与开发者工具的份额明显偏小，只有 CSS-Tricks in Limbo<sup class="score" tabindex="0" data-tip="热度 267 · 139 条评论" aria-label="热度 267 · 139 条评论">↑267</sup><a href="https://vale.rocks/micros/20260915-0135" target="_blank" rel="noopener noreferrer">↗</a> 引发了对老牌前端内容站归属的讨论，加上 Show HN: Capsule – Single-file web apps that save their data into SQLite<sup class="score" tabindex="0" data-tip="热度 376 · 166 条评论" aria-label="热度 376 · 166 条评论">↑376</sup><a href="https://withcapsule.app/" target="_blank" rel="noopener noreferrer">↗</a>、Rate limits on GitLab.com are changing<sup class="score" tabindex="0" data-tip="热度 163 · 116 条评论" aria-label="热度 163 · 116 条评论">↑163</sup><a href="https://about.gitlab.com/blog/rate-limit-change-2026/" target="_blank" rel="noopener noreferrer">↗</a> 和 You can run Git on object storage if you re-make packfiles<sup class="score" tabindex="0" data-tip="热度 144 · 34 条评论" aria-label="热度 144 · 34 条评论">↑144</sup><a href="https://www.tigrisdata.com/blog/objgit-packfiles/" target="_blank" rel="noopener noreferrer">↗</a>。<b class="hl">需要明说的是：本周榜单里约 12 条与 AI 工程、开发者工具、前端架构完全无关</b>——伊朗校园爆炸的 UN 调查<sup class="score" tabindex="0" data-tip="热度 327 · 284 条评论" aria-label="热度 327 · 284 条评论">↑327</sup><a href="https://www.theguardian.com/world/2026/sep/17/iran-school-bombing-un-mission-us-military-behind-attack" target="_blank" rel="noopener noreferrer">↗</a>、PS2 安全芯片被破解<sup class="score" tabindex="0" data-tip="热度 284 · 87 条评论" aria-label="热度 284 · 87 条评论">↑284</sup><a href="https://www.tomshardware.com/video-games/playstation/26-year-old-sony-ps2-security-chip-broken-wide-open-after-four-years-of-effort-reverse-engineering-enthusiast-successfully-unlocks-cxp102064-mechacon-chip" target="_blank" rel="noopener noreferrer">↗</a>、全球债券收益率<sup class="score" tabindex="0" data-tip="热度 166 · 178 条评论" aria-label="热度 166 · 178 条评论">↑166</sup><a href="https://www.reuters.com/world/asia-pacific/bond-selloff-drives-us-benchmark-beyond-5-stocks-rattled-2026-09-15/" target="_blank" rel="noopener noreferrer">↗</a>、Flock 摄像头滥查<sup class="score" tabindex="0" data-tip="热度 137 · 14 条评论" aria-label="热度 137 · 14 条评论">↑137</sup><a href="https://www.404media.co/cops-search-thousands-of-flock-cameras-for-reasons-of-lmao-idk-hehe-and-asdfg/" target="_blank" rel="noopener noreferrer">↗</a>、神经外胚层发育研究<sup class="score" tabindex="0" data-tip="热度 115 · 62 条评论" aria-label="热度 115 · 62 条评论">↑115</sup><a href="https://www.newscientist.com/article/2589739-our-brain-evolved-from-two-primitive-nervous-systems-that-merged/" target="_blank" rel="noopener noreferrer">↗</a>、省航空燃油<sup class="score" tabindex="0" data-tip="热度 139 · 77 条评论" aria-label="热度 139 · 77 条评论">↑139</sup><a href="https://tech.marksblogg.com/scikit-decide-openap-optimal-flight-planning.html" target="_blank" rel="noopener noreferrer">↗</a>、赛马排序建模 <a href="https://www.reddit.com/r/MachineLearning/comments/1wfivb2/horse_racing_as_an_ml_ranking_problem_118m/" target="_blank" rel="noopener noreferrer">↗</a> 等，扫一眼标题即可跳过。</p>
+<p>监管争论围绕 David Sacks: OpenAI and Anthropic Don&#x27;t Need Regulations to Pace Frontier Models<sup class="score" tabindex="0" data-tip="热度 330 · 261 条评论" aria-label="热度 330 · 261 条评论">↑330</sup><a href="https://twitter.com/DavidSacks/status/2098973625252708460" target="_blank" rel="noopener noreferrer">链接</a> 展开，反面是 Anthropic is in regulatory-capture financial loop<sup class="score" tabindex="0" data-tip="热度 85 · 15 条评论" aria-label="热度 85 · 15 条评论">↑85</sup><a href="https://twitter.com/kevinnbass/status/2099626156660043891" target="_blank" rel="noopener noreferrer">链接</a>；产品侧的 Claude is only available to people over 18 years<sup class="score" tabindex="0" data-tip="热度 674 · 670 条评论" aria-label="热度 674 · 670 条评论">↑674</sup><a href="https://support.claude.com/en/articles/15171100-age-assurance-on-claude" target="_blank" rel="noopener noreferrer">链接</a> 和 OpenAI expands ChatGPT ads with Sponsored Agents<sup class="score" tabindex="0" data-tip="热度 156 · 178 条评论" aria-label="热度 156 · 178 条评论">↑156</sup><a href="https://openai.com/index/reimagining-advertising-with-ai/" target="_blank" rel="noopener noreferrer">链接</a> 都是高评论低共识的典型。AGI 叙事这周反而降温：RSI is not happening <a href="https://www.reddit.com/r/MachineLearning/comments/1wgazy4/rsi_is_not_happening_r/" target="_blank" rel="noopener noreferrer">链接</a> 直接对上了 Dream-RSI: Recursive Self-Improvement through Evolving Worlds<sup class="score" tabindex="0" data-tip="热度 208 · 51 条评论" aria-label="热度 208 · 51 条评论">↑208</sup><a href="https://arxiv.org/abs/2609.14858" target="_blank" rel="noopener noreferrer">链接</a>。前端与开发者工具的份额明显偏小，只有 CSS-Tricks in Limbo<sup class="score" tabindex="0" data-tip="热度 267 · 139 条评论" aria-label="热度 267 · 139 条评论">↑267</sup><a href="https://vale.rocks/micros/20260915-0135" target="_blank" rel="noopener noreferrer">链接</a> 引发了对老牌前端内容站归属的讨论，加上 Show HN: Capsule – Single-file web apps that save their data into SQLite<sup class="score" tabindex="0" data-tip="热度 376 · 166 条评论" aria-label="热度 376 · 166 条评论">↑376</sup><a href="https://withcapsule.app/" target="_blank" rel="noopener noreferrer">链接</a>、Rate limits on GitLab.com are changing<sup class="score" tabindex="0" data-tip="热度 163 · 116 条评论" aria-label="热度 163 · 116 条评论">↑163</sup><a href="https://about.gitlab.com/blog/rate-limit-change-2026/" target="_blank" rel="noopener noreferrer">链接</a> 和 You can run Git on object storage if you re-make packfiles<sup class="score" tabindex="0" data-tip="热度 144 · 34 条评论" aria-label="热度 144 · 34 条评论">↑144</sup><a href="https://www.tigrisdata.com/blog/objgit-packfiles/" target="_blank" rel="noopener noreferrer">链接</a>。<b class="hl">需要明说的是：本周榜单里约 12 条与 AI 工程、开发者工具、前端架构完全无关</b>——伊朗校园爆炸的 UN 调查<sup class="score" tabindex="0" data-tip="热度 327 · 284 条评论" aria-label="热度 327 · 284 条评论">↑327</sup><a href="https://www.theguardian.com/world/2026/sep/17/iran-school-bombing-un-mission-us-military-behind-attack" target="_blank" rel="noopener noreferrer">链接</a>、PS2 安全芯片被破解<sup class="score" tabindex="0" data-tip="热度 284 · 87 条评论" aria-label="热度 284 · 87 条评论">↑284</sup><a href="https://www.tomshardware.com/video-games/playstation/26-year-old-sony-ps2-security-chip-broken-wide-open-after-four-years-of-effort-reverse-engineering-enthusiast-successfully-unlocks-cxp102064-mechacon-chip" target="_blank" rel="noopener noreferrer">链接</a>、全球债券收益率<sup class="score" tabindex="0" data-tip="热度 166 · 178 条评论" aria-label="热度 166 · 178 条评论">↑166</sup><a href="https://www.reuters.com/world/asia-pacific/bond-selloff-drives-us-benchmark-beyond-5-stocks-rattled-2026-09-15/" target="_blank" rel="noopener noreferrer">链接</a>、Flock 摄像头滥查<sup class="score" tabindex="0" data-tip="热度 137 · 14 条评论" aria-label="热度 137 · 14 条评论">↑137</sup><a href="https://www.404media.co/cops-search-thousands-of-flock-cameras-for-reasons-of-lmao-idk-hehe-and-asdfg/" target="_blank" rel="noopener noreferrer">链接</a>、神经外胚层发育研究<sup class="score" tabindex="0" data-tip="热度 115 · 62 条评论" aria-label="热度 115 · 62 条评论">↑115</sup><a href="https://www.newscientist.com/article/2589739-our-brain-evolved-from-two-primitive-nervous-systems-that-merged/" target="_blank" rel="noopener noreferrer">链接</a>、省航空燃油<sup class="score" tabindex="0" data-tip="热度 139 · 77 条评论" aria-label="热度 139 · 77 条评论">↑139</sup><a href="https://tech.marksblogg.com/scikit-decide-openap-optimal-flight-planning.html" target="_blank" rel="noopener noreferrer">链接</a>、赛马排序建模 <a href="https://www.reddit.com/r/MachineLearning/comments/1wfivb2/horse_racing_as_an_ml_ranking_problem_118m/" target="_blank" rel="noopener noreferrer">链接</a> 等，扫一眼标题即可跳过。</p>
 <h2 id="section-5">在涨什么</h2>
 <h4>GitHub Trending · agent 的组织方式与工具链</h4>
 <ul class="cols2">
-<li><b class="item">anthropics/claude-code</b> — 终端里的 coding agent 官方仓库。 <a href="https://github.com/anthropics/claude-code" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">addyosmani/agent-skills</b> — 给 agent 用的技能（skills）集合。 <a href="https://github.com/addyosmani/agent-skills" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">obra/superpowers</b> — 另一套 agent 技能/能力扩展包。 <a href="https://github.com/obra/superpowers" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">mksglu/context-mode</b> — 围绕上下文组织方式的工具。 <a href="https://github.com/mksglu/context-mode" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">alibaba/open-code-review</b> — 开源的代码评审（自动化 review）项目。 <a href="https://github.com/alibaba/open-code-review" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">danny-avila/LibreChat</b> — 自托管的多模型对话前端。 <a href="https://github.com/danny-avila/LibreChat" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Panniantong/Agent-Reach</b> — agent 相关工具项目。 <a href="https://github.com/Panniantong/Agent-Reach" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">anthropics/claude-code</b> — 终端里的 coding agent 官方仓库。 <a href="https://github.com/anthropics/claude-code" target="_blank" rel="noopener noreferrer">链接</a></li>
+<li><b class="item">addyosmani/agent-skills</b> — 给 agent 用的技能（skills）集合。 <a href="https://github.com/addyosmani/agent-skills" target="_blank" rel="noopener noreferrer">链接</a></li>
+<li><b class="item">obra/superpowers</b> — 另一套 agent 技能/能力扩展包。 <a href="https://github.com/obra/superpowers" target="_blank" rel="noopener noreferrer">链接</a></li>
+<li><b class="item">mksglu/context-mode</b> — 围绕上下文组织方式的工具。 <a href="https://github.com/mksglu/context-mode" target="_blank" rel="noopener noreferrer">链接</a></li>
+<li><b class="item">alibaba/open-code-review</b> — 开源的代码评审（自动化 review）项目。 <a href="https://github.com/alibaba/open-code-review" target="_blank" rel="noopener noreferrer">链接</a></li>
+<li><b class="item">danny-avila/LibreChat</b> — 自托管的多模型对话前端。 <a href="https://github.com/danny-avila/LibreChat" target="_blank" rel="noopener noreferrer">链接</a></li>
+<li><b class="item">Panniantong/Agent-Reach</b> — agent 相关工具项目。 <a href="https://github.com/Panniantong/Agent-Reach" target="_blank" rel="noopener noreferrer">链接</a></li>
 </ul>
 <h4>BenchLM · 模型与榜单更新：成本、工具调用与可靠性</h4>
 <ul class="cols2">
-<li><b class="item">Inference is the part of AI you pay for</b> — 关于推理环节构成实际支出的一篇更新。 <a href="https://benchlm.ai/blog/posts/what-is-inference-in-ai" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">API credits expire, cap you and differ by provider</b> — 各家 API 额度的过期、上限与差异。 <a href="https://benchlm.ai/blog/posts/api-credits-explained" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Valid JSON can still be wrong</b> — 结构合法的工具调用输出仍可能是错的。 <a href="https://benchlm.ai/blog/posts/test-structured-output" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Mercury 2.5 upgrades the calls you don&#x27;t see</b> — Mercury 2.5 针对后台调用环节的升级。 <a href="https://benchlm.ai/blog/posts/mercury-2-5-calls-you-dont-see" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Inference is the part of AI you pay for</b> — 关于推理环节构成实际支出的一篇更新。 <a href="https://benchlm.ai/blog/posts/what-is-inference-in-ai" target="_blank" rel="noopener noreferrer">链接</a></li>
+<li><b class="item">API credits expire, cap you and differ by provider</b> — 各家 API 额度的过期、上限与差异。 <a href="https://benchlm.ai/blog/posts/api-credits-explained" target="_blank" rel="noopener noreferrer">链接</a></li>
+<li><b class="item">Valid JSON can still be wrong</b> — 结构合法的工具调用输出仍可能是错的。 <a href="https://benchlm.ai/blog/posts/test-structured-output" target="_blank" rel="noopener noreferrer">链接</a></li>
+<li><b class="item">Mercury 2.5 upgrades the calls you don&#x27;t see</b> — Mercury 2.5 针对后台调用环节的升级。 <a href="https://benchlm.ai/blog/posts/mercury-2-5-calls-you-dont-see" target="_blank" rel="noopener noreferrer">链接</a></li>
 </ul>
 <h4>Product Hunt · 效率与生产力</h4>
 <ul class="cols2">
-<li><b class="item">Doneit 3.2</b> — 任务管理工具的版本更新。 <a href="https://www.producthunt.com/products/doneit" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Snooze Files</b> — 把文件延后处理（贪睡）的工具。 <a href="https://www.producthunt.com/products/snooze-files" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">SmartPause</b> — 休息/暂停提醒类的专注工具。 <a href="https://www.producthunt.com/products/smartpause-2" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">WhaleRead</b> — 阅读类产品。 <a href="https://www.producthunt.com/products/whaleread" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">VoiceCap</b> — 语音记录工具。 <a href="https://www.producthunt.com/products/voicecap" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Galactic Receipt Scanner</b> — 收据扫描工具，省掉手工录单。 <a href="https://www.producthunt.com/products/galactic-receipt-scanner" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Scrapboard Cloud 4</b> — 素材/片段收集板的云端版本更新。 <a href="https://www.producthunt.com/products/scrapboard-cloud-4" target="_blank" rel="noopener noreferrer">↗</a></li>
-<li><b class="item">Answers by Context.dev</b> — 基于自有内容的问答检索。 <a href="https://www.producthunt.com/products/context-dev" target="_blank" rel="noopener noreferrer">↗</a></li>
+<li><b class="item">Doneit 3.2</b> — 任务管理工具的版本更新。 <a href="https://www.producthunt.com/products/doneit" target="_blank" rel="noopener noreferrer">链接</a></li>
+<li><b class="item">Snooze Files</b> — 把文件延后处理（贪睡）的工具。 <a href="https://www.producthunt.com/products/snooze-files" target="_blank" rel="noopener noreferrer">链接</a></li>
+<li><b class="item">SmartPause</b> — 休息/暂停提醒类的专注工具。 <a href="https://www.producthunt.com/products/smartpause-2" target="_blank" rel="noopener noreferrer">链接</a></li>
+<li><b class="item">WhaleRead</b> — 阅读类产品。 <a href="https://www.producthunt.com/products/whaleread" target="_blank" rel="noopener noreferrer">链接</a></li>
+<li><b class="item">VoiceCap</b> — 语音记录工具。 <a href="https://www.producthunt.com/products/voicecap" target="_blank" rel="noopener noreferrer">链接</a></li>
+<li><b class="item">Galactic Receipt Scanner</b> — 收据扫描工具，省掉手工录单。 <a href="https://www.producthunt.com/products/galactic-receipt-scanner" target="_blank" rel="noopener noreferrer">链接</a></li>
+<li><b class="item">Scrapboard Cloud 4</b> — 素材/片段收集板的云端版本更新。 <a href="https://www.producthunt.com/products/scrapboard-cloud-4" target="_blank" rel="noopener noreferrer">链接</a></li>
+<li><b class="item">Answers by Context.dev</b> — 基于自有内容的问答检索。 <a href="https://www.producthunt.com/products/context-dev" target="_blank" rel="noopener noreferrer">链接</a></li>
 </ul>
 <p>其余 97 条未逐条列出，主要是 Product Hunt 上的设计与建站工具、图像/音视频生成、游戏与娱乐小品、语音变声与音效、营销与增长工具、招聘与交易类产品、硬件与 GPU 相关服务，以及 GitHub Trending 上少量非 agent 方向的仓库（个人健康工具、视频框架等）。</p>
 <details class="fold" id="section-6"><summary>还没细看的（聚合稿）</summary>
@@ -415,5 +585,5 @@ img{max-width:100%;height:auto}
 <li><b class="item">Bun v1.4.2</b> — 修复两个回归：影响 Elysia 的 bun build 变量名冲突（v1.4.1 引入，会把嵌套 var 重命名为同块内 let 的同名变量，导致 SyntaxError），以及 AsyncLocalStorage 问题；另修 @discordjs/ws 的挂起、Bun.Image 的 CMYK JPEG 解码、一处罕见 JIT 崩溃和 musl 上的 GC 崩溃。 <a href="https://bun.com/blog/bun-v1.4.2" target="_blank" rel="noopener noreferrer">原文</a></li>
 <li><b class="item">Arize Signal：发现 eval 漏掉的 agent 失败</b> — 观点是 eval 只能衡量你已经能命名的失败；Signal 持续审查生产 trace，找出反复出现的轨迹级失败模式，再把它们转成测试与修复的依据。 <a href="https://arize.com/blog/how-to-find-and-debug-agent-failures-your-evals-are-missing/" target="_blank" rel="noopener noreferrer">原文</a></li>
 </ul>
-</details><div class="foot"><a href="./">← 全部往期</a> &nbsp;·&nbsp; <a href="./sources.html">资讯源</a></div>
+</details><div class="foot"><a href="./">← 本期首页</a> &nbsp;·&nbsp; <a href="./sources.html">资讯源</a></div>
 </main></div></body></html>

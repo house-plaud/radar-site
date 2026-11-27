@@ -149,22 +149,71 @@ p{margin:0 0 .6rem;color:var(--ink-soft)}
 .omitted-note{font-family:var(--mono);font-size:.76rem;color:var(--dim);margin:.5rem 0 1rem}
 .talk-sec{padding-bottom:.4rem}
 .week-menu{position:relative;display:inline-block}
-.week-menu>summary{list-style:none;cursor:pointer;padding:.3rem 0;color:var(--signal);
- border-bottom:1px solid color-mix(in srgb,var(--signal) 30%,transparent);user-select:none}
+.week-menu>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:.32rem;
+ padding:.24rem .55rem;margin:-.06rem 0;border-radius:3px;color:var(--signal);
+ border:1px solid color-mix(in srgb,var(--signal) 28%,var(--rule));background:transparent;
+ user-select:none;transition:background-color .12s ease,border-color .12s ease,color .12s ease}
 .week-menu>summary::-webkit-details-marker{display:none}
-.week-menu>summary:hover{border-bottom-color:var(--signal)}
-.week-menu-pop{position:absolute;top:calc(100% + .35rem);left:0;z-index:40;min-width:15rem;
- max-height:26rem;overflow:auto;list-style:none;margin:0;padding:.35rem 0;
+.week-menu>summary::after{content:"▾";font-size:.68rem;line-height:1;transition:transform .16s ease}
+.week-menu>summary:hover{background:color-mix(in srgb,var(--signal) 8%,var(--surface));border-color:var(--signal)}
+.week-menu>summary:active{background:color-mix(in srgb,var(--signal) 15%,var(--surface))}
+.week-menu[open]>summary{background:color-mix(in srgb,var(--signal) 12%,var(--surface));border-color:var(--signal);color:var(--ink)}
+.week-menu[open]>summary::after{transform:rotate(180deg)}
+.week-menu-pop{position:absolute;top:calc(100% + .38rem);left:0;z-index:40;min-width:15.5rem;
+ max-height:26rem;overflow:auto;list-style:none;margin:0;padding:.3rem 0;
  background:var(--surface);border:1px solid var(--rule);border-radius:4px;
  box-shadow:0 8px 24px color-mix(in srgb,var(--ink) 14%,transparent)}
-.week-menu-pop li{display:flex;align-items:baseline;gap:.55rem;padding:.36rem .75rem;margin:0;
+.week-menu-pop li{display:flex;align-items:stretch;padding:0;margin:0;
  border-bottom:1px solid color-mix(in srgb,var(--rule) 55%,transparent);font-size:.74rem}
 .week-menu-pop li:last-child{border-bottom:0}
-.week-menu-pop li:hover{background:color-mix(in srgb,var(--signal) 6%,var(--surface))}
-.week-menu-pop a{border:0;padding:0}
-.week-menu-pop .wk{color:var(--ink);font-weight:500}
-.week-menu-pop .n{margin-left:auto;color:var(--faint);font-size:.66rem}
-.week-menu-pop .alt{color:var(--dim);font-size:.66rem}
+.week-menu-pop a{border:0;text-decoration:none}
+.week-menu-pop .wk-main{flex:1;display:flex;align-items:baseline;justify-content:space-between;gap:.65rem;
+ padding:.48rem .75rem;color:var(--ink);transition:background-color .1s ease,color .1s ease}
+.week-menu-pop .wk-main:hover{background:color-mix(in srgb,var(--signal) 9%,var(--surface));color:var(--signal)}
+.week-menu-pop .wk-main:active{background:color-mix(in srgb,var(--signal) 16%,var(--surface))}
+.week-menu-pop .wk{font-weight:500}
+.week-menu-pop .n{color:var(--faint);font-size:.66rem;font-variant-numeric:tabular-nums}
+.week-menu-pop .alt{display:flex;align-items:center;padding:.48rem .68rem;color:var(--dim);font-size:.68rem;
+ border-left:1px solid color-mix(in srgb,var(--rule) 55%,transparent);transition:background-color .1s ease,color .1s ease}
+.week-menu-pop .alt:hover{background:color-mix(in srgb,var(--signal) 9%,var(--surface));color:var(--signal)}
+.week-menu-pop .alt:active{background:color-mix(in srgb,var(--signal) 16%,var(--surface))}
+.tab-radio{position:absolute;opacity:0;pointer-events:none}
+.tab-bar{display:flex;flex-wrap:wrap;gap:.25rem 1.4rem;margin:.1rem 0 1.25rem;
+ border-bottom:1px solid var(--rule);font-family:var(--sans);font-size:.9rem}
+.tab-btn{cursor:pointer;display:inline-flex;align-items:baseline;gap:.35rem;
+ padding:.5rem .1rem .58rem;margin-bottom:-1px;color:var(--dim);font-weight:500;
+ border-bottom:2px solid transparent;user-select:none;transition:color .12s ease,border-color .12s ease}
+.tab-btn:hover{color:var(--ink)}
+.tab-btn .cnt{font-family:var(--mono);font-size:.68rem;color:var(--faint);font-variant-numeric:tabular-nums}
+.tab-panel{display:none}
+#tab-front:checked ~ .tab-bar label[for="tab-front"],
+#tab-radar:checked ~ .tab-bar label[for="tab-radar"],
+#tab-papers:checked ~ .tab-bar label[for="tab-papers"]{color:var(--ink);border-bottom-color:var(--signal);font-weight:600}
+#tab-front:checked ~ .tab-bar label[for="tab-front"] .cnt,
+#tab-radar:checked ~ .tab-bar label[for="tab-radar"] .cnt,
+#tab-papers:checked ~ .tab-bar label[for="tab-papers"] .cnt{color:var(--signal)}
+#tab-front:checked ~ .tab-panel[data-tab="front"],
+#tab-radar:checked ~ .tab-panel[data-tab="radar"],
+#tab-papers:checked ~ .tab-panel[data-tab="papers"]{display:block}
+.layout:has(#tab-front:checked) .outline a[data-tab]:not([data-tab="front"]),
+.layout:has(#tab-radar:checked) .outline a[data-tab]:not([data-tab="radar"]),
+.layout:has(#tab-papers:checked) .outline a[data-tab]:not([data-tab="papers"]){display:none}
+.tier-note{font-family:var(--mono);font-size:.76rem;color:var(--dim);margin:1.6rem 0 .4rem;
+ padding-top:.85rem;border-top:1px dashed var(--rule)}
+.papers-sec:has(.f-p-ch:checked) .paper-row{display:none}
+.papers-sec:has(#p-ch-0:checked) .paper-row[data-pch="0"],
+.papers-sec:has(#p-ch-1:checked) .paper-row[data-pch="1"],
+.papers-sec:has(#p-ch-2:checked) .paper-row[data-pch="2"],
+.papers-sec:has(#p-ch-3:checked) .paper-row[data-pch="3"]{display:block}
+.papers-sec:has(.f-p-tag:checked) .paper-row{display:none}
+.papers-sec:has(#p-tag-0:checked) .paper-row[data-ptag="0"],
+.papers-sec:has(#p-tag-1:checked) .paper-row[data-ptag="1"],
+.papers-sec:has(#p-tag-2:checked) .paper-row[data-ptag="2"],
+.papers-sec:has(#p-tag-3:checked) .paper-row[data-ptag="3"],
+.papers-sec:has(#p-tag-4:checked) .paper-row[data-ptag="4"],
+.papers-sec:has(#p-tag-5:checked) .paper-row[data-ptag="5"],
+.papers-sec:has(#p-tag-6:checked) .paper-row[data-ptag="6"],
+.papers-sec:has(#p-tag-7:checked) .paper-row[data-ptag="7"]{display:block}
 .runs-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:.78rem;margin:1rem 0 2rem;display:table}
 .runs-table th,.runs-table td{text-align:left;padding:.52rem .6rem;border-bottom:1px solid var(--rule);vertical-align:top}
 .runs-table th{color:var(--dim);font-weight:500;border-bottom:2px solid var(--rule)}
@@ -367,7 +416,7 @@ img{max-width:100%;height:auto}
 </style></head><body><div class="layout">
 <header class="mast"><h1 class="wordmark"><a href="./">资讯周报</a> <em>抓取日志</em></h1><div class="sweep">2026-W47<br>8 次运行 · 累计新增 560 条</div></header>
 <p class="tagline">记录本周每次定时/手动抓取的新增条数与异常源明细（UTC 时间）。</p>
-<nav class="nav"><a href="./">本期</a><a href="./2026-W47.candidates.html">本期候选</a><a href="./sources.html">资讯源</a><details class="week-menu"><summary>往期 (9) ▾</summary><ul class="week-menu-pop"><li><a class="wk" href="./2026-W46.html">2026-W46</a><span class="n">427 条</span><a class="alt" href="./2026-W46.candidates.html">候选</a></li><li><a class="wk" href="./2026-W45.html">2026-W45</a><span class="n">462 条</span><a class="alt" href="./2026-W45.candidates.html">候选</a></li><li><a class="wk" href="./2026-W44.html">2026-W44</a><span class="n">554 条</span><a class="alt" href="./2026-W44.candidates.html">候选</a></li><li><a class="wk" href="./2026-W43.html">2026-W43</a><span class="n">537 条</span><a class="alt" href="./2026-W43.candidates.html">候选</a></li><li><a class="wk" href="./2026-W42.html">2026-W42</a><span class="n">556 条</span><a class="alt" href="./2026-W42.candidates.html">候选</a></li><li><a class="wk" href="./2026-W41.html">2026-W41</a><span class="n">585 条</span><a class="alt" href="./2026-W41.candidates.html">候选</a></li><li><a class="wk" href="./2026-W40.html">2026-W40</a><span class="n">675 条</span><a class="alt" href="./2026-W40.candidates.html">候选</a></li><li><a class="wk" href="./2026-W39.html">2026-W39</a><span class="n">417 条</span><a class="alt" href="./2026-W39.candidates.html">候选</a></li><li><a class="wk" href="./2026-W38.html">2026-W38</a><span class="n">515 条</span><a class="alt" href="./2026-W38.candidates.html">候选</a></li></ul></details></nav><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">抓取记录</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
+<nav class="nav"><a href="./">本期</a><a href="./2026-W47.roundup.html">本期兜底</a><a href="./2026-W47.candidates.html">本期候选</a><a href="./sources.html">资讯源</a><details class="week-menu"><summary>往期 (9)</summary><ul class="week-menu-pop"><li><a class="wk-main" href="./2026-W46.html"><span class="wk">2026-W46</span><span class="n">427 条</span></a><a class="alt" href="./2026-W46.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W45.html"><span class="wk">2026-W45</span><span class="n">462 条</span></a><a class="alt" href="./2026-W45.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W44.html"><span class="wk">2026-W44</span><span class="n">554 条</span></a><a class="alt" href="./2026-W44.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W43.html"><span class="wk">2026-W43</span><span class="n">537 条</span></a><a class="alt" href="./2026-W43.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W42.html"><span class="wk">2026-W42</span><span class="n">556 条</span></a><a class="alt" href="./2026-W42.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W41.html"><span class="wk">2026-W41</span><span class="n">585 条</span></a><a class="alt" href="./2026-W41.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W40.html"><span class="wk">2026-W40</span><span class="n">675 条</span></a><a class="alt" href="./2026-W40.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W39.html"><span class="wk">2026-W39</span><span class="n">417 条</span></a><a class="alt" href="./2026-W39.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W38.html"><span class="wk">2026-W38</span><span class="n">515 条</span></a><a class="alt" href="./2026-W38.candidates.html">候选</a></li></ul></details></nav><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">抓取记录</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
 <section class="sec"><h2 id="section-1">抓取记录</h2><table class="runs-table"><thead><tr><th>时间 (UTC)</th><th>新增</th><th>成功源</th><th>失败源</th></tr></thead><tbody><tr><td>2026-11-22 07:30:02</td><td>+28</td><td>40</td><td><span class="bad">anthropic-news、anthropic-engineering</span></td></tr>
 <tr><td>2026-11-21 07:30:03</td><td>+86</td><td>40</td><td><span class="bad">anthropic-news、anthropic-engineering</span></td></tr>
 <tr><td>2026-11-20 07:30:02</td><td>+68</td><td>40</td><td><span class="bad">anthropic-news、anthropic-engineering</span></td></tr>

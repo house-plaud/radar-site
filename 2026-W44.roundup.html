@@ -1,0 +1,482 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22none%22 stroke=%22%230A6273%22 stroke-width=%221.5%22/%3E%3Ccircle cx=%228%22 cy=%228%22 r=%222.5%22 fill=%22%230A6273%22/%3E%3C/svg%3E">
+<title>资讯周报 · 2026-W44 兜底聚合</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F1F4F7; --surface:#FBFCFD; --surface-2:#E9EEF3;
+  --ink:#131B25; --ink-soft:#33414F; --dim:#5C6B7A; --faint:#5F6E7C;
+  --rule:#D7DEE6; --signal:#0A6273; --heat:#9C4426; --on-heat:#fff;
+  --serif:"Newsreader",ui-serif,Georgia,"Songti SC",serif;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"PingFang SC",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+:root:not([data-theme="light"]){@media (prefers-color-scheme:dark){
+  --paper:#111721; --surface:#19212C; --surface-2:#212A36;
+  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#7C8A97;
+  --rule:#2B3542; --signal:#54B4C6; --heat:#D98A6A; --on-heat:#111721;
+}}
+:root[data-theme="dark"]{
+  --paper:#111721; --surface:#19212C; --surface-2:#212A36;
+  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#7C8A97;
+  --rule:#2B3542; --signal:#54B4C6; --heat:#D98A6A; --on-heat:#111721;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+ font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+.layout{max-width:74rem;margin:0 auto;padding:2rem 2rem 3rem;
+ display:grid;grid-template-columns:minmax(0,52rem) minmax(0,14rem);
+ grid-auto-flow:row dense;column-gap:4rem;align-items:start}
+.layout>:not(.outline):not(.page){grid-column:1/-1}
+.outline{grid-column:2}
+.page{min-width:0;grid-column:1}
+.outline{position:sticky;top:2rem;min-width:0;max-height:calc(100dvh - 4rem);
+ overflow:auto;padding-top:.3rem;font-size:.8rem}
+.outline-label{font: .7rem var(--mono);color:var(--dim);letter-spacing:.1em;
+ padding-bottom:.8rem;border-bottom:2px solid var(--ink)}
+.outline a{display:block;padding:.65rem 0;border-bottom:1px solid var(--rule);
+ overflow-wrap:anywhere;color:var(--ink-soft)}
+.outline a:hover{color:var(--signal);background:var(--surface)}
+h2[id],details.fold[id]{scroll-margin-top:1.5rem}
+h2:target{color:var(--signal)}
+@media (max-width:1100px){
+ .layout{display:block;max-width:54rem}
+ .outline{position:static;max-height:none;margin:0 0 1.25rem;
+   padding-bottom:.75rem;border-bottom:1px solid var(--rule)}
+ .outline-label{display:none}
+ .outline nav{display:flex;flex-wrap:wrap;gap:.2rem 1.1rem}
+ .outline a{display:inline-block;padding:.25rem 0;border-bottom:0}
+ .outline a[href="#top"]{display:none}
+}
+a{color:var(--signal);text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb,var(--signal) 30%,transparent)}
+a:hover{border-bottom-color:var(--signal)}
+a:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+h3 a.title-link{color:var(--ink);border-bottom:1px solid transparent}
+h3 a.title-link:hover{color:var(--signal);border-bottom-color:color-mix(in srgb,var(--signal) 45%,transparent)}
+.mast{display:flex;flex-wrap:wrap;align-items:flex-end;gap:1rem 2rem;
+ padding-bottom:1.1rem;border-bottom:2px solid var(--ink);margin-bottom:1.1rem}
+.wordmark{font-family:var(--serif);font-weight:600;font-size:2.4rem;
+ line-height:1;letter-spacing:-.02em;margin:0;flex:1 1 16rem}
+.wordmark a{border:0;color:var(--ink)}
+.wordmark em{font-style:italic;font-weight:400;color:var(--signal)}
+.tagline{font-family:var(--mono);font-size:.74rem;color:var(--dim);margin:.5rem 0 0}
+.sweep{font-family:var(--mono);font-size:.74rem;color:var(--dim);
+ font-variant-numeric:tabular-nums;text-align:right}
+h2{font-family:var(--serif);font-size:1.5rem;font-weight:600;
+ margin:1.8rem 0 .7rem;padding-bottom:.35rem;border-bottom:1px solid var(--rule);
+ text-wrap:balance}
+h3{font-family:var(--serif);font-size:1.18rem;font-weight:500;line-height:1.42;
+ margin:1.25rem 0 .3rem;text-wrap:balance}
+h4{font-family:var(--sans);font-size:.95rem;font-weight:600;margin:1rem 0 .3rem}
+p{margin:0 0 .6rem;color:var(--ink-soft)}
+.tag{font-family:var(--mono);font-size:.72rem;color:var(--dim);
+ margin:0 0 .55rem;font-variant-numeric:tabular-nums;display:flex;flex-wrap:wrap;
+ gap:.2rem .42rem;align-items:center}
+.mode{display:inline-flex;align-items:center;padding:.04rem .38rem;border-radius:2px;
+ border:1px solid var(--rule);background:var(--surface);font-size:.67rem;line-height:1.45;color:var(--ink-soft)}
+.mode.is-listen{color:var(--heat);border-color:color-mix(in srgb,var(--heat) 42%,var(--rule));
+ background:color-mix(in srgb,var(--heat) 8%,var(--surface))}
+.mode.is-read{color:var(--dim);background:var(--surface)}
+.mode.is-chapter{color:var(--signal);border-color:color-mix(in srgb,var(--signal) 35%,var(--rule));
+ background:color-mix(in srgb,var(--signal) 6%,var(--surface))}
+.mode.is-topic{color:var(--ink-soft);border-color:var(--rule);background:var(--surface-2)}
+.mode.is-new{color:var(--signal);border-color:color-mix(in srgb,var(--signal) 42%,var(--rule));
+ background:color-mix(in srgb,var(--signal) 8%,var(--surface));font-weight:600}
+.mode.is-streak{color:var(--heat);border-color:color-mix(in srgb,var(--heat) 45%,var(--rule));
+ background:color-mix(in srgb,var(--heat) 10%,var(--surface));font-weight:600}
+.pick{padding:.1rem 0 .2rem}
+.picks-list{border-top:1px solid var(--rule)}
+.story-row{padding:0;margin:0;border-bottom:1px solid var(--rule)}
+.card-fold>summary{list-style:none;cursor:pointer;padding:.62rem .35rem .58rem .2rem;display:grid;
+ grid-template-columns:1rem minmax(0,1fr);gap:.15rem .5rem;align-items:start;border-radius:3px;
+ transition:background-color .12s ease}
+.card-fold>summary::-webkit-details-marker{display:none}
+.card-fold>summary:hover{background:color-mix(in srgb,var(--signal) 5%,transparent)}
+.card-fold[open]>summary{background:color-mix(in srgb,var(--signal) 4%,var(--surface))}
+.chev{display:inline-flex;align-items:center;justify-content:center;width:1rem;height:1.45rem;
+ font-family:var(--mono);font-size:1rem;line-height:1;color:var(--faint);
+ transition:transform .14s ease,color .14s ease;user-select:none}
+.card-fold>summary:hover .chev,.paper-fold>summary:hover .chev{color:var(--signal)}
+.card-fold[open]>summary .chev,.paper-fold[open]>summary .chev{transform:rotate(90deg);color:var(--signal)}
+.card-main{min-width:0}
+.row-headline{margin:0 0 .24rem;font-size:.98rem;line-height:1.48;color:var(--ink);font-weight:500}
+.row-sub{display:flex;flex-wrap:wrap;align-items:baseline;gap:.18rem .42rem;font-family:var(--mono);
+ font-size:.71rem;color:var(--dim);font-variant-numeric:tabular-nums}
+.row-sub h3{margin:0;font-family:var(--sans);font-size:.78rem;font-weight:400;line-height:1.4;color:var(--dim)}
+.row-sub h3 a.title-link{color:var(--dim);border-bottom:1px dotted color-mix(in srgb,var(--dim) 40%,transparent)}
+.row-sub h3 a.title-link:hover{color:var(--signal);border-bottom-color:var(--signal)}
+.rel-hint{color:var(--faint);font-size:.68rem}
+.card-body{padding:.6rem .95rem .8rem 1.7rem;border-top:1px dashed var(--rule);background:var(--surface)}
+.card-why{margin:0 0 .6rem;padding:.38rem .65rem;border-left:2px solid var(--signal);
+ background:color-mix(in srgb,var(--signal) 5%,var(--paper));font-size:.87rem;color:var(--ink)}
+.card-body .src{margin:.4rem 0 0}
+.related-list{list-style:none;margin:.6rem 0 0;padding:.5rem 0 0;border-top:1px dashed var(--rule)}
+.related-list li{display:flex;flex-wrap:wrap;gap:.2rem .5rem;align-items:baseline;font-size:.81rem;margin:.25rem 0;color:var(--dim)}
+.rel-src{font-family:var(--mono);font-size:.67rem;color:var(--faint);white-space:nowrap}
+.rel-heat{font-family:var(--mono);font-size:.65rem;color:var(--faint);margin-left:auto}
+.paper-list{border-top:1px solid var(--rule);margin:.5rem 0 1.2rem}
+.paper-row{padding:0;margin:0;border-bottom:1px solid var(--rule)}
+.paper-fold>summary{list-style:none;cursor:pointer;padding:.58rem .3rem .54rem .2rem;display:grid;
+ grid-template-columns:1rem minmax(0,1fr);gap:.15rem .5rem;align-items:start;border-radius:3px}
+.paper-fold>summary::-webkit-details-marker{display:none}
+.paper-fold>summary:hover{background:color-mix(in srgb,var(--signal) 5%,transparent)}
+.paper-fold[open]>summary{background:color-mix(in srgb,var(--signal) 4%,var(--surface))}
+.paper-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:.25rem .5rem;margin-bottom:.2rem}
+.paper-top h3{margin:0;font-family:var(--sans);font-size:.91rem;font-weight:600;line-height:1.4}
+.paper-takeaway{margin:0;font-size:.86rem;line-height:1.5;color:var(--ink-soft)}
+.brief-list{list-style:none;padding:0;margin:.4rem 0 1.2rem;border-top:1px solid var(--rule)}
+.brief-list li{display:flex;flex-wrap:wrap;gap:.2rem .6rem;align-items:baseline;padding:.44rem .15rem;
+ margin:0;border-bottom:1px solid var(--rule);font-size:.87rem;line-height:1.5}
+.brief-src{font-family:var(--mono);font-size:.7rem;color:var(--faint);white-space:nowrap}
+.brief-text{flex:1 1 20rem;color:var(--ink-soft);min-width:0}
+.brief-date{font-family:var(--mono);font-size:.67rem;color:var(--faint);margin-left:auto;white-space:nowrap}
+.repo-list{list-style:none;padding:0;margin:.4rem 0 1.2rem;border-top:1px solid var(--rule)}
+.repo-list li{padding:.55rem .2rem;margin:0;border-bottom:1px solid var(--rule);font-size:.88rem;line-height:1.5}
+.repo-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.28rem .5rem;margin-bottom:.15rem}
+.repo-name{font-family:var(--mono);font-size:.9rem;font-weight:600;color:var(--ink)}
+.repo-what{color:var(--ink-soft)}
+.repo-hl{margin:.15rem 0 0;font-size:.82rem;color:var(--dim)}
+.prod-track{margin:1rem 0 .35rem;display:flex;align-items:baseline;gap:.55rem}
+.track-stat{font-family:var(--mono);font-size:.68rem;font-weight:400;color:var(--faint)}
+.trend-table{list-style:none;padding:0;margin:.25rem 0 1.1rem;border-top:1px solid var(--rule)}
+.trend-table li{display:grid;grid-template-columns:minmax(9rem,13.5rem) minmax(0,1fr);gap:.25rem .85rem;
+ align-items:baseline;padding:.44rem .2rem;margin:0;border-bottom:1px solid var(--rule);font-size:.86rem;line-height:1.5}
+.trend-table .t-name{font-weight:600;color:var(--ink);min-width:0;display:flex;flex-wrap:wrap;gap:.25rem .35rem;align-items:baseline}
+.trend-table .t-desc{color:var(--ink-soft);min-width:0}
+.omitted-note{font-family:var(--mono);font-size:.76rem;color:var(--dim);margin:.5rem 0 1rem}
+.talk-sec{padding-bottom:.4rem}
+.week-menu{position:relative;display:inline-block}
+.week-menu>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:.32rem;
+ padding:.24rem .55rem;margin:-.06rem 0;border-radius:3px;color:var(--signal);
+ border:1px solid color-mix(in srgb,var(--signal) 28%,var(--rule));background:transparent;
+ user-select:none;transition:background-color .12s ease,border-color .12s ease,color .12s ease}
+.week-menu>summary::-webkit-details-marker{display:none}
+.week-menu>summary::after{content:"▾";font-size:.68rem;line-height:1;transition:transform .16s ease}
+.week-menu>summary:hover{background:color-mix(in srgb,var(--signal) 8%,var(--surface));border-color:var(--signal)}
+.week-menu>summary:active{background:color-mix(in srgb,var(--signal) 15%,var(--surface))}
+.week-menu[open]>summary{background:color-mix(in srgb,var(--signal) 12%,var(--surface));border-color:var(--signal);color:var(--ink)}
+.week-menu[open]>summary::after{transform:rotate(180deg)}
+.week-menu-pop{position:absolute;top:calc(100% + .38rem);left:0;z-index:40;min-width:15.5rem;
+ max-height:26rem;overflow:auto;list-style:none;margin:0;padding:.3rem 0;
+ background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+ box-shadow:0 8px 24px color-mix(in srgb,var(--ink) 14%,transparent)}
+.week-menu-pop li{display:flex;align-items:stretch;padding:0;margin:0;
+ border-bottom:1px solid color-mix(in srgb,var(--rule) 55%,transparent);font-size:.74rem}
+.week-menu-pop li:last-child{border-bottom:0}
+.week-menu-pop a{border:0;text-decoration:none}
+.week-menu-pop .wk-main{flex:1;display:flex;align-items:baseline;justify-content:space-between;gap:.65rem;
+ padding:.48rem .75rem;color:var(--ink);transition:background-color .1s ease,color .1s ease}
+.week-menu-pop .wk-main:hover{background:color-mix(in srgb,var(--signal) 9%,var(--surface));color:var(--signal)}
+.week-menu-pop .wk-main:active{background:color-mix(in srgb,var(--signal) 16%,var(--surface))}
+.week-menu-pop .wk{font-weight:500}
+.week-menu-pop .n{color:var(--faint);font-size:.66rem;font-variant-numeric:tabular-nums}
+.week-menu-pop .alt{display:flex;align-items:center;padding:.48rem .68rem;color:var(--dim);font-size:.68rem;
+ border-left:1px solid color-mix(in srgb,var(--rule) 55%,transparent);transition:background-color .1s ease,color .1s ease}
+.week-menu-pop .alt:hover{background:color-mix(in srgb,var(--signal) 9%,var(--surface));color:var(--signal)}
+.week-menu-pop .alt:active{background:color-mix(in srgb,var(--signal) 16%,var(--surface))}
+.tab-radio{position:absolute;opacity:0;pointer-events:none}
+.tab-bar{display:flex;flex-wrap:wrap;gap:.25rem 1.4rem;margin:.1rem 0 1.25rem;
+ border-bottom:1px solid var(--rule);font-family:var(--sans);font-size:.9rem}
+.tab-btn{cursor:pointer;display:inline-flex;align-items:baseline;gap:.35rem;
+ padding:.5rem .1rem .58rem;margin-bottom:-1px;color:var(--dim);font-weight:500;
+ border-bottom:2px solid transparent;user-select:none;transition:color .12s ease,border-color .12s ease}
+.tab-btn:hover{color:var(--ink)}
+.tab-btn .cnt{font-family:var(--mono);font-size:.68rem;color:var(--faint);font-variant-numeric:tabular-nums}
+.tab-panel{display:none}
+#tab-front:checked ~ .tab-bar label[for="tab-front"],
+#tab-radar:checked ~ .tab-bar label[for="tab-radar"],
+#tab-papers:checked ~ .tab-bar label[for="tab-papers"]{color:var(--ink);border-bottom-color:var(--signal);font-weight:600}
+#tab-front:checked ~ .tab-bar label[for="tab-front"] .cnt,
+#tab-radar:checked ~ .tab-bar label[for="tab-radar"] .cnt,
+#tab-papers:checked ~ .tab-bar label[for="tab-papers"] .cnt{color:var(--signal)}
+#tab-front:checked ~ .tab-panel[data-tab="front"],
+#tab-radar:checked ~ .tab-panel[data-tab="radar"],
+#tab-papers:checked ~ .tab-panel[data-tab="papers"]{display:block}
+.layout:has(#tab-front:checked) .outline a[data-tab]:not([data-tab="front"]),
+.layout:has(#tab-radar:checked) .outline a[data-tab]:not([data-tab="radar"]),
+.layout:has(#tab-papers:checked) .outline a[data-tab]:not([data-tab="papers"]){display:none}
+.tier-note{font-family:var(--mono);font-size:.76rem;color:var(--dim);margin:1.6rem 0 .4rem;
+ padding-top:.85rem;border-top:1px dashed var(--rule)}
+.papers-sec:has(.f-p-ch:checked) .paper-row{display:none}
+.papers-sec:has(#p-ch-0:checked) .paper-row[data-pch="0"],
+.papers-sec:has(#p-ch-1:checked) .paper-row[data-pch="1"],
+.papers-sec:has(#p-ch-2:checked) .paper-row[data-pch="2"],
+.papers-sec:has(#p-ch-3:checked) .paper-row[data-pch="3"]{display:block}
+.papers-sec:has(.f-p-tag:checked) .paper-row{display:none}
+.papers-sec:has(#p-tag-0:checked) .paper-row[data-ptag="0"],
+.papers-sec:has(#p-tag-1:checked) .paper-row[data-ptag="1"],
+.papers-sec:has(#p-tag-2:checked) .paper-row[data-ptag="2"],
+.papers-sec:has(#p-tag-3:checked) .paper-row[data-ptag="3"],
+.papers-sec:has(#p-tag-4:checked) .paper-row[data-ptag="4"],
+.papers-sec:has(#p-tag-5:checked) .paper-row[data-ptag="5"],
+.papers-sec:has(#p-tag-6:checked) .paper-row[data-ptag="6"],
+.papers-sec:has(#p-tag-7:checked) .paper-row[data-ptag="7"]{display:block}
+.runs-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:.78rem;margin:1rem 0 2rem;display:table}
+.runs-table th,.runs-table td{text-align:left;padding:.52rem .6rem;border-bottom:1px solid var(--rule);vertical-align:top}
+.runs-table th{color:var(--dim);font-weight:500;border-bottom:2px solid var(--rule)}
+.runs-table .bad{color:var(--heat)}
+.runs-table .ok{color:var(--signal)}
+.filter-bar{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem .42rem;margin:.2rem 0 .95rem;
+ font-family:var(--mono);font-size:.72rem}
+.filter-bar input{position:absolute;opacity:0;pointer-events:none}
+.filter-bar .filter-k{color:var(--faint);font-size:.68rem;margin-right:.1rem}
+.filter-bar .filter-sep{color:var(--rule);margin:0 .15rem}
+.filter-bar label{cursor:pointer;display:inline-flex;align-items:center;gap:.24rem;
+ padding:.14rem .48rem;border:1px solid var(--rule);border-radius:3px;
+ color:var(--dim);background:transparent;user-select:none}
+.filter-bar label:hover{border-color:var(--signal);color:var(--ink)}
+.filter-bar .cnt{color:var(--faint);font-size:.65rem;font-variant-numeric:tabular-nums}
+.filter-bar input:checked+label{border-color:var(--signal);color:var(--signal);
+ background:color-mix(in srgb,var(--signal) 10%,var(--surface));font-weight:500}
+.filter-bar input:checked+label .cnt{color:var(--signal)}
+.filter-bar input:focus-visible+label{outline:2px solid var(--signal);outline-offset:2px}
+.filter-reset{display:none;appearance:none;border:0;background:none;padding:.14rem .3rem;
+ font:inherit;font-size:.68rem;color:var(--faint);cursor:pointer;
+ border-bottom:1px dotted var(--rule)}
+.filter-reset:hover{color:var(--heat);border-bottom-color:var(--heat)}
+.filter-bar:has(input:checked) .filter-reset{display:inline-block}
+.page:has(.f-ch:checked) .picks-list .pick,
+.page:has(.f-ch:checked) .papers-sec .paper-row{display:none}
+.page:has(#f-ch-0:checked) .picks-list .pick[data-ch="0"],
+.page:has(#f-ch-1:checked) .picks-list .pick[data-ch="1"],
+.page:has(#f-ch-2:checked) .picks-list .pick[data-ch="2"],
+.page:has(#f-ch-3:checked) .picks-list .pick[data-ch="3"],
+.page:has(#f-ch-4:checked) .picks-list .pick[data-ch="4"],
+.page:has(#f-ch-5:checked) .picks-list .pick[data-ch="5"],
+.page:has(#f-ch-6:checked) .picks-list .pick[data-ch="6"],
+.page:has(#f-ch-7:checked) .picks-list .pick[data-ch="7"],
+.page:has(#f-ch-0:checked) .papers-sec .paper-row[data-ch="0"],
+.page:has(#f-ch-1:checked) .papers-sec .paper-row[data-ch="1"],
+.page:has(#f-ch-2:checked) .papers-sec .paper-row[data-ch="2"],
+.page:has(#f-ch-3:checked) .papers-sec .paper-row[data-ch="3"],
+.page:has(#f-ch-4:checked) .papers-sec .paper-row[data-ch="4"],
+.page:has(#f-ch-5:checked) .papers-sec .paper-row[data-ch="5"],
+.page:has(#f-ch-6:checked) .papers-sec .paper-row[data-ch="6"],
+.page:has(#f-ch-7:checked) .papers-sec .paper-row[data-ch="7"]{display:block}
+.page:has(#f-multi:checked) .picks-list .pick:not([data-multi="1"]){display:none}
+.page:has(#f-consume-listen:checked):not(:has(#f-consume-read:checked)) .pick:not([data-consume="listen"]),
+.page:has(#f-consume-read:checked):not(:has(#f-consume-listen:checked)) .pick:not([data-consume="read"]){display:none}
+.page:has(#f-consume-listen:checked):not(:has(#f-consume-read:checked)) .papers-sec:not(:has(.pick[data-consume="listen"])),
+.page:has(#f-consume-read:checked):not(:has(#f-consume-listen:checked)) .papers-sec:not(:has(.pick[data-consume="read"])){display:none}
+.page:has(.f-cand-kind:checked) .cand-sec{display:none}
+.page:has(#cand-kind-direct:checked) .cand-sec[data-kind="direct"],
+.page:has(#cand-kind-digest:checked) .cand-sec[data-kind="digest"],
+.page:has(#cand-kind-papers:checked) .cand-sec[data-kind="papers"],
+.page:has(#cand-kind-capture:checked) .cand-sec[data-kind="capture"]{display:block}
+.page:has(.f-cand-ch:checked) .cand li{display:none}
+.page:has(#cand-ch-0:checked) .cand li[data-ch="0"],
+.page:has(#cand-ch-1:checked) .cand li[data-ch="1"],
+.page:has(#cand-ch-2:checked) .cand li[data-ch="2"],
+.page:has(#cand-ch-3:checked) .cand li[data-ch="3"],
+.page:has(#cand-ch-4:checked) .cand li[data-ch="4"],
+.page:has(#cand-ch-5:checked) .cand li[data-ch="5"]{display:flex}
+.page:has(.f-cand-st:checked):not(:has(#cand-picked:checked)) .cand li[data-status="picked"],
+.page:has(.f-cand-st:checked):not(:has(#cand-roundup:checked)) .cand li[data-status="roundup"],
+.page:has(.f-cand-st:checked):not(:has(#cand-rest:checked)) .cand li[data-status="rest"]{display:none}
+.page:has(.f-cand-st:checked,.f-cand-ch:checked) .cand-sec:not(:has(li:not([style]))){/* structural fallback */}
+blockquote{margin:0 0 .75rem;padding:.35rem 0;
+ border-top:1px solid var(--rule);color:var(--dim);font-size:.9rem}
+blockquote p{margin:0;color:inherit}
+ul{padding-left:1.1rem;margin:0 0 1rem}
+li{margin:.3rem 0;color:var(--ink-soft)}
+.src{font-family:var(--mono);font-size:.78rem;word-break:break-all;margin:0 0 .85rem;color:var(--dim)}
+.index{list-style:none;padding:0;margin:1.5rem 0 0}
+.index li{display:flex;gap:1rem;align-items:baseline;padding:.7rem 0;
+ border-bottom:1px solid var(--rule)}
+.index .wk{font-family:var(--mono);font-size:.82rem;color:var(--dim);
+ white-space:nowrap;font-variant-numeric:tabular-nums}
+.index .n{font-family:var(--mono);font-size:.74rem;color:var(--faint);
+ margin-left:auto;white-space:nowrap}
+.index .alt{font-family:var(--mono);font-size:.7rem;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--rule);margin:2rem 0}
+.health b{color:var(--heat);font-weight:600}
+.foot{margin-top:3.5rem;padding-top:1.1rem;border-top:2px solid var(--ink);
+ font-family:var(--mono);font-size:.72rem;color:var(--faint);line-height:1.8}
+b.item{font-weight:600;color:var(--ink)}
+sup.score{font-family:var(--mono);font-size:.62rem;color:var(--faint);
+ vertical-align:super;line-height:0;margin-left:.15em;cursor:help;
+ border-bottom:1px dotted var(--rule);font-variant-numeric:tabular-nums;
+ position:relative}
+sup.score:hover,sup.score:focus{color:var(--signal);border-bottom-color:var(--signal)}
+sup.score:hover::after,sup.score:focus::after{
+ content:attr(data-tip);position:absolute;bottom:1.7em;left:50%;
+ transform:translateX(-50%);background:var(--ink);color:var(--paper);
+ padding:.3rem .55rem;border-radius:3px;font-size:.7rem;line-height:1.3;
+ white-space:nowrap;z-index:20;pointer-events:none;font-weight:400;
+ box-shadow:0 2px 8px color-mix(in srgb,var(--ink) 18%,transparent)}
+b.kicker{font-family:var(--mono);font-size:.74rem;font-weight:500;
+ color:var(--dim);letter-spacing:.02em}
+b.hl{font-weight:600;color:var(--ink);
+ background:linear-gradient(to top,
+   color-mix(in srgb,var(--signal) 22%,transparent) 0,
+   color-mix(in srgb,var(--signal) 22%,transparent) .42em,
+   transparent .42em);
+ padding:0 .1em}
+.preview-flag{grid-column:1/-1;
+ background:var(--heat);color:var(--on-heat);font-family:var(--mono);
+ font-size:.72rem;padding:.5rem .9rem;margin:0 0 1.5rem;border-radius:3px}
+.preview-flag a{color:var(--on-heat);border-bottom-color:color-mix(in srgb,var(--on-heat) 50%,transparent)}
+.nav{display:flex;flex-wrap:wrap;gap:.2rem 1.4rem;margin:0 0 1rem;
+ font-family:var(--mono);font-size:.76rem}
+.nav a{padding:.3rem 0}
+.nav [aria-current="page"]{color:var(--ink);border-bottom-color:var(--ink)}
+@media (min-width:1101px){
+  .cols2{column-count:2;column-gap:2.2rem}
+  .cols2>li{break-inside:avoid}
+}
+details.fold{margin:0 0 1.5rem}
+details.fold>summary{cursor:pointer;list-style:none;padding:.55rem .8rem;
+ border:1px solid var(--rule);border-radius:3px;background:var(--surface);
+ font-family:var(--mono);font-size:.78rem;color:var(--ink-soft)}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::before{content:"▸ ";color:var(--faint)}
+details.fold[open]>summary::before{content:"▾ "}
+details.fold>summary:hover{border-color:var(--signal);color:var(--signal)}
+details.fold[open]>summary{margin-bottom:1rem}
+.cand{list-style:none;padding:0;margin:.8rem 0 2.2rem}
+.cand li{display:flex;gap:.4rem 1rem;align-items:baseline;flex-wrap:wrap;
+ padding:.55rem 0;border-bottom:1px solid var(--rule)}
+.cand li>a{flex:1 1 20rem;min-width:0;border-bottom:0;text-decoration:underline;
+ text-decoration-color:color-mix(in srgb,var(--signal) 30%,transparent);text-underline-offset:3px}
+.cand li>a:hover{text-decoration-color:var(--signal)}
+.cand .meta{display:flex;gap:.7rem;align-items:baseline;margin-left:auto;
+ font-family:var(--mono);font-size:.68rem;color:var(--faint);
+ white-space:nowrap;font-variant-numeric:tabular-nums}
+.cand .who{color:var(--dim);max-width:11rem;overflow:hidden;
+ text-overflow:ellipsis}
+.cand .got{color:var(--signal);border:1px solid var(--signal);
+ border-radius:2px;padding:0 .3rem;font-size:.62rem}
+.cand .got.rough{color:var(--dim);border-color:var(--rule)}
+.srcs{list-style:none;padding:0;margin:1rem 0 2.4rem;display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:.75rem}
+.srcbox{border:1px solid var(--rule);border-radius:3px;padding:.9rem 1rem;
+ background:var(--surface)}
+.srcbox.is-off{opacity:.62}
+.srchead{display:flex;gap:.5rem;align-items:baseline;flex-wrap:wrap}
+.srcbox h3{font-family:var(--sans);font-size:.98rem;font-weight:600;
+ margin:0;line-height:1.4}
+.chips{display:flex;gap:.3rem;flex-wrap:wrap;margin-left:auto}
+.chip{font-family:var(--mono);font-size:.64rem;white-space:nowrap;
+ padding:.1rem .38rem;border:1px solid var(--rule);border-radius:2px;
+ color:var(--ink-soft);background:var(--paper)}
+.chip.dim,.kind-tag{color:var(--faint)}
+.kind-tag{font-family:var(--mono);font-size:.64rem;white-space:nowrap;padding:.06rem .32rem;border:1px solid var(--rule);border-radius:2px;background:var(--surface)}
+.chip.off{color:var(--heat);border-color:var(--heat)}
+.sid{font-family:var(--mono);font-size:.68rem;color:var(--faint);
+ margin:.15rem 0 .5rem}
+.srcbox .row{display:flex;gap:.5rem;align-items:baseline;
+ font-size:.76rem;line-height:1.6;margin-top:.15rem}
+.srcbox .row>.chip{flex-shrink:0}
+.srcbox .k{font-family:var(--mono);font-size:.66rem;color:var(--faint);
+ flex:0 0 2.2rem;white-space:nowrap}
+.srcbox .row a,.srcbox code{font-family:var(--mono);font-size:.72rem;
+ overflow-wrap:anywhere;min-width:0}
+.srcbox code{color:var(--ink-soft)}
+.srcbox .why{color:var(--dim);font-size:.74rem}
+h2 .n{font-family:var(--mono);font-size:.7rem;color:var(--faint);
+ margin-left:.55rem;font-weight:400}
+@media (max-width:760px){
+  .layout{padding:1.15rem 1.05rem 2.5rem}
+  .wordmark{font-size:1.85rem}
+  .mast{gap:.45rem 1rem;align-items:flex-start;padding-bottom:.9rem;margin-bottom:.9rem}
+  .sweep{text-align:left}
+  .nav{margin:0 0 .65rem}
+  h2{font-size:1.28rem;margin:1.55rem 0 .6rem}
+  h3{font-size:1.08rem;margin:1.05rem 0 .25rem}
+  body{font-size:16px;line-height:1.7}
+  .filter-bar{gap:.32rem .38rem;margin-bottom:.95rem}
+  .filter-bar label{min-height:30px;padding:.18rem .5rem}
+  .index li{flex-wrap:wrap;gap:.2rem .7rem;padding:.6rem 0}
+  .index .n{margin-left:0}
+  .index a{padding:.15rem 0}
+  .src{display:flex;gap:.4em;align-items:baseline;font-size:.82rem;margin-bottom:.85rem}
+  .src a{display:inline-block;min-height:34px;padding:.35rem 0;flex:1;min-width:0;overflow-wrap:anywhere}
+  .srcbox .row a{display:block;flex:1;padding:.55rem 0}
+  .srcs{gap:.7rem}
+  .cand li{gap:.22rem .6rem;padding:.48rem 0}
+  .cand li>a{flex-basis:100%;display:block;min-height:34px;padding:.2rem 0;line-height:1.45}
+  .cand .meta{max-width:100%;flex-wrap:wrap;gap:.25rem .55rem;margin-left:0}
+  .cand .who{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+  .nav a{min-height:36px;display:inline-flex;align-items:center}
+  .card-body{padding:.55rem .65rem .7rem 1rem}
+  .trend-table li{grid-template-columns:1fr;gap:.15rem}
+  sup.score:hover::after,sup.score:focus::after{
+    position:fixed;left:1.05rem;right:1.05rem;bottom:1rem;
+    transform:none;white-space:normal;width:auto}
+}
+h1,h2,h3,h4,p,li,blockquote,.sweep,.tagline,.sid{overflow-wrap:anywhere;word-break:normal}
+.src{overflow-wrap:anywhere}
+pre,table{max-width:100%;overflow-x:auto;display:block}
+img{max-width:100%;height:auto}
+.mast>*,.srcbox,.srcbox .row>*{min-width:0}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body><div class="layout">
+<header class="mast"><h1 class="wordmark"><a href="./">资讯周报</a> <em>兜底聚合</em></h1><div class="sweep">2026-W44<br>554 条抓取 · 精选 128 候选 · 讨论 55 · 论文 221 候选</div></header>
+<p class="tagline">本周主题匹配但未进本期精选的兜底聚合稿；如需浏览全部原始抓取，请看 <a href="./2026-W44.candidates.html">本期候选</a>。</p>
+<nav class="nav"><a href="./">本期</a><a href="./2026-W44.roundup.html" aria-current="page">本期兜底</a><a href="./2026-W44.candidates.html">本期候选</a><a href="./sources.html">资讯源</a><details class="week-menu"><summary>往期 (9)</summary><ul class="week-menu-pop"><li><a class="wk-main" href="./2026-W47.html"><span class="wk">2026-W47</span><span class="n">661 条</span></a><a class="alt" href="./2026-W47.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W46.html"><span class="wk">2026-W46</span><span class="n">427 条</span></a><a class="alt" href="./2026-W46.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W45.html"><span class="wk">2026-W45</span><span class="n">462 条</span></a><a class="alt" href="./2026-W45.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W43.html"><span class="wk">2026-W43</span><span class="n">537 条</span></a><a class="alt" href="./2026-W43.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W42.html"><span class="wk">2026-W42</span><span class="n">556 条</span></a><a class="alt" href="./2026-W42.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W41.html"><span class="wk">2026-W41</span><span class="n">585 条</span></a><a class="alt" href="./2026-W41.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W40.html"><span class="wk">2026-W40</span><span class="n">675 条</span></a><a class="alt" href="./2026-W40.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W39.html"><span class="wk">2026-W39</span><span class="n">417 条</span></a><a class="alt" href="./2026-W39.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W38.html"><span class="wk">2026-W38</span><span class="n">515 条</span></a><a class="alt" href="./2026-W38.candidates.html">候选</a></li></ul></details></nav><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">前沿模型与评测</a><a href="#section-2">AI 公司与人才市场</a><a href="#section-3">Claude Code 的成本与额度</a><a href="#section-4">网关、智能体平台与工程实践</a><a href="#section-5">RAG、检索与网页数据</a><a href="#section-6">安全、隐私与合规</a><a href="#section-7">基础设施与系统工程</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
+<section class="sec"><blockquote><p>118 条主题匹配但未进精选，这里给出核心观点供你判断是否值得回头细读。取正文最全的 40 条。</p></blockquote>
+<h2 id="section-1">前沿模型与评测</h2>
+<ul>
+<li><b class="item">Gemini 4 Carbon 登顶榜单，仅向网络防御方开放</b> — 发布于 Argon 之后两周，宣称 SEC-bench Pro 漏洞发现 88.2%、ExploitGym 利用 54.8%、CWE-bench 修补 71.0%；先通过 Fairwind Program 给到可信网络防御者，更广泛的开发者访问&quot;尽快&quot;开放。 <a href="https://latent.space/p/ainews-gemini-4-carbon/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Interconnects 播客：Kimi K3.1 Pro 为何基准亮眼却反响分化</b> — Nathan 与 Florian 讨论开放权重模型的网络安全风险判断是否出错，以及网络安全专家与 AI 专家对同一批事件的叙述差异。 <a href="https://www.interconnects.ai/p/podcast-kimi-k31-pro-the-new-cyber" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Artificial Analysis v5 与&quot;基准制定者的两难&quot;</b> — 文章论点：爬分有成熟打法，难的是决定爬哪座山；独立评测需要一个单一数字同时匹配氛围检验、社区共识与科学分析，还要有前瞻性不至于迅速过时。 <a href="https://www.interconnects.ai/p/artificial-analysis-v5-and-the-benchmarkers" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Elorian 发布视觉推理模型 Glimpse 与 DecoyCount 基准</b> — 与 Mercor 合作的 DecoyCount 测试模型是真在数物体还是依赖视觉捷径与替换启发式；Elorian 今年 4 月带 5500 万美元种子轮出场，由 Striker Venture Partners、Menlo Ventures 和 Altimeter 联合领投。 <a href="https://latent.space/p/elorian/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Simon Willison：2026 年 10 月是&quot;氛围编程做游戏&quot;的拐点</b> — 他此前把 2025 年 11 月（Opus 4.5 与 GPT-5.1）标为编码智能体拐点；这次指 Claude Opus 5.5 在 3D 建模、音乐生成和游戏设计三项上的提升，并列举了 Tree Appreciator、Emberwick、Battle Drones 等自做案例。 <a href="https://simonwillison.net/2026/Oct/28/vibe-game-development/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Import AI 478：数学形式化用于对齐、ProgramBench、Mirendil</b> — 安全初创 Resolution（原名 Sequent）自动形式化了统计学习理论中的奇点消解，流程是先与智能体合作产出一份人类可读的高层计划和一份拆成原子步骤的 112 页详细计划。 <a href="https://importai.substack.com/p/import-ai-478-math-for-alignment" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-2">AI 公司与人才市场</h2>
+<ul>
+<li><b class="item">Anthropic 递交 S-1，拟两周内 IPO，目标 2 万亿美元</b> — 350 页招股书：1400% 增长率、48% 收入经由云合作伙伴、85% 毛利率、Q2 首次季度经营盈利 10 亿美元（按每季 10 亿美元 SBC 调整）、账上 134 亿美元现金、历史累计烧钱 100 亿美元；对外叙事是到 2028 年服务十亿知识工作者的&quot;虚拟协作者&quot;（不叫 agent）。 <a href="https://latent.space/p/ainews-anthropic-s1/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Anthropic 取消编码面试：「饥饿感胜过资历」</b> — 招聘经理 Felix Reiseberg 宣布停止让候选人做 React 之类的编码题，理由是 Claude 在这些题上已经更强；对初级工程师的建议是选业务影响而非待办列表。同日 Google Genie、Artificial Analysis、FrontierCode 均有大版本更新。 <a href="https://latent.space/p/ainews-anthropic-ends-coding-interviews-hunger-beats-tenure/" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-3">Claude Code 的成本与额度</h2>
+<ul>
+<li><b class="item">Claude Code 真实会话成本</b> — 基于截至 2026 年 10 月 18 日前 30 天 OpenRouter 上的真实会话：Opus 5.5 下 2–9 轮短会话中位数 $0.31，10–49 轮长会话 $1.39；Sonnet 5.5 对应 $0.16 和 $0.60。Claude Code 在 10 月 21 日位列每日应用排行第一。 <a href="https://openrouter.ai/blog/insights/claude-code-cost/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Opus / Sonnet / Haiku 如何选</b> — 11 项带隐藏测试的编码任务加一项 Claude Code 改 bug 任务，三个模型全部通过，区别只在成本；结论是默认 Sonnet 5.5，高并发与子智能体用 Haiku 5.5，长任务/模糊任务/出错代价高时才上 Opus 5.5（单价约为 Sonnet 两倍）。 <a href="https://openrouter.ai/blog/insights/claude-opus-vs-sonnet-vs-haiku/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">额度用完后继续用 Claude Code</b> — 改走 OpenRouter 的按 token 付费 API key，模型相同但没有五小时窗口限制；设三个环境变量即可切换，套餐重置后再切回。 <a href="https://openrouter.ai/blog/tutorials/claude-code-usage-limit/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Claude 529 overloaded 错误</b> — 指 Anthropic API 对该模型临时没容量，与 key、套餐、请求本身无关；处理顺序是指数退避重试、把同一 Claude 模型转给另一家 provider、再加回退模型。 <a href="https://openrouter.ai/blog/tutorials/claude-529-overloaded/" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-4">网关、智能体平台与工程实践</h2>
+<ul>
+<li><b class="item">Vercel 推出 AI Gateway 虚拟模型</b> — 用一个虚拟模型 ID 抽象模型字符串与配置，可集中改模型、配回退与优先级、强制零数据保留，应用无需改代码或重新部署；近 90 天 AI Gateway 新增来自 10 多家实验室的 125 个模型，约每周 10 个。 <a href="https://vercel.com/blog/ai-gateway-virtual-models" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">ElevenLabs 14 个模型上线 Vercel AI Gateway</b> — 覆盖语音转文字、流式 TTS、实时语音智能体、音乐、音效、多角色对话六类；首 14 天（至 11 月 9 日）全部五折。 <a href="https://vercel.com/blog/elevenlabs-on-ai-gateway" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">LLM 网关工作原理指南</b> — 把网关定义为做路由、鉴权、缓存、日志的反向代理，跟踪一次请求的完整路径，并比较自建、自托管、托管服务与通用 API 网关四条路线；引用了 2026 年 9 月 r/LLMDevs 上&quot;每个人各有一套 Claude/OpenAI/Bedrock 密钥&quot;的吐槽。 <a href="https://www.perplexity.ai/hub/blog/llm-gateway" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Salesforce 智能体技术栈拆解</b> — Agentforce 与 Slack 上的智能体已完成 70 亿个 Agentic Work Unit（AWU，Salesforce 自定义的工作计量单位），其中 32 亿来自第二季度单季。 <a href="https://blog.bytebytego.com/p/a-deep-dive-into-salesforces-agent" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Composio 重做文档示例</b> — Python、TypeScript 和 API 三种形态的示例都加了自动校验，解决&quot;示例换语言就没有&quot;和&quot;照教程建的项目跑不通&quot;的问题；同时提到新功能 Firewall 用于限制智能体可执行的操作。 <a href="https://composio.dev/blog/python-typescript-api-docs-examples" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">在喜马拉雅山麓用离线 AI 智能体写代码</b> — Thomson Reuters 的首席工程师记录在断网断电环境下把编码智能体工作流迁到本地的过程。 <a href="https://latent.space/p/offline-coding/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Supabase 创始人播客：为什么智能体偏爱 Supabase</b> — Paul Copplestone 与 Ant Wilson 首次合体受访，公司从 YC S20 走到 100 亿美元估值；主持人用自建的前沿 AEO 追踪器测得，从 Astra 到 Fable 到 Muse 的各家前沿模型在&quot;应用后端&quot;选型上几乎一致首选 Supabase。 <a href="https://latent.space/p/supabase/" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-5">RAG、检索与网页数据</h2>
+<ul>
+<li><b class="item">RAG 架构全解</b> — 拆解 10 种 RAG 架构，从基础 RAG、混合 RAG 到 agentic RAG 和 GraphRAG，附两个分步示例。 <a href="https://www.perplexity.ai/hub/blog/rag-architecture" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">基础 RAG 实现分步教程</b> — 用 Python、ChromaDB 加 Perplexity 的嵌入与语言模型搭一个命令行 RAG 系统。 <a href="https://www.perplexity.ai/hub/blog/rag-implementation" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">文本嵌入详解</b> — 覆盖向量、分词、相似度计算，以及嵌入模型的评估方法与搜索、RAG 等落地场景。 <a href="https://www.perplexity.ai/hub/blog/text-embeddings" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Google Custom Search JSON API 替代方案</b> — 该 API 自 2026 年 1 月 20 日起不再接受新客户，2027 年 1 月 1 日对存量客户停止服务；旧限额为每天 100 次免费、之后每千次 5 美元、每天上限 1 万次、单次请求 10 条结果、单个查询最多 100 条。Google 自家迁移路径 Vertex AI Search（正改名 Agent S…）最多覆盖 50 个域名。 <a href="https://www.firecrawl.dev/blog/google-search-json-api-alternative" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">从网页构建 AI 训练数据集</b> — OpenAI 微调文件最少接受 10 条样本、建议从 50 条写好的样本起步；数据来源归为开放数据集、网页爬取存档、实时网页、授权供应商、合成样本五类，并提到 Common Crawl 2026 年 10 月档案的规模。 <a href="https://www.firecrawl.dev/blog/build-an-ai-training-dataset-from-the-web" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">用 AI 与网页搜索自动化 KYB</b> — KYB 要确认企业已注册、找出实控人与受益人、再对企业和这些人做制裁名单与负面新闻筛查；Firecrawl Alexandria 以单个 API key 覆盖 Companies House、GLEIF、SEC EDGAR、特拉华州注册处、FCA 名录和 OFAC。 <a href="https://www.firecrawl.dev/blog/kyb" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Firecrawl 推出 Directory：面向 ChatGPT 和 Claude 的免费招聘数据</b> — 把散落在公司官网、数据库和各平台的从业者履历信息整合为 AI 助手可直接调用的数据源。 <a href="https://www.firecrawl.dev/blog/introducing-directory" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">让 ChatGPT 逐页总结整站</b> — ChatGPT 对一个链接最多只读该页，且常漏掉 JS 加载的文本；Firecrawl 插件在 ChatGPT 内发起爬取并返回每页内容及 URL，每页 1 个 Firecrawl credit。OpenAI 对 Project 内单个文本文件允许 200 万 token，约合数百个典型页面。 <a href="https://www.firecrawl.dev/blog/chatgpt-summarize-website" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">用 LLM 从 PDF 抽表格</b> — 做法是把 PDF 连同描述单行结构的严格 JSON schema 一起发给支持读文件的模型；在五份 PDF 上测试，数量字段返回整数，会计写法 (3,878) 返回 -3878，跨两页的表格合并为一个列表。附 TypeScript 版本与&quot;什么时候普通 PDF 库就够用&quot;的判断。 <a href="https://openrouter.ai/blog/tutorials/extract-tables-from-pdf-llm/" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-6">安全、隐私与合规</h2>
+<ul>
+<li><b class="item">13 种提示注入攻击实测</b> — 三层防御：把不可信内容标记为数据、用守卫限制 key 能访问的模型与花费上限、用 Armor 对每次工具调用按模型改不了的规则做校验，另加&quot;密钥不进 prompt&quot;。最坏情形是智能体因为文档里的一句话把数据发往外部地址。 <a href="https://openrouter.ai/blog/tutorials/prevent-prompt-injection/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Firecrawl 全端点零数据保留</b> — 企业版下 /scrape、批量 scrape、/crawl、/parse、/search、/interact、/agent 均支持 ZDR，请求结束即不留页面内容、抽取数据和搜索查询；例外是 agent 结果保留 24 小时后删除。搜索提供端到端模式（上游搜索供应商同样不留）。 <a href="https://www.firecrawl.dev/blog/zero-data-retention" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Meta PrivacyLib：在数据访问边界做隐私控制</b> — 把原先要在每个系统各写一遍的执行逻辑收敛为一个跑在客户端的公共库，系统只需接入一次，新隐私能力以模块形式复用该接入；每秒执行数十亿次检查，变更按模块灰度与模拟。内部 AI 智能体的工具调用会携带 agent 上下文并关联到会话，使模块可观测并阻断操作。 <a href="https://engineering.fb.com/2026/10/27/security/privacylib/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Cloudflare 推出 PHP Capture the Flag 挑战</b> — 背景是上周八张 eMudhra 中间证书被攻陷（存在伪造证书冒充服务器的可能），以及 php2shell 系列 PHP 严重漏洞；Cloudflare 发了客户端更新、多项缓解、WAF 新规则，并新增&quot;全事务检测&quot;功能，所有套餐（含免费版）可用。 <a href="https://blog.cloudflare.com/php-ctf/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Cloudflare 2026 Q3 DDoS 威胁报告</b> — 第 26 期：时长低于 10 分钟、带宽低于 1 Gbps 的短突发攻击激增 208%；超过 1 Tbps 的超大容量攻击较 Q2 骤降近 69%，可能与年内对四个大型 IoT 僵尸网络的执法行动有关，但变种仍在出现。 <a href="https://blog.cloudflare.com/ddos-threat-report-2026-q3/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">2026 Q3 让互联网掉线的原因</b> — 按政府主导的断网、电力中断与自然灾害等类别复盘 7—9 月 Cloudflare Radar 标注的中断事件；Cloudflare 承载全网超过 20% 流量。 <a href="https://blog.cloudflare.com/q3-2026-internet-disruption-summary/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Perplexity 拿到 FedRAMP Class C（Moderate）认证</b> — 联邦机构可在认证环境内使用实时网页搜索与带引用的回答；Perplexity 称自己是唯一取得 FedRAMP Moderate 的 SI 类服务。 <a href="https://www.perplexity.ai/hub/blog/new-fedramp-certification-brings-perplexity-to-more-government-workflows" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-7">基础设施与系统工程</h2>
+<ul>
+<li><b class="item">Meta 在 2026 OCP 峰会的网络进展</b> — IcePack/IceCube 是其首个液冷网络机架，102.4T 交换刀片（128×800G，Broadcom Tomahawk 6C 与 NVIDIA Spectrum-6 两种版本）跑 FBOSS；扁平平面结构 FPF 让每块 GPU 接入八个网络平面，三层 Clos 压到两层，配 NIC 级包喷洒与主机+交换机联合控制面；跨建筑/园区/区域的 BAG 超级主干服务于吉瓦级 Prometheus 集群；scale-up 侧推以太网方案 Tahan。支撑模型为 Muse Wonder 与 Muse Spark。 <a href="https://engineering.fb.com/2026/10/26/open-source/ocp-summit-2026-meta-networking-talks/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Meta Andromeda 新一代广告召回</b> — 模型、系统与 GPU 硬件协同设计，在召回阶段以接近排序模型的精度给每条合格广告打分，吞吐超过每秒 10 亿条广告，较 2024 版提升 100 倍；自 2025 年以来为 Facebook 带来 2.4% 的转化提升。 <a href="https://engineering.fb.com/2026/10/28/ml-applications/meta-andromeda-next-gen-ads-retrieval-gpu-co-design/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Apple 如何把 LLM 塞进 iPhone</b> — 从模型权重的数值表示切入，讲设备端部署的压缩与适配。 <a href="https://blog.bytebytego.com/p/how-apple-fits-an-llm-on-your-iphone" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">GitOps 深潜：ArgoCD 的工作原理</b> — 问题是 CI/CD 流水线在部署完成后对集群内发生的事一无所知，kubectl 手改、事故期热修都绕过 Git，集群逐步漂移；GitOps 的解法是把 Git 作为唯一事实源并持续比对。 <a href="https://newsletter.systemdesign.one/p/how-argocd-works-gitops-kubernetes" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">&quot;人人都是扩展性专家，直到流量峰值到来&quot;</b> — 以一道面试题&quot;如何有效扩展系统&quot;串起扩展性知识；文中穿插 PR Lens 的介绍——把每个 pull request 画成可逐步播放的实时架构画布，作者观点是 Mermaid 图只是及格线。 <a href="https://newsletter.systemdesign.one/p/scalability-patterns-system-design" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul></section><div class="foot"><a href="./2026-W44.html">← 回本期正文</a> &nbsp;·&nbsp; <a href="./2026-W44.candidates.html">查看全部候选</a> &nbsp;·&nbsp; <a href="./sources.html">资讯源</a></div>
+</main></div></body></html>

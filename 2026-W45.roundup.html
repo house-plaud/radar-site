@@ -1,0 +1,488 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22none%22 stroke=%22%230A6273%22 stroke-width=%221.5%22/%3E%3Ccircle cx=%228%22 cy=%228%22 r=%222.5%22 fill=%22%230A6273%22/%3E%3C/svg%3E">
+<title>资讯周报 · 2026-W45 兜底聚合</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F1F4F7; --surface:#FBFCFD; --surface-2:#E9EEF3;
+  --ink:#131B25; --ink-soft:#33414F; --dim:#5C6B7A; --faint:#5F6E7C;
+  --rule:#D7DEE6; --signal:#0A6273; --heat:#9C4426; --on-heat:#fff;
+  --serif:"Newsreader",ui-serif,Georgia,"Songti SC",serif;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"PingFang SC",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+:root:not([data-theme="light"]){@media (prefers-color-scheme:dark){
+  --paper:#111721; --surface:#19212C; --surface-2:#212A36;
+  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#7C8A97;
+  --rule:#2B3542; --signal:#54B4C6; --heat:#D98A6A; --on-heat:#111721;
+}}
+:root[data-theme="dark"]{
+  --paper:#111721; --surface:#19212C; --surface-2:#212A36;
+  --ink:#E3E9EF; --ink-soft:#C3CDD7; --dim:#94A2AF; --faint:#7C8A97;
+  --rule:#2B3542; --signal:#54B4C6; --heat:#D98A6A; --on-heat:#111721;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+ font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+.layout{max-width:74rem;margin:0 auto;padding:2rem 2rem 3rem;
+ display:grid;grid-template-columns:minmax(0,52rem) minmax(0,14rem);
+ grid-auto-flow:row dense;column-gap:4rem;align-items:start}
+.layout>:not(.outline):not(.page){grid-column:1/-1}
+.outline{grid-column:2}
+.page{min-width:0;grid-column:1}
+.outline{position:sticky;top:2rem;min-width:0;max-height:calc(100dvh - 4rem);
+ overflow:auto;padding-top:.3rem;font-size:.8rem}
+.outline-label{font: .7rem var(--mono);color:var(--dim);letter-spacing:.1em;
+ padding-bottom:.8rem;border-bottom:2px solid var(--ink)}
+.outline a{display:block;padding:.65rem 0;border-bottom:1px solid var(--rule);
+ overflow-wrap:anywhere;color:var(--ink-soft)}
+.outline a:hover{color:var(--signal);background:var(--surface)}
+h2[id],details.fold[id]{scroll-margin-top:1.5rem}
+h2:target{color:var(--signal)}
+@media (max-width:1100px){
+ .layout{display:block;max-width:54rem}
+ .outline{position:static;max-height:none;margin:0 0 1.25rem;
+   padding-bottom:.75rem;border-bottom:1px solid var(--rule)}
+ .outline-label{display:none}
+ .outline nav{display:flex;flex-wrap:wrap;gap:.2rem 1.1rem}
+ .outline a{display:inline-block;padding:.25rem 0;border-bottom:0}
+ .outline a[href="#top"]{display:none}
+}
+a{color:var(--signal);text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb,var(--signal) 30%,transparent)}
+a:hover{border-bottom-color:var(--signal)}
+a:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+h3 a.title-link{color:var(--ink);border-bottom:1px solid transparent}
+h3 a.title-link:hover{color:var(--signal);border-bottom-color:color-mix(in srgb,var(--signal) 45%,transparent)}
+.mast{display:flex;flex-wrap:wrap;align-items:flex-end;gap:1rem 2rem;
+ padding-bottom:1.1rem;border-bottom:2px solid var(--ink);margin-bottom:1.1rem}
+.wordmark{font-family:var(--serif);font-weight:600;font-size:2.4rem;
+ line-height:1;letter-spacing:-.02em;margin:0;flex:1 1 16rem}
+.wordmark a{border:0;color:var(--ink)}
+.wordmark em{font-style:italic;font-weight:400;color:var(--signal)}
+.tagline{font-family:var(--mono);font-size:.74rem;color:var(--dim);margin:.5rem 0 0}
+.sweep{font-family:var(--mono);font-size:.74rem;color:var(--dim);
+ font-variant-numeric:tabular-nums;text-align:right}
+h2{font-family:var(--serif);font-size:1.5rem;font-weight:600;
+ margin:1.8rem 0 .7rem;padding-bottom:.35rem;border-bottom:1px solid var(--rule);
+ text-wrap:balance}
+h3{font-family:var(--serif);font-size:1.18rem;font-weight:500;line-height:1.42;
+ margin:1.25rem 0 .3rem;text-wrap:balance}
+h4{font-family:var(--sans);font-size:.95rem;font-weight:600;margin:1rem 0 .3rem}
+p{margin:0 0 .6rem;color:var(--ink-soft)}
+.tag{font-family:var(--mono);font-size:.72rem;color:var(--dim);
+ margin:0 0 .55rem;font-variant-numeric:tabular-nums;display:flex;flex-wrap:wrap;
+ gap:.2rem .42rem;align-items:center}
+.mode{display:inline-flex;align-items:center;padding:.04rem .38rem;border-radius:2px;
+ border:1px solid var(--rule);background:var(--surface);font-size:.67rem;line-height:1.45;color:var(--ink-soft)}
+.mode.is-listen{color:var(--heat);border-color:color-mix(in srgb,var(--heat) 42%,var(--rule));
+ background:color-mix(in srgb,var(--heat) 8%,var(--surface))}
+.mode.is-read{color:var(--dim);background:var(--surface)}
+.mode.is-chapter{color:var(--signal);border-color:color-mix(in srgb,var(--signal) 35%,var(--rule));
+ background:color-mix(in srgb,var(--signal) 6%,var(--surface))}
+.mode.is-topic{color:var(--ink-soft);border-color:var(--rule);background:var(--surface-2)}
+.mode.is-new{color:var(--signal);border-color:color-mix(in srgb,var(--signal) 42%,var(--rule));
+ background:color-mix(in srgb,var(--signal) 8%,var(--surface));font-weight:600}
+.mode.is-streak{color:var(--heat);border-color:color-mix(in srgb,var(--heat) 45%,var(--rule));
+ background:color-mix(in srgb,var(--heat) 10%,var(--surface));font-weight:600}
+.pick{padding:.1rem 0 .2rem}
+.picks-list{border-top:1px solid var(--rule)}
+.story-row{padding:0;margin:0;border-bottom:1px solid var(--rule)}
+.card-fold>summary{list-style:none;cursor:pointer;padding:.62rem .35rem .58rem .2rem;display:grid;
+ grid-template-columns:1rem minmax(0,1fr);gap:.15rem .5rem;align-items:start;border-radius:3px;
+ transition:background-color .12s ease}
+.card-fold>summary::-webkit-details-marker{display:none}
+.card-fold>summary:hover{background:color-mix(in srgb,var(--signal) 5%,transparent)}
+.card-fold[open]>summary{background:color-mix(in srgb,var(--signal) 4%,var(--surface))}
+.chev{display:inline-flex;align-items:center;justify-content:center;width:1rem;height:1.45rem;
+ font-family:var(--mono);font-size:1rem;line-height:1;color:var(--faint);
+ transition:transform .14s ease,color .14s ease;user-select:none}
+.card-fold>summary:hover .chev,.paper-fold>summary:hover .chev{color:var(--signal)}
+.card-fold[open]>summary .chev,.paper-fold[open]>summary .chev{transform:rotate(90deg);color:var(--signal)}
+.card-main{min-width:0}
+.row-headline{margin:0 0 .24rem;font-size:.98rem;line-height:1.48;color:var(--ink);font-weight:500}
+.row-sub{display:flex;flex-wrap:wrap;align-items:baseline;gap:.18rem .42rem;font-family:var(--mono);
+ font-size:.71rem;color:var(--dim);font-variant-numeric:tabular-nums}
+.row-sub h3{margin:0;font-family:var(--sans);font-size:.78rem;font-weight:400;line-height:1.4;color:var(--dim)}
+.row-sub h3 a.title-link{color:var(--dim);border-bottom:1px dotted color-mix(in srgb,var(--dim) 40%,transparent)}
+.row-sub h3 a.title-link:hover{color:var(--signal);border-bottom-color:var(--signal)}
+.rel-hint{color:var(--faint);font-size:.68rem}
+.card-body{padding:.6rem .95rem .8rem 1.7rem;border-top:1px dashed var(--rule);background:var(--surface)}
+.card-why{margin:0 0 .6rem;padding:.38rem .65rem;border-left:2px solid var(--signal);
+ background:color-mix(in srgb,var(--signal) 5%,var(--paper));font-size:.87rem;color:var(--ink)}
+.card-body .src{margin:.4rem 0 0}
+.related-list{list-style:none;margin:.6rem 0 0;padding:.5rem 0 0;border-top:1px dashed var(--rule)}
+.related-list li{display:flex;flex-wrap:wrap;gap:.2rem .5rem;align-items:baseline;font-size:.81rem;margin:.25rem 0;color:var(--dim)}
+.rel-src{font-family:var(--mono);font-size:.67rem;color:var(--faint);white-space:nowrap}
+.rel-heat{font-family:var(--mono);font-size:.65rem;color:var(--faint);margin-left:auto}
+.paper-list{border-top:1px solid var(--rule);margin:.5rem 0 1.2rem}
+.paper-row{padding:0;margin:0;border-bottom:1px solid var(--rule)}
+.paper-fold>summary{list-style:none;cursor:pointer;padding:.58rem .3rem .54rem .2rem;display:grid;
+ grid-template-columns:1rem minmax(0,1fr);gap:.15rem .5rem;align-items:start;border-radius:3px}
+.paper-fold>summary::-webkit-details-marker{display:none}
+.paper-fold>summary:hover{background:color-mix(in srgb,var(--signal) 5%,transparent)}
+.paper-fold[open]>summary{background:color-mix(in srgb,var(--signal) 4%,var(--surface))}
+.paper-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:.25rem .5rem;margin-bottom:.2rem}
+.paper-top h3{margin:0;font-family:var(--sans);font-size:.91rem;font-weight:600;line-height:1.4}
+.paper-takeaway{margin:0;font-size:.86rem;line-height:1.5;color:var(--ink-soft)}
+.brief-list{list-style:none;padding:0;margin:.4rem 0 1.2rem;border-top:1px solid var(--rule)}
+.brief-list li{display:flex;flex-wrap:wrap;gap:.2rem .6rem;align-items:baseline;padding:.44rem .15rem;
+ margin:0;border-bottom:1px solid var(--rule);font-size:.87rem;line-height:1.5}
+.brief-src{font-family:var(--mono);font-size:.7rem;color:var(--faint);white-space:nowrap}
+.brief-text{flex:1 1 20rem;color:var(--ink-soft);min-width:0}
+.brief-date{font-family:var(--mono);font-size:.67rem;color:var(--faint);margin-left:auto;white-space:nowrap}
+.repo-list{list-style:none;padding:0;margin:.4rem 0 1.2rem;border-top:1px solid var(--rule)}
+.repo-list li{padding:.55rem .2rem;margin:0;border-bottom:1px solid var(--rule);font-size:.88rem;line-height:1.5}
+.repo-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.28rem .5rem;margin-bottom:.15rem}
+.repo-name{font-family:var(--mono);font-size:.9rem;font-weight:600;color:var(--ink)}
+.repo-what{color:var(--ink-soft)}
+.repo-hl{margin:.15rem 0 0;font-size:.82rem;color:var(--dim)}
+.prod-track{margin:1rem 0 .35rem;display:flex;align-items:baseline;gap:.55rem}
+.track-stat{font-family:var(--mono);font-size:.68rem;font-weight:400;color:var(--faint)}
+.trend-table{list-style:none;padding:0;margin:.25rem 0 1.1rem;border-top:1px solid var(--rule)}
+.trend-table li{display:grid;grid-template-columns:minmax(9rem,13.5rem) minmax(0,1fr);gap:.25rem .85rem;
+ align-items:baseline;padding:.44rem .2rem;margin:0;border-bottom:1px solid var(--rule);font-size:.86rem;line-height:1.5}
+.trend-table .t-name{font-weight:600;color:var(--ink);min-width:0;display:flex;flex-wrap:wrap;gap:.25rem .35rem;align-items:baseline}
+.trend-table .t-desc{color:var(--ink-soft);min-width:0}
+.omitted-note{font-family:var(--mono);font-size:.76rem;color:var(--dim);margin:.5rem 0 1rem}
+.talk-sec{padding-bottom:.4rem}
+.week-menu{position:relative;display:inline-block}
+.week-menu>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:.32rem;
+ padding:.24rem .55rem;margin:-.06rem 0;border-radius:3px;color:var(--signal);
+ border:1px solid color-mix(in srgb,var(--signal) 28%,var(--rule));background:transparent;
+ user-select:none;transition:background-color .12s ease,border-color .12s ease,color .12s ease}
+.week-menu>summary::-webkit-details-marker{display:none}
+.week-menu>summary::after{content:"▾";font-size:.68rem;line-height:1;transition:transform .16s ease}
+.week-menu>summary:hover{background:color-mix(in srgb,var(--signal) 8%,var(--surface));border-color:var(--signal)}
+.week-menu>summary:active{background:color-mix(in srgb,var(--signal) 15%,var(--surface))}
+.week-menu[open]>summary{background:color-mix(in srgb,var(--signal) 12%,var(--surface));border-color:var(--signal);color:var(--ink)}
+.week-menu[open]>summary::after{transform:rotate(180deg)}
+.week-menu-pop{position:absolute;top:calc(100% + .38rem);left:0;z-index:40;min-width:15.5rem;
+ max-height:26rem;overflow:auto;list-style:none;margin:0;padding:.3rem 0;
+ background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+ box-shadow:0 8px 24px color-mix(in srgb,var(--ink) 14%,transparent)}
+.week-menu-pop li{display:flex;align-items:stretch;padding:0;margin:0;
+ border-bottom:1px solid color-mix(in srgb,var(--rule) 55%,transparent);font-size:.74rem}
+.week-menu-pop li:last-child{border-bottom:0}
+.week-menu-pop a{border:0;text-decoration:none}
+.week-menu-pop .wk-main{flex:1;display:flex;align-items:baseline;justify-content:space-between;gap:.65rem;
+ padding:.48rem .75rem;color:var(--ink);transition:background-color .1s ease,color .1s ease}
+.week-menu-pop .wk-main:hover{background:color-mix(in srgb,var(--signal) 9%,var(--surface));color:var(--signal)}
+.week-menu-pop .wk-main:active{background:color-mix(in srgb,var(--signal) 16%,var(--surface))}
+.week-menu-pop .wk{font-weight:500}
+.week-menu-pop .n{color:var(--faint);font-size:.66rem;font-variant-numeric:tabular-nums}
+.week-menu-pop .alt{display:flex;align-items:center;padding:.48rem .68rem;color:var(--dim);font-size:.68rem;
+ border-left:1px solid color-mix(in srgb,var(--rule) 55%,transparent);transition:background-color .1s ease,color .1s ease}
+.week-menu-pop .alt:hover{background:color-mix(in srgb,var(--signal) 9%,var(--surface));color:var(--signal)}
+.week-menu-pop .alt:active{background:color-mix(in srgb,var(--signal) 16%,var(--surface))}
+.tab-radio{position:absolute;opacity:0;pointer-events:none}
+.tab-bar{display:flex;flex-wrap:wrap;gap:.25rem 1.4rem;margin:.1rem 0 1.25rem;
+ border-bottom:1px solid var(--rule);font-family:var(--sans);font-size:.9rem}
+.tab-btn{cursor:pointer;display:inline-flex;align-items:baseline;gap:.35rem;
+ padding:.5rem .1rem .58rem;margin-bottom:-1px;color:var(--dim);font-weight:500;
+ border-bottom:2px solid transparent;user-select:none;transition:color .12s ease,border-color .12s ease}
+.tab-btn:hover{color:var(--ink)}
+.tab-btn .cnt{font-family:var(--mono);font-size:.68rem;color:var(--faint);font-variant-numeric:tabular-nums}
+.tab-panel{display:none}
+#tab-front:checked ~ .tab-bar label[for="tab-front"],
+#tab-radar:checked ~ .tab-bar label[for="tab-radar"],
+#tab-papers:checked ~ .tab-bar label[for="tab-papers"]{color:var(--ink);border-bottom-color:var(--signal);font-weight:600}
+#tab-front:checked ~ .tab-bar label[for="tab-front"] .cnt,
+#tab-radar:checked ~ .tab-bar label[for="tab-radar"] .cnt,
+#tab-papers:checked ~ .tab-bar label[for="tab-papers"] .cnt{color:var(--signal)}
+#tab-front:checked ~ .tab-panel[data-tab="front"],
+#tab-radar:checked ~ .tab-panel[data-tab="radar"],
+#tab-papers:checked ~ .tab-panel[data-tab="papers"]{display:block}
+.layout:has(#tab-front:checked) .outline a[data-tab]:not([data-tab="front"]),
+.layout:has(#tab-radar:checked) .outline a[data-tab]:not([data-tab="radar"]),
+.layout:has(#tab-papers:checked) .outline a[data-tab]:not([data-tab="papers"]){display:none}
+.tier-note{font-family:var(--mono);font-size:.76rem;color:var(--dim);margin:1.6rem 0 .4rem;
+ padding-top:.85rem;border-top:1px dashed var(--rule)}
+.papers-sec:has(.f-p-ch:checked) .paper-row{display:none}
+.papers-sec:has(#p-ch-0:checked) .paper-row[data-pch="0"],
+.papers-sec:has(#p-ch-1:checked) .paper-row[data-pch="1"],
+.papers-sec:has(#p-ch-2:checked) .paper-row[data-pch="2"],
+.papers-sec:has(#p-ch-3:checked) .paper-row[data-pch="3"]{display:block}
+.papers-sec:has(.f-p-tag:checked) .paper-row{display:none}
+.papers-sec:has(#p-tag-0:checked) .paper-row[data-ptag="0"],
+.papers-sec:has(#p-tag-1:checked) .paper-row[data-ptag="1"],
+.papers-sec:has(#p-tag-2:checked) .paper-row[data-ptag="2"],
+.papers-sec:has(#p-tag-3:checked) .paper-row[data-ptag="3"],
+.papers-sec:has(#p-tag-4:checked) .paper-row[data-ptag="4"],
+.papers-sec:has(#p-tag-5:checked) .paper-row[data-ptag="5"],
+.papers-sec:has(#p-tag-6:checked) .paper-row[data-ptag="6"],
+.papers-sec:has(#p-tag-7:checked) .paper-row[data-ptag="7"]{display:block}
+.runs-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:.78rem;margin:1rem 0 2rem;display:table}
+.runs-table th,.runs-table td{text-align:left;padding:.52rem .6rem;border-bottom:1px solid var(--rule);vertical-align:top}
+.runs-table th{color:var(--dim);font-weight:500;border-bottom:2px solid var(--rule)}
+.runs-table .bad{color:var(--heat)}
+.runs-table .ok{color:var(--signal)}
+.filter-bar{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem .42rem;margin:.2rem 0 .95rem;
+ font-family:var(--mono);font-size:.72rem}
+.filter-bar input{position:absolute;opacity:0;pointer-events:none}
+.filter-bar .filter-k{color:var(--faint);font-size:.68rem;margin-right:.1rem}
+.filter-bar .filter-sep{color:var(--rule);margin:0 .15rem}
+.filter-bar label{cursor:pointer;display:inline-flex;align-items:center;gap:.24rem;
+ padding:.14rem .48rem;border:1px solid var(--rule);border-radius:3px;
+ color:var(--dim);background:transparent;user-select:none}
+.filter-bar label:hover{border-color:var(--signal);color:var(--ink)}
+.filter-bar .cnt{color:var(--faint);font-size:.65rem;font-variant-numeric:tabular-nums}
+.filter-bar input:checked+label{border-color:var(--signal);color:var(--signal);
+ background:color-mix(in srgb,var(--signal) 10%,var(--surface));font-weight:500}
+.filter-bar input:checked+label .cnt{color:var(--signal)}
+.filter-bar input:focus-visible+label{outline:2px solid var(--signal);outline-offset:2px}
+.filter-reset{display:none;appearance:none;border:0;background:none;padding:.14rem .3rem;
+ font:inherit;font-size:.68rem;color:var(--faint);cursor:pointer;
+ border-bottom:1px dotted var(--rule)}
+.filter-reset:hover{color:var(--heat);border-bottom-color:var(--heat)}
+.filter-bar:has(input:checked) .filter-reset{display:inline-block}
+.page:has(.f-ch:checked) .picks-list .pick,
+.page:has(.f-ch:checked) .papers-sec .paper-row{display:none}
+.page:has(#f-ch-0:checked) .picks-list .pick[data-ch="0"],
+.page:has(#f-ch-1:checked) .picks-list .pick[data-ch="1"],
+.page:has(#f-ch-2:checked) .picks-list .pick[data-ch="2"],
+.page:has(#f-ch-3:checked) .picks-list .pick[data-ch="3"],
+.page:has(#f-ch-4:checked) .picks-list .pick[data-ch="4"],
+.page:has(#f-ch-5:checked) .picks-list .pick[data-ch="5"],
+.page:has(#f-ch-6:checked) .picks-list .pick[data-ch="6"],
+.page:has(#f-ch-7:checked) .picks-list .pick[data-ch="7"],
+.page:has(#f-ch-0:checked) .papers-sec .paper-row[data-ch="0"],
+.page:has(#f-ch-1:checked) .papers-sec .paper-row[data-ch="1"],
+.page:has(#f-ch-2:checked) .papers-sec .paper-row[data-ch="2"],
+.page:has(#f-ch-3:checked) .papers-sec .paper-row[data-ch="3"],
+.page:has(#f-ch-4:checked) .papers-sec .paper-row[data-ch="4"],
+.page:has(#f-ch-5:checked) .papers-sec .paper-row[data-ch="5"],
+.page:has(#f-ch-6:checked) .papers-sec .paper-row[data-ch="6"],
+.page:has(#f-ch-7:checked) .papers-sec .paper-row[data-ch="7"]{display:block}
+.page:has(#f-multi:checked) .picks-list .pick:not([data-multi="1"]){display:none}
+.page:has(#f-consume-listen:checked):not(:has(#f-consume-read:checked)) .pick:not([data-consume="listen"]),
+.page:has(#f-consume-read:checked):not(:has(#f-consume-listen:checked)) .pick:not([data-consume="read"]){display:none}
+.page:has(#f-consume-listen:checked):not(:has(#f-consume-read:checked)) .papers-sec:not(:has(.pick[data-consume="listen"])),
+.page:has(#f-consume-read:checked):not(:has(#f-consume-listen:checked)) .papers-sec:not(:has(.pick[data-consume="read"])){display:none}
+.page:has(.f-cand-kind:checked) .cand-sec{display:none}
+.page:has(#cand-kind-direct:checked) .cand-sec[data-kind="direct"],
+.page:has(#cand-kind-digest:checked) .cand-sec[data-kind="digest"],
+.page:has(#cand-kind-papers:checked) .cand-sec[data-kind="papers"],
+.page:has(#cand-kind-capture:checked) .cand-sec[data-kind="capture"]{display:block}
+.page:has(.f-cand-ch:checked) .cand li{display:none}
+.page:has(#cand-ch-0:checked) .cand li[data-ch="0"],
+.page:has(#cand-ch-1:checked) .cand li[data-ch="1"],
+.page:has(#cand-ch-2:checked) .cand li[data-ch="2"],
+.page:has(#cand-ch-3:checked) .cand li[data-ch="3"],
+.page:has(#cand-ch-4:checked) .cand li[data-ch="4"],
+.page:has(#cand-ch-5:checked) .cand li[data-ch="5"]{display:flex}
+.page:has(.f-cand-st:checked):not(:has(#cand-picked:checked)) .cand li[data-status="picked"],
+.page:has(.f-cand-st:checked):not(:has(#cand-roundup:checked)) .cand li[data-status="roundup"],
+.page:has(.f-cand-st:checked):not(:has(#cand-rest:checked)) .cand li[data-status="rest"]{display:none}
+.page:has(.f-cand-st:checked,.f-cand-ch:checked) .cand-sec:not(:has(li:not([style]))){/* structural fallback */}
+blockquote{margin:0 0 .75rem;padding:.35rem 0;
+ border-top:1px solid var(--rule);color:var(--dim);font-size:.9rem}
+blockquote p{margin:0;color:inherit}
+ul{padding-left:1.1rem;margin:0 0 1rem}
+li{margin:.3rem 0;color:var(--ink-soft)}
+.src{font-family:var(--mono);font-size:.78rem;word-break:break-all;margin:0 0 .85rem;color:var(--dim)}
+.index{list-style:none;padding:0;margin:1.5rem 0 0}
+.index li{display:flex;gap:1rem;align-items:baseline;padding:.7rem 0;
+ border-bottom:1px solid var(--rule)}
+.index .wk{font-family:var(--mono);font-size:.82rem;color:var(--dim);
+ white-space:nowrap;font-variant-numeric:tabular-nums}
+.index .n{font-family:var(--mono);font-size:.74rem;color:var(--faint);
+ margin-left:auto;white-space:nowrap}
+.index .alt{font-family:var(--mono);font-size:.7rem;white-space:nowrap}
+hr{border:0;border-top:1px solid var(--rule);margin:2rem 0}
+.health b{color:var(--heat);font-weight:600}
+.foot{margin-top:3.5rem;padding-top:1.1rem;border-top:2px solid var(--ink);
+ font-family:var(--mono);font-size:.72rem;color:var(--faint);line-height:1.8}
+b.item{font-weight:600;color:var(--ink)}
+sup.score{font-family:var(--mono);font-size:.62rem;color:var(--faint);
+ vertical-align:super;line-height:0;margin-left:.15em;cursor:help;
+ border-bottom:1px dotted var(--rule);font-variant-numeric:tabular-nums;
+ position:relative}
+sup.score:hover,sup.score:focus{color:var(--signal);border-bottom-color:var(--signal)}
+sup.score:hover::after,sup.score:focus::after{
+ content:attr(data-tip);position:absolute;bottom:1.7em;left:50%;
+ transform:translateX(-50%);background:var(--ink);color:var(--paper);
+ padding:.3rem .55rem;border-radius:3px;font-size:.7rem;line-height:1.3;
+ white-space:nowrap;z-index:20;pointer-events:none;font-weight:400;
+ box-shadow:0 2px 8px color-mix(in srgb,var(--ink) 18%,transparent)}
+b.kicker{font-family:var(--mono);font-size:.74rem;font-weight:500;
+ color:var(--dim);letter-spacing:.02em}
+b.hl{font-weight:600;color:var(--ink);
+ background:linear-gradient(to top,
+   color-mix(in srgb,var(--signal) 22%,transparent) 0,
+   color-mix(in srgb,var(--signal) 22%,transparent) .42em,
+   transparent .42em);
+ padding:0 .1em}
+.preview-flag{grid-column:1/-1;
+ background:var(--heat);color:var(--on-heat);font-family:var(--mono);
+ font-size:.72rem;padding:.5rem .9rem;margin:0 0 1.5rem;border-radius:3px}
+.preview-flag a{color:var(--on-heat);border-bottom-color:color-mix(in srgb,var(--on-heat) 50%,transparent)}
+.nav{display:flex;flex-wrap:wrap;gap:.2rem 1.4rem;margin:0 0 1rem;
+ font-family:var(--mono);font-size:.76rem}
+.nav a{padding:.3rem 0}
+.nav [aria-current="page"]{color:var(--ink);border-bottom-color:var(--ink)}
+@media (min-width:1101px){
+  .cols2{column-count:2;column-gap:2.2rem}
+  .cols2>li{break-inside:avoid}
+}
+details.fold{margin:0 0 1.5rem}
+details.fold>summary{cursor:pointer;list-style:none;padding:.55rem .8rem;
+ border:1px solid var(--rule);border-radius:3px;background:var(--surface);
+ font-family:var(--mono);font-size:.78rem;color:var(--ink-soft)}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::before{content:"▸ ";color:var(--faint)}
+details.fold[open]>summary::before{content:"▾ "}
+details.fold>summary:hover{border-color:var(--signal);color:var(--signal)}
+details.fold[open]>summary{margin-bottom:1rem}
+.cand{list-style:none;padding:0;margin:.8rem 0 2.2rem}
+.cand li{display:flex;gap:.4rem 1rem;align-items:baseline;flex-wrap:wrap;
+ padding:.55rem 0;border-bottom:1px solid var(--rule)}
+.cand li>a{flex:1 1 20rem;min-width:0;border-bottom:0;text-decoration:underline;
+ text-decoration-color:color-mix(in srgb,var(--signal) 30%,transparent);text-underline-offset:3px}
+.cand li>a:hover{text-decoration-color:var(--signal)}
+.cand .meta{display:flex;gap:.7rem;align-items:baseline;margin-left:auto;
+ font-family:var(--mono);font-size:.68rem;color:var(--faint);
+ white-space:nowrap;font-variant-numeric:tabular-nums}
+.cand .who{color:var(--dim);max-width:11rem;overflow:hidden;
+ text-overflow:ellipsis}
+.cand .got{color:var(--signal);border:1px solid var(--signal);
+ border-radius:2px;padding:0 .3rem;font-size:.62rem}
+.cand .got.rough{color:var(--dim);border-color:var(--rule)}
+.srcs{list-style:none;padding:0;margin:1rem 0 2.4rem;display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:.75rem}
+.srcbox{border:1px solid var(--rule);border-radius:3px;padding:.9rem 1rem;
+ background:var(--surface)}
+.srcbox.is-off{opacity:.62}
+.srchead{display:flex;gap:.5rem;align-items:baseline;flex-wrap:wrap}
+.srcbox h3{font-family:var(--sans);font-size:.98rem;font-weight:600;
+ margin:0;line-height:1.4}
+.chips{display:flex;gap:.3rem;flex-wrap:wrap;margin-left:auto}
+.chip{font-family:var(--mono);font-size:.64rem;white-space:nowrap;
+ padding:.1rem .38rem;border:1px solid var(--rule);border-radius:2px;
+ color:var(--ink-soft);background:var(--paper)}
+.chip.dim,.kind-tag{color:var(--faint)}
+.kind-tag{font-family:var(--mono);font-size:.64rem;white-space:nowrap;padding:.06rem .32rem;border:1px solid var(--rule);border-radius:2px;background:var(--surface)}
+.chip.off{color:var(--heat);border-color:var(--heat)}
+.sid{font-family:var(--mono);font-size:.68rem;color:var(--faint);
+ margin:.15rem 0 .5rem}
+.srcbox .row{display:flex;gap:.5rem;align-items:baseline;
+ font-size:.76rem;line-height:1.6;margin-top:.15rem}
+.srcbox .row>.chip{flex-shrink:0}
+.srcbox .k{font-family:var(--mono);font-size:.66rem;color:var(--faint);
+ flex:0 0 2.2rem;white-space:nowrap}
+.srcbox .row a,.srcbox code{font-family:var(--mono);font-size:.72rem;
+ overflow-wrap:anywhere;min-width:0}
+.srcbox code{color:var(--ink-soft)}
+.srcbox .why{color:var(--dim);font-size:.74rem}
+h2 .n{font-family:var(--mono);font-size:.7rem;color:var(--faint);
+ margin-left:.55rem;font-weight:400}
+@media (max-width:760px){
+  .layout{padding:1.15rem 1.05rem 2.5rem}
+  .wordmark{font-size:1.85rem}
+  .mast{gap:.45rem 1rem;align-items:flex-start;padding-bottom:.9rem;margin-bottom:.9rem}
+  .sweep{text-align:left}
+  .nav{margin:0 0 .65rem}
+  h2{font-size:1.28rem;margin:1.55rem 0 .6rem}
+  h3{font-size:1.08rem;margin:1.05rem 0 .25rem}
+  body{font-size:16px;line-height:1.7}
+  .filter-bar{gap:.32rem .38rem;margin-bottom:.95rem}
+  .filter-bar label{min-height:30px;padding:.18rem .5rem}
+  .index li{flex-wrap:wrap;gap:.2rem .7rem;padding:.6rem 0}
+  .index .n{margin-left:0}
+  .index a{padding:.15rem 0}
+  .src{display:flex;gap:.4em;align-items:baseline;font-size:.82rem;margin-bottom:.85rem}
+  .src a{display:inline-block;min-height:34px;padding:.35rem 0;flex:1;min-width:0;overflow-wrap:anywhere}
+  .srcbox .row a{display:block;flex:1;padding:.55rem 0}
+  .srcs{gap:.7rem}
+  .cand li{gap:.22rem .6rem;padding:.48rem 0}
+  .cand li>a{flex-basis:100%;display:block;min-height:34px;padding:.2rem 0;line-height:1.45}
+  .cand .meta{max-width:100%;flex-wrap:wrap;gap:.25rem .55rem;margin-left:0}
+  .cand .who{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+  .nav a{min-height:36px;display:inline-flex;align-items:center}
+  .card-body{padding:.55rem .65rem .7rem 1rem}
+  .trend-table li{grid-template-columns:1fr;gap:.15rem}
+  sup.score:hover::after,sup.score:focus::after{
+    position:fixed;left:1.05rem;right:1.05rem;bottom:1rem;
+    transform:none;white-space:normal;width:auto}
+}
+h1,h2,h3,h4,p,li,blockquote,.sweep,.tagline,.sid{overflow-wrap:anywhere;word-break:normal}
+.src{overflow-wrap:anywhere}
+pre,table{max-width:100%;overflow-x:auto;display:block}
+img{max-width:100%;height:auto}
+.mast>*,.srcbox,.srcbox .row>*{min-width:0}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body><div class="layout">
+<header class="mast"><h1 class="wordmark"><a href="./">资讯周报</a> <em>兜底聚合</em></h1><div class="sweep">2026-W45<br>462 条抓取 · 精选 107 候选 · 讨论 75 · 论文 110 候选</div></header>
+<p class="tagline">本周主题匹配但未进本期精选的兜底聚合稿；如需浏览全部原始抓取，请看 <a href="./2026-W45.candidates.html">本期候选</a>。</p>
+<nav class="nav"><a href="./">本期</a><a href="./2026-W45.roundup.html" aria-current="page">本期兜底</a><a href="./2026-W45.candidates.html">本期候选</a><a href="./sources.html">资讯源</a><details class="week-menu"><summary>往期 (9)</summary><ul class="week-menu-pop"><li><a class="wk-main" href="./2026-W47.html"><span class="wk">2026-W47</span><span class="n">661 条</span></a><a class="alt" href="./2026-W47.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W46.html"><span class="wk">2026-W46</span><span class="n">427 条</span></a><a class="alt" href="./2026-W46.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W44.html"><span class="wk">2026-W44</span><span class="n">554 条</span></a><a class="alt" href="./2026-W44.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W43.html"><span class="wk">2026-W43</span><span class="n">537 条</span></a><a class="alt" href="./2026-W43.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W42.html"><span class="wk">2026-W42</span><span class="n">556 条</span></a><a class="alt" href="./2026-W42.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W41.html"><span class="wk">2026-W41</span><span class="n">585 条</span></a><a class="alt" href="./2026-W41.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W40.html"><span class="wk">2026-W40</span><span class="n">675 条</span></a><a class="alt" href="./2026-W40.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W39.html"><span class="wk">2026-W39</span><span class="n">417 条</span></a><a class="alt" href="./2026-W39.candidates.html">候选</a></li><li><a class="wk-main" href="./2026-W38.html"><span class="wk">2026-W38</span><span class="n">515 条</span></a><a class="alt" href="./2026-W38.candidates.html">候选</a></li></ul></details></nav><aside class="outline" aria-label="章节目录"><div class="outline-label">本页目录</div><nav aria-label="章节跳转"><a href="#section-1">权重空间编程与模型能力研究</a><a href="#section-2">Agent 产品、API 与路由</a><a href="#section-3">Agent 与网站之间的身份、访问与安全</a><a href="#section-4">网页数据与检索基准（Firecrawl）</a><a href="#section-5">评测、可观测性与开发工具</a><a href="#section-6">Vercel 客户案例</a><a href="#section-7">系统与基础设施工程</a><a href="#section-8">行业动态与观点</a><a href="#section-9">概念与实践指南</a><a href="#top">↑ 回到页首</a></nav></aside><main class="page" id="top">
+<section class="sec"><blockquote><p>97 条主题匹配但未进精选，这里给出核心观点供你判断是否值得回头细读。取正文最全的 40 条。</p></blockquote>
+<h2 id="section-1">权重空间编程与模型能力研究</h2>
+<ul>
+<li><b class="item">Sparks of Weight-Space Programming：LLM 可直接读写神经网络权重</b> — 论文（Takehi、Teoh、Alex Zhang、Omar Khattab）称 GPT-6 Astra 仅看原始权重的浮点数文本就能判断网络的功能并修改它；AINews 把它放在 Karpathy 八个月前 autoresearch 的脉络里解读，认为它绕过了&quot;写 PyTorch、跑集群、看 loss 曲线&quot;的流程。 <a href="https://latent.space/p/ainews-llms-can-read-write-neural-network-weights-weight-space-programming-cuts-autoresearch-out-of/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Qwen 3.8 27B 在笔记本上也能解释模型权重</b> — Simon Willison 复现了论文中的一个例子，本地 27B 模型同样能解读权重，说明该能力不限于前沿模型。 <a href="https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Import AI 479：Realtime-Bench 显示 LLM 在低延迟任务上很差</b> — 50 个动态任务，30 个 web 任务（旅行、电商、服务、安全四类）+20 个游戏任务（街机、解谜、策略、模拟），考察延迟动作直接影响成败的场景；由 UT Austin、俄亥俄州立、UIUC、NVIDIA、西北大学等合作构建。本期另含 Spacewar、Genie 4。 <a href="https://importai.substack.com/p/import-ai-479-spacewar-low-latency" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-2">Agent 产品、API 与路由</h2>
+<ul>
+<li><b class="item">Perplexity 推出 teammates</b> — 面向长期运行工作的个人 agent，能规划协调项目、随优先级变化调整并提交结果供审阅；建立在 Computer 之上，此前让 agent 承担持续性工作需要手工规划。 <a href="https://www.perplexity.ai/hub/blog/teammates-are-agents-for-complex-ongoing-work" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Perplexity Computer 面向电商</b> — 连接 Shopify（店铺数据与落地页）、Meta（广告）、Klaviyo（邮件营销），可用 skills 存放品牌设计规范，用于搭产品页和投放广告/邮件活动。 <a href="https://www.perplexity.ai/hub/blog/computer-for-e-commerce-is-built-for-brand-growth" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Agent API 各档 effort 全面降价并新增 ultra</b> — 每个档位单次查询成本下降，研究质量持平或提升；effort 是打包配置（模型、步数预算、搜索设置、工具），按名称调用（如 <code>effort=&quot;fast&quot;</code>）自动套用新配置。 <a href="https://www.perplexity.ai/hub/blog/improvements-to-every-agent-api-effort-level" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Decisions API 支持 web grounding</b> — 请求中加 <code>&quot;mode&quot;: &quot;web_grounding&quot;</code>，每个问题跑一次 Perplexity Fast Search，结果作为证据写入 state；state 也可直接给 URL 指向特定页面。基准为 PWS-Decisions。 <a href="https://www.perplexity.ai/hub/blog/web-grounding-for-the-decisions-api" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">OpenRouter 新一代 Auto Router / Auto Code Router</b> — 底层重建，按基准最多比旧路由高 4×，路由步骤快 3×；可在 chatroom 查看路由决策理由，在模型页看实时路由分布。 <a href="https://openrouter.ai/blog/announcements/auto-and-auto-code-routers/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">OpenRouter Guardrails 拆分组织限制与工作区默认值</b> — 预算、模型访问、内容审核成为三类独立策略，组织级设上限、工作区可设默认并做例外；向后兼容。背景数据：10 人以上团队用户一年增长 70 倍，平均组织的活跃 API key 数是过去的 3 倍。 <a href="https://openrouter.ai/blog/announcements/guardrail-policies/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Tavily 上线 Composio Instant</b> — 支持 web search 与内容提取，无需单独注册 Tavily 账号、管理 API key 或订阅，按调用从 Composio 钱包计费。 <a href="https://composio.dev/blog/tavily-on-composio-instant" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">PI v1.5.0</b> — 新增扩展包更新 changelog 展示（可配置路径、<code>collapseChangelog</code> 折叠）、大工具调用增量解析与高亮复用以提升流式渲染、自定义自更新命令（<code>PI_SELF_UPDATE_COMMAND</code>/<code>selfUpdateCommand</code>）；接入 GPT-6.1 Terra（OpenAI、Azure OpenAI Responses、OpenAI Codex，Codex 提供 500K 上下文，支持 tool search、对话中途切换 thinking 级别及关闭 thinking）。破坏性变更：工具参数校验行为调整。 <a href="https://github.com/earendil-works/pi/releases/tag/v1.5.0" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-3">Agent 与网站之间的身份、访问与安全</h2>
+<ul>
+<li><b class="item">Cloudflare：Agent 不是人类（但又有点像）</b> — 论证站点需要身份、声誉、问责三项机制才能在 Agent 代人访问时保留站点与用户的关系；Agent 可能看起来像普通用户，也可能是一个访客携带多个用户。 <a href="https://blog.cloudflare.com/trusted-agent-delegation/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Cloudflare 上线个人 Agent 的分析与访问策略</b> — 新增 analytics 让站点看清哪些个人 agent 在访问、做了什么，并提供更细粒度的访问控制，替代&quot;一刀切屏蔽&quot;。 <a href="https://blog.cloudflare.com/personal-agents-visibility-control/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Cloudflare Zero Wire：关键漏洞情报中心</b> — 公开的漏洞情报 feed，面向需要快速判断&quot;我们是否受影响&quot;的安全团队；文中指 AI 正在提高严重漏洞被发现的数量与速度。 <a href="https://blog.cloudflare.com/zero-wire/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Privacy Pass 的后量子化</b> — 除 TLS 外，Privacy Pass 这类用于限速、替代 CAPTCHA 与指纹识别的隐私协议同样依赖易受量子攻击的密码学，文章讨论其迁移方案。 <a href="https://blog.cloudflare.com/vole-mole/" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-4">网页数据与检索基准（Firecrawl）</h2>
+<ul>
+<li><b class="item">Legal Retrieval Benchmark 发布</b> — 581 条法律检索请求，用于评测搜索 API，每条要求返回一份官方文档（法规、条例、判决或机构指引），全部来自 Firecrawl 政府与法律索引的真实客户查询；与索引改进构成每周循环。 <a href="https://www.firecrawl.dev/blog/legal-retrieval-benchmark" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">法律数据 API 横评：CourtListener、PACER 等</b> — CourtListener 免费账号 125 请求/天，LegiScan 免费层 1 万查询/月，PACER 按页计费 $0.10，2027 年 1 月 1 日起涨至 $0.12，Westlaw 与 Lexis 的 API 需走销售。 <a href="https://www.firecrawl.dev/blog/legal-data-api" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">面向 AI 购物 agent 的商品数据 API：5 家对比</b> — Bright Data、Apify、Oxylabs、Zyte 按站点 scraper/Actor 或 AI 抽取售卖、按每千条记录计价，Firecrawl 为第五个选项；核心论点是模型训练数据没有当前价格，需返回价格、促销价、变体、库存、图片、评论等结构化字段。 <a href="https://www.firecrawl.dev/blog/product-data-api" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">B2B 开发客户的 5 步流程与 AI prompt</b> — 定义理想客户、列出匹配账户、找到采购决策者、检查购买信号、写出相关的首句；强调融资、招聘、职位每月变动，需实时数据。 <a href="https://www.firecrawl.dev/blog/b2b-prospecting" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-5">评测、可观测性与开发工具</h2>
+<ul>
+<li><b class="item">Braintrust 支持追踪 MCP server</b> — 可看到 agent 请求了什么、工具调用返回了什么，用 Patterns 聚合发现问题；针对&quot;工具返回成功但 agent 拿错数据或理解错&quot;的情况，服务端错误日志不够用。 <a href="https://www.braintrust.dev/blog/mcp-tracing" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Arize Phoenix 自动更新模型价格</b> — 价格目录不再绑定版本发布，服务器可在版本之间接收新费率；在 Settings &gt; Models 可查看当前内置价格目录的日期。 <a href="https://arize.com/blog/phoenix-automatic-model-pricing-updates/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Vercel Security Review 公测</b> — Vercel Agent 的第三项能力（另两项为 Code Review 和 Investigation），GitHub push（含直推生产分支）触发扫描改动代码，查找缺失鉴权、泄露密钥等问题；结果出现在 PR 评论、Security dashboard 和 CLI，授权后 Agent 可验证并推送修复；monorepo 中按项目根目录限定范围。 <a href="https://vercel.com/blog/vercel-security-review" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-6">Vercel 客户案例</h2>
+<ul>
+<li><b class="item">Zapier</b> — 用 v0 在两小时内做出交互式合作伙伴 demo（原流程需数周），三个内部应用各一天出首版，为 60 多名营销人员建共享日报，单月创建 330 万个 sandbox 隔离 AI 工作负载的代码执行。 <a href="https://vercel.com/blog/how-zapier-turns-ideas-into-working-software-in-hours-with-vercel" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Mercor</b> — 批处理任务从 12 小时压到 2 小时；10 天内经 AI Gateway 路由 1800 万请求、630 亿 token；用 Vercel Passport 秒级开通专家访问；内部构建者创建了 2000 多个项目。 <a href="https://vercel.com/blog/how-mercor-ships-internal-apps-and-billions-of-production-tokens-on-one-platform" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">OpenEvidence</b> — 为 65 万名医生提供带引用的医学检索；生产部署约 5 分钟完成，用 Fluid compute 将 serverless 支出降低 90%，流量尖峰无需额外扩容。 <a href="https://vercel.com/blog/how-openevidence-scales-medical-search-for-doctors" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-7">系统与基础设施工程</h2>
+<ul>
+<li><b class="item">Meta F3 Lightning：广告 ML 特征上线提速</b> — F3 把单请求 2 万多个特征编译进一张合并图以降低计算成本，但该图同时是发布单元，单个特征失败或定义非法就阻塞整条发布流水线；F3 Lightning 在其上加一层，让每个特征独立编译、校验、部署和回滚，难点是保持原有效率——早期按特征发布的原型因特征不再共享计算而推高了 CPU 使用。 <a href="https://engineering.fb.com/2026/11/03/ml-applications/f3-lightning-how-meta-accelerates-ads-ml-features-to-production/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Anthropic 重新设计源码控制</b> — 编码本身已不是瓶颈（Claude 能跑研究循环、优化程序、从零建服务），瓶颈转移到围绕写代码的基础设施。 <a href="https://blog.bytebytego.com/p/how-anthropic-redesigned-source-control" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Netflix 用 AI agent 做性能工程</b> — 介绍其在分布式架构中压缩响应时间、定位 CPU/内存瓶颈、控制基础设施成本的 agent 实践。 <a href="https://blog.bytebytego.com/p/how-netflix-uses-ai-agents-for-performance" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Nvidia Nemotron 模型家族的工作方式</b> — 拆解其核心设计思路：在保持模型容量的同时压低推理开销。 <a href="https://blog.bytebytego.com/p/how-nvidias-new-nemotron-model-works" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">LLM 推理系统是怎么跑的</b> — 以一次请求为线索讲三个核心难题：每步都要访问巨大模型时如何快速出 token、如何在 GPU 显存与容量有限时服务多用户、如何既快又不浪费昂贵硬件。 <a href="https://newsletter.systemdesign.one/p/how-llm-inference-works" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-8">行业动态与观点</h2>
+<ul>
+<li><b class="item">AINews：人事与并购的&quot;换边季&quot;</b> — Cat Wu 离开 Anthropic（自 Claude Code 立项起任产品负责人）加入 OpenAI 领导 Core Products PM；Sharon Zhou（Lamini CEO，被 AMD 收购后任 Lisa Su 麾下 VP of AI）从 AMD 转投 Anthropic；Factory 收购 HumanLayer；Meta 收购 Conductor。 <a href="https://latent.space/p/ainews-it-s-swapping-season/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">AINews：Anthropic IPO 续篇</b> — 市场回调加深，纳斯达克约 -10%（未到 -20% 的熊市线）；文中提到估值预期被压低至 1 万亿美元量级、概率下调 18%；Anthropic 年底目标 1000 亿美元 run rate，当前 800 亿。含与 Jamin Ball 的第二期播客。 <a href="https://latent.space/p/ainews-anthropic-ipo-whither-now/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">AINews：Weight-Space Programming 的争议与 AI Engineer 上海</b> — 编辑方承认该论文部分表述过于有利，但已有多次独立复现，不做撤回；本期转向 AI Engineer Shanghai 并附 Latent Space 发展史独家访谈。本期检查了 12 个 subreddit、544 个 Twitter 账号。 <a href="https://latent.space/p/ainews-behind-latent-space-kill-my-saas-jev-ai-in-2026-aiei-shanghai/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Legora CTO Jacob Lauritzen 访谈</b> — 两周前宣布 5.5 亿美元 E 轮、估值 88 亿美元；4 月 ARR 破 1 亿（上线不到 18 个月），客户超 1800 家；产品从&quot;ChatGPT+瑞典法律+搜索&quot;起步，现可起草编辑 Word 文档、一次审阅数千份合同，并协调律师、客户与其他 agent。 <a href="https://latent.space/p/building-ai-for-lawyers-jacob-lauritzen-cto-of-legora/" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">Aravind Srinivas 在剑桥辩论社的演讲（2026-10-03）</b> — 他拒绝讲&quot;AI 的未来&quot;，改讲&quot;你的未来&quot;，并预留更多时间给问答。 <a href="https://www.perplexity.ai/hub/blog/the-knowledge-talk" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">美国人口普查局与&quot;超级智能&quot;行政令</b> — Simon Willison 重跑 Apollo 2025 年 9 月那张&quot;大企业 AI 采用率下滑&quot;图的数据来源 BTOS（每两周从 120 万家企业中抽 20 万家轮调调查），过程中发现普查局受第 14434 号行政令（即&quot;Super Intelligence&quot;那道）影响。 <a href="https://simonwillison.net/2026/Nov/2/census-bureau-super-intelligence/" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul>
+<h2 id="section-9">概念与实践指南</h2>
+<ul>
+<li><b class="item">AI agent 记忆</b> — 讲工作记忆、情景记忆、语义记忆、程序性记忆如何配合；引 Letta CEO Charles Packer 观点：记忆基准已饱和因为它们只测召回，而召回已被解决，真正未解的是 agent 靠保留的上下文在工作中变得更好且无需重训。 <a href="https://www.perplexity.ai/hub/blog/ai-agent-memory" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">自主 agent 是什么、怎么运作</b> — 覆盖规划、工具使用、记忆与自检，以及在研究、邮件、课业、购物中的用法。 <a href="https://www.perplexity.ai/hub/blog/autonomous-agent" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">MCP 安全：11 类常见风险</b> — 风险归为三类——LLM 操纵（如间接 prompt 注入）、数据与访问安全、基础设施漏洞（如本地 server 被攻陷）；强调防护强度应与所连 MCP server 暴露的能力和数据相称。 <a href="https://www.perplexity.ai/hub/blog/mcp-security" target="_blank" rel="noopener noreferrer">原文</a></li>
+<li><b class="item">AI 可访问性实务指南</b> — 区分&quot;用 AI 做无障碍&quot;与&quot;AI 工具本身是否无障碍&quot;两件事，涵盖如何用 AI 让内容可访问、如何核验结果、如何判断工具自身的可访问性，以及当前局限。 <a href="https://www.perplexity.ai/hub/blog/ai-accessibility" target="_blank" rel="noopener noreferrer">原文</a></li>
+</ul></section><div class="foot"><a href="./2026-W45.html">← 回本期正文</a> &nbsp;·&nbsp; <a href="./2026-W45.candidates.html">查看全部候选</a> &nbsp;·&nbsp; <a href="./sources.html">资讯源</a></div>
+</main></div></body></html>
